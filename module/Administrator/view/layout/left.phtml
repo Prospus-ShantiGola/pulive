@@ -1,0 +1,41 @@
+ <div class="sidebar_wrap flyout-menu">
+    <ul class="menu-main-wrap">
+
+   </ul>
+</div>
+            <!--bottom-search-icon-->
+
+   <script type="text/javascript">
+    $(document).ready(function () {
+
+        /*
+         * Modified By: Divya Rajput
+         * Date: 2-August-2017
+         * Purpose: Need action name from url to show active class in case of direct url hit.
+        */
+        var path = location.pathname;
+        var actionName = '';
+        if(path.indexOf('/pu/')>-1) {
+            path = path.replace('/pu/', '');    
+        } else {
+            path = path.replace('/', '');
+        }
+        actionName = path.split('/')[0];
+        /*End Here*/
+        $.post(domainUrl+'store/leftmenu',{'actionName':actionName},responsdLeftMenu,'HTML');
+    });
+
+    function responsdLeftMenu(d,s)
+    {
+        $(".menu-main-wrap").html(d);
+        $(".AddNewInstance_li").hide();
+        $(".ExportInstanceData_li").hide();
+        $(".GenerateInstanceTemplate_li").hide();
+        $(".ImportInstanceData_li").hide();
+        //$.post(domainUrl+'classes/createFileOfUser',{},responseOfUser,'json');  // comment by awdhesh for call on load dashboard
+    }
+    function responseOfUser(d,s)
+    {
+
+    }
+   </script>

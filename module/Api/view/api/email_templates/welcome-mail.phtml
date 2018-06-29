@@ -1,0 +1,17 @@
+<?php 
+ 
+echo $this->header;
+$html = '<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">Hello, '.$this->toFirstName .'.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">Welcome to Prospus!</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">If you haven’t already, you should login to your account and have a look around.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333"><a style="color: #fff; text-decoration: none; padding: 8px 20px; background: #49a9fa; border-radius: 2px; font-size: 14px; margin-right: 10px;" href="' . SOCKET_HOST_NAME . '">Login</a> to Prospus</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">We hope you enjoy using Prospus and we look forward to seeing you around.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr>';
+echo $html;
+echo $this->footer;
+?>

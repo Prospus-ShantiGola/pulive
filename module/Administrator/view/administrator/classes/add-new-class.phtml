@@ -1,0 +1,173 @@
+<?php
+    $config = $this->config;
+?>
+
+<input type="hidden" id="temp-class" value="">
+
+<form id="class_structure_form" name="class_structure_form" class="form_active" method="post" action="" >
+	<div class="nano1">
+		<div class="paper-line dual-pane-height nano-content1 print-drp niceScrollDiv" id="node-wrapper">		
+			<div class="nice-scroll-box">
+				<input type="hidden" id="node_y_class_id" name="node_y_class_id" value="" />
+				<input type="hidden" id="prop_number" name="prop_number" value="1001" />
+				<input type="hidden" id="child_ids_of_class" name="child_ids_of_class" value="" />
+                <input type="hidden" id="saveTypeClass" name="saveTypeClass" value="" />
+				<ol class="class-wrapper sortable">
+			        <li>
+			            <div class="node-content clearfix node-selected">
+						<span class="number_print">1</span>
+			                <div class="node-left">
+			                    <div class="node-circle node-white-circle-expanded">N</div>                                
+			                    <div class="node-head node-input">
+                                    <span id="post_name"><?php echo $this->newNodeId; ?></span>
+                                    <input type="hidden" id="class_caption" name="class_caption" value="<?php echo $this->newNodeId; ?>" placeholder="Class" />
+                                    <input type="hidden" class="hidden-node-x" name="class_node_x_y[]" value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>" id="class_<?php echo time(); ?>" nodey-value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>" parent="">
+                                    <input type="hidden" class="hidden-node-z" name="class_node_y_z[]" value="" id="node_y_z<?php echo time(); ?>" >
+                                    <input type="hidden" class="hidden-node-z-main" name="class_z_main[]" value="" id="z-main<?php echo time(); ?>" >
+                                    <input type="hidden" id="common_name" name="common_name" value="" placeholder="Common Name" />
+                                    <input type="hidden" id="version_type" name="version_type" value="" />
+                                    <div class="styled-select" style="display:none;">
+                                        <select class="form-control nodeselection-dropdown" required="required" id="node_type_id" name="node_type_id">
+                                            <?php foreach ($nodeType as $key => $value) { ?>
+                                            <option value="<?php echo $value['node_type_id'];?>"><?php echo ucwords($value['type-name']);?></option>
+                                            <?php }?>
+                                        </select>
+                                    </div>
+                                </div>
+			                </div>
+			            </div>
+			            
+			            <ol class="first_prop_hard">
+                            <li id="prop_temp_li_999" class="numbering" data-class="prop_temp_li_999" position="0" >
+					            <div class="node-content clearfix">
+									<span class="number_print">2</span>
+					                <div class="node-left">
+					                    <div class="node-circle node-white-circle-expanded">N</div>                                
+					                    <div class="node-head node-input"> 
+					                    	<span>Properties</span> 
+					                    </div>
+                                        <input type="hidden" class="hidden-node-x" name="node_x_y[]" nodey-value="16525,28048,804675" value="16525,28048,804675" id="class_prop_temp_li_999" >
+                                        <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="" id="node_y_z999" >
+                                        <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="" id="prop_z_main999" >
+                                        <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y999" >
+                                        <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id999" >
+                                        <input type="hidden" class="runTab" id="new_property_999" name="new_property[]" placeholder="" value="Properties" ></textarea>
+					                </div>
+					                <div class="node-right hide">
+					                    <a class="action-move" onclick="addChildProperty();" ><span><i class="icon plus-class"></i></span></a>
+					                </div>
+					            </div>
+					            <ol class="property-child tabber" >
+                                    <li id="prop_temp_li_1000" class="numbering" data-class="prop_temp_li_1000" position="1" parent="prop_temp_li_999">
+                                        <div class="node-content clearfix">
+                                            <span class="number_print">3</span>
+                                            <div class="node-left">
+                                                <div class="node-circle node-white-circle">N</div>    
+                                                <div class="node-head node-input"> 
+                                                    <textarea cols="30" rows="1" class="runTab" id="new_property_1000" name="new_property[]" placeholder="" ></textarea>
+                                                </div>
+                                                <input type="hidden" class="hidden-node-x" name="node_x_y[]" nodey-value="<?php echo implode(',', $config['NODE_Z_CLASSES']); ?>" value="<?php echo implode(',', $config['NODE_Z_CLASSES']); ?>" id="class_prop_temp_li_1000" >
+                                                <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="" id="node_y_z1000" >
+                                                <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="" id="prop_z_main1000" >
+                                                <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y1000" >
+                                                <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id1000" >
+                                            </div>
+                                            <div class="node-right">
+                                                <a class="action-move  " onclick="removeProperty(1000);">
+                                                    <span><i class="icon close-small"></i></span>
+                                                </a>
+                                                <a class="action-move addclass"><span><i class="icon plus-class"></i></span></a>
+                                            </div>
+                                        </div>
+                                        <ol></ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="addplus add-sub-child-wrap">
+                                <span class="number_print">4</span>
+                                <span><i class="fa fa-plus"></i></span>
+                            </li>
+
+                        </ol>
+			        </li>
+                    
+			    </ol>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+    dualPaneHeight();
+    manageNiceScroll();
+
+
+   rightPaneicon();
+
+   var nodeT = "Z";
+
+   if($.trim(nodeTypeFirst)==2){
+         nodeT = "Y";
+   }
+   else if($.trim(nodeTypeFirst)==1){
+         nodeT = "X";
+   }
+
+   $(".list-row").removeClass('current');
+   $(".default_row_class").remove();
+   $(".lisat-class-row0").before("<tr class='default_row_class current'><td><input type='checkbox'><label></label></td><td style='display:none'></td><td>"+commonNameFirst+"</td><td>"+nodeT+"</td><td>1</td><td>0</td><td>Draft</td></tr>");
+   if($('#first-class-div div.set-content-height tr.list-row td').text() == "No Class Found")
+   {
+   		$(".lisat-class-row0").hide();
+   }
+    
+   textareaIncreaseHeight();
+   
+    $('.tabber').nestedSortable({
+	    items: 'li',
+	    doNotClear:true,
+        handle: '.node-circle',
+        placeholder: 'ui-sortable-placeholder',
+        tolerance: 'pointer',
+        forcePlaceholderSize: true,
+        toleranceElement: '> div.node-content',
+        maxLevels: 100,
+        expandOnHover: 700,
+        startCollapsed: true,
+        tabSize: 25,
+	    update: function(){
+            tabPositions();
+            calculatePlusIcons();
+            setNumberPrint();
+	    }
+	    
+	});
+	setNumberPrint();
+
+    if($.trim(commonNameFirst) != "")
+    {
+        $("#common_name").val(commonNameFirst);
+        var postName = $("#post_name").text();
+        $("#post_name").text(commonNameFirst+' ('+postName+')');
+        commonNameFirst = "";
+    }
+
+    if($.trim(nodeTypeFirst) != "")
+    {
+        $("#node_type_id").val(nodeTypeFirst);
+        setTimeout('setupRightMenu('+nodeTypeFirst+')',1000);
+        initalNodeType = nodeTypeFirst;
+        nodeTypeFirst = "";
+    }
+    
+    if($.trim(versioningTypeFirst) != "")
+    {   
+        versioningTypeValidation = 1;
+        if($.trim(versioningTypeFirst) == 2){
+            versioningTypeValidation = 2;
+        }
+        $("#version_type").val(versioningTypeFirst);
+        versioningTypeFirst = "";
+    }
+    $(".tabber li:first").find(".runTab").focus();
+</script>

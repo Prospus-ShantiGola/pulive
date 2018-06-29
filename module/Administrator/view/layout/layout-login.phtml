@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+    <!--==============================meta tag================================-->
+    <title>Prospus Universe</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <script type="text/javascript">
+    var domainUrl   =   "<?php echo BASE_URL; ?>";
+    </script>
+    <!--==============================fonts================================-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!--==============================css files================================-->
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/browser.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/skins/all.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/nanoscroller.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/style.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="<?php echo BASE_URL; ?>public/css/login-responsive.css" />
+    
+
+    <!--===jQuery UI is a widget and interaction library built on top of the jQuery JavaScript Library
+     that you can use to build highly interactive web applications.================================-->
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/jquery-ui.js"></script>
+    <!--=========================Use Bootstrap Library======================-->
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/icheck.js"></script>
+    <!--=========================Use Vertical Scroll======================-->
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/jquery.nanoscroller.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/nprogress.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/respond.js"></script>
+    <!--========================= Add class any browser ======================-->
+    <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/browser.js"></script>
+    <!--=========================Use Manual Define Function ======================-->
+    
+    
+
+</head>
+<body class="login-bg">
+
+    <?php
+
+
+
+    echo $this->content; 
+    
+    
+    ?>
+
+</body>
+<script type="text/javascript">
+   /* $('input').iCheck({
+        checkboxClass: 'icheckbox_minimal-grey',
+        radioClass: 'iradio_minimal-grey',
+        increaseArea: '15%'
+    });*/
+</script>
+    <style>
+        /*POP Css to override the bootstrap*/
+        .plugin-custom-modal {
+    top: 50% !important;
+    overflow: hidden;
+    z-index: 1060;
+    margin-top: -61px !important;
+}
+.custom-checkbox input {
+    cursor: pointer;
+}
+#confirmation-popup.plugin-custom-modal {
+    margin-top: -61px;
+}
+#editGridDataModal {
+    margin-top: -120px;
+}
+#editGridDataModalUpload {
+    margin-top: -90px;
+}
+.plugin-custom-modal .modal-header{
+    border-bottom:0px;
+    padding-bottom: 0px;
+}
+.plugin-custom-modal .modal-dialog.small-modal {
+    width: 400px;
+    margin:0 auto;
+}
+.plugin-custom-modal .modal-content {
+    border-radius: 0px;
+    border: 0px;
+    margin-top:5px;
+}
+.plugin-custom-modal .close {
+    font-size: 23px;
+    position: absolute;
+    top: 14px;
+    right: 12px;
+}
+.plugin-custom-modal .close:hover,
+.plugin-custom-modal .close:focus,
+.plugin-custom-modal .close:active{
+    outline: 0;
+    box-shadow: none;
+}
+.plugin-custom-modal .modal-body{
+    float: left;
+    color: #888;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    width: 100%;
+    padding:15px 15px 5px 15px;
+}
+.plugin-custom-modal .modal-body p{
+    color: #888;
+}
+.plugin-custom-modal .modal-footer {
+    border: 0;
+    padding: 0 15px 20px 15px;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0;
+}
+.plugin-custom-modal .btn.btn-black{
+    background:#fff;
+    border:1px solid #232e32;
+    border-radius: 0px;
+    color: #232e32;
+    font-size: 14px;
+    min-width: 60px;
+}
+.plugin-custom-modal .btn.btn-black:hover,
+.plugin-custom-modal .btn.btn-black:focus,
+.plugin-custom-modal .btn.btn-black:active{
+    background:#232e32;
+    color: #fff;
+    box-shadow: none;
+    outline: none;
+     transition: all 0.5s linear;
+    border:1px solid #232e32;
+}
+.plugin-custom-modal .btn:focus,
+.plugin-custom-modal .btn:active,
+.plugin-custom-modal .btn:active:focus{
+    outline: 0;
+    box-shadow: none;
+}
+.modal-backdrop{
+    background: transparent;
+}
+
+.plugin-custom-modal .modal-dialog.small-modal .modal-body p > span {
+    width: calc(100% - 20px);
+    display: inline-block;
+}
+    </style>
+</html>
+
+
+        

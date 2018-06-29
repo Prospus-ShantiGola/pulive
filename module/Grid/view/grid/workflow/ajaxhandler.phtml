@@ -1,0 +1,2203 @@
+<?php
+//define('_VALID_MOS', 1);
+//include_once("../config.php");
+//include_once("../settings.php");
+//$pagination = new pagination();
+//$user = new User();
+//
+//$_SERVER['REMOTE_ADDR'];
+//
+//$fileUrl = $siteConfig_live_site;
+//
+//$current_user_id = $_SESSION['userId'];
+
+$task = $_REQUEST['task'];
+
+switch ($task) {
+
+    case 'getWorkflowList':
+        //$_SESSION['userId']="212";
+        $workFlow = new workflow();
+
+        $editPermission = $workFlow->getWorkflowEditPermissionByUID($_SESSION['userId']);
+        if ($editPermission > 0) {
+
+            $workflows = $workFlow->getWorkFlowsByUID($_SESSION['userId']);
+        } else {
+            $user_organization = $workFlow->getOganizationByUID($_SESSION['userId']);
+
+            $workflows = $workFlow->getWorkFlows($user_organization->organization_id);
+        }
+        ?>
+        <input type="hidden" id="hide-edit-button" value="<?php echo $editPermission; ?>">
+        <div class="listing-wrapper clearfix set-height">
+            <div class="mask-black mask-left"></div>
+            <div class="lodding-half loading-left" style="display: none;"> 
+                <?php include ("../loader.php"); ?> 
+            </div>
+            <div class="main2">
+
+                <table cellspacing="0" cellpadding="0" width="100%" class="table  table-style table-workflow">
+                    <thead>
+                        <tr>
+                            <th class="dropdown">
+                                <span class="">Published </span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Workflow<i class="fa fa-angle-down status-icon"></i></span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Creator<i class="fa fa-angle-down status-icon"></i></span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Surveys<i class="fa fa-angle-down"></i></span>
+                            </th>                    
+
+                        </tr>
+                    </thead>
+                </table>
+                <div class="set-content-height main_nano nano has-scrollbar">
+                    <div class="description subdiv_nano nano-content" tabindex="0">
+                        <table class="table table-hover table-style tabel-height table-workflow">
+                            <tbody class="Ajaxdata-getWorkflowWithPagination">     
+                                <?php
+                                $processManagerPermission = $workFlow->chkWorkflowProcessManager($_SESSION['userId']);
+                                foreach ($workflows as $workflow) {
+//        echo "<pre>";
+//        print_r($_SESSION);
+//        echo "</pre>";
+                                    $workflow_versions = $workFlow->getWorkFlowVersions($workflow->workflow_id, $user_organization->organization_id);
+                                    ?>
+                                    <tr class="workflow-title" parent-id="<?php echo $workflow->workflow_id; ?>" id="<?php echo $workflow->workflow_version_id; ?>" >
+                                        <td><label><input type="checkbox" name="" <?php if ($workflow->published == "1") echo "checked"; ?> value="<?php echo $workflow->workflow_version_id; ?>"></label></td>
+                                        <td><?php echo $workflow->name; ?></td>
+                                        <td><?php echo $workflow->created_by; ?></td>
+                                        <td>0
+                                            <?php
+                                            //echo count($workflow_versions)." : ".$editPermission;
+
+                                            if (count($workflow_versions) > 0 && $processManagerPermission > 0) {
+                                                ?>
+                                                <i  class="fa fa-angle-up right tr-collapse" data-toggle="collapse" data-target="#1" aria-expanded="false"></i>
+                                            <?php } ?>
+                                        </td>
+
+                                    </tr>  
+
+
+                                    <?php
+                                    if ($processManagerPermission > 0) {
+                                        foreach ($workflow_versions as $workflow_version) {
+                                            ?>
+                                            <tr class="custom-workflows" parent-id="<?php echo $workflow->workflow_id; ?>" id="<?php echo $workflow_version->workflow_version_id; ?>" onclick="getworkflowVersiondetail(this)" style="display: none;">
+                                                <td><label><input type="checkbox" name="" value="<?php echo $workflow_version->workflow_version_id; ?>" <?php if ($workflow_version->published == "1") echo "checked"; ?>></label></td>
+                                                <td> - <?php
+                                                    if (strlen($workflow_version->name) >= 20) {
+                                                        echo substr($workflow_version->name, 0, 10) . " ... " . substr($workflow_version->name, -5);
+                                                    } else {
+                                                        echo $workflow_version->name;
+                                                    }
+                                                    ?>, <?php echo $workflow_version->created_on; ?></td>
+                                                <td><?php echo $workflow_version->created_by; ?></td>
+                                                <td>0</td>
+
+                                            </tr> 
+
+                                            <?php
+                                        }
+                                    }
+                                }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="diaplay-wrapper clearfix set-height">
+            <div class="mask-black mask-right"></div>
+            <div class="lodding-half loading-right" style="display:none" > 
+                <?php include ("../loader.php"); ?> 
+            </div>
+            <div class="user-action-wrap">
+                <span id="vWorkfow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item open-popups workflow-actions" data-open="" data-id="" ><i class="icon workflows"></i><br><span>Workflow</span></a></span>
+                <span id="vEdit-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item open-popups edit-workflow-detail" data-open="edit-vessel-detail" data-id="1745"><i class="icon edit"></i><br><span>Edit</span></a></span>
+                <span id="vSave-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item save-workflow-detail" data-id="1745"><i class="icon save"></i><br><span>Save</span></a></span>
+                <span id="vCancel-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item reset-workflow" data-id="1745"><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+                <span id="vDelete-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item delete-workflow" data-id="1745"><i class="icon delete"></i><br><span>Delete</span></a></span>
+                <span id="vCreate-workflow" style="display:none"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item create-workflow" data-id="1745"><i class="icon save"></i><br><span>Save</span></a></span>
+                <span id="vCancelNew-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item cancel-new-workflow" data-id="1745"><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+            </div>
+            <div class="description">
+                <div class="ajaxupdate new-display-wrap clearfix right-content-wrap">
+                    <div id="delete-confirmation-slide" class="clearfix alert alert-danger" style="display: none; width: 493px;">
+                        <div class="row">
+                            <div class="col-xs-9 col-md-8"><span class="glyphicon glyphicon-question-sign"></span> <span id="reject-publish-text">Are you sure you want to delete?</span> </div>
+                            <div class="col-xs-3 col-md-4">
+                                <div class="group-btn">
+                                    <button class="btn btn-style delete-vessel" type="button"><i class="icon select white"></i>Yes</button>
+                                    <button class="btn btn-style" onclick="showWidgets_('delete-confirmation-slide', {animation: 'slide'});" type="button"><i class="icon cancel white"></i>No</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                    <!-- view mode -->
+                    <div class="nano set-height form-width ">
+                        <div class="nano-content">
+                            <div class="info-wrap" id="workflow-detail">
+                                <div class="block-title first">
+                                    <div class="close-btn">
+                                        Detail
+                                    </div>
+                                </div>
+                                <!-- <div class="orange-title">Details</div> -->
+                                <div class="profile-detail div_adjus div_adjust form-wrap">
+                                    <div class="profile-detail-left">
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label"> 
+                                                <span>Workflow Creator</span> 
+                                            </div>
+                                            <div class="detail-value yacht-iden">Ryan Carr</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Created On</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">12-02-2015, 10: 00 AM</div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Title</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">Lorem ipsum</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <!-- <i class="fa fa-envelope"></i> --> 
+                                                <span>Description</span> 
+                                            </div>
+                                            <div class="detail-value hin-no"><span class="hin-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since .</span> <span class="hin-block">56546</span> <span class="hin-block">5476</span></div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Organizations</span> 
+                                            </div>
+                                            <div class="detail-value organizations-name">All Organizations<button type='button' class="btn btn-style btn-gray show-popup select-org" data-open='find-organization' onclick="getOrganizationData()"><i class="icon select white"></i>Select</button></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="roles-wrap">
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Roles
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Administrator</li>
+                                            <li>Surveyor</li>
+                                            <li>Dealer Warranty Manager</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Operations
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>                                               
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit mode -->
+                    <div class="nano set-height form-width hide">
+                        <div class="nano-content">
+                            <div class="info-wrap">
+                                <div class="block-title first">
+                                    <div class="close-btn">
+                                        Details
+                                    </div>
+                                </div>
+                                <!-- <div class="orange-title">Details</div> -->
+                                <div class="profile-detail div_adjus div_adjust form-wrap">
+                                    <div class="profile-detail-left">
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label"> 
+                                                <span>Workflow Creator</span> 
+                                            </div>
+                                            <div class="detail-value yacht-iden">Ryan Carr</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Created On</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">12-02-2015, 10: 00 AM</div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Title</span> 
+                                            </div>
+                                            <div class="detail-value">
+                                                <div class="relative ">
+                                                    <input type="text" class="si-phone form-control" placeholder="Lorem Ipsum" />    
+                                                    <span class="char-count">13/50 Characters</span>                                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <!-- <i class="fa fa-envelope"></i> --> 
+                                                <span>Description</span> 
+                                            </div>
+                                            <div class="detail-value">
+                                                <div class="relative ">
+                                                    <textarea name="" id="" class="si-phone form-control" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</textarea>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Organisation</span> 
+                                            </div>
+                                            <div class="detail-value">                                            
+                                                <div class='input-group'>
+                                                    <input type='text' class='input-txt-field form-control' placeholder="All" data-validetta='required' readonly>                             
+                                                    <span class='input-group-btn'>
+                                                        <button class='btn btn-default show-popup ' id=''   type='button'  data-open='find-organization'>Choose</button>
+                                                    </span>
+                                                </div> 
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="roles-wrap">
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Roles
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Administrator</li>
+                                            <li>Surveyor</li>
+                                            <li>Dealer Warranty Manager</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Operations
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+                //set width workflow popup
+
+                rightheadCW = $('.right-head').outerWidth(true);
+                rightpanelCW = $('.user-action-wrap').width();
+
+                $('.workflow-wrap').width(rightheadCW - rightpanelCW + 1);
+                $('.workflow-wrap').css('marginRight', rightpanelCW);
+            });
+        </script>
+
+        <?php
+        break;
+    case 'editworkflowdetail':
+
+        extract($_REQUEST);
+        $workFlow = new workflow();
+        $workFlowOrg = new Organization();
+        if ($version == "base") {
+            $workFlowDetail = $workFlow->getWorkFlowDetails($workflowID);
+            $workFlowPhases = $workFlow->getWorkFlowPhases($workflowID);
+            $workFlowRolesOperations = $workFlow->getWorkFlowRoleOperation($workflowID);
+        } else {
+            $workFlowDetail = $workFlow->getWorkFlowVersionDetails($workflowID);
+            $workFlowPhases = $workFlow->getWorkFlowVersionPhases($workflowID);
+            $workFlowRolesOperations = $workFlow->getWorkFlowRoleOperation($workflowID);
+        }
+        $workflowOrganizations = $workFlowOrg->getOrganizations($workflowID);
+        ?>
+        <div class="block-title first">
+            <div class="close-btn">
+                Details
+            </div>
+        </div>
+        <form class="validetta-bubble-down edit-form-data" method="post" action="#" onsubmit="submitEditWorkflowForm();
+                return false;" id="edit-workflow-form">
+            <div class="profile-detail div_adjus div_adjust form-wrap">
+                <div class="profile-detail-left">
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label"> 
+                            <span>Workflow Creator</span> 
+                        </div>
+                        <div class="detail-value yacht-iden">
+                            <div class="relative">
+                                <?php echo $workFlowDetail->first_name . " " . $workFlowDetail->last_name; ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- name -->
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <span>Created On</span> 
+                        </div>
+                        <div class="detail-value vessel-name"><div class="relative"><?php echo $workFlowDetail->created_on; ?></div></div>
+                    </div>
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <span>Title*</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative"><input  class="form-control"  data-validetta="required" type="text" value="<?php echo $workFlowDetail->name; ?>" name="name" id="workflow-name"/></div>
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- name -->
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <!-- <i class="fa fa-envelope"></i> --> 
+                            <span>Description</span> 
+                        </div>
+                        <div class="detail-value"><div class="relative"><textarea class="form-control" name="description" id="workflow-description"><?php echo $workFlowDetail->description; ?></textarea></div></div>
+                    </div>
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <!-- <i class="fa fa-envelope"></i> --> 
+                            <span>Objective</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative"><textarea   class="form-control" name="description" id="workflow-objective"><?php echo $workFlowDetail->objective; ?></textarea></div></div>
+                    </div>
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <span>Organizations</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative">Select Organization<button type='button' class="btn btn-style btn-gray show-popup select-org" data-open='find-organization' onclick="getOrganizationData()"><i class="icon select white"></i>Select</button></div>
+
+                            <div class="organizations-name">
+                                <?php
+                                if (count($workflowOrganizations) > 0) {
+                                    foreach ($workflowOrganizations as $workflowOrganization) {
+                                        echo $workflowOrganization->name . "</br>";
+                                        ?>
+                                        <input type="hidden" value="<?php echo $workflowOrganization->organization_id; ?>" class="assignedOrganizations" name="assignedOrganizations[]"/>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <input type ="submit" id="submit-edit-organization" name="submit-edit-organization" style="Display:none;">
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+        <div class="roles-wrap">
+            <div class="roles-panel">
+                <div class="block-title">
+                    <div class="close-btn">
+                        Roles
+                    </div>
+                </div>
+                <ul class="survey-nav">
+                    <?php
+                    $roles = array();
+                    foreach ($workFlowRolesOperations as $workFlowRolesOperation) {
+                        $roles[] = $workFlowRolesOperation->role_title;
+                    }
+                    $roles = array_unique($roles);
+                    foreach ($roles as $role) {
+                        ?>
+                        <li><?php echo $role ?></li>
+                    <?php } ?>
+
+
+
+                </ul>
+            </div>
+
+            <div class="roles-panel">
+                <div class="block-title">
+                    <div class="close-btn">
+                        Operations
+                    </div>
+                </div>
+                <ul class="survey-nav">
+                    <?php foreach ($workFlowPhases as $workFlowPhase) { ?>
+                        <li><?php echo $workFlowPhase->phase_name; ?>
+                            <ul class="survey-multi-nav">
+                                <?php
+                                $operationRoles = $workFlow->getWorkFlowRoleOperationByPhaseId($workFlowPhase->wf_phase_id);
+//        echo "<pre>";
+//        print_r($operationRoles);
+//        echo "<pre>";                                    
+                                foreach ($operationRoles as $operationRole) {
+                                    ?>
+                                    <li><span class="dash-space">&ndash;</span><?php echo $operationRole->operation_name; ?>, <?php echo $operationRole->role_title; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $("#edit-workflow-form").validetta();
+        </script>
+
+        <?php
+        break;
+
+    case 'createnewworkflow':
+        $wf = new workflow();
+        $workflowData['name'] = "new workflow";
+        $workflow_id = $wf->createnewworkflow($workflowData);
+        ?>
+
+        <div class="block-title first">
+            <div class="close-btn">
+                Details
+            </div>
+        </div>
+        <form class="validetta-bubble-down" method="post" action="#" onsubmit="submitNewWorkflowForm();
+                return false;" id="addnew-workflow-form">
+            <input type="hidden" value="<?php echo $workflow_id ?>" name="workflow_id" id="addnew-workflow-id">
+            <div class="profile-detail div_adjus div_adjust form-wrap">
+                <div class="profile-detail-left">
+
+                    <!-- name -->
+
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <span>Title*</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative"><input  class="form-control"  data-validetta="required" type="text" value="" name="name" id="workflow-name"/></div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- name -->
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <!-- <i class="fa fa-envelope"></i> --> 
+                            <span>Description</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative"><textarea  class="form-control" name="description" id="workflow-description"></textarea></div></div>
+                    </div>
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <!-- <i class="fa fa-envelope"></i> --> 
+                            <span>Objective</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative"><textarea   class="form-control" name="objective" id="workflow-objective"></textarea></div></div>
+                    </div>
+                    <div class="detail-fields clearfix">
+                        <div class="detail-label">
+                            <span>Organizations</span> 
+                        </div>
+                        <div class="detail-value">
+                            <div class="relative">Select Organization<button type='button' class="btn btn-style btn-gray show-popup select-org" data-open='find-organization' onclick="getOrganizationData()"><i class="icon select white"></i>Select</button></div></div>
+                        <div class="organizations-name"></div>
+                        <input type ="submit" id="submit-new-workflow" name="submit-new-workflow" style="Display:none;">
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+
+        <script type="text/javascript">
+            $("#addnew-workflow-form").validetta();
+        </script>
+
+        <?php
+        break;
+    case 'getWorkflowActions':
+        extract($_REQUEST);
+        $workFlow = new workflow();
+
+        $editPermission = $workFlow->getWorkflowEditPermissionByUID($_SESSION['userId']);
+        ?>
+        <input type="hidden" value="<?php echo $parentworkflow; ?>" id="main-workflow"/>
+        <div class="user-action-wrap set-height" style="z-index:1021">  
+            <?php if ($editPermission > 0) { ?>
+                <span id="vEdit"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item modify-workflow-version" data-name="<?php echo $workflowName; ?>" data-id="<?php echo $workflowId; ?>"><i class="icon edit"></i><br><span>Edit</span></a></span>
+            <?php } ?>
+            <span id="vCancle"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item cancel-workflow" data-id=""><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+        </div>
+
+
+        <!-- ================= Workflow ======================= -->
+        <!-- workflow-wrapper ends -->
+        <!-- ================= Workflow ======================= -->
+        <div class="hidden-ViewWorkflow"></div>
+        <div class="workflow-wrapper clearfix">
+            <div class="workflow-sidebar">
+                <div class="operation-item operation-head clearfix">
+                    <span class="title">Phases/Operations</span>
+                    <span class="addPhase right">
+                        <i class="icon add"></i>
+                    </span>
+                </div>
+                <ul class="operation-wrap kumark clearfix">
+
+                    <?php
+                    $wfObj = new workflowPhase();
+                    $roleOptNote = new roleOperationNote();
+                    $phases = $wfObj->getWorkFlowPhase($workflowId);
+
+
+                    $operationId = array();
+                    $operationName = array();
+                    foreach ($phases as $phase) {
+                        ?><li class="operation relPosition" phase-Id="phase<?php echo $phase->wf_phase_id; ?>">
+                            <div class="operation-item relPosition clearfix">
+                                <span class="title"><?php echo $phase->phase_name; ?></span>
+                                <span class="addOperation right">
+                                    <i class="icon add"></i>
+                                </span>
+                            </div>
+
+                            <?php
+                            $wfOpt = new workflowOperation();
+                            $operations = $wfOpt->getWorkFlowOperation($phase->wf_phase_id);
+                            $i = 0;
+                            foreach ($operations as $operation) {
+                                $i++;
+                                $operationId[] = $operation->wf_operation_id;
+                                $operationName[] = $operation->operation_name;
+                                ?>
+                            <li class="operation-sub-item relPosition subItem<?php echo $i; ?> phase<?php echo $phase->wf_phase_id; ?>" role-id="roleBlock<?php echo $i . $operation->wf_operation_id; ?>" phase-Id="phase<?php echo $phase->wf_phase_id; ?>">
+
+                                <i class="fa fa-angle-right"></i>
+                                <span class="title"><?php echo $operation->operation_name; ?></span>
+                                <i class="icon operation-close small-close right"></i>
+                            </li>
+                        <?php } ?>  
+
+
+                    <?php } ?> 
+                    </li>
+                </ul> <!-- operation-wrap ends -->
+            </div><!-- workflow-sidebar ends -->
+            <div class="workflow-editor hor-scroll">
+                <div class="scroll-content">
+                    <div class="workflow-item-section" style="display:none;">
+                        <div class="operation-item operation-head">
+                            <span class="title">Survey Adminis...</span>
+                        </div>
+                        <div class="operation-status">
+                            <button type="button" class="btn btn-default">Define Survey</button>
+                            <button type="button" class="btn btn-white">Ongoing Survey</button>
+                            <button type="button" class="btn btn-default">Draft Survey</button>
+                            <button type="button" class="btn btn-default">Closed Survey</button>
+                        </div>
+                    </div>
+                    <div class="workflow-survey-section">
+                        <div class="workflow-action-col">
+                            <div class="operation-item operation-head clearfix" id="operationId">
+                                <div class="wf-wrap default-admin" id="section1">
+                                    <?php
+                                    $completeRole = new role();
+                                    $roles = $completeRole->getActiveRole();
+//        echo "<pre>";
+//        print_r($roles);
+//        echo "</pre>";
+                                    ?>
+
+
+                                                <!--                                <input type="text" class="ui-autocomplete-input" id="my-input" value="" name="roleName">-->
+
+                                    <div class="wf-role btn btn-default">
+                                        <span class="left">Survey Administrator</span>
+                                        <i class="icon small-close right"></i>
+                                    </div>
+                                    <div class="wf-count btn btn-default dropdown">
+                                        <div class="clearfix" href="#" data-toggle="dropdown">
+                                            <span class="left">1 </span>
+                                            <i class="fa fa-angle-down right"></i>
+                                        </div>
+                                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu role-count">
+                                            <li class="">
+                                                <a class="roles" href="#">1</a>   
+                                            </li>
+                                            <li class="">
+                                                <a class="roles" href="#">&#8734;</a>   
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="add-role default-exe">
+                                    <i class="icon add"></i>
+                                </div>
+                            </div>
+                            <!--   <div class="operation-item">
+                                                                                            
+                              </div>  -->
+                            <script type="text/javascript">
+                                var instance = jsPlumb.getInstance();
+                            </script>
+                            <div class="workflow-action-block">
+                                <div class="nano workflow-nano">
+                                    <div class="nano-content">
+                                        <div class="demo statemachine-demo" id="statemachine-demo">
+                                            <!-- <button type="button" id="addwindow">Add Window</button> -->
+                                            <div class="w" id="opened" style="display:none;">BEGIN&nbsp;
+                                                <div class="ep" style="display:none;"></div>
+                                            </div>
+
+
+                                            <div class="w hidden" id="template_newwindow">
+                                                <div class="ep"></div>
+                                            </div>
+                                            <div class="newDivAppend kumark ui-sortable">
+
+                                                <?php
+                                                $wfObj = new workflowPhase();
+                                                $phases = $wfObj->getWorkFlowPhase($workflowId);
+                                                $operationId = array();
+                                                $operationName = array();
+                                                foreach ($phases as $phase) {
+                                                    ?><div class="operation-item relPosition operationItem" id="phase<?php echo $phase->wf_phase_id; ?>"></div>
+
+                                                    <?php
+                                                    $wfOpt = new workflowOperation();
+                                                    $operations = $wfOpt->getWorkFlowOperation($phase->wf_phase_id);
+                                                    //print_r($operation);
+                                                    $i = 0;
+
+                                                    foreach ($operations as $operation) {
+                                                        // echo "<script>$.getScript( http://localhost/yacht-v2/trunk/js/workflow_editor.js [, success ] )(jsPlumb);</script>";
+                                                        $i++;
+                                                        $operationId[] = $operation->wf_operation_id;
+                                                        $operationName[] = $operation->operation_name;
+                                                        $roleOpt = new roleOperation();
+                                                        $roleOperations = $roleOpt->getWorkFlowPhaseRoleOperation($operation->wf_operation_id);
+                                                        ?>
+                                                        <div class="new operationItem" id="roleBlock<?php echo $i . $operation->wf_operation_id; ?>" style="min-height: 51px;" phase-id="phase<?php echo $phase->wf_phase_id; ?>">
+                                                            <?php
+                                                            foreach ($roleOperations as $roleOperation) {
+                                                                $roleOperationNote = new roleOperationNote();
+                                                                $roleOperationNoteIcon = $roleOperationNote->getRoleOperationNoteStatus($roleOperation->role_operation_id);
+                                                                $roleOpts = $roleOptNote->getNoteInfo($roleOperation->role_operation_id);
+//                                                            echo "<pre>";
+//                                                            print_r($roleOpts[0]->);
+//                                                            echo "</pre>";
+                                                                ?>
+                                                                <input type="hidden" value="<?php echo $roleOpts[0]->note_description; ?>" id="note_<?php echo $roleOpts[0]->role_operation_id; ?>"/>
+
+
+                                                                <?php $divId = '"fromTemplate_' . $roleOperation->role_operation_id . '"'; ?>
+
+                                                                                                    <!--                                            <div class="w tp" section-id="section<?php echo $phase->wf_phase_id; ?>" id="<?php echo $divId; ?>"><div class="action-block-title"><span class="title"><?php echo $operation->operation_name; ?></span><span class="close-ab right">×</span></div><div class="ab-actions">
+                                                                                                    <a class="show-popup" data-open="view-workflow-note"><i class="icon view-note"></i></a><a id="addwindowx"><i class="icon add-small"></i></a>-->
+                                                                <?php
+                                                                //echo "wf_operation_id :".$operation->wf_operation_id;
+                                                                $optId = $roleOperation->role_operation_id;
+                                                                // echo "operation_id->". $optId."</br>"; 
+                                                                $roObj = new roleAction();
+                                                                $rows = $roObj->getOptAction($optId);
+                                                                //print_r($rows);
+                                                                ?>
+                                                                <script>
+
+                                                                    var actionDivs = [];
+                                                                    var operation_id;
+                                                                    var ele = $("#roleBlock<?php echo $i . $operation->wf_operation_id; ?>");
+                                                                    var divid = <?php echo $divId; ?>;
+                                                                    //alert(divid);
+                                                                </script>
+                                                                <?php
+                                                                foreach ($rows as $opt) {
+                                                                    $connectArr[$optId][$opt->ro_action_id] = $opt->target_role_operation_id . "_" . $opt->action_name;
+
+                                                                    //echo "target_id=>".$opt->target_role_operation_id."</br>";  
+                                                                    ?>
+                                                                    <div>
+                                                                        <script type="text/javascript">
+
+                                                                            var actionObj = {divID: divid, sourceID: '<?php echo $opt->ro_action_id; ?>', targetID: '<?php echo "fromTemplate_" . $opt->target_role_operation_id; ?>'}
+                                                                            actionDivs.push(actionObj);
+                                                                            //console.log("action in divs",actionDivs);
+                                                                            //$('#'+divid).find("#addwindowx").click();
+                                                                            //cloneWindowX(instance,eleX);
+                                                                        </script>
+                                                                    </div>
+                                                                    <?php
+                                                                    ///echo $opt->action_name;
+                                                                }
+                                                                ?> 
+                                                                <script type="text/javascript">
+
+                                                                    var noteIcon = "<?php echo $roleOperationNoteIcon; ?>";
+                                                                    cloneWindow(instance, ele, divid, noteIcon);
+                                                                    //actionDivs=$.unique(actionDivs);
+
+                                                                    $(actionDivs).each(function (data, key) {
+                                                                        // alert("#"+this);
+                                                                        // console.log("action divs",key);
+                                                                        $('#' + key.divID + '').find("#addwindowx").trigger("click", {sourceID: key.sourceID, targetID: key.targetID});
+                                                                        //                                                     inst.connect({source:key,target:this});
+                                                                    });
+
+
+                                                                </script>
+                                                                <!--</div><div class="ep" style="display:none;"></div></div>-->
+
+
+
+                                                            <?php }
+                                                            ?>
+                                                        </div>
+                                                    <?php }
+                                                    ?>  
+                                                    <?php
+                                                }
+//                                        echo "<pre>";
+//print_r($connectArr);
+//echo "</pre>";
+                                                foreach ($connectArr as $connectionkey => $connectionValue) {
+//      echo "<pre>";
+//print_r($connectionValue);
+//echo "</pre>";
+                                                    $sourceKey = $connectionkey;
+                                                    $connectionValue = array_reverse($connectionValue);
+                                                    $connnetKey = 0;
+                                                    foreach ($connectionValue as $targetKeys => $targetValues) {
+
+                                                        $targetValues = explode("_", $targetValues);
+
+                                                        $targetKey = "fromTemplate_" . $targetValues[0];
+                                                        ?>
+                                                        <script type="text/javascript">
+                                                            var sourceKey = $("#fromTemplate_<?php echo $sourceKey ?> div.ui-state-disabled:eq(<?php echo $connnetKey; ?>)").attr("id");
+
+                                                            $("#fromTemplate_<?php echo $sourceKey ?> div.ui-state-disabled:eq(<?php echo $connnetKey; ?>)").find("span:eq(0)").text("<?php echo $targetValues[1] ?>");
+                <?php if (!empty($targetValues[0])) { ?>
+                                                                inst.connect({
+                                                                    source: sourceKey,
+                                                                    target:<?php echo $targetKey; ?>
+                                                                });
+                <?php } ?>
+
+                                                        </script>
+                                                        <?php
+                                                        $connnetKey++;
+                                                    }
+                                                }
+                                                ?> 
+
+
+                                            </div>   
+                                            <div class="absLine absLinePos1" style="left: 0px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- workflow-editor ends -->
+        </div><!-- workflow-wrapper ends -->
+        <script type="text/javascript">
+            sortable();
+            dynamicHeightWidth();
+        </script>
+        <!-- ================= Workflow Ends ======================= -->
+
+        <?php
+        break;
+
+    case 'getCustomWorkflows' :
+        $workFlow = new workflow();
+        $workflows = $workFlow->getWorkFlows();
+//        echo "gd<pre>";
+//        print_r($workFlowPhases);
+//        echo "</pre>";
+//        die();
+        ?>
+        <div class="listing-wrapper clearfix set-height">
+            <div class="mask-black mask-left"></div>
+            <div class="lodding-half loading-left" style="display: none;"> 
+                <?php include ("../loader.php"); ?> 
+            </div>
+            <div class="main2">
+
+                <table cellspacing="0" cellpadding="0" width="100%" class="table  table-style table-workflow">
+                    <thead>
+                        <tr>
+                            <th class="dropdown">
+                                <span class="">Published </span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Workflow<i class="fa fa-angle-down status-icon"></i></span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Creator<i class="fa fa-angle-down status-icon"></i></span>
+                            </th>
+                            <th class="dropdown filter-btn-text">
+                                <span data-filter="text-" class="">Surveys<i class="fa fa-angle-down"></i></span>
+                            </th>                    
+
+                        </tr>
+                    </thead>
+                </table>
+                <div class="set-content-height main_nano nano has-scrollbar">
+                    <div class="description subdiv_nano nano-content" tabindex="0">
+                        <table class="table table-hover table-style tabel-height table-workflow">
+                            <tbody class="Ajaxdata-getWorkflowWithPagination">     
+                                <?php
+                                foreach ($workflows as $workflow) {
+//                                            echo "<pre>";
+//        print_r($workflow);
+//        echo "</pre>";
+                                    $workflow_versions = $workFlow->getWorkFlowVersions($workflow->workflow_id);
+
+                                    foreach ($workflow_versions as $workflow_version) {
+                                        ?>
+                                        <tr class="custom-workflows" parent-id="<?php echo $workflow->workflow_id; ?>" id="<?php echo $workflow_version->workflow_version_id; ?>" onclick="getworkflowVersiondetail(this)" >
+                                            <td><label><input type="checkbox" name="" value="<?php echo $workflow_version->workflow_version_id; ?>" <?php if ($workflow_version->published == "1") echo "checked"; ?>></label></td>
+                                            <td> - <?php
+                                                if (strlen($workflow_version->name) >= 20) {
+                                                    echo substr($workflow_version->name, 0, 10) . " ... " . substr($workflow_version->name, -5);
+                                                } else {
+                                                    echo $workflow_version->name;
+                                                }
+                                                ?>, <?php echo $workflow_version->created_on; ?></td>
+                                            <td><?php echo $workflow_version->created_by; ?></td>
+                                            <td>0</td>
+
+                                        </tr> 
+
+                                        <?php
+                                    }
+                                }
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="diaplay-wrapper clearfix set-height">
+            <div class="mask-black mask-right"></div>
+            <div class="lodding-half loading-right" style="display:none" > 
+                <?php include ("../loader.php"); ?> 
+            </div>
+            <div class="user-action-wrap">
+                <span id="vWorkfow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item open-popups workflow-actions" data-open="" data-id="" ><i class="icon workflows"></i><br><span>Workflow</span></a></span>
+                <span id="vEdit-workflow" style="display:none;"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item open-popups edit-workflow-detail" data-open="edit-vessel-detail" data-id="1745"><i class="icon edit"></i><br><span>Edit</span></a></span>
+                <span id="vSave-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item save-workflow-detail" data-id="1745"><i class="icon save"></i><br><span>Save</span></a></span>
+                <span id="vCancel-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item reset-workflow" data-id="1745"><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+                <span id="vDelete-workflow"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item delete-workflow" data-id="1745"><i class="icon delete"></i><br><span>Delete</span></a></span>
+            </div>
+            <div class="description">
+                <div class="ajaxupdate new-display-wrap clearfix right-content-wrap">
+                    <div id="delete-confirmation-slide" class="clearfix alert alert-danger" style="display: none; width: 493px;">
+                        <div class="row">
+                            <div class="col-xs-9 col-md-8"><span class="glyphicon glyphicon-question-sign"></span> <span id="reject-publish-text">Are you sure you want to delete?</span> </div>
+                            <div class="col-xs-3 col-md-4">
+                                <div class="group-btn"> 
+                                    <button class="btn btn-style delete-vessel" type="button"><i class="icon select white"></i>Yes</button>
+                                    <button class="btn btn-style" onclick="showWidgets_('delete-confirmation-slide', {animation: 'slide'});" type="button"><i class="icon cancel white"></i>No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- view mode -->
+                    <div class="nano set-height form-width ">
+                        <div class="nano-content">
+                            <div class="info-wrap" id="workflow-detail">
+                                <div class="block-title first">
+                                    <div class="close-btn">
+                                        Details
+                                    </div>
+                                </div>
+                                <div class="profile-detail div_adjus div_adjust form-wrap">
+                                    <div class="profile-detail-left">
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label"> 
+                                                <span>Workflow Creator</span> 
+                                            </div>
+                                            <div class="detail-value yacht-iden">Ryan Carr</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Created On</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">12-02-2015, 10: 00 AM</div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Title</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">Lorem ipsum</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <!-- <i class="fa fa-envelope"></i> --> 
+                                                <span>Description</span> 
+                                            </div>
+                                            <div class="detail-value hin-no"><span class="hin-block">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since .</span> <span class="hin-block">56546</span> <span class="hin-block">5476</span></div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Organizations</span> 
+                                            </div>
+
+                                            <div class="detail-value">All Organizations<button type='button' class="btn btn-style btn-gray show-popup select-org" data-open='find-organization' onclick="getOrganizationData()"><i class="icon select white"></i>Select</button></div>
+                                            <div class="organizations-name"></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="roles-wrap">
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Roles
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Administrator</li>
+                                            <li>Surveyor</li>
+                                            <li>Dealer Warranty Manager</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Operations
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>                                               
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Edit mode -->
+                    <div class="nano set-height form-width hide">
+                        <div class="nano-content">
+                            <div class="info-wrap">
+                                <div class="block-title first">
+                                    <div class="close-btn">
+                                        Details
+                                    </div>
+                                </div>
+                                <div class="profile-detail div_adjus div_adjust form-wrap">
+                                    <div class="profile-detail-left">
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label"> 
+                                                <span>Workflow Creator</span> 
+                                            </div>
+                                            <div class="detail-value yacht-iden">Ryan Carr</div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Created On</span> 
+                                            </div>
+                                            <div class="detail-value vessel-name">12-02-2015, 10: 00 AM</div>
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Title</span> 
+                                            </div>
+                                            <div class="detail-value">
+                                                <div class="relative ">
+                                                    <input type="text" class="si-phone form-control" placeholder="Lorem Ipsum" />    
+                                                    <span class="char-count">13/50 Characters</span>                                                       
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- name -->
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <!-- <i class="fa fa-envelope"></i> --> 
+                                                <span>Description</span> 
+                                            </div>
+                                            <div class="detail-value">
+                                                <div class="relative ">
+                                                    <textarea name="" id="" class="si-phone form-control" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.</textarea>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="detail-fields clearfix">
+                                            <div class="detail-label">
+                                                <span>Organisation</span> 
+                                            </div>
+                                            <div class="detail-value">                                            
+                                                <div class='input-group'>
+                                                    <input type='text' class='input-txt-field form-control' placeholder="All" data-validetta='required' readonly>                             
+                                                    <span class='input-group-btn'>
+                                                        <button class='btn btn-default show-popup ' id=''   type='button'  data-open='find-organization'>Choose</button>
+                                                    </span>
+                                                </div> 
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="roles-wrap">
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Roles
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Administrator</li>
+                                            <li>Surveyor</li>
+                                            <li>Dealer Warranty Manager</li>
+                                        </ul>
+                                    </div>
+                                    <div class="roles-panel">
+                                        <div class="block-title">
+                                            <div class="close-btn">
+                                                Operations
+                                            </div>
+                                        </div>
+                                        <ul class="survey-nav">
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                            <li>Survey Defination
+                                                <ul class="survey-multi-nav">
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                    <li><span class="dash-space">&ndash;</span>Define Survey, Survey Administrator</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+
+                //set width workflow popup
+
+                rightheadCW = $('.right-head').outerWidth(true);
+                rightpanelCW = $('.user-action-wrap').width();
+
+                $('.workflow-wrap').width(rightheadCW - rightpanelCW + 1);
+                $('.workflow-wrap').css('marginRight', rightpanelCW);
+            });
+        </script>
+
+        <?php
+        break;
+    // modifying the default workflow.
+    case 'addnewWorkflow':
+        extract($_REQUEST);
+//        print_r($_REQUEST);
+        ?>
+        <div class="user-action-wrap set-height" style="z-index:1021">                                           
+            <span id="vSave"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item save-workflow" data-id=""><i class="icon save"></i><br><span>Save</span></a></span>
+            <span id="vCancle"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item cancel-workflow" data-id=""><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+        </div>
+        <!-- ================= Workflow ======================= -->
+        <div class="workflow-wrapper clearfix">
+            <input type="hidden" value="<?php echo $workflowId; ?>" id="add-workflow"/>
+
+            <div class="workflow-sidebar">
+                <div class="operation-item operation-head clearfix">
+                    <span class="title">Phases/Operations</span>
+                    <span class="addPhase right">
+                        <i class="icon add"></i>
+                    </span>
+                </div>
+                <ul class="operation-wrap kumark clearfix">
+
+
+                </ul> <!-- operation-wrap ends -->
+            </div><!-- workflow-sidebar ends -->
+            <div class="workflow-editor  hor-scroll">
+                <div class="scroll-content">
+                    <div class="workflow-item-section" style="display:none;">
+                        <div class="operation-item operation-head">
+                            <span class="title">Survey Adminis...</span>
+                        </div>
+                        <div class="operation-status">
+                            <button type="button" class="btn btn-default">Define Survey</button>
+                            <button type="button" class="btn btn-white">Ongoing Survey</button>
+                            <button type="button" class="btn btn-default">Draft Survey</button>
+                            <button type="button" class="btn btn-default">Closed Survey</button>
+                        </div>
+                    </div>
+                    <div class="workflow-survey-section">
+                        <div class="workflow-action-col">
+                            <div class="operation-item operation-head clearfix" id="operationId">
+                                <div class="wf-wrap default-admin" id="section1">
+                                    <div class="wf-role btn btn-default">
+                                        <span class="left">Survey Administrator</span>
+                                        <i class="icon small-close right"></i>
+                                    </div>
+                                    <div class="wf-count btn btn-default dropdown">
+                                        <div class="clearfix" href="#" data-toggle="dropdown">
+                                            <span class="left">1 </span>
+                                            <i class="fa fa-angle-down right"></i>
+                                        </div>
+                                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu role-count">
+                                            <li class="">
+                                                <a class="roles" href="#">1</a>   
+                                            </li>
+                                            <li class="">
+                                                <a class="roles" href="#">&#8734;</a>   
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="add-role default-exe">
+                                    <i class="icon add"></i>
+                                </div>
+                            </div>
+                            <!--   <div class="operation-item">
+                                                                                            
+                              </div>  -->
+                            <div class="workflow-action-block">
+                                <div class="nano workflow-nano">
+                                    <div class="nano-content">
+                                        <div class="demo statemachine-demo" id="statemachine-demo">
+                                            <!-- <button type="button" id="addwindow">Add Window</button> -->
+                                            <div class="w" id="opened" style="display:none;">BEGIN&nbsp;
+                                                <div class="ep" style="display:none;"></div>
+                                            </div>
+
+
+                                            <div class="w hidden " id="template_newwindow">
+                                                <div class="ep"></div>
+                                            </div>
+                                            <div class="newDivAppend kumark">
+
+                                            </div>   
+                                            <div class="absLine absLinePos1" sectionid="section1" style="left: 0px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div><!-- workflow-editor ends -->
+        </div><!-- workflow-wrapper ends -->
+        <script type="text/javascript">
+            sortable();
+            $(".save-workflow").click(function (e) {
+                workflowProcess.saveWorkflow();
+            });
+        </script>
+        <!-- ================= Workflow Ends ======================= -->
+        <?php
+        break;
+    case "modifyWorkflow":
+        extract($_POST);
+        $workFlow = new workflow();
+        $editPermission = $workFlow->getWorkflowEditPermissionByUID($_SESSION['userId']);
+        if ($editPermission > 0) {
+
+            $baseversion = "true";
+        } else {
+
+            $baseversion = "false";
+        }
+        ?>
+
+        <div class="user-action-wrap set-height" style="z-index:1021">                                           
+            <span id="vSave"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item update-workflow" data-id=""><i class="icon save"></i><br><span>Save</span></a></span>
+            <span id="vCancle"><a href="#" data-toggle="tooltip" data-placement="left" class="tooltip-item cancel-workflow" data-id=""><i class="icon cancel"></i><br><span>Cancel</span></a></span>
+        </div>
+
+
+        <!-- ================= Workflow ======================= -->
+        <!-- workflow-wrapper ends -->
+        <!-- ================= Workflow ======================= -->
+        <div class="workflow-wrapper clearfix" >
+            <input type="hidden" value="<?php echo $workflowId; ?>" id="edit-workflow-id"/>
+            <input type="hidden" value="<?php echo $published; ?>" id="workflow-published"/>
+            <input type="hidden" value="<?php echo $baseversion; ?>" id="workflow-baseversion"/>
+            <input type="hidden" value="<?php echo $parentworkflow; ?>" id="main-workflow"/>
+            <div class="workflow-sidebar" >
+                <div class="operation-item operation-head clearfix">
+                    <span class="title">Phases/Operations</span>
+                    <span class="addPhase right">
+                        <i class="icon add"></i>
+                    </span>
+                </div>
+                <ul class="operation-wrap kumark clearfix">
+
+                    <?php
+                    $wfObj = new workflowPhase();
+                    $phases = $wfObj->getWorkFlowPhase($workflowId);
+
+                    $operationId = array();
+                    $operationName = array();
+                    foreach ($phases as $phase) {
+                        ?><li class="operation relPosition" phase-Id="phase<?php echo $phase->wf_phase_id; ?>">
+                            <div class="operation-item relPosition clearfix">
+                                <span class="title"><?php echo $phase->phase_name; ?></span>
+                                <span class="addOperation right">
+                                    <i class="icon add"></i>
+                                </span>
+                            </div>
+
+                            <?php
+                            $wfOpt = new workflowOperation();
+                            $wfRoleOpt = new roleOperation();
+                            $operations = $wfOpt->getWorkFlowOperation($phase->wf_phase_id);
+                            $i = 0;
+                            foreach ($operations as $operation) {
+//                echo "<pre";
+//                print_r($operation);
+//                echo "<pre";
+                                $i++;
+                                $operationId[] = $operation->wf_operation_id;
+                                $operationName[] = $operation->operation_name;
+
+                                $roleOperationData = $wfRoleOpt->getWorkFlowPhaseRoleOperation($operation->wf_operation_id);
+                                //print_r($roleOperationData[0]);
+                                ?>
+                            <li class="operation-sub-item relPosition subItem<?php echo $i; ?> phase<?php echo $phase->wf_phase_id; ?>" role-id="roleBlock<?php echo $i . $operation->wf_operation_id; ?>" phase-Id="phase<?php echo $phase->wf_phase_id; ?>">
+
+                                <i class="fa fa-angle-right"></i>
+                                <span class="title" ro-left="<?php echo $roleOperationData[0]->ro_left; ?>" ro-top="<?php echo $roleOperationData[0]->ro_top; ?>"><?php echo $operation->operation_name; ?></span>
+                                <i class="icon operation-close small-close right"></i>
+                            </li>
+                        <?php } ?>  
+
+
+                    <?php } ?> 
+                    </li>
+                </ul> <!-- operation-wrap ends -->
+            </div><!-- workflow-sidebar ends -->
+            <div class="workflow-editor">
+                <div class="workflow-item-section" style="display:none;">
+                    <div class="operation-item operation-head">
+                        <span class="title">Survey Adminis...</span>
+                    </div>
+                    <div class="operation-status">
+                        <button type="button" class="btn btn-default">Define Survey</button>
+                        <button type="button" class="btn btn-white">Ongoing Survey</button>
+                        <button type="button" class="btn btn-default">Draft Survey</button>
+                        <button type="button" class="btn btn-default">Closed Survey</button>
+                    </div>
+                </div>
+                <div class="workflow-survey-section">
+                    <div class="workflow-action-col">
+                        <div class="operation-item operation-head clearfix" id="operationId">
+                            <div class="wf-wrap" id="section1">
+                                <?php
+                                $completeRole = new role();
+                                $roles = $completeRole->getActiveRole();
+//        echo "<pre>";
+//        print_r($roles);
+//        echo "</pre>";
+                                ?>
+
+
+                                                <!--                                <input type="text" class="ui-autocomplete-input" id="my-input" value="" name="roleName">-->
+
+                                <div class="wf-role btn btn-default">
+                                    <span class="left">Survey Administrator</span>
+                                    <i class="icon small-close right"></i>
+                                </div>
+                                <div class="wf-count btn btn-default dropdown">
+                                    <div class="clearfix" href="#" data-toggle="dropdown">
+                                        <span class="left">1 </span>
+                                        <i class="fa fa-angle-down right"></i>
+                                    </div>
+                                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu role-count">
+                                        <li class="">
+                                            <a class="roles" href="#">1</a>   
+                                        </li>
+                                        <li class="">
+                                            <a class="roles" href="#">&#8734;</a>   
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="add-role">
+                                <i class="icon add"></i>
+                            </div>
+                        </div>
+                        <!--   <div class="operation-item">
+                                                                                        
+                          </div>  -->
+                        <script type="text/javascript">
+                            var instance = jsPlumb.getInstance();
+                        </script>
+                        <div class="workflow-action-block">
+                            <div class="nano workflow-nano">
+                                <div class="nano-content">
+                                    <div class="demo statemachine-demo" id="statemachine-demo">
+                                        <!-- <button type="button" id="addwindow">Add Window</button> -->
+                                        <div class="w" id="opened" style="display:none;">BEGIN&nbsp;
+                                            <div class="ep" style="display:none;"></div>
+                                        </div>
+
+
+                                        <div class="w hidden" id="template_newwindow">
+                                            <div class="ep"></div>
+                                        </div>
+                                        <div class="newDivAppend kumark ui-sortable">
+
+                                            <?php
+                                            $wfObj = new workflowPhase();
+                                            $phases = $wfObj->getWorkFlowPhase($workflowId);
+                                            $roleOptNote = new roleOperationNote();
+                                            $operationId = array();
+                                            $operationName = array();
+                                            $workFlowRoles = array();
+                                            foreach ($phases as $phase) {
+                                                ?><div class="operation-item relPosition" id="phase<?php echo $phase->wf_phase_id; ?>"></div>
+
+                                                <?php
+                                                $wfOpt = new workflowOperation();
+                                                $wkRoles = new workflowRole();
+
+                                                $operations = $wfOpt->getWorkFlowOperation($phase->wf_phase_id);
+                                                //print_r($operation);
+                                                $i = 0;
+
+                                                foreach ($operations as $operation) {
+                                                    // echo "<script>$.getScript( http://localhost/yacht-v2/trunk/js/workflow_editor.js [, success ] )(jsPlumb);</script>";
+                                                    $i++;
+                                                    $operationId[] = $operation->wf_operation_id;
+                                                    $operationName[] = $operation->operation_name;
+                                                    $roleOpt = new roleOperation();
+                                                    $roleOperations = $roleOpt->getWorkFlowPhaseRoleOperation($operation->wf_operation_id);
+                                                    ?>
+                                                    <div class="new" id="roleBlock<?php echo $i . $operation->wf_operation_id; ?>" style="min-height: 51px;" phase-id="phase<?php echo $phase->wf_phase_id; ?>">
+                                                        <?php
+                                                        foreach ($roleOperations as $roleOperation) {
+                                                            $wkRole = $wkRoles->getFlowRole($roleOperation->wf_role_id);
+//                                                            echo "<pre>";
+//                                                            print_r($wkRole);
+//                                                            echo "</pre>";
+                                                            $workFlowRoles[] = $wkRole->role_title;
+                                                            $roleOperationNote = new roleOperationNote();
+                                                            $roleOperationNoteIcon = $roleOperationNote->getRoleOperationNoteStatus($roleOperation->role_operation_id);
+                                                            $roleOpts = $roleOptNote->getNoteInfo($roleOperation->role_operation_id);
+                                                            ?>
+
+                                                            <input type="hidden" value="<?php echo $roleOpts[0]->note_description; ?>" id="note_<?php echo $roleOpts[0]->role_operation_id; ?>"/>
+
+                                                            <?php $divId = '"fromTemplate_' . $roleOperation->role_operation_id . '"'; ?>
+                                                                                                                        <!--                                            <div class="w tp" section-id="section<?php echo $phase->wf_phase_id; ?>" id="<?php echo $divId; ?>"><div class="action-block-title"><span class="title"><?php echo $operation->operation_name; ?></span><span class="close-ab right">×</span></div><div class="ab-actions">
+                                                                                                                                         <a class="show-popup" data-open="view-workflow-note"><i class="icon view-note"></i></a><a id="addwindowx"><i class="icon add-small"></i></a>-->
+                                                            <?php
+                                                            //echo "wf_operation_id :".$operation->wf_operation_id;
+                                                            $optId = $roleOperation->role_operation_id;
+                                                            // echo "operation_id->". $optId."</br>"; 
+                                                            $roObj = new roleAction();
+                                                            $rows = $roObj->getOptAction($optId);
+                                                            //print_r($rows);
+                                                            ?>
+                                                            <script>
+
+                                                                var actionDivs = [];
+                                                                var operation_id;
+                                                                var ele = $("#roleBlock<?php echo $i . $operation->wf_operation_id; ?>");
+                                                                var divid = <?php echo $divId; ?>;
+                                                                //alert(divid);
+                                                            </script>
+                                                            <?php
+                                                            foreach ($rows as $opt) {
+                                                                $connectArr[$optId][$opt->ro_action_id] = $opt->target_role_operation_id . "_" . $opt->action_name;
+                                                                //echo "target_id=>".$opt->target_role_operation_id."</br>";  
+                                                                ?>
+                                                                <div>
+                                                                    <script type="text/javascript">
+                                                                        var actionObj = {divID: divid, targetID: '<?php echo $opt->ro_action_id; ?>'}
+                                                                        actionDivs.push(actionObj);
+                                                                        //console.log("action in divs",actionDivs);
+                                                                        //$('#'+divid).find("#addwindowx").click();
+                                                                        //cloneWindowX(instance,eleX);
+                                                                    </script>
+                                                                </div>
+                                                                <?php
+                                                                ///echo $opt->action_name;
+                                                            }
+                                                            ?> 
+                                                            <script type="text/javascript">
+
+                                                                var noteIcon = "<?php echo $roleOperationNoteIcon; ?>";
+                                                                cloneWindow(instance, ele, divid, noteIcon);
+                                                                //actionDivs=$.unique(actionDivs);
+
+                                                                $(actionDivs).each(function (data, key) {
+                                                                    // alert("#"+this);
+                                                                    //console.log("action divs",key);
+                                                                    $('#' + key.divID + '').find("#addwindowx").click();
+                                                                    //                                                     inst.connect({source:key,target:this});
+                                                                });
+
+                                                                actionDivs = [];
+                                                            </script>
+                                                            <!--</div><div class="ep" style="display:none;"></div></div>-->
+
+
+
+                                                        <?php }
+                                                        ?>
+                                                    </div>
+                                                <?php }
+                                                ?>  
+                                                <?php
+                                            }
+                                            ?>
+                                            <script type="text/javascript">
+                                                var roleName = [];
+                                                $(".wf-wrap .wf-role span").each(function () {
+                                                    roleName.push($(this).text());
+
+
+                                                });
+
+                                            </script>
+                                            <?php
+//        echo "<pre>";
+//        print_r($workFlowRoles);
+//        echo "</pre>";
+                                            $workFlowRolesArr = array_values(array_unique($workFlowRoles));
+                                            for ($roleKey = 0; $roleKey < count($workFlowRolesArr); $roleKey++) {
+                                                ?>
+                                                <script type="text/javascript">
+
+                                                    if (roleName.indexOf('<?php echo $workFlowRolesArr[$roleKey] ?>') == -1) {
+
+
+                                                        createNewRole('<?php echo $workFlowRolesArr[$roleKey] ?>');
+                                                    }
+                                                </script>  
+                                            <?php }
+                                            ?>
+
+                                            <?php
+                                            //  print_r($workFlowRoles);
+                                            foreach ($connectArr as $connectionkey => $connectionValue) {
+//      echo "<pre>";
+//print_r($connectionValue);
+//echo "</pre>";
+                                                $sourceKey = $connectionkey;
+                                                $connectionValue = array_reverse($connectionValue);
+                                                $connnetKey = 0;
+                                                foreach ($connectionValue as $targetKeys => $targetValues) {
+
+                                                    $targetValues = explode("_", $targetValues);
+
+                                                    $targetKey = "fromTemplate_" . $targetValues[0];
+                                                    ?>
+                                                    <script type="text/javascript">
+                                                        var sourceKey = $("#fromTemplate_<?php echo $sourceKey ?> div.ui-state-disabled:eq(<?php echo $connnetKey; ?>)").attr("id");
+                                                        console.log("node text", $("#fromTemplate_<?php echo $sourceKey ?> div.ui-state-disabled:eq(<?php echo $connnetKey; ?>)").find("span:eq(0)").text());
+
+                                                        $("#fromTemplate_<?php echo $sourceKey ?> div.ui-state-disabled:eq(<?php echo $connnetKey; ?>)").find("span:eq(0)").text("<?php echo $targetValues[1] ?>");
+                <?php if (!empty($targetValues[0])) { ?>
+                                                            inst.connect({
+                                                                source: sourceKey,
+                                                                target:<?php echo $targetKey; ?>
+                                                            });
+                <?php } ?>
+
+                                                    </script>
+                                                    <?php
+                                                    $connnetKey++;
+                                                }
+                                            }
+                                            ?>  
+
+
+                                        </div>   
+                                        <div class="absLine absLinePos1" style="left: 0px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div><!-- workflow-editor ends -->
+        </div><!-- workflow-wrapper ends -->
+        <script type="text/javascript">
+            sortable();
+            $(".update-workflow").click(function (e) {
+                workflowProcess.updateWorkflow();
+            });
+        </script>
+        <?php
+        break;
+    case "viewNote":
+        extract($_REQUEST);
+        $noteInfo = new roleOperationNote();
+        $roleOperationAct = new roleAction();
+        $completeRole = new role();
+        $roles = $completeRole->getActiveRole();
+
+        //print_r($roles);
+        $noteDetails = $noteInfo->getNoteInfo($operationID);
+        foreach ($noteDetails as $noteDetail) {
+            //echo "<pre>";
+            //print_r($noteDetail);
+            //echo "</pre>";
+            ?>
+
+
+            <div class="mask-black mask-left"></div>
+            <div class="lodding-half loading-left" style="display: none;"> 
+                <?php include ("../loader.php"); ?> 
+            </div>
+            <div class="orange-title survey-title"><?php echo $noteDetail->operation_name ?></div>                                       
+            <div class="survey-type-wrap"> 
+                <div class="nano survey-form-height">
+                    <div class="nano-content">
+                        <div class="info-wrap">
+                            <div class="profile-detail div_adjus div_adjust form-wrap">
+                                <div class="profile-detail-left">
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label"> 
+                                            <span>Workflow</span> 
+                                        </div>
+                                        <div class="detail-value yacht-iden"><?php echo $noteDetail->name ?></div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Created By</span> 
+                                        </div>
+                                        <div class="detail-value vessel-name"><?php echo $noteDetail->first_name . " " . $noteDetail->last_name ?></div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Created On</span> 
+                                        </div>
+                                        <div class="detail-value vessel-name"><?php echo date("d/m/y", strtotime($noteDetail->created_on)); ?></div>
+                                    </div>
+
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <!-- <i class="fa fa-envelope"></i> --> 
+                                            <span>Description</span> 
+                                        </div>
+                                        <div class="detail-value hin-no"><?php echo $noteDetail->note_description ?></div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <?php
+                            $roleOperations = $roleOperationAct->getOptAction($noteDetail->role_operation_id);
+                            foreach ($roleOperations as $roleOperation) {
+                                //print_r($roleOperation);
+                                ?>
+                                <div class="roles-wrap">
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Actions</span> 
+                                        </div>
+                                        <div class="detail-value vessel-name"></div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span><?php echo $roleOperation->action_name; ?></span> 
+                                        </div>
+                                        <div class="detail-value vessel-name"></div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">                                    
+                                            <span>Description</span> 
+                                        </div>
+                                        <div class="detail-value hin-no"><?php echo $roleOperation->action_description; ?></div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Role Change</span> 
+                                        </div>
+                                        <select  class="input-txt-field form-control role-change">
+                                            <option>Survey Administrator</option>
+                                        </select>
+                                        <!-- <div class="detail-value vessel-name"><?php echo $roleOperation->role_title; ?></div> -->
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Transition</span> 
+                                        </div>
+                                        <select  class="input-txt-field form-control connection-change compactanchor">
+                                            <option>Please Select</option>
+                                        </select>
+                                        <!-- <div class="detail-value vessel-name">Leads to the Closed Survey Phase</div> -->
+                                    </div>
+
+                                </div>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>  
+                <div style="padding-right: 15px;" class="form-action list-bottom clearfix">
+                   
+                   <div class="inside-padding">
+                        <div class="inner-addon">
+                        <button type="submit" value="" class="btn btn-style save-ro-note workflow-submit-btn hide" ><i class="icon icon-submit"></i> Submit </button>
+                    </div>
+                    <div class="inner-addon">
+                        <button type="button" value="" data-for="add-workflow-note" class="btn btn-style close-popup workflow-cancel-btn hide"><i class="icon small-close"></i>  Cancel</button>
+                    </div>
+
+                   </div>
+
+
+                </div>                  
+            </div> 
+            <?php
+        }
+        break;
+
+    case 'addNote':
+        extract($_REQUEST);
+        ?>
+
+        <div class="mask-black mask-left"></div>
+        <div class="lodding-half loading-left" style="display: none;"> 
+            <?php include ("../loader.php"); ?> 
+        </div>          
+        <div class="orange-title survey-title"><?php echo $roleOperationName ?></div>                                       
+        <div class="survey-type-wrap workflow-flyout-form"> 
+            <div class="vw-nicescroll survey-form-height">
+                <div class="scroll-content">
+                    <form class="validetta-bubble-down" method="post" action="#" onsubmit="submitAddNoteForm();
+                            return false;" id="add-new-note-form">
+
+                        <div class="info-wrap" >
+                            <div class="profile-detail div_adjus div_adjust form-wrap">
+                                <div class="profile-detail-left">
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label"> 
+                                            <span>Workflow</span> 
+                                        </div>
+                                        <div class="detail-value yacht-iden">In-Stock Survey</div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Created By</span> 
+                                        </div>
+                                        <div class="detail-value vessel-name">Workflow</div>
+                                    </div>
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <span>Created On</span> 
+                                        </div>
+                                        <div class="detail-value vessel-name">12/12/12</div>
+                                    </div>
+
+                                    <div class="detail-fields clearfix">
+                                        <div class="detail-label">
+                                            <!-- <i class="fa fa-envelope"></i> --> 
+                                            <span>Description*</span>
+                                        </div>
+                                        <div class="detail-value">
+                                            <div class="relative">
+                                                <textarea name="note_description" class="form-control area-field" maxlength="300" data-validetta="required" id="input_location"> </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!--  <div class="roles-wrap" id="roleOperationActions">
+                             </div> -->
+
+
+                            <input type="hidden" value="" name="role_operation_id">
+                            <input type ="submit" id="submit-add-new-note" name="submit-add-new-organization" style="Display:none;">
+
+                        </div> 
+                    </form>
+                </div>
+            </div>                  
+        </div> 
+        <div style="padding-right: 15px;" class="form-action clearfix">
+
+                <div class="inside-padding">
+                    <div class="inner-addon">
+                        <button type="submit" value="" class="btn btn-style save-ro-note workflow-submit-btn" ><i class="icon icon-submit"></i> Submit    </button>
+                    </div>
+                    <div class="inner-addon">
+                         <button type="button" value="" data-for="add-workflow-note" class="btn btn-style close-popup workflow-cancel-btn "><i class="icon small-close"></i> Cancel  </button>
+                    </div>  
+                </div>
+            
+            </div>
+        <?php
+        // }
+        break;
+
+    case 'saveWorkflow':
+        extract($_POST);
+        $data = $_POST['data']['phase'];
+        print_r($data);
+        $roActions = array();
+        $wf = new workflow();
+        $wfObj = new workflowPhase();
+        $wfOpt = new workflowOperation();
+        foreach ($data as $key => $phase) {
+            $phaseName = $phase['name'];
+            $phaseOperation = $phase['operation'];
+            // To store phase name
+            $phaseId = $wfObj->createWorkFlowPhase($workflowID, $phaseName);
+
+            // To store operation detail
+            $sqlOperation = $wfOpt->createWorkFlowOperation($phaseId, $phaseOperation);
+            $roActions[] = $sqlOperation;
+        }
+        $wfOpt->updateActionTargets($roActions);
+        //print_r($roActions);
+        break;
+    case 'viewworkflowdetail':
+        extract($_REQUEST);
+        $workFlow = new workflow();
+        $workFlowOrg = new Organization();
+//        if ($version == "base") {
+//            $workFlowDetail = $workFlow->getWorkFlowDetails($workflowID);
+//            $workFlowPhases = $workFlow->getWorkFlowPhases($workflowID);
+//            $workFlowRolesOperations = $workFlow->getWorkFlowRoleOperation($workflowID);
+//        } else {
+        $workFlowDetail = $workFlow->getWorkFlowVersionDetails($workflowID);
+        $workFlowPhases = $workFlow->getWorkFlowVersionPhases($workflowID);
+        $workFlowRolesOperations = $workFlow->getWorkFlowRoleOperation($workflowID);
+        $workflowOrganizations = $workFlowOrg->getOrganizations($workflowID);
+
+        //}
+        ?>
+
+        <div class="block-title first">
+            <div class="close-btn">
+                Details
+            </div>
+        </div>
+        <!-- <div class="orange-title">Details</div> -->
+        <div class="profile-detail div_adjus div_adjust form-wrap">
+            <div class="profile-detail-left">
+                <div class="detail-fields clearfix">
+                    <div class="detail-label"> 
+                        <span>Workflow Creator</span> 
+                    </div>
+                    <div class="detail-value "><?php echo $workFlowDetail->first_name . " " . $workFlowDetail->last_name; ?></div>
+                </div>
+                <!-- name -->
+                <div class="detail-fields clearfix">
+                    <div class="detail-label">
+                        <span>Created On</span> 
+                    </div>
+                    <div class="detail-value "><?php echo $workFlowDetail->created_on; ?></div>
+                </div>
+                <div class="detail-fields clearfix">
+                    <div class="detail-label">
+                        <span>Title</span> 
+                    </div>
+                    <div class="detail-value workflow-detail-name"><?php echo $workFlowDetail->name; ?></div>
+                </div>
+                <!-- name -->
+                <div class="detail-fields clearfix">
+                    <div class="detail-label">
+                        <!-- <i class="fa fa-envelope"></i> --> 
+                        <span>Description</span> 
+                    </div>
+                    <div class="detail-value"><?php echo $workFlowDetail->description; ?></div>
+                </div>
+                <div class="detail-fields clearfix">
+                    <div class="detail-label">
+                        <!-- <i class="fa fa-envelope"></i> --> 
+                        <span>objective</span> 
+                    </div>
+                    <div class="detail-value"><?php echo $workFlowDetail->objective; ?></div>
+                </div>
+                <div class="detail-fields clearfix">
+                    <div class="detail-label">
+                        <span>Organizations</span> 
+                    </div>
+
+                    <div class="detail-value organizations-name">
+                        <?php
+                        if (count($workflowOrganizations) > 0) {
+                            foreach ($workflowOrganizations as $workflowOrganization) {
+                                echo $workflowOrganization->name . "</br>";
+                            }
+                        } else {
+                            ?>
+                            No Organization Selected
+
+                        <?php } ?>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="roles-wrap">
+            <div class="roles-panel">
+                <div class="block-title">
+                    <div class="close-btn">
+                        Roles
+                    </div>
+                </div>
+                <!-- <h5>Roles</h5> -->
+                <ul class="survey-nav">
+                    <?php
+                    $roles = array();
+                    foreach ($workFlowRolesOperations as $workFlowRolesOperation) {
+                        $roles[] = $workFlowRolesOperation->role_title;
+                    }
+                    $roles = array_unique($roles);
+                    foreach ($roles as $role) {
+                        ?>
+                        <li><?php echo $role ?></li>
+                    <?php } ?>
+
+
+
+                </ul>
+            </div>
+            <div class="roles-panel">
+                <div class="block-title">
+                    <div class="close-btn">
+                        Operations
+                    </div>
+                </div>
+                <!-- <h5>Operations</h5> -->
+                <ul class="survey-nav">
+                    <?php foreach ($workFlowPhases as $workFlowPhase) { ?>
+                        <li><?php echo $workFlowPhase->phase_name; ?>
+                            <ul class="survey-multi-nav">
+                                <?php
+                                $operationRoles = $workFlow->getWorkFlowRoleOperationByPhaseId($workFlowPhase->wf_phase_id);
+//        echo "<pre>";
+//        print_r($operationRoles);
+//        echo "<pre>";                                    
+                                foreach ($operationRoles as $operationRole) {
+                                    ?>
+                                    <li><span class="dash-space">&ndash;</span><?php echo $operationRole->operation_name; ?>, <?php echo $operationRole->role_title; ?></li>
+                                    <?php } ?>
+                            </ul>
+                        </li>
+
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+
+
+        <?php
+        break;
+
+    /**
+     * 
+     * update workflow for the workflow manager
+     * update workflow for the process manager
+     * Based on the organization assign the organizations.
+     * 
+     * 
+     */
+    case 'updateWorkFlow':
+        extract($_POST);
+        $data = $_POST['data']['phase'];
+        $workflowID = $_POST['workflowID'];
+        $wfObj = new workflowPhase();
+        $wfOpt = new workflowOperation();
+        $wf = new workflow();
+        $editPermission = $wf->getWorkflowEditPermissionByUID($_SESSION['userId']);
+        //echo ""
+        if ($editPermission == "0") {
+            //check if it is a base version.
+            if ($baseversion == "false") {
+                //check if it is publish or not if it is publish create new version else update the same one.
+                if ($published != "false") {
+                    $workflow_version = $wf->createWorkFlowVersion($workflowID, $baseversion);
+
+                    // To store phase name
+                    $wfObj->updateWorkFlowPhase($workflow_version["workflow_version_id"]);
+
+                    foreach ($data as $key => $phase) {
+                        $phaseName = $phase['name'];
+                        $phaseOperation = $phase['operation'];
+
+                        // To store phase name
+                        $phaseId = $wfObj->createWorkFlowPhase($baseworkflow, $phaseName);
+
+                        // To store operation detail
+                        $sqlOperation = $wfOpt->createWorkFlowOperation($phaseId, $phaseOperation);
+                        $roActions[] = $sqlOperation;
+                    }
+                    $wfOpt->updateActionTargets($roActions);
+                } else {
+
+                    // To store phase name
+                    $wfObj->updateWorkFlowPhase($workflowID);
+
+                    foreach ($data as $key => $phase) {
+                        $phaseName = $phase['name'];
+                        $phaseOperation = $phase['operation'];
+
+                        // To store phase name
+                        $phaseId = $wfObj->createWorkFlowPhase($baseworkflow, $phaseName, $workflowID);
+
+                        // To store operation detail
+                        $sqlOperation = $wfOpt->createWorkFlowOperation($phaseId, $phaseOperation);
+                        $roActions[] = $sqlOperation;
+                    }
+                    $wfOpt->updateActionTargets($roActions);
+                }
+            } else {
+
+                $workflow_version = $wf->createWorkFlowVersion($baseworkflow, $baseversion);
+
+                // To store phase name
+                $wfObj->updateWorkFlowPhase($baseworkflow);
+
+                foreach ($data as $key => $phase) {
+                    $phaseName = $phase['name'];
+                    $phaseOperation = $phase['operation'];
+
+                    // To store phase name
+                    $phaseId = $wfObj->createWorkFlowPhase($baseworkflow, $phaseName);
+
+                    // To store operation detail
+                    $sqlOperation = $wfOpt->createWorkFlowOperation($phaseId, $phaseOperation);
+                    $roActions[] = $sqlOperation;
+                }
+                $wfOpt->updateActionTargets($roActions);
+            }
+        } else {
+
+            $wfObj->updateWorkFlowPhase($workflowID);
+
+            foreach ($data as $key => $phase) {
+                $phaseName = $phase['name'];
+                $phaseOperation = $phase['operation'];
+
+                // To store phase name
+                $phaseId = $wfObj->createWorkFlowPhase($baseworkflow, $phaseName, $workflowID);
+
+                // To store operation detail
+                $sqlOperation = $wfOpt->createWorkFlowOperation($phaseId, $phaseOperation);
+                $roActions[] = $sqlOperation;
+            }
+            $wfOpt->updateActionTargets($roActions);
+        }
+
+        break;
+    case "publishworkflow":
+        extract($_POST);
+        $wf = new workflow();
+        $wf->publishWorkFlow($workflowId, $publishStatus);
+        break;
+    case "saveworkflowdetail":
+        extract($_POST);
+        $wf = new workflow();
+        $wf->saveworkflowdetail($_REQUEST);
+        break;
+
+    case'getWorkflowWithPagination':
+
+        $CurrentPageNo = (int) @$_REQUEST['Page'];
+        $orderBy = @$_REQUEST['orderBy'];
+        $limit = (int) @$_REQUEST['Limit'];
+        $userstatus = $_REQUEST['userstatus'];
+        $search = $_REQUEST['search'];
+        echo $Ajaxdata = $pagination->getWorkflowWithPagination(array('limitperpage' => "$limit", 'pageNo' => "$CurrentPageNo", 'userType' => $userstatus, 'orderBy' => $orderBy, 'searchString' => $search));
+        break;
+    case 'deleteWorkflowList':
+        extract($_POST);
+        $wf = new workflow();
+        $wfObj = new workflowPhase();
+        $wfObj->updateWorkFlowPhase($workflowId);
+        $wf->updateWorkFlow($workflowId);
+        break;
+    case 'getOrganizations':
+        $orgObj = new Organization();
+        $organizationResult = $orgObj->getAllOrganizations();
+        foreach ($organizationResult as $organization) {
+
+            $data.='<tr id="organization-' . $organization->organization_id . '"> 
+                       <td class="organization-id"><input type="checkbox" value="' . $organization->organization_id . '" id="org-' . $organization->organization_id . '" /></td>
+                       
+                        <td class="organization-name" >' . $organization->name . '</td>
+                        <td class="manufacturer-name">44</td>
+                        </tr>';
+        }
+        echo $data;
+        break;
+    case 'saveOrganization':
+
+        unset($_REQUEST['task']);
+        unset($_REQUEST['country-field']);
+        unset($_REQUEST['state-field']);
+        unset($_REQUEST['PHPSESSID']);
+
+        $orgObj = new Organization();
+        $lastInserted = $orgObj->createOrganization($_REQUEST);
+        $data.='<tr class="active-tr"> ';
+
+        $data.=' <td class="organization-id"><input type="checkbox" value="' . $lastInserted . '" /></td>';
+        //$data.='<td >'.$lastInserted.'</td>';
+
+        $data.='<td >' . $_REQUEST['name'] . ' </td>';
+        $data.='<td >44</td>';
+        $data.='</tr>';
+        echo $data;
+        break;
+
+    case 'saveRoleOperationNote':
+        $_POST['created_by'] = $_SESSION['userId'];
+        $roleOperationData = $_POST;
+        $roNoteObj = new roleOperationNote();
+        $roNoteObj->saveNote($roleOperationData);
+        break;
+    case 'savenewworkflowdetail':
+        extract($_POST);
+        $workflow_data = array();
+        $workflow_data = $_POST;
+        unset($workflow_data['task']);
+        $workflow_data['created_by'] = $_SESSION['userId'];
+        //print_r($workflow_data);
+        $wf = new workflow();
+        $wf->savenewworkflowdetail($workflow_data);
+        break;
+}
+?>

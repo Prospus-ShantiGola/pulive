@@ -1,0 +1,3374 @@
+/* line 4, ../sass/modules/_icons.scss */
+.icon-sm {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: url(../img/sprite_icons.png);
+  background-position: 0px -38px;
+  line-height: 0px;
+}
+
+/* line 13, ../sass/modules/_icons.scss */
+.icon-sm.icon_dashBoard {
+  background-position: 0px -38px;
+}
+
+/* line 16, ../sass/modules/_icons.scss */
+.icon-sm.icon_inbox {
+  background-position: 0px -242px;
+}
+
+/* line 19, ../sass/modules/_icons.scss */
+.icon-sm.icon_classes {
+  background-position: 0px -366px;
+}
+
+/* line 22, ../sass/modules/_icons.scss */
+.icon-sm.icon_marketplace {
+  background-position: -120px -361px;
+}
+
+/* line 25, ../sass/modules/_icons.scss */
+.icon-sm.calender {
+  background-position: 0px -122px;
+}
+
+/* line 28, ../sass/modules/_icons.scss */
+.icon-sm.icon_setting {
+  background-position: 0px -202px;
+}
+
+/* line 31, ../sass/modules/_icons.scss */
+.icon-sm.icon_actor {
+  background-position: -204px -323px;
+}
+
+/* line 34, ../sass/modules/_icons.scss */
+.icon-sm.icon_product {
+  background-position: -202px -202px;
+}
+
+/* line 37, ../sass/modules/_icons.scss */
+.icon-sm.icon_data {
+  background-position: -201px -242px;
+}
+
+/* line 40, ../sass/modules/_icons.scss */
+.icon-sm.icon_report {
+  background-position: -203px -283px;
+}
+
+/* line 43, ../sass/modules/_icons.scss */
+.icon-sm.resources {
+  background-position: -205px -362px;
+}
+
+/* line 46, ../sass/modules/_icons.scss */
+.icon-sm.icon_organization {
+  background-position: -79px -408px;
+}
+
+/* line 54, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover span.menu-title {
+  color: #fff;
+}
+/* line 57, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_dashBoard {
+  background-position: 0px 0px;
+}
+/* line 60, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_inbox {
+  background-position: 0px -281px;
+}
+/* line 63, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_classes {
+  background-position: 0px -324px;
+}
+/* line 66, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_marketplace {
+  background-position: -154px -361px;
+}
+/* line 69, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .calender {
+  background-position: 0px -81px;
+}
+/* line 72, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_setting {
+  background-position: 0px -161px;
+}
+/* line 75, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_actor {
+  background-position: -254px -323px;
+}
+/* line 78, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_product {
+  background-position: -250px -203px;
+}
+/* line 81, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_data {
+  background-position: -250px -242px;
+}
+/* line 84, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_report {
+  background-position: -252px -283px;
+}
+/* line 87, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .resources {
+  background-position: -256px -362px;
+}
+/* line 90, ../sass/modules/_icons.scss */
+.left-action-bar > ul > li a:hover .icon_organization {
+  background-position: -79px -458px;
+}
+
+/* line 95, ../sass/modules/_icons.scss */
+.icon-sm.production-white {
+  background-position: -120px -411px;
+}
+
+/* line 98, ../sass/modules/_icons.scss */
+.icon-sm.group {
+  background-position: -81px -495px;
+}
+
+/* line 101, ../sass/modules/_icons.scss */
+.icon-sm.course-add {
+  background-position: -2px -410px;
+}
+
+/* line 104, ../sass/modules/_icons.scss */
+.icon-sm.course-view {
+  background-position: -2px -460px;
+}
+
+/* line 107, ../sass/modules/_icons.scss */
+.icon-sm.dialogue-add {
+  background-position: -4px -500px;
+}
+
+/* line 110, ../sass/modules/_icons.scss */
+.icon-sm.dialogue-view {
+  background-position: -5px -545px;
+}
+
+/* line 113, ../sass/modules/_icons.scss */
+.icon-sm.actor-add {
+  background-position: -43px -496px;
+}
+
+/* line 116, ../sass/modules/_icons.scss */
+.icon-sm.actor-white {
+  background-position: -254px -323px;
+}
+
+/* line 120, ../sass/modules/_icons.scss */
+.icon-sm.actor-view {
+  background-position: -45px -544px;
+}
+
+/* line 123, ../sass/modules/_icons.scss */
+.icon-sm.email-add {
+  background-position: -40px -410px;
+}
+
+/* line 127, ../sass/modules/_icons.scss */
+i.icon-sm.roles-white {
+  background-position: -259px -444px;
+}
+
+/* line 130, ../sass/modules/_icons.scss */
+i.icon-sm.deafult-icon {
+  background-position: -257px -405px;
+}
+
+/* line 133, ../sass/modules/_icons.scss */
+.sidebar_wrap .icon-wrap:hover span {
+  color: #fff;
+}
+
+/* line 136, ../sass/modules/_icons.scss */
+.icon-sm.list {
+  background-position: -43px -121px;
+}
+
+/* line 139, ../sass/modules/_icons.scss */
+.icon-sm.search {
+  background-position: -40px -81px;
+}
+
+/* line 142, ../sass/modules/_icons.scss */
+.icon-sm.search-white {
+  background-position: -200px -41px;
+}
+
+/* line 145, ../sass/modules/_icons.scss */
+.icon-sm.plus {
+  background-position: -41px -161px;
+}
+
+/* line 148, ../sass/modules/_icons.scss */
+.icon-sm.template {
+  background-position: -82px -205px;
+}
+
+/* line 151, ../sass/modules/_icons.scss */
+.icon-sm.course {
+  background-position: -41px -244px;
+}
+
+/* line 154, ../sass/modules/_icons.scss */
+.icon-sm.course-black {
+  background-position: -82px -364px;
+}
+
+/* line 157, ../sass/modules/_icons.scss */
+.icon-sm.course-white {
+  background-position: -41px -364px;
+}
+
+/* line 160, ../sass/modules/_icons.scss */
+.icon-sm.dialogue {
+  background-position: -83px -121px;
+}
+
+/* line 163, ../sass/modules/_icons.scss */
+.icon-sm.dialogue-white {
+  background-position: -122px -122px;
+}
+
+/* line 166, ../sass/modules/_icons.scss */
+.icon-sm.actor {
+  background-position: -43px -203px;
+}
+
+/* line 170, ../sass/modules/_icons.scss */
+.icon-sm.close,
+.icon-sm.close_icon {
+  background-position: -40px 0px;
+  opacity: 1;
+}
+
+/* line 175, ../sass/modules/_icons.scss */
+.icon-sm.tick {
+  background-position: -40px -41px;
+}
+
+/* line 178, ../sass/modules/_icons.scss */
+.icon-sm.workflow {
+  background-position: -81px -81px;
+}
+
+/* line 181, ../sass/modules/_icons.scss */
+.icon-sm.notification {
+  background-position: -81px -41px;
+}
+
+/* line 184, ../sass/modules/_icons.scss */
+.icon-sm.notification-white {
+  background-position: -81px -41px;
+}
+
+/* line 187, ../sass/modules/_icons.scss */
+.icon-sm.home {
+  background-position: -81px -162px;
+}
+
+/* line 190, ../sass/modules/_icons.scss */
+.icon-sm.dot-md {
+  background-position: -40px -322px;
+}
+
+/* line 193, ../sass/modules/_icons.scss */
+.icon-sm.dot-white {
+  background-position: -34px -283px;
+}
+
+/* line 196, ../sass/modules/_icons.scss */
+.icon-sm.chat {
+  background-position: -82px -2px;
+}
+
+/* line 199, ../sass/modules/_icons.scss */
+.icon-sm.filter-green {
+  background-position: -122px -241px;
+}
+
+/* line 202, ../sass/modules/_icons.scss */
+.icon-sm.action-green {
+  background-position: -122px -281px;
+}
+
+/* line 205, ../sass/modules/_icons.scss */
+.icon-sm.view-green {
+  background-position: -122px -323px;
+}
+
+/* line 208, ../sass/modules/_icons.scss */
+.icon-sm.nodetype {
+  background-position: -120px -41px;
+}
+
+/* line 211, ../sass/modules/_icons.scss */
+.icon-sm.status {
+  background-position: -80px -245px;
+}
+
+/* line 214, ../sass/modules/_icons.scss */
+a#helpNoderAnchor .help {
+  margin: 0;
+}
+
+/* line 217, ../sass/modules/_icons.scss */
+.icon-sm.help {
+  background-position: -122px -1px;
+}
+
+/* line 220, ../sass/modules/_icons.scss */
+.icon-sm.user-dp {
+  background-position: -159px -165px;
+}
+
+/* line 223, ../sass/modules/_icons.scss */
+.icon-sm.workflow-black {
+  background-position: -159px -202px;
+}
+
+/* line 226, ../sass/modules/_icons.scss */
+.icon-sm.highlight {
+  background-position: -159px -242px;
+}
+
+/* line 229, ../sass/modules/_icons.scss */
+.icon-sm.close-black {
+  background-position: -155px -281px;
+}
+
+/* line 232, ../sass/modules/_icons.scss */
+.icon-sm.reviews {
+  background-position: -154px -322px;
+}
+
+/* line 235, ../sass/modules/_icons.scss */
+.icon-sm.reply {
+  background-position: -257px -480px;
+}
+
+/* line 238, ../sass/modules/_icons.scss */
+.icon-sm.download-icon {
+  background-position: -260px -515px;
+}
+
+/* line 241, ../sass/modules/_icons.scss */
+.icon-sm.favourite {
+  background-position: -206px -478px;
+}
+
+/* line 244, ../sass/modules/_icons.scss */
+.icon-sm.tridot {
+  background-position: -206px -508px;
+}
+
+/* line 247, ../sass/modules/_icons.scss */
+.icon-sm.tri-dot {
+  background-position: -206px -508px;
+}
+
+/*====================Icon css===============================*/
+/*=====================Leftt ACtion menu======================================*/
+/* line 3, ../sass/component/_inbox.scss */
+.list-detail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* line 8, ../sass/component/_inbox.scss */
+.sidebar_wrap .icon-wrap {
+  background: #334259;
+  z-index: 2;
+}
+
+/* line 12, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu {
+  width: 102px;
+}
+
+/* line 15, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu > ul > li {
+  width: 61px;
+}
+
+/* line 18, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu > ul > li._active .icon-wrap {
+  width: 62px;
+}
+
+/* line 23, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu .icon-wrap.custom-blank-div {
+  z-index: 2;
+  width: 61px;
+}
+
+/* line 27, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu .menu-wrapper.fly-menu-wrapper {
+  position: fixed;
+  left: -300px;
+  top: 40px !important;
+  width: 250px;
+  box-shadow: 10px 0 20px rgba(36, 47, 67, 0.45);
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  background: #242f43;
+  display: block;
+}
+
+/* line 40, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu .menu-wrapper.fly-menu-wrapper.in {
+  left: 61px;
+}
+
+/* line 43, ../sass/component/_inbox.scss */
+.fly-menu-detail {
+  width: 205px;
+  float: left;
+  height: 100%;
+  display: inline-block;
+}
+
+/* line 49, ../sass/component/_inbox.scss */
+.fly-menu-detail .nano {
+  width: 205px;
+}
+
+/* line 52, ../sass/component/_inbox.scss */
+.fly-menu-actionbar {
+  width: 45px;
+  float: left;
+  height: 100%;
+  background: #fff;
+  border-left: 1px solid #334259;
+  z-index: 2;
+  position: relative;
+}
+
+/*.menu-flyout-overlay{
+  position:fixed;
+  right: 0;
+  top:40px;
+  width:100%;
+  height:100%;
+  background:#000;
+  z-index:1;
+  opacity:0.4;
+  display:none;
+}
+.fly-menu-wrapper.in .menu-flyout-overlay{
+  display:block;
+}*/
+/* line 75, ../sass/component/_inbox.scss */
+.fly-menu-actionbar ul li a {
+  width: 45px;
+  padding: 5px 0;
+  height: 45px;
+  float: left;
+}
+
+/* line 81, ../sass/component/_inbox.scss */
+.fly-menu-actionbar ul li a i {
+  margin: 0 12px;
+  float: left;
+}
+
+/* line 85, ../sass/component/_inbox.scss */
+.fly-menu-actionbar ul li a span {
+  font-size: 10px;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+}
+
+/* line 91, ../sass/component/_inbox.scss */
+.shortcut-icon {
+  width: 40px;
+  height: calc(100vh - 80px);
+  float: left;
+  position: fixed;
+  top: 40px;
+  z-index: 3;
+  background: #242f43;
+}
+
+/* line 100, ../sass/component/_inbox.scss */
+.shortcut-icon ul li {
+  float: left;
+}
+
+/* line 103, ../sass/component/_inbox.scss */
+.shortcut-icon ul li a {
+  padding: 5px 10px;
+  float: left;
+  line-height: 0;
+}
+
+/* line 108, ../sass/component/_inbox.scss */
+.shortcut-icon .icon.dialogue {
+  background-position: -275px -246px;
+}
+
+/* line 111, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu .menu-wrapper.fly-menu-wrapper.in.subflyout-in {
+  width: 205px;
+  box-shadow: none;
+  transition: none;
+}
+
+/* line 116, ../sass/component/_inbox.scss */
+.sidebar_wrap.flyout-menu .menu-wrapper.fly-menu-wrapper.in.subflyout-in .fly-menu-actionbar {
+  display: none;
+}
+
+/* line 119, ../sass/component/_inbox.scss */
+.item-title .icon-sm {
+  margin-right: 8px;
+}
+
+/* line 122, ../sass/component/_inbox.scss */
+.search-item-wrap input,
+.search-item-wrap input:focus,
+.search-item-wrap a {
+  border-color: #99cbcc;
+  color: #99cbcc;
+  background: transparent;
+  border-radius: 0;
+}
+
+/* line 130, ../sass/component/_inbox.scss */
+.search-item-wrap input::-webkit-input-placeholder,
+#courseTemplateFlyout input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #99cbcc;
+}
+
+/* line 135, ../sass/component/_inbox.scss */
+.search-item-wrap input::-moz-placeholder,
+#courseTemplateFlyout input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #99cbcc;
+}
+
+/* line 140, ../sass/component/_inbox.scss */
+.search-item-wrap input:-ms-input-placeholder,
+#courseTemplateFlyout input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #99cbcc;
+}
+
+/* line 145, ../sass/component/_inbox.scss */
+.search-item-wrap input:-moz-placeholder,
+#courseTemplateFlyout input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #99cbcc;
+}
+
+/* line 150, ../sass/component/_inbox.scss */
+.icon-wrap a .icon-sm {
+  margin: 1px 20px;
+}
+
+/* line 153, ../sass/component/_inbox.scss */
+.sidebar_wrap ul > li a span {
+  color: #99cbcc;
+}
+
+/* line 156, ../sass/component/_inbox.scss */
+.shortcut-icon ul li a:hover,
+.shortcut-icon ul li.active,
+.fly-menu-actionbar li:hover {
+  background: #131c2d;
+}
+
+/* line 161, ../sass/component/_inbox.scss */
+.shortcut-icon li a.inactive {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/*==================Change color theme of left action menu========================*/
+/* line 167, ../sass/component/_inbox.scss */
+.sidebar_wrap {
+  background: #334259;
+}
+
+/* line 170, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li {
+  background: #334259;
+}
+
+/* line 173, ../sass/component/_inbox.scss */
+.custom-blank-div, .custom-blank-div:hover {
+  background: #334259 !important;
+}
+
+/* line 176, ../sass/component/_inbox.scss */
+.sidebar_wrap .icon-wrap {
+  border: 0;
+  width: 61px;
+}
+
+/* line 180, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li:hover,
+.sidebar_wrap .icon-wrap:hover,
+._active .icon-wrap {
+  background-color: #242f43;
+}
+
+/* line 185, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li.inactive .icon-wrap:hover {
+  background: inherit;
+}
+
+/* line 188, ../sass/component/_inbox.scss */
+.sidebar_wrap ul li .menu-items {
+  background-color: #242f43;
+  min-height: 100% !important;
+}
+
+/* line 192, ../sass/component/_inbox.scss */
+.fly-menu-actionbar {
+  background-color: #242f43;
+}
+
+/* line 195, ../sass/component/_inbox.scss */
+.item-list li a:hover,
+.item-list li.active,
+.item-list li.active-on-popup,
+.item-list li.active-sub-filter,
+.actionMenu ul li.active {
+  background-color: #131c2d;
+  color: #fff;
+}
+
+/* line 203, ../sass/component/_inbox.scss */
+.item-list li.active a,
+.item-list li.active-on-popup a,
+.item-list li.active-sub-filter a,
+.actionMenu ul li.active a {
+  color: #fff;
+}
+
+/* line 209, ../sass/component/_inbox.scss */
+#sub_nav_49 .item-list .my-profile:first-child:hover,
+#sub_nav_49 .item-list .my-profile:first-child:hover a {
+  background-color: #131c2d;
+  color: #fff;
+}
+
+/* line 214, ../sass/component/_inbox.scss */
+#sub_nav_49 .item-list .my-profile.inactive:first-child:hover,
+#sub_nav_49 .item-list .my-profile.inactive:first-child:hover a {
+  background: transparent !important;
+  color: #99cbcc !important;
+}
+
+/* line 219, ../sass/component/_inbox.scss */
+.sidebar_wrap .item-list a,
+.sidebar_wrap .item-list .title {
+  color: #99cbcc;
+}
+
+/* line 223, ../sass/component/_inbox.scss */
+.sidebar_wrap .accordion-wrap i.right {
+  color: #99cbcc;
+}
+
+/* line 226, ../sass/component/_inbox.scss */
+.accordion-wrap .item-title {
+  padding: 3px 10px;
+  color: #99cbcc;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+/*==================================*/
+/* line 233, ../sass/component/_inbox.scss */
+.admin-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #135d82;
+  float: left;
+}
+
+/* line 240, ../sass/component/_inbox.scss */
+.dialogue_row .subCollapsedCourseBox {
+  float: left;
+}
+
+/* line 244, ../sass/component/_inbox.scss */
+.dialogue_row .subCollapsedCourseBox .courseTitle {
+  width: 50% !important;
+  float: left;
+  margin: 3px 0;
+  padding-right: 10px !important;
+}
+
+/* line 250, ../sass/component/_inbox.scss */
+.dialogue_row .subCollapsedCourseBox .updateCourseTitle {
+  width: 50%;
+  position: absolute;
+  right: 50px;
+  top: 1px;
+}
+
+/* line 256, ../sass/component/_inbox.scss */
+.menudashboard .activeWrap .ref-inline-course-wrap li {
+  border: 1px solid transparent;
+}
+
+/* line 260, ../sass/component/_inbox.scss */
+.collapsedCourseBox ul li {
+  margin-left: 71px;
+  width: calc(100% - 70px);
+  border-radius: 5px 0 0 5px;
+}
+
+/* line 265, ../sass/component/_inbox.scss */
+.collapsedCourseBox ul li .subCollapsedCourseBox,
+.expandedCourseBox ul li .subCollapsedCourseBox {
+  padding: 5px 10px;
+}
+
+/* line 269, ../sass/component/_inbox.scss */
+.collapsedCourseBox ul li.dialogue_row .plural-user {
+  vertical-align: top;
+}
+
+/* line 272, ../sass/component/_inbox.scss */
+.course-count {
+  background: #fd5e00;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  right: 12px;
+  top: 4px;
+  font-weight: normal;
+  font-size: 11px;
+  min-width: 25px;
+  min-height: 25px;
+}
+
+/* line 297, ../sass/component/_inbox.scss */
+.count-list {
+  margin-left: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+}
+
+/* line 302, ../sass/component/_inbox.scss */
+#courseTemplateFlyout.leftFlyout {
+  border-left: 1px solid #334259;
+  background: #242f43;
+  border-right: 0;
+}
+
+/* line 307, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .courseflyout {
+  width: calc(100% - 45px);
+}
+
+/* line 310, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap {
+  width: 45px;
+}
+
+/* line 313, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap,
+#courseTemplateFlyout .courseflyout,
+#courseTemplateFlyout .control-bar,
+#courseTemplateFlyout ol.table-list-style li {
+  background: #242f43;
+  color: #99cbcc;
+}
+
+/* line 323, ../sass/component/_inbox.scss */
+#courseTemplateFlyout ol.table-list-style li.active {
+  background-color: #131c2d !important;
+  color: #fff;
+}
+
+/* line 327, ../sass/component/_inbox.scss */
+.searchFlyout .searchFlyoutOpen,
+.searchFlyout .searchFlyoutOpen:hover {
+  background: #242f43 !important;
+}
+
+/* line 332, ../sass/component/_inbox.scss */
+.searchFlyout .searchFlyoutOpen {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 5px;
+}
+
+/* line 338, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap {
+  border-left: 1px solid #334259;
+  height: 100% !important;
+}
+
+/* line 342, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap a {
+  line-height: 10px;
+}
+
+/* line 345, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap i {
+  margin-left: 0;
+  float: none;
+}
+
+/* line 349, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap span {
+  color: #99cbcc;
+}
+
+/* line 352, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .control-bar {
+  border-bottom: 1px solid #334259;
+}
+
+/* line 355, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .main-title {
+  color: #99cbcc;
+  text-transform: uppercase;
+}
+
+/* line 359, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap a {
+  width: 45px;
+  height: 45px;
+}
+
+/* line 363, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap a:hover {
+  background-color: #131c2d;
+  color: #fff;
+}
+
+/* line 367, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap a:hover span {
+  color: #fff;
+}
+
+/* line 370, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .user-action-wrap a#helpNoderAnchor {
+  background: transparent;
+  width: 45px;
+  height: 45px;
+}
+
+/* line 375, ../sass/component/_inbox.scss */
+#courseTemplateFlyout .searchFlyout input {
+  width: 88%;
+  float: none;
+  margin: 5px 0;
+  right: -100%;
+  position: relative;
+  display: table-cell;
+  border-color: #99cbcc;
+  color: #99cbcc;
+  border-radius: 0;
+  background: #242f43;
+}
+
+/* line 389, ../sass/component/_inbox.scss */
+.detail-action {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  width: 25px;
+}
+
+/*======================*/
+/* line 396, ../sass/component/_inbox.scss */
+.panel-default > .panel-heading {
+  background: #242f43;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* line 401, ../sass/component/_inbox.scss */
+.view-course-pane {
+  padding: 10px;
+}
+/* line 403, ../sass/component/_inbox.scss */
+.view-course-pane .list-section {
+  padding: 0;
+}
+
+/* line 407, ../sass/component/_inbox.scss */
+.view-course-pane .panel {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.22);
+  margin-bottom: 10px;
+}
+
+/* line 411, ../sass/component/_inbox.scss */
+.panel-group .panel {
+  border-radius: 0;
+}
+
+/* line 414, ../sass/component/_inbox.scss */
+.view-course-pane .panel-body {
+  line-height: 20px;
+  font-size: 12px;
+}
+
+/* line 418, ../sass/component/_inbox.scss */
+.view-course-pane .panel-title {
+  color: #fff;
+  opacity: 1 !important;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0 !important;
+}
+
+/* line 427, ../sass/component/_inbox.scss */
+.view-course-pane i {
+  margin-top: 0px;
+  float: left;
+}
+/* line 431, ../sass/component/_inbox.scss */
+.view-course-pane .hover_rename_box {
+  max-width: calc(100% - 125px);
+}
+/* line 434, ../sass/component/_inbox.scss */
+.view-course-pane a:hover,
+.view-course-pane a:focus {
+  text-decoration: none;
+}
+
+/* line 439, ../sass/component/_inbox.scss */
+.course-col {
+  display: flex;
+  width: 100%;
+  padding: 5px 10px 4px 10px;
+}
+
+/* line 444, ../sass/component/_inbox.scss */
+.course-col span {
+  line-height: 20px;
+}
+
+/* line 447, ../sass/component/_inbox.scss */
+.course-left-pane {
+  flex: 1;
+}
+
+/* line 450, ../sass/component/_inbox.scss */
+.course-left-pane i {
+  margin-right: 10px;
+}
+
+/* line 453, ../sass/component/_inbox.scss */
+.dialogue-list-table + .course-list-detail .inline-course-wrap {
+  border-bottom: 0px;
+}
+
+/* line 456, ../sass/component/_inbox.scss */
+.By-actor-section .inactive {
+  opacity: 0.5;
+}
+
+/*============new breadcrumb design===========================*/
+/* line 460, ../sass/component/_inbox.scss */
+.breadcrumb-wrap li a::before, .breadcrumb-wrap li a::after, .breadcrumb-wrap li.active a::before, .breadcrumb-wrap li.active a::after {
+  content: none;
+}
+
+/* line 463, ../sass/component/_inbox.scss */
+.breadcrumb-wrap ol {
+  margin-left: 0;
+  padding: 10px 5px;
+}
+
+/* line 467, ../sass/component/_inbox.scss */
+.breadcrumb-wrap li {
+  opacity: 1;
+}
+
+/* line 470, ../sass/component/_inbox.scss */
+.breadcrumb-wrap li a {
+  background: #fff;
+  opacity: 0.6;
+  color: #242f43;
+  border: 0;
+}
+
+/* line 476, ../sass/component/_inbox.scss */
+.breadcrumb-wrap li.active a {
+  background: #fff;
+  border: 0;
+  opacity: 1;
+  color: #242f43;
+}
+
+/* line 482, ../sass/component/_inbox.scss */
+ol.breadcrumb.left li + li a:before {
+  background: #242f43;
+  position: absolute;
+  content: "";
+  width: 1px;
+  height: 15px;
+  top: 8px;
+  left: -10px;
+}
+
+/* line 491, ../sass/component/_inbox.scss */
+.homeIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 61px;
+  height: 52px;
+  background: #5d6d87;
+  margin-top: -1px;
+  float: left;
+}
+
+/* line 502, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li.inactive {
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* line 506, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li.inactive a:hover {
+  background: transparent !important;
+}
+
+/* line 509, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li.inactive .icon-wrap a {
+  pointer-events: none !important;
+}
+
+/* line 512, ../sass/component/_inbox.scss */
+.sidebar_wrap li.disabled a,
+.sidebar_wrap li.inactive a {
+  cursor: default !important;
+}
+
+/* line 516, ../sass/component/_inbox.scss */
+.sidebar_wrap > ul > li.inactive .icon-wrap i,
+.sidebar_wrap > ul > li.inactive .icon-wrap span {
+  opacity: 0.4;
+}
+
+/* line 520, ../sass/component/_inbox.scss */
+.sidebar_wrap li.disabled a:hover {
+  background: transparent !important;
+  color: #99cbcc !important;
+}
+
+/* line 524, ../sass/component/_inbox.scss */
+.selectlist .item-list > li.inactive a:hover,
+.selectlist .item-list > li.inactive:hover {
+  background: transparent !important;
+  color: #99cbcc !important;
+}
+
+/* line 529, ../sass/component/_inbox.scss */
+#menudashboard .total-width-pane {
+  width: 100% !important;
+  height: 100%;
+}
+
+/* line 533, ../sass/component/_inbox.scss */
+#menudashboard .total-width-pane .dashSlider {
+  width: 50% !important;
+}
+
+/* line 537, ../sass/component/_inbox.scss */
+.user-overview-wrap .admin-title-box + .user-temp {
+  margin-left: 10px;
+}
+
+/* line 541, ../sass/component/_inbox.scss */
+.user-temp {
+  background: #eee;
+  float: left;
+  border-radius: 20px;
+}
+
+/* line 547, ../sass/component/_inbox.scss */
+.user-temp span.img {
+  width: 25px;
+  height: 25px;
+  float: left;
+}
+
+/* line 552, ../sass/component/_inbox.scss */
+.user-temp span.img img {
+  width: 25px;
+  height: 25px;
+  float: left;
+  border-radius: 50%;
+  border: 1px solid #dbdbdb;
+}
+
+/* line 559, ../sass/component/_inbox.scss */
+.user-temp .name {
+  min-width: 100px;
+  float: left;
+  padding: 4px 8px;
+  line-height: 17px;
+}
+
+/* line 565, ../sass/component/_inbox.scss */
+.user-overview-box .user-temp .name {
+  min-width: 100px;
+  float: left;
+  padding: 0px 8px;
+  line-height: 24px;
+}
+
+/* line 571, ../sass/component/_inbox.scss */
+.user-temp .close-icon {
+  padding-top: 3px;
+  float: left;
+  border-left: 1px solid #ddd;
+  height: 25px;
+  padding: 4px 10px 4px 8px;
+  float: left;
+  line-height: 18px;
+}
+
+/* line 580, ../sass/component/_inbox.scss */
+.sidebar_wrap .icon-wrap {
+  border: 0;
+  width: 61px;
+}
+
+/* line 584, ../sass/component/_inbox.scss */
+.user-temp span.close-sm {
+  padding: 2px 7px 3px 0;
+  float: left;
+}
+
+/* line 588, ../sass/component/_inbox.scss */
+.user-temp span.close-sm i {
+  width: 16px;
+  background-position: -335px -246px !important;
+}
+
+/* line 592, ../sass/component/_inbox.scss */
+input#filestyle-0 + .bootstrap-filestyle {
+  display: none;
+}
+
+/* line 595, ../sass/component/_inbox.scss */
+#add-group-general input#filestyle-0 + .bootstrap-filestyle {
+  display: table;
+}
+
+/* line 598, ../sass/component/_inbox.scss */
+.initials-box {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #d9d9d9;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 607, ../sass/component/_inbox.scss */
+.grp-actor-list .actors-user-img-sm .initials-box {
+  border: 3px solid #fff;
+}
+
+/* line 610, ../sass/component/_inbox.scss */
+.grp-actor-list .actors-user-img-sm.actor-admin .initials-box {
+  border: 3px solid #135d82;
+}
+
+/* line 613, ../sass/component/_inbox.scss */
+.user-overview-box li:nth-child(2) > .user-temp {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+/* line 618, ../sass/component/_inbox.scss */
+.user-overview-wrap .admin-title-box {
+  display: flex;
+  line-height: 16px;
+  padding-top: 4px;
+}
+
+/* line 623, ../sass/component/_inbox.scss */
+.user-overview-wrap .admin-title-box > span.colonDot {
+  flex: 1;
+  float: none;
+  justify-content: flex-end;
+  align-items: inherit;
+  display: flex;
+}
+
+/* line 631, ../sass/component/_inbox.scss */
+.course-top-panel .panel-group {
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+/* line 636, ../sass/component/_inbox.scss */
+.fixed-chat-screen {
+  position: fixed;
+  width: calc(50% - 73px);
+  bottom: 40px;
+  background: #fff;
+}
+
+/* line 642, ../sass/component/_inbox.scss */
+.receivedListBox.dialogue-edit-container input {
+  width: calc(100% - 45px);
+}
+
+/* line 645, ../sass/component/_inbox.scss */
+.sm-flex-loader {
+  align-items: center;
+  display: flex;
+  float: left;
+  height: 20px;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+  width: 500px;
+}
+/* line 654, ../sass/component/_inbox.scss */
+.sm-flex-loader img {
+  width: 20px;
+  margin: 0 auto;
+}
+
+/* line 660, ../sass/component/_inbox.scss */
+.dialogue-edit-container input {
+  float: left;
+}
+
+/* line 665, ../sass/component/_inbox.scss */
+.receivedListBox input.email_info.auto-suggest {
+  width: calc(100% - 30px);
+  float: left;
+}
+
+/* line 670, ../sass/component/_inbox.scss */
+.detail-pane-inner {
+  display: flex;
+}
+/* line 672, ../sass/component/_inbox.scss */
+.detail-pane-inner .existingMidTotal {
+  width: 100%;
+  float: left;
+}
+/* line 676, ../sass/component/_inbox.scss */
+.detail-pane-inner #message-wrap-chat-statement {
+  width: 100%;
+  float: left;
+}
+
+/* line 681, ../sass/component/_inbox.scss */
+.current {
+  background: #f3f1f1 url(../img/top-corner-icon.png) no-repeat right top !important;
+  background-image: none;
+  border: 1px solid #ccc;
+}
+
+/* line 687, ../sass/component/_inbox.scss */
+.existCourseTitle {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+}
+
+/* line 694, ../sass/component/_inbox.scss */
+.detail-pane-inner .edtContainer .edtBody,
+.detail-pane-inner .edtHeader {
+  width: 100%;
+}
+
+/* line 699, ../sass/component/_inbox.scss */
+.top-head {
+  height: 40px;
+  border-bottom: 1px solid #dbdbdb;
+  margin-bottom: 10px;
+  align-items: center;
+  font-size: 18px;
+  justify-content: center;
+  display: flex;
+}
+
+/* line 708, ../sass/component/_inbox.scss */
+.app-right-pane h2 button {
+  float: right;
+}
+
+/* line 711, ../sass/component/_inbox.scss */
+.existing-dialogue-control-wrap .existing-dialogue-block-head.prod-top-header {
+  min-height: 41px;
+}
+
+/* line 714, ../sass/component/_inbox.scss */
+.prod-header-panel span {
+  float: left;
+}
+
+/* line 717, ../sass/component/_inbox.scss */
+.prod-header-panel .admin-header-js li {
+  display: flex;
+  width: 100%;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+}
+
+/* line 724, ../sass/component/_inbox.scss */
+.prod-header-panel .admin-header-js li .admin-title-box {
+  padding-top: 0;
+}
+
+/* line 727, ../sass/component/_inbox.scss */
+.prod-header-panel .course_rename_view_mode {
+  float: left;
+  width: auto;
+  max-width: 50%;
+}
+
+/* line 732, ../sass/component/_inbox.scss */
+.prod-header-panel .dialogue_rename_view_mode {
+  max-width: 697px;
+  float: left;
+  max-width: 49%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 739, ../sass/component/_inbox.scss */
+.course-banner {
+  background-image: url(../img/course-banner.jpg);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+/* line 748, ../sass/component/_inbox.scss */
+#demo-popup .modal-dialog {
+  width: 800px;
+}
+
+/* line 751, ../sass/component/_inbox.scss */
+.custom-banner img {
+  width: 100%;
+}
+
+/* line 754, ../sass/component/_inbox.scss */
+.course-banner1 {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 758, ../sass/component/_inbox.scss */
+.course-banner1 img {
+  width: 100%;
+}
+
+/* line 761, ../sass/component/_inbox.scss */
+#demo-popup.pu-popup.bg-none .modal-dialog {
+  width: 1247px;
+  height: 521px;
+}
+
+/* line 765, ../sass/component/_inbox.scss */
+.pu-popup.bg-none .modal-content {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* line 770, ../sass/component/_inbox.scss */
+.pu-popup.bg-none .modal-dialog .custom-banner img {
+  width: inherit;
+}
+
+/* line 773, ../sass/component/_inbox.scss */
+#demo-popup.pu-popup.bg-none .modal-header-custom {
+  right: 10px;
+}
+
+/* line 776, ../sass/component/_inbox.scss */
+.list-row {
+  width: 100%;
+}
+
+/* line 779, ../sass/component/_inbox.scss */
+.fgt-pwd {
+  cursor: pointer;
+  text-align: center;
+  width: auto;
+  float: left !important;
+  margin-top: 5px;
+  margin-left: calc(50% - 50px);
+}
+
+/* line 787, ../sass/component/_inbox.scss */
+.workflow-list-table .icon.view {
+  height: 10px;
+  cursor: pointer;
+}
+
+/* line 791, ../sass/component/_inbox.scss */
+.ui-datepicker {
+  z-index: 11 !important;
+}
+
+/* line 794, ../sass/component/_inbox.scss */
+.btn.full-btn {
+  width: 50%;
+  margin-left: 25%;
+}
+
+/* line 798, ../sass/component/_inbox.scss */
+#business-model-bule-print {
+  position: fixed;
+  background: transparent;
+  width: 100%;
+  height: calc(100vh - 40px);
+  z-index: 6;
+  top: 0;
+  padding-left: 90px;
+  padding-top: 40px;
+}
+
+/* line 808, ../sass/component/_inbox.scss */
+.blueprint-banner {
+  background-position: top;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+}
+
+/* line 815, ../sass/component/_inbox.scss */
+.icon-sm.get-started {
+  background-position: -81px -543px;
+}
+
+/* line 818, ../sass/component/_inbox.scss */
+.load-prev-img {
+  position: fixed;
+  width: 0;
+  height: 0;
+  background: red;
+  top: 0;
+  z-index: 12;
+  overflow: hidden;
+}
+
+/* line 827, ../sass/component/_inbox.scss */
+.edtContainer ul li {
+  display: block;
+}
+
+/* line 830, ../sass/component/_inbox.scss */
+.edtContainer .edtPopUp {
+  width: 250px;
+}
+
+/* line 833, ../sass/component/_inbox.scss */
+li#defaultSubscribedMessage {
+  pointer-events: none;
+}
+
+/* line 836, ../sass/component/_inbox.scss */
+.table.table-row.custom-table th,
+.table.table-row.custom-table td,
+.table.table-row.custom-table tr {
+  border: 0 !IMPORTANT;
+}
+
+/* line 841, ../sass/component/_inbox.scss */
+.flex-row.flex-template-list {
+  display: none;
+}
+
+/* line 844, ../sass/component/_inbox.scss */
+.stmt-wrap-pane {
+  width: 100%;
+  float: left;
+  position: relative;
+}
+/* line 848, ../sass/component/_inbox.scss */
+.stmt-wrap-pane .more-txt-span {
+  padding: 3px 20px 3px 0;
+  font-size: 13px;
+}
+/* line 852, ../sass/component/_inbox.scss */
+.stmt-wrap-pane:hover {
+  background: #f4f4f4;
+}
+/* line 854, ../sass/component/_inbox.scss */
+.stmt-wrap-pane:hover .stmt-tooltip {
+  display: block;
+}
+
+/* line 859, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background: #fff;
+  height: 25px;
+  box-shadow: 0 0 5px #ccc;
+  border: 1px solid #dbdbdb;
+  padding: 0;
+  display: none;
+}
+/* line 869, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip ul {
+  margin: 0;
+}
+/* line 871, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip ul li {
+  display: inline-block;
+  float: left;
+  width: 25px;
+  padding: 3px;
+  margin-bottom: 0;
+  height: 25px;
+  min-height: 25px;
+}
+/* line 882, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu {
+  width: 150px;
+  float: left;
+  left: inherit;
+  right: -6px;
+  min-width: 150px;
+  top: 22px;
+}
+/* line 889, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu > li {
+  width: 100%;
+  margin-bottom: 0;
+  min-height: auto;
+  border: 0px;
+  height: auto;
+  min-height: auto;
+  padding: 5px 10px !important;
+}
+/* line 897, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu > li:last-child {
+  margin-bottom: 0px !important;
+}
+/* line 900, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu > li a {
+  padding: 0px;
+}
+/* line 902, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu > li a:hover {
+  background: transparent;
+}
+/* line 906, ../sass/component/_inbox.scss */
+.sass-lang .stmt-tooltip .dropdown-menu > li i {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+/* line 913, ../sass/component/_inbox.scss */
+.main-bg-wrap {
+  width: 100%;
+  height: 100%;
+}
+/* line 916, ../sass/component/_inbox.scss */
+.main-bg-wrap img {
+  width: 100%;
+}
+
+/* line 920, ../sass/component/_inbox.scss */
+#user-profile-crop .jcrop-holder {
+  background: transparent !important;
+  border: 1px solid #c8c8c8;
+}
+
+/*============================market place==========================================*/
+@font-face {
+  font-family: 'brandon-grotesque-bold';
+  src: url("../fonts/Brandon_Grotesque_Bold.eot");
+  src: url("../fonts/Brandon_Grotesque_Bold.eot") format("embedded-opentype"), url("../fonts/Brandon_Grotesque_Bold.woff2") format("woff2"), url("../fonts/Brandon_Grotesque_Bold.woff") format("woff"), url("../fonts/Brandon_Grotesque_Bold.ttf") format("truetype"), url("../fonts/Brandon_Grotesque_Bold.svg#Brandon_Grotesque_Bold") format("svg");
+}
+/* line 13, ../sass/component/_market-place.scss */
+.main-pane {
+  height: calc(100vh - 40px);
+}
+
+/* line 16, ../sass/component/_market-place.scss */
+.marketplace-wrapper {
+  margin-left: -1px;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #ccc;
+  position: relative;
+}
+/* line 22, ../sass/component/_market-place.scss */
+.marketplace-wrapper .mCustomScrollBox {
+  width: 100%;
+}
+
+/* line 26, ../sass/component/_market-place.scss */
+.market-banner {
+  background: url(../img/marketplace-banner.png);
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: cover;
+  padding: 30px 0;
+}
+
+/* line 33, ../sass/component/_market-place.scss */
+.top-section {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 38, ../sass/component/_market-place.scss */
+.top-section img {
+  width: 75px;
+}
+
+/* line 41, ../sass/component/_market-place.scss */
+.top-section h2 {
+  font-size: 4em;
+  color: #fff;
+  font-weight: 600;
+  margin-top: 5px;
+  margin-bottom: 1.5em;
+  font-family: 'brandon-grotesque-bold';
+  text-transform: uppercase;
+}
+
+/* line 50, ../sass/component/_market-place.scss */
+.top-section p {
+  font-size: 13px;
+  color: #fff;
+  line-height: 22px;
+}
+
+/* line 55, ../sass/component/_market-place.scss */
+.services {
+  width: 80%;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #fff;
+}
+
+/* line 61, ../sass/component/_market-place.scss */
+.services h2 {
+  text-transform: uppercase;
+  font-size: 16PX;
+  color: #fff;
+  margin: 0 0 10px 0;
+}
+
+/* line 67, ../sass/component/_market-place.scss */
+.services p {
+  font-size: 14px;
+  color: #fff;
+  width: 60%;
+  line-height: 22px;
+  margin: 0 auto;
+}
+
+/* line 74, ../sass/component/_market-place.scss */
+.lg-icon {
+  width: 80px;
+  height: 80px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* line 82, ../sass/component/_market-place.scss */
+.lg-icon i {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* line 89, ../sass/component/_market-place.scss */
+.lg-icon i.micro-icon {
+  background-image: url(../img/micro-solution.png);
+}
+
+/* line 92, ../sass/component/_market-place.scss */
+.lg-icon i.plugin-icon {
+  background-image: url(../img/plugin.png);
+}
+
+/* line 95, ../sass/component/_market-place.scss */
+.lg-icon i.custom-icon {
+  background-image: url(../img/custom-development.png);
+}
+
+/* line 98, ../sass/component/_market-place.scss */
+.menudashboard {
+  float: left;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+}
+
+/* line 105, ../sass/component/_market-place.scss */
+.app-list-row {
+  width: 100%;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 1%;
+}
+
+/* line 115, ../sass/component/_market-place.scss */
+.app-list-col {
+  width: 31.2%;
+  margin: 1% 1% 15px 1%;
+  border: 1px solid #dbdbdb;
+  border-radius: 10px;
+  padding: 15px;
+}
+/* line 121, ../sass/component/_market-place.scss */
+.app-list-col.active {
+  border-color: #2dcafc;
+}
+
+/* line 125, ../sass/component/_market-place.scss */
+.bdr-heading {
+  margin: 2.5% 2% .5% 2%;
+  border-top: 1px solid #dbdbdb;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  color: #666;
+}
+
+/* line 134, ../sass/component/_market-place.scss */
+.bdr-heading span {
+  margin-top: -14px;
+  background: #fff;
+  padding: 0 15px;
+  text-transform: uppercase;
+}
+
+/* line 140, ../sass/component/_market-place.scss */
+.app-left-pane {
+  width: 60px;
+  float: left;
+  margin-right: 15px;
+}
+
+/* line 145, ../sass/component/_market-place.scss */
+.app-right-pane {
+  float: left;
+  width: calc(100% - 75px);
+}
+
+/* line 149, ../sass/component/_market-place.scss */
+.app-right-pane h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+/* line 156, ../sass/component/_market-place.scss */
+.app-right-pane h3 {
+  font-size: 11px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #000;
+}
+
+/* line 164, ../sass/component/_market-place.scss */
+.app-right-pane p {
+  margin-bottom: 15px;
+  color: #999999;
+}
+
+/* line 168, ../sass/component/_market-place.scss */
+.app-bottom-pane {
+  float: right;
+}
+
+/* line 171, ../sass/component/_market-place.scss */
+.app-bottom-pane .btn {
+  margin-left: 5px;
+}
+
+/* line 174, ../sass/component/_market-place.scss */
+.app-icon {
+  width: 100%;
+  float: left;
+}
+
+/* line 178, ../sass/component/_market-place.scss */
+.app-icon img {
+  width: 100%;
+}
+
+/* line 182, ../sass/component/_market-place.scss */
+.app-title {
+  width: calc(100% - 90px);
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+/* line 187, ../sass/component/_market-place.scss */
+.header-wrapper .logo + .user-roles {
+  margin-left: 10px;
+}
+
+/* line 190, ../sass/component/_market-place.scss */
+.header-wrapper .logo + .user-roles span {
+  font-size: 11px;
+}
+
+/* line 194, ../sass/component/_market-place.scss */
+.app-rating {
+  margin-top: 2px;
+  float: left;
+}
+/* line 197, ../sass/component/_market-place.scss */
+.app-rating i {
+  font-size: 12px;
+  color: #ccc;
+  cursor: pointer;
+}
+/* line 202, ../sass/component/_market-place.scss */
+.app-rating i:hover {
+  color: #000;
+}
+/* line 205, ../sass/component/_market-place.scss */
+.app-rating i.active {
+  color: #000;
+}
+
+/* line 210, ../sass/component/_market-place.scss */
+.rightMenuFlyout {
+  position: fixed;
+  width: 700px;
+  height: calc(100vh - 40px);
+  background: #fff;
+  z-index: 10;
+  top: 40px;
+  right: -100%;
+  box-shadow: 0px 0 21px rgba(0, 0, 0, 0.32);
+  transition: all 0.5s ease;
+}
+/* line 220, ../sass/component/_market-place.scss */
+.rightMenuFlyout.fly-in {
+  right: 0px;
+}
+
+/* line 224, ../sass/component/_market-place.scss */
+.main-pane {
+  width: calc(100% - 60px);
+  height: 100%;
+  float: left;
+  position: relative;
+  color: #333;
+}
+
+/* line 231, ../sass/component/_market-place.scss */
+.rightActionBar {
+  width: 60px;
+  height: 100%;
+  float: left;
+  border-left: 1px solid #ccc;
+}
+
+/* line 237, ../sass/component/_market-place.scss */
+.app-head-section {
+  width: 100%;
+  float: left;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
+
+/* line 244, ../sass/component/_market-place.scss */
+.app-head-section .app-list-col {
+  width: 100%;
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+}
+
+/* line 252, ../sass/component/_market-place.scss */
+.app-head-section .app-left-pane {
+  width: 100px;
+}
+
+/* line 257, ../sass/component/_market-place.scss */
+.app-head-section .app-right-pane {
+  width: calc(100% - 115px);
+}
+
+/* line 261, ../sass/component/_market-place.scss */
+.app-detail-section {
+  width: 100%;
+  float: left;
+  padding-top: 15px;
+}
+
+/* line 266, ../sass/component/_market-place.scss */
+.signup-col {
+  float: left;
+  color: #fff;
+  margin: 11px 20px 0 0 !important;
+  cursor: pointer;
+}
+/* line 271, ../sass/component/_market-place.scss */
+.signup-col:hover, .signup-col:focus, .signup-col:active {
+  color: #fff;
+}
+/* line 276, ../sass/component/_market-place.scss */
+.signup-col i {
+  margin-right: 5px;
+}
+/* line 279, ../sass/component/_market-place.scss */
+.signup-col span {
+  vertical-align: top;
+  padding-top: 9px;
+  display: inline-block;
+}
+
+/* line 285, ../sass/component/_market-place.scss */
+.rightActionBar a {
+  width: 100%;
+  float: left;
+  padding: 10px 20px;
+}
+/* line 289, ../sass/component/_market-place.scss */
+.rightActionBar a:hover {
+  background-color: #f4f4f4;
+}
+
+/* line 293, ../sass/component/_market-place.scss */
+.app-left-pane > span {
+  margin-top: 10px;
+  float: left;
+  font-size: 12px;
+}
+
+/* line 298, ../sass/component/_market-place.scss */
+.app-left-pane > span.app-icon {
+  margin-top: 0px;
+}
+
+/* line 302, ../sass/component/_market-place.scss */
+.app-head-section .app-rating i {
+  float: left;
+}
+/* line 305, ../sass/component/_market-place.scss */
+.app-head-section .app-rating span {
+  float: left;
+  line-height: 11px;
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+/* line 313, ../sass/component/_market-place.scss */
+.app-right-pane h1 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* line 320, ../sass/component/_market-place.scss */
+.read-more {
+  font-size: 12px;
+  float: right;
+  color: #333;
+}
+/* line 324, ../sass/component/_market-place.scss */
+.read-more.inactive {
+  pointer-events: none;
+}
+/* line 327, ../sass/component/_market-place.scss */
+.read-more:hover, .read-more:focus {
+  color: #2dcafc;
+}
+/* line 331, ../sass/component/_market-place.scss */
+.read-more i {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* line 337, ../sass/component/_market-place.scss */
+.header-wrapper ul.dropdown-menu {
+  background: #23282d;
+  top: 40px;
+  margin: 0;
+}
+/* line 341, ../sass/component/_market-place.scss */
+.header-wrapper ul.dropdown-menu li {
+  padding: 0;
+}
+/* line 344, ../sass/component/_market-place.scss */
+.header-wrapper ul.dropdown-menu li a:hover, .header-wrapper ul.dropdown-menu li a:focus, .header-wrapper ul.dropdown-menu li a:active {
+  background: #2e3237;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* line 354, ../sass/component/_market-place.scss */
+.user-roles .user-wrap li a {
+  padding: 0px 7px 8px 20px;
+}
+
+/* line 357, ../sass/component/_market-place.scss */
+.main-inner-pane {
+  width: 100%;
+  padding: 15px;
+  float: left;
+}
+
+/* line 362, ../sass/component/_market-place.scss */
+.app-list-section {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+}
+
+/* line 370, ../sass/component/_market-place.scss */
+.app-list-heading {
+  float: left;
+  width: 100%;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+/* line 377, ../sass/component/_market-place.scss */
+.app-list-heading i {
+  margin-right: 10px;
+  float: left;
+}
+
+/* line 383, ../sass/component/_market-place.scss */
+.app-list-content ul {
+  display: block;
+  margin: 0;
+}
+/* line 386, ../sass/component/_market-place.scss */
+.app-list-content ul li {
+  font-size: 12px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  list-style-type: disc;
+  display: list-item;
+  float: left;
+  width: calc(100% - 50px);
+}
+/* line 394, ../sass/component/_market-place.scss */
+.app-list-content ul li:nth-last-child(1) {
+  margin-bottom: 0px;
+}
+
+/* line 400, ../sass/component/_market-place.scss */
+.workflow-wrapper {
+  background-color: #f4f4f4;
+  float: left;
+  margin: 0 -15px 15px -15px;
+  padding: 15px;
+  width: calc(100% + 30px);
+}
+
+/* line 408, ../sass/component/_market-place.scss */
+.workflow-list-table {
+  width: 100%;
+  background-clip: padding-box;
+  table-layout: fixed;
+}
+/* line 414, ../sass/component/_market-place.scss */
+.workflow-list-table tr td {
+  padding: 3px 5px;
+  background-color: transparent;
+  vertical-align: middle;
+}
+/* line 419, ../sass/component/_market-place.scss */
+.workflow-list-table tr td:nth-child(1) {
+  width: 40px;
+}
+/* line 434, ../sass/component/_market-place.scss */
+.workflow-list-table tr td:nth-child(2) {
+  width: 150px;
+}
+/* line 437, ../sass/component/_market-place.scss */
+.workflow-list-table tr td:nth-child(3) {
+  width: calc(100% - 190px);
+}
+/* line 443, ../sass/component/_market-place.scss */
+.workflow-list-table tr:nth-last-child(1) td:before {
+  height: 0;
+}
+/* line 449, ../sass/component/_market-place.scss */
+.workflow-list-table .circle-icon {
+  width: 30px;
+  height: 30px;
+  background: #334259;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+}
+/* line 463, ../sass/component/_market-place.scss */
+.workflow-list-table h5 {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 5px 0;
+}
+/* line 468, ../sass/component/_market-place.scss */
+.workflow-list-table h6 {
+  font-size: 11px;
+  margin: 0;
+}
+
+/* line 475, ../sass/component/_market-place.scss */
+.app-list-section .heading-left-pane {
+  float: left;
+}
+/* line 477, ../sass/component/_market-place.scss */
+.app-list-section .heading-left-pane span {
+  float: left;
+}
+/* line 481, ../sass/component/_market-place.scss */
+.app-list-section .heading-right-pane {
+  float: right;
+}
+/* line 483, ../sass/component/_market-place.scss */
+.app-list-section .heading-right-pane span {
+  float: left;
+}
+/* line 486, ../sass/component/_market-place.scss */
+.app-list-section .heading-right-pane .list-count {
+  font-weight: normal;
+  text-transform: initial;
+  font-size: 12px;
+  margin-top: 3px;
+}
+/* line 493, ../sass/component/_market-place.scss */
+.app-list-section .carousel {
+  float: left;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+/* line 499, ../sass/component/_market-place.scss */
+.app-list-section .carousel-inner {
+  float: left;
+  width: 100%;
+}
+/* line 503, ../sass/component/_market-place.scss */
+.app-list-section .item {
+  float: left;
+  width: 100%;
+}
+/* line 507, ../sass/component/_market-place.scss */
+.app-list-section .carousel-caption {
+  float: left;
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: left;
+  text-shadow: none;
+  color: #333;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  top: 0;
+}
+
+/* line 523, ../sass/component/_market-place.scss */
+.list-control i {
+  font-size: 18px;
+  vertical-align: middle;
+  color: #000;
+  margin: 0 0 0 10px;
+}
+
+/* line 532, ../sass/component/_market-place.scss */
+.rvw-list {
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+/* line 536, ../sass/component/_market-place.scss */
+.rvw-list:nth-last-child(1) {
+  margin-bottom: 0px;
+}
+/* line 539, ../sass/component/_market-place.scss */
+.rvw-list .rvw-icon {
+  width: 20px;
+  float: left;
+}
+/* line 542, ../sass/component/_market-place.scss */
+.rvw-list .rvw-icon img {
+  width: 100%;
+}
+/* line 546, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content {
+  width: calc(100% - 35px);
+  margin-left: 15px;
+  float: left;
+}
+/* line 550, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content .rvw-heading {
+  float: left;
+  width: 100%;
+  margin-bottom: 4px;
+}
+/* line 554, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content .rvw-heading h3 {
+  margin: 0;
+  font-size: 13px;
+  color: #000;
+  float: left;
+  font-weight: 600;
+}
+/* line 561, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content .rvw-heading span.rvw-post-date {
+  float: right;
+}
+/* line 565, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content .app-rating {
+  width: 100%;
+  margin-top: 0;
+}
+/* line 569, ../sass/component/_market-place.scss */
+.rvw-list .rvw-content p {
+  width: 100%;
+  float: left;
+  margin: 3px 0 0 0;
+}
+
+/* line 576, ../sass/component/_market-place.scss */
+#bottom_fade {
+  width: 600px;
+  height: 200px;
+  z-index: 99;
+  position: fixed;
+  bottom: 0px;
+  background-image: linear-gradient(to bottom, transparent, black);
+}
+
+/* line 586, ../sass/component/_market-place.scss */
+.ui-datepicker-title select {
+  padding: 0;
+  height: 20px;
+  background: transparent;
+  border-color: #000;
+  font-size: 11px !important;
+  font-weight: 500;
+  padding: 0;
+  line-height: 0;
+  margin: 0 !important;
+}
+
+/* line 598, ../sass/component/_market-place.scss */
+.rightMenuFlyout.fly-in + .rightMenuFlyout-overlay {
+  display: block;
+}
+
+/* line 601, ../sass/component/_market-place.scss */
+.rightMenuFlyout-overlay {
+  position: fixed;
+  right: 0;
+  top: 40px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 8;
+  opacity: 0.8;
+  display: none;
+}
+
+/* line 612, ../sass/component/_market-place.scss */
+.rating-wrap .rating-title {
+  float: left;
+  margin-top: -2px;
+  margin-right: 5px;
+}
+
+/* line 618, ../sass/component/_market-place.scss */
+.app-right-pane p {
+  line-height: 1.5;
+}
+
+/* line 621, ../sass/component/_market-place.scss */
+.paragraph-ellipsis {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  height: 72px;
+  /* Fallback for non-webkit */
+  font-size: 12px;
+  line-height: 1.5;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 633, ../sass/component/_market-place.scss */
+.app-head-section .paragraph-ellipsis {
+  height: 108px;
+  /* Fallback for non-webkit */
+  -webkit-line-clamp: 6;
+}
+
+/* line 638, ../sass/component/_market-place.scss */
+.app-list-heading span {
+  float: left;
+}
+
+/* line 641, ../sass/component/_market-place.scss */
+p.no-found {
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  background: #f4f4f4;
+  padding: 10px;
+}
+
+/* line 648, ../sass/component/_market-place.scss */
+.app-list-wrapper h5 {
+  margin-top: -10px;
+}
+
+/* line 651, ../sass/component/_market-place.scss */
+.app-list-wrapper h5, .app-list-wrapper h6 {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* line 655, ../sass/component/_market-place.scss */
+.app-list-wrapper > .app-list-inner-wrapper .checkbox {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 659, ../sass/component/_market-place.scss */
+.app-list-wrapper h6 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #dbdbdb;
+  line-height: 0.1em;
+}
+
+/* line 660, ../sass/component/_market-place.scss */
+.app-list-wrapper h6 span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+/* line 662, ../sass/component/_market-place.scss */
+.custom-fotter {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* line 666, ../sass/component/_market-place.scss */
+.custom-fotter button.btn.full-btn {
+  width: calc(50% - 45px) !important;
+  margin: 0 0 0 30px;
+}
+
+/* line 670, ../sass/component/_market-place.scss */
+.app-list-inner-wrapper ul {
+  margin: 10px 20px;
+}
+/* line 672, ../sass/component/_market-place.scss */
+.app-list-inner-wrapper ul li {
+  margin-bottom: 5px;
+  display: block;
+}
+/* line 675, ../sass/component/_market-place.scss */
+.app-list-inner-wrapper ul li:last-child {
+  margin-bottom: 0;
+}
+/* line 678, ../sass/component/_market-place.scss */
+.app-list-inner-wrapper ul li label {
+  font-weight: 500;
+}
+/* line 681, ../sass/component/_market-place.scss */
+.app-list-inner-wrapper ul li input[type="radio"] {
+  margin-top: 3px;
+}
+
+/* line 1, ../sass/modules/_popup.scss */
+.pu-popup {
+  left: 0px !important;
+  top: 0px !important;
+  bottom: 0px !important;
+  right: 0px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: center;
+  justify-content: center;
+}
+/* line 10, ../sass/modules/_popup.scss */
+.pu-popup .modal-dialog {
+  margin: 0px;
+  width: 420px;
+}
+/* line 13, ../sass/modules/_popup.scss */
+.pu-popup .modal-dialog .modal-content {
+  border-radius: 0px;
+  border: 0;
+}
+/* line 16, ../sass/modules/_popup.scss */
+.pu-popup .modal-dialog .modal-content .modal-body {
+  padding: 0;
+}
+
+/* line 22, ../sass/modules/_popup.scss */
+.pu-popup.in {
+  display: flex !important;
+}
+
+/* line 25, ../sass/modules/_popup.scss */
+#signin-up-poup,
+#emailVerification,
+#emailVerificationMsg,
+#forgotPassword {
+  top: 0px !important;
+  background-color: rgba(19, 17, 17, 0.6);
+}
+/* line 31, ../sass/modules/_popup.scss */
+#signin-up-poup .modal-dialog,
+#emailVerification .modal-dialog,
+#emailVerificationMsg .modal-dialog,
+#forgotPassword .modal-dialog {
+  margin-top: -40px;
+}
+/* line 34, ../sass/modules/_popup.scss */
+#signin-up-poup .modal-content,
+#emailVerification .modal-content,
+#emailVerificationMsg .modal-content,
+#forgotPassword .modal-content {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+}
+
+/* line 41, ../sass/modules/_popup.scss */
+.tab-pane-section .nav-tabs {
+  display: flex;
+}
+/* line 44, ../sass/modules/_popup.scss */
+.tab-pane-section .nav-tabs > li {
+  margin-bottom: 0px;
+}
+/* line 48, ../sass/modules/_popup.scss */
+.tab-pane-section li {
+  flex: 1;
+}
+/* line 50, ../sass/modules/_popup.scss */
+.tab-pane-section li.inactive {
+  pointer-events: none;
+}
+/* line 53, ../sass/modules/_popup.scss */
+.tab-pane-section li a {
+  border: 0 !important;
+  border-bottom: 3px solid #fff !important;
+  font-size: 14px;
+  text-align: center;
+  color: #000;
+  width: 100%;
+  text-transform: uppercase;
+}
+/* line 61, ../sass/modules/_popup.scss */
+.tab-pane-section li a:hover, .tab-pane-section li a:focus, .tab-pane-section li a:active {
+  background-color: #fff;
+  color: #000;
+}
+/* line 69, ../sass/modules/_popup.scss */
+.tab-pane-section li.active a {
+  border-bottom: 3px solid #000 !important;
+  color: #000;
+}
+/* line 72, ../sass/modules/_popup.scss */
+.tab-pane-section li.active a:hover, .tab-pane-section li.active a:focus, .tab-pane-section li.active a:active {
+  color: #000;
+}
+
+/* line 82, ../sass/modules/_popup.scss */
+.login-screen-wrap {
+  width: 100%;
+  padding: 20px;
+  margin: 0;
+}
+/* line 86, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px;
+}
+/* line 90, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row:nth-last-child(1) {
+  margin-bottom: 0px;
+}
+/* line 93, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row h2 {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0 0 15px 0;
+}
+/* line 100, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row h3 {
+  font-size: 11px;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+  border-top: 1px solid #000;
+  position: relative;
+  width: 100%;
+  float: left;
+}
+/* line 111, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row h3 span {
+  position: absolute;
+  top: -6px;
+  background: #fff;
+  margin: 0 20px;
+  padding: 0 5px;
+}
+/* line 119, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row p {
+  margin-bottom: 10px;
+  text-align: left;
+}
+/* line 123, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row.seprator {
+  border-bottom: 1px solid #000;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+}
+/* line 130, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row.seprator span {
+  position: absolute;
+  margin-top: -13px;
+  background: #fff;
+  padding: 0 10px;
+}
+/* line 138, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row .button-layout button {
+  width: 47%;
+  float: left;
+  margin: 0 5px;
+}
+/* line 144, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row .checkbox {
+  text-align: left;
+  margin-bottom: 6px;
+}
+/* line 147, ../sass/modules/_popup.scss */
+.login-screen-wrap .login-screen-row .checkbox input {
+  margin-top: 2px;
+}
+
+/* line 153, ../sass/modules/_popup.scss */
+.form-detail-pane {
+  float: left;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* line 158, ../sass/modules/_popup.scss */
+#rt-role-form h2 {
+  margin-bottom: 10px;
+}
+
+/* line 162, ../sass/modules/_popup.scss */
+.col-pane-3 input {
+  width: 30%;
+  float: left;
+  margin-right: 5% !important;
+}
+/* line 166, ../sass/modules/_popup.scss */
+.col-pane-3 input:nth-last-child(1) {
+  margin-right: 0% !important;
+}
+/* line 170, ../sass/modules/_popup.scss */
+.col-pane-3 .col1 {
+  width: 30%;
+  float: left;
+}
+/* line 174, ../sass/modules/_popup.scss */
+.col-pane-3 .col1 .radio input {
+  margin-left: 0px !important;
+  text-align: center;
+}
+
+/* line 182, ../sass/modules/_popup.scss */
+.col-pane-2 select {
+  width: 48%;
+  float: left;
+  margin-right: 4% !important;
+}
+/* line 186, ../sass/modules/_popup.scss */
+.col-pane-2 select:nth-last-child(1) {
+  margin-right: 0% !important;
+}
+
+/* line 191, ../sass/modules/_popup.scss */
+.col-pane-3.margin-bottom {
+  float: left;
+  width: 100%;
+}
+
+/* line 195, ../sass/modules/_popup.scss */
+.margin-bottom {
+  margin-bottom: 5px;
+}
+
+/* line 199, ../sass/modules/_popup.scss */
+#rt-signup-form p {
+  text-align: left;
+  margin-top: -15px;
+}
+/* line 202, ../sass/modules/_popup.scss */
+#rt-signup-form p a {
+  color: #446ED5;
+}
+/* line 204, ../sass/modules/_popup.scss */
+#rt-signup-form p a:hover {
+  color: #446ED5;
+  text-decoration: underline;
+}
+
+/* line 211, ../sass/modules/_popup.scss */
+.gender-pane {
+  float: left;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+/* line 216, ../sass/modules/_popup.scss */
+.gender-pane .radio {
+  display: inline-block;
+  margin: 0 20px 0 0;
+}
+/* line 219, ../sass/modules/_popup.scss */
+.gender-pane .radio input[type="radio"] {
+  margin-top: 2px;
+}
+
+/* line 224, ../sass/modules/_popup.scss */
+#rt-signup-form p.sm-text {
+  margin-top: -5px;
+  margin-bottom: 0;
+  font-size: 10px;
+  font-weight: 600;
+  color: #999;
+}
+
+/* line 231, ../sass/modules/_popup.scss */
+.error-msg-txt {
+  color: red;
+  font-size: 11px;
+}
+
+/* line 236, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom {
+  right: 15px;
+  left: inherit;
+  top: 39px;
+  margin-top: 0;
+  width: 500px;
+  font-family: 'Open Sans', sans-serif;
+  max-width: 500px;
+  z-index: 10001;
+  position: fixed;
+}
+/* line 246, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom > .arrow {
+  left: inherit;
+  right: 78px;
+}
+/* line 250, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom .popover-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111;
+  text-transform: uppercase;
+  padding: 12px 15px;
+}
+/* line 257, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom .popover-content {
+  padding: 0;
+  float: left;
+  width: 100%;
+  position: relative;
+  background: #fff;
+  height: 300px;
+}
+/* line 265, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul {
+  float: left;
+  width: 100%;
+  margin: 0px;
+  width: 500px;
+}
+/* line 270, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul li {
+  width: 100%;
+  display: inline;
+  float: left;
+  padding: 5px 15px;
+  font-size: 11px;
+  letter-spacing: 0px;
+  border-bottom: 1px solid #dbdbdb;
+}
+/* line 279, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul li.read-unread {
+  background: #f4f4f4;
+}
+/* line 282, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul li a {
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+/* line 286, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul li a:hover {
+  color: #333;
+}
+
+/* line 293, ../sass/modules/_popup.scss */
+.courseNotification-panel.popover.bottom ul li:nth-last-child(2) {
+  border-bottom: 0;
+}
+
+/* line 296, ../sass/modules/_popup.scss */
+.col-xs {
+  width: 30px;
+  height: 30px;
+  float: left;
+}
+/* line 300, ../sass/modules/_popup.scss */
+.col-xs img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+/* line 305, ../sass/modules/_popup.scss */
+.notification-detail {
+  float: left;
+  width: calc(100% - 40px);
+  margin-left: 10px;
+}
+
+/* line 311, ../sass/modules/_popup.scss */
+.form-detail-pane .bootstrap-filestyle {
+  margin-bottom: 10px;
+  background-color: transparent;
+}
+/* line 314, ../sass/modules/_popup.scss */
+.form-detail-pane .bootstrap-filestyle input {
+  height: 30px;
+}
+/* line 317, ../sass/modules/_popup.scss */
+.form-detail-pane .bootstrap-filestyle label {
+  height: 30px;
+  font-size: 12px;
+  color: #fff;
+  opacity: 1 !important;
+  background: #242f43 !important;
+}
+/* line 323, ../sass/modules/_popup.scss */
+.form-detail-pane .bootstrap-filestyle label:hover {
+  opacity: 0.8 !important;
+}
+
+/* line 328, ../sass/modules/_popup.scss */
+#courseNotification {
+  margin: 10px 5px;
+  float: left;
+  position: relative;
+}
+/* line 332, ../sass/modules/_popup.scss */
+#courseNotification i.notification-counter {
+  background: #fd5e00;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  right: -9px;
+  top: -9px;
+  font-weight: normal;
+  font-size: 10px;
+  min-width: 20px;
+  min-height: 20px;
+  font-style: normal;
+  padding: 2px;
+}
+
+/* line 351, ../sass/modules/_popup.scss */
+.popover-overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  position: absolute;
+  background: #000;
+  left: 0;
+  top: 40px;
+  display: none;
+  opacity: 0;
+  cursor: auto;
+}
+
+/* line 364, ../sass/modules/_popup.scss */
+.courseNotification-panel.show + .popover-overlay {
+  display: block;
+}
+
+/* line 368, ../sass/modules/_popup.scss */
+.production-list-pane {
+  float: left;
+  width: 100%;
+}
+/* line 371, ../sass/modules/_popup.scss */
+.production-list-pane.top-bdr {
+  border-top: 1px solid #334259;
+  margin-top: 10px;
+}
+/* line 375, ../sass/modules/_popup.scss */
+.production-list-pane h3 {
+  margin: 10px;
+  color: #99cbcc;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+/* line 381, ../sass/modules/_popup.scss */
+.production-list-pane .app-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  max-width: 40px;
+}
+/* line 388, ../sass/modules/_popup.scss */
+.production-list-pane .btn-dark-bluebox {
+  max-width: 65px;
+  justify-content: flex-end;
+  display: flex;
+}
+/* line 393, ../sass/modules/_popup.scss */
+.production-list-pane .app-name {
+  font-size: 13px;
+}
+/* line 395, ../sass/modules/_popup.scss */
+.production-list-pane .app-name span {
+  float: left;
+  width: 100%;
+}
+/* line 400, ../sass/modules/_popup.scss */
+.production-list-pane .sm-text {
+  font-size: 11px;
+}
+/* line 403, ../sass/modules/_popup.scss */
+.production-list-pane .red {
+  color: red;
+}
+/* line 406, ../sass/modules/_popup.scss */
+.production-list-pane .node-content {
+  display: flex;
+  align-items: center;
+}
+/* line 409, ../sass/modules/_popup.scss */
+.production-list-pane .node-content > span {
+  flex: 1;
+}
+/* line 414, ../sass/modules/_popup.scss */
+.production-list-pane .btn {
+  justify-content: flex-end;
+}
+
+/* line 419, ../sass/modules/_popup.scss */
+.form-row {
+  float: left;
+  width: 100%;
+  margin-bottom: 5px;
+}
+/* line 423, ../sass/modules/_popup.scss */
+.form-row .form-label {
+  width: 120px;
+  float: left;
+  color: #333;
+  font-weight: 600;
+}
+/* line 429, ../sass/modules/_popup.scss */
+.form-row .form-input {
+  width: calc(100% - 120px);
+  float: left;
+  line-height: normal;
+}
+/* line 434, ../sass/modules/_popup.scss */
+.form-row .form-input .input-icon-group input {
+  width: calc(100% - 30px);
+  float: left;
+  margin-right: 10px;
+}
+/* line 439, ../sass/modules/_popup.scss */
+.form-row .form-input .input-icon-group span {
+  float: left;
+  height: 20px;
+}
+
+/* line 446, ../sass/modules/_popup.scss */
+.receivedListBox .admin-info-box {
+  float: left;
+  margin-top: -5px;
+}
+
+/* line 450, ../sass/modules/_popup.scss */
+.manageHT {
+  height: auto !important;
+}
+/* line 452, ../sass/modules/_popup.scss */
+.manageHT .nano {
+  position: relative;
+}
+/* line 455, ../sass/modules/_popup.scss */
+.manageHT .nano-content {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+/* line 460, ../sass/modules/_popup.scss */
+.manageHT .nano-pane {
+  display: none;
+}
+
+/* line 465, ../sass/modules/_popup.scss */
+.crop-img .jcrop-holder {
+  background: transparent !important;
+  border: 1px solid #c8c8c8;
+  margin: 0 auto;
+}
+
+/* line 472, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+/* line 479, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog .modal-content {
+  width: 400px;
+  border-radius: 0;
+  border: 1px solid #dbdbdb;
+}
+/* line 484, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog .modal-title {
+  font-weight: 600;
+  line-height: 15px;
+}
+/* line 488, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog .modal-footer {
+  flex-direction: row-reverse;
+  display: flex;
+  border: 0px;
+}
+/* line 493, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog button.close {
+  margin-top: 0px !important;
+}
+/* line 496, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog button.btn {
+  background: #242f43;
+  border: 1px solid #242f43;
+  opacity: 0.8;
+  padding: 6px;
+  color: #fff;
+  min-width: 70px;
+  margin-left: 10px;
+}
+/* line 504, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog button.btn:hover {
+  background: #242f43;
+  opacity: 1;
+  color: #fff;
+}
+/* line 511, ../sass/modules/_popup.scss */
+.bootbox .modal-dialog .bootbox-body {
+  font-size: 13px;
+  text-align: left;
+  width: calc(100% - 30px);
+}
+
+/* line 518, ../sass/modules/_popup.scss */
+.popup-footer {
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+
+/* line 523, ../sass/modules/_popup.scss */
+#actorAutoCompleteBox {
+  position: relative;
+}
+
+/* line 526, ../sass/modules/_popup.scss */
+.autocomplete-suggestions {
+  max-height: 120px !important;
+  overflow: auto !important;
+  background: #fff;
+  border: 1px solid #dbdbdb;
+}
+
+/* line 532, ../sass/modules/_popup.scss */
+#group-actor .autocomplete-suggestions {
+  width: calc(100% - 55px) !important;
+}
+
+/* line 535, ../sass/modules/_popup.scss */
+.autocomplete-suggestions .autocomplete-suggestion {
+  padding: 7px 5px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: normal;
+}
+
+/* line 542, ../sass/modules/_popup.scss */
+.autocomplete-suggestions .autocomplete-suggestion:hover {
+  background: #f0f0f0;
+  cursor: default;
+}
+
+/* line 546, ../sass/modules/_popup.scss */
+.popup-content {
+  font-size: 13px;
+  text-align: center !important;
+}
+
+/* line 550, ../sass/modules/_popup.scss */
+.modal-header-title {
+  float: left;
+}
+/* line 552, ../sass/modules/_popup.scss */
+.modal-header-title h4 {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* line 558, ../sass/modules/_popup.scss */
+.modal-header-icon {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+/* line 562, ../sass/modules/_popup.scss */
+.modal-header-icon i {
+  margin-left: 10px;
+}
+
+/* line 567, ../sass/modules/_popup.scss */
+#custom-modal .modal-dialog {
+  width: 600px;
+}
+/* line 570, ../sass/modules/_popup.scss */
+#custom-modal .crop-img {
+  padding: 20px 20px 15px 20px !important;
+}
+/* line 572, ../sass/modules/_popup.scss */
+#custom-modal .crop-img img {
+  border: 1px solid #dbdbdb;
+}
+
+/* line 578, ../sass/modules/_popup.scss */
+#user-profile-crop .modal-dialog {
+  width: 500px;
+}
+/* line 581, ../sass/modules/_popup.scss */
+#user-profile-crop .paste-img-container {
+  padding: 20px 20px 15px 20px;
+}
+/* line 584, ../sass/modules/_popup.scss */
+#user-profile-crop li {
+  width: 100%;
+}
+/* line 586, ../sass/modules/_popup.scss */
+#user-profile-crop li.paste-label {
+  margin-top: 10px;
+}
+/* line 589, ../sass/modules/_popup.scss */
+#user-profile-crop li img {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  max-height: calc(100vh / 1.5);
+}
+/* line 596, ../sass/modules/_popup.scss */
+#user-profile-crop li span {
+  font-weight: 600;
+  font-size: 12px;
+  margin-right: 10px;
+  float: left;
+}
+/* line 603, ../sass/modules/_popup.scss */
+#user-profile-crop li input {
+  float: left;
+  width: calc(100% - 60px);
+}
+
+/* line 609, ../sass/modules/_popup.scss */
+.modal-footer.modal-custom-footer {
+  text-align: center;
+  border: 0;
+  padding-top: 0px;
+}
+/* line 613, ../sass/modules/_popup.scss */
+.modal-footer.modal-custom-footer button {
+  margin: 0 auto !important;
+}
+
+/* line 618, ../sass/modules/_popup.scss */
+#custom-modal.fullpopup {
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+/* line 623, ../sass/modules/_popup.scss */
+#custom-modal.fullpopup .modal-dialog {
+  width: 100%;
+  height: 100vh;
+  padding-top: 40px;
+}
+/* line 628, ../sass/modules/_popup.scss */
+#custom-modal.fullpopup .modal-content {
+  width: 100%;
+  height: 100%;
+}
+/* line 632, ../sass/modules/_popup.scss */
+#custom-modal.fullpopup .crop-img {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 85px);
+}
+/* line 638, ../sass/modules/_popup.scss */
+#custom-modal.fullpopup .crop-img img {
+  max-width: calc(100vw/1.2);
+  max-height: calc(100vh/1.2);
+}
+
+/* line 644, ../sass/modules/_popup.scss */
+.reply-box-wrapper {
+  width: calc(100% + 30px);
+  float: left;
+}
+/* line 647, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-box-row {
+  float: left;
+  width: 100%;
+}
+/* line 650, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-box-row textarea {
+  height: 60px;
+}
+/* line 654, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-box-row .btn-box {
+  width: 100%;
+  margin-top: 10px;
+  float: left;
+  text-align: right;
+}
+/* line 659, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-box-row .btn-box span {
+  font-size: 10px;
+}
+/* line 664, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-msg-wrap {
+  margin: 15px 0;
+  font-size: 13px;
+  font-weight: 600;
+  border-left: 3px solid #000;
+  padding-left: 15px;
+}
+/* line 670, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-msg-wrap h5 {
+  margin: 0 0 5px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+/* line 675, ../sass/modules/_popup.scss */
+.reply-box-wrapper .reply-msg-wrap .reply-msg {
+  margin-top: 5px;
+  display: inline-block;
+  font-size: 12px;
+  width: 100%;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+/* line 687, ../sass/modules/_popup.scss */
+.rply-msg-view {
+  font-size: 12px;
+  margin: 10px 0;
+  float: left;
+  width: 100%;
+}
+/* line 692, ../sass/modules/_popup.scss */
+.rply-msg-view ul {
+  float: left;
+  border-left: 3px solid #000;
+  margin: 0 !important;
+  width: 100%;
+  padding-left: 15px;
+}
+/* line 698, ../sass/modules/_popup.scss */
+.rply-msg-view ul li {
+  margin: 0 !important;
+  padding: 0;
+  min-height: auto;
+}
+/* line 702, ../sass/modules/_popup.scss */
+.rply-msg-view ul li a {
+  color: #000;
+}
+/* line 705, ../sass/modules/_popup.scss */
+.rply-msg-view ul li h5 {
+  margin: 0 0 5px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+/* line 710, ../sass/modules/_popup.scss */
+.rply-msg-view ul li p {
+  margin-top: 5px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* line 720, ../sass/modules/_popup.scss */
+.modal-header {
+  border-bottom: 1px solid #dbdbdb;
+}
+
+/* line 723, ../sass/modules/_popup.scss */
+.modal-title {
+  font-weight: 600;
+  line-height: 15px;
+}
+
+/* line 727, ../sass/modules/_popup.scss */
+#user-profile-crop .modal-body {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* line 734, ../sass/modules/_popup.scss */
+.sass-lang .right-action-bar .ct-modal-icon {
+  display: flex;
+  background: white;
+  height: 100%;
+  z-index: 1000;
+  position: relative;
+  padding: 10px;
+  border-left: 1px solid #dbdbdb;
+}
+
+/* line 743, ../sass/modules/_popup.scss */
+.modal-menu-container {
+  position: fixed;
+  top: 40px;
+  right: 0px;
+  width: 50px;
+  height: calc(100% + 45px);
+  border-left: 1px solid #dbdbdb;
+  background: #fff;
+}
+/* line 751, ../sass/modules/_popup.scss */
+.modal-menu-container li {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  /* line 2, ../sass/component/_responsive-site.scss */
+  .services p {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 1367px) {
+  /* line 9, ../sass/component/_responsive-site.scss */
+  .canvasMidPane.activePane #edtCanvasView {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  /* line 14, ../sass/component/_responsive-site.scss */
+  #edtCanvasView {
+    width: 100%;
+  }
+
+  /* line 17, ../sass/component/_responsive-site.scss */
+  #edtInnerCanvasView .innerCanvasContainer {
+    padding: 10px;
+  }
+}

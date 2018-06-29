@@ -1,0 +1,41 @@
+<li class="selectlist">
+    <div class="search-item-wrap">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Email" id="email_search_id" name="email_search_id">
+            <a href="#" class="input-group-addon leftbar-search-js"><img src="/pu/public/img/arrow-select.png" alt="select arrow"></a>
+        </div>
+    </div>
+</li>
+
+<?php foreach($emailAccountList as $emaillist){?>
+<li class="selectlist">
+    <div class="scroll-wrap">
+        <div class="panel-group accordion-wrap" role="tablist" aria-multiselectable="true" id="sidebar-accordion-<?=$emaillist['node_id']?>">
+
+            <div class="panel panel-default actionMenu">
+                <h4 class="item-title  collapse" data-toggle="collapse" data-parent="#sidebar-accordion-<?=$emaillist['node_id']?>" href="#sub_nav_<?=$emaillist['node_id']?>" aria-expanded="true" aria-controls="sub_nav_<?=$emaillist['node_id']?>">
+                    <span class="icon left strat_click action"></span><?=$emaillist['email']?><i class="fa fa-angle-down right"></i>
+                </h4>
+
+                <div id="sub_nav_<?=$emaillist['node_id']?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="">
+                    <div class="panel-body">
+                        <ul class="item-list filter-list-wrap">
+                            <li class="my-profile DeleteFolder_li">
+                                <a style="cursor:pointer;" onclick="getCenterContent(this, <?=$emaillist['node_id']?>, 'DeleteFolder')" data-id="<?=$emaillist['node_id']?>_Delete Folder" data-original-title="Inbox" class="strat_click">
+                                    INBOX                                                                            
+                                </a>
+                            </li>
+                            <li class="my-profile DeleteFolder_li">
+                                <a style="cursor:pointer;" onclick="getCenterContent(this, <?=$emaillist['node_id']?>, 'DeleteFolder')" data-id="<?=$emaillist['node_id']?>_Delete Folder" data-original-title="Inbox" class="strat_click">
+                                    SYNC EMAIL                                                                            
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+<?php }?>

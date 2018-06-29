@@ -1,0 +1,175 @@
+<?php if($this->is_main_layout == 'N') { ?>
+<div class="total-width-pane slide-wrap active" id="class-wrapper">
+    <div class="listing-wrapper dashSlider clearfix set-height active">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Group List</span>
+                        </span>
+                        <div class="control-btn-wrap right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-one-third add-column-table" id="first-organization-div" >
+            <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head">
+                    <thead>
+                        <tr>
+                            <th class="" >
+                                <span class=""><b>Group Name</b></span>
+                            </th>
+                        </tr>
+                    </thead>
+            </table>
+            <div class="nano set-content-height">
+                <div class="nano-content">
+                    <div class="">
+                        <table class="table table-style table-dashboard class-table get-version">
+                            <tbody>
+                                <?php if(count($this->groups) > 0) { $i= 0; foreach($this->groups as $key => $value) { ?>
+                                    <tr class="lisat-class-row<?php echo $i; ?> list-row" id="list-row_<?php echo $value['node_instance_id']; ?>" data-node-id ="<?php echo $value['node_id']; ?>" >
+                                        <td id="group_label_<?php echo $value['node_instance_id']; ?>"  onclick="selectOrganization(<?php echo $value['node_instance_id']; ?>,<?php echo $value['node_id']; ?>,'<?php echo $value['group']; ?>')" class="<?php if($i==0) { ?>first-group-div<?php } ?>"  ><?php echo $value['group']; ?></td>
+                                    </tr>
+                                <?php $i = intval($i) + 1; } } else { ?>
+                                    <tr class="list-row lisat-class-row0 active" >
+                                        <td  align="center" >No Group Found</td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="display-wrapper dashSlider clearfix set-height active">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                                <span class="main-title left-side-heading" alt="" >Group Details</span>
+                        </span>
+                        <div class="control-btn-wrap right">
+                            <a href="#" class="active structureDiv" >
+                                <i class="icon structure"></i><span>Group</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-one-third" id="second-organization-div">
+
+            <div id="add_organization_form" class="hide" >
+                <form id="group_form" name="group_form" method="POST" action="" >
+                    <input type="hidden" id="group_class_id" name="group_class_id" value="<?php echo GROUP_CLASS_ID; ?>" >
+                    <input type="hidden" id="group_instance_node_id" name="group_instance_node_id" value="" >
+                    <input type="hidden" id="group_instance_id" name="group_instance_id" value="" >
+                    <input type="hidden" id="organization_type" name="organization_type" value="" >
+                    <div>
+                        <span><b>Organization</b></span><span id="group_label"></span>
+                        <input type="hidden" id="group_property_id_<?php echo GROUP_NAME_PID; ?>" name="group_property_id_<?php echo GROUP_CLASS_ID; ?>[]" value="<?php echo GROUP_NAME_PID; ?>" >
+                        <input type="text" id="group_property_val_<?php echo GROUP_NAME_PID; ?>" name="group_property_val_<?php echo GROUP_CLASS_ID; ?>[]" value="" placeholder="Organization" class="hide" >
+
+                        <input type="hidden" id="group_property_id_<?php echo GROUP_ACTOR_PID; ?>" name="group_property_id_<?php echo GROUP_CLASS_ID; ?>[]" value="<?php echo GROUP_ACTOR_PID; ?>" >
+                        <input type="hidden" id="group_property_val_<?php echo GROUP_ACTOR_PID; ?>" name="group_property_val_<?php echo GROUP_CLASS_ID; ?>[]" value="<?php echo $this->login_user_id; ?>" placeholder="Actor" >
+                    </div>
+                </form>
+            </div>
+
+            <div id="add_roles_form" class="hide" style="padding-top:20px;" >
+                    <div id="roles_orga_main_div" class="hide">
+                        <span>Roles</span>
+                        <input type="hidden" id="orga_all_role_id" name="orga_all_role_id" value="" >
+                        <input type="hidden" id="orga_role_id" name="orga_role_id" value="" >
+                        <input type="text" id="roles_list" value="" >
+                        <a class="" href="javascript:void(0)" onclick="addMoreRolesOfOrganization()">Add</a>
+                    </div>
+
+                    <div id="orga_all_role_list"></div>
+
+                    <div id="rolesOrganizationAutoCompleteBox" class="clearfix"></div>
+            </div>
+
+            <div id="add_member_with_group" class="hide" style="padding-top:20px;" >
+                <div id="add_member_with_group_form" class="">
+                    <span>User</span>
+                    <input type="hidden" id="add_users_group_id" name="add_users_group_id" value="" >
+                    <input type="hidden" id="add_users_role_id" name="add_users_role_id" value="" >
+                    <input type="hidden" id="all_user_ids" name="all_user_ids" value="" >
+                    <input type="hidden" id="particuler_user_id" name="particuler_user_id" value="" >
+                    <input type="text" id="users_list_auto" value="" >
+                    <a class="" href="javascript:void(0)" onclick="addMoreUsersOfOrganization()">Add</a>
+                </div>
+
+                <div id="orga_all_users_list"></div>
+
+                <div id="usersOrganizationAutoCompleteBox" class="clearfix"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+var group_name_pid = "<?php echo GROUP_NAME_PID; ?>";
+jQuery(function()
+{
+    // setup autocomplete function pulling from participant[] array
+    $('#roles_list').autocomplete({
+        appendTo: "#rolesOrganizationAutoCompleteBox",
+        lookup: allrolespu,
+        width: '80%',
+        onSelect: function (suggestion) {
+            $("#orga_role_id").val(suggestion.key);
+            $('#roles_list').val(suggestion.value);
+        },
+        forceFixPosition: 'auto',
+        orientation: 'top'
+    });
+
+    $('#users_list_auto').autocomplete({
+        appendTo: "#usersOrganizationAutoCompleteBox",
+        lookup: alluserspu,
+        width: '80%',
+        onSelect: function (suggestion) {
+            $("#particuler_user_id").val(suggestion.key);
+            $('#users_list_auto').val(suggestion.value);
+        },
+        forceFixPosition: 'auto',
+        orientation: 'top'
+    });
+
+    if($(".first-group-div").length)
+    {
+        $(".first-group-div").trigger('click');
+    }
+    
+
+    <?php if(count($this->groups) == 0) { ?>
+        $("#organization_action_menu a").addClass('hide');
+        $("#dialogue_role_group").removeClass('hide');
+    <?php } ?>
+});
+</script>
+<?php } else{ ?>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //setTimeout('$("#'+classMenuId+'_'+classMenuName.toLowerCase()+' .icon-wrap .strat_click").click();',1000);
+            var timer = setInterval(function(){ 
+                var clckElem = $('#'+organizationMenuId+'_'+organizationMenuName.toLowerCase()+' .icon-wrap .strat_click');
+                if(clckElem.length){
+                    clckElem.click();
+                    clearInterval(timer);
+                }
+            }, 500);
+        });
+    </script>
+    
+<?php } ?>

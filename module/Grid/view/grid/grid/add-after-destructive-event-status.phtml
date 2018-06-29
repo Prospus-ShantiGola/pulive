@@ -1,0 +1,184 @@
+<?php if(intval($this->exitscol) < 1 )  { ?>
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+			for($row=0;$row<2;$row++) {
+				?>
+			   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+				  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+				<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+                             <?php if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+             <?php if(intval($row) == 0) { ?>
+             
+                <td class="ExcelTableFormationCol event-count" ><span class="top-col"><?php echo intval($this->currentColumnIndex)+6; ?></span>
+            
+            </td>
+               
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+1; ?>">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+1; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon role-icon event-count"></span><span class="col-head-title">Event Status</span><i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+            <?php }  ?>
+             
+            <?php } ?>
+				  <?php } ?>
+			   </tr>
+			<?php } ?>
+      </tbody>
+   </table>
+</div>
+
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+    <tbody>
+            <?php 
+                    $addRow = 0; $newFlag = ''; $flag = '';
+            	   for($row=0;$row<count($this->tableDataArray);$row++) {
+                 ?>
+            
+        <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+            
+            <?php if(($row == $this->currentRowIndex+2) && ($col > 1 && $col < intval($this->currentColumnIndex))){ ?>
+            <td class="ExcelTablerow operation-series border-left"><div class="blank-div segment-node"></div></td>
+            <?php } else {?>
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+            <?php } ?>
+
+            <?php if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+             <?php if(intval($row) == 0) { ?>
+        <td class="ExcelTableFormationCol event-count"><span class="top-col"><?php echo intval($this->currentColumnIndex)+6; ?></span>
+            </td>
+               
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top   col-<?php echo intval($this->currentColumnIndex)+1; ?>">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+1; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon role-icon event-count"></span><span class="col-head-title">Event Status</span><i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+            <?php } else { ?>
+            
+            <?php if($newFlag == 'Y') { ?>
+            <?php ?>
+             <td class="ExcelTablerow operation-series "><?php echo $this->eventStatusArray[1]['eventStatus']; ?></td>
+            <?php $newFlag = 'N'; }
+            else if($addRow < $this->currentColumnSegments) { ?>
+               
+             <td class="ExcelTablerow operation-series"><?php echo $this->eventStatusArray[0]['eventStatus']; ?></td>
+             
+            <?php  $flag = 'Y';  ?>
+            <?php }  else {  ?>
+            <td class="ExcelTablerow "></td>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+            <?php } ?>
+
+        <?php if($flag == 'Y') {
+        if( $row == intval($this->currentRowIndex+2)){ ?>
+        <?php if(intval($addRow) < $this->currentColumnSegments) { ?>
+        <?php for($i=2;$i<count($this->eventStatusArray);$i++) { ?>
+        <tr class="" >
+            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+            
+            <?php if(($row == $this->currentRowIndex+2) && ($col >= intval($this->currentColumnIndex+1))){ ?>
+            <td class="ExcelTablerow operation-series creation-bg"><div class="blank-div segment-node"></div></td>
+            <?php } else {?>
+            
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>">
+            <?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+
+            <?php } ?>
+            <?php 
+
+
+
+            if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+                <td class="ExcelTablerow operation-series destructive role"><?php echo $this->eventStatusArray[$i]['eventStatus']; ?></td>
+                <?php } ?>
+            <?php } ?>
+        </tr>
+        <?php } ?>
+        <?php $addRow++;$flag = 'N'; $newFlag = 'Y'; ?>
+        <?php } } }?>
+
+
+        
+        <?php } ?>
+
+
+
+    </tbody>
+</table>
+<?php } else {?>
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+            for($row=0;$row<2;$row++) {
+                ?>
+               <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+                  <?php } ?>
+               </tr>
+            <?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+    <tbody>
+            <?php 
+                    $addRow = 0; $newFlag = ''; $flag = '';
+                   for($row=0;$row<count($this->tableDataArray);$row++) {
+                 ?>
+            
+        <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+            
+            <?php if(($row == $this->currentRowIndex+2) && ($col > 1 && $col < intval($this->currentColumnIndex))){ ?>
+            <td class="ExcelTablerow operation-series border-left"><div class="blank-div segment-node"></div></td>
+            <?php } else {?>
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+            <?php } ?>
+
+             <?php if(intval($col) == (intval($this->currentColumnIndex)+1)) {  
+             if($newFlag == 'Y') { $newFlag = 'N'; }
+                else if($addRow < $this->currentColumnSegments) { $flag = 'Y';  }  } }
+            ?>
+
+        <?php if($flag == 'Y') {
+        if( $row == intval($this->currentRowIndex+2)){ ?>
+        <?php if(intval($addRow) < $this->currentColumnSegments) { ?>
+        <?php for($i=2;$i<count($this->eventStatusArray);$i++) { ?>
+        <tr class="" >
+            <?php for($col=0;$col<count($this->tableDataArray[$row])-1;$col++) { ?>
+            
+            <?php if(($row == $this->currentRowIndex+2) && ($col >= intval($this->currentColumnIndex+1))){ ?>
+            <td class="ExcelTablerow operation-series creation-bg"><div class="blank-div segment-node"></div></td>
+            <?php } else {?>
+            
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>">
+            <?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+
+            <?php } ?>
+            <?php 
+                if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+                <td class="ExcelTablerow operation-series destructive role"><?php echo $this->eventStatusArray[$i]['eventStatus']; ?></td>
+                <?php } ?>
+            <?php } ?>
+        </tr>
+        <?php } ?>
+        <?php $addRow++;$flag = 'N'; $newFlag = 'Y'; ?>
+        <?php } } }?>
+        <?php } ?>
+</tbody>
+</table>
+
+<?php } ?>
+
+

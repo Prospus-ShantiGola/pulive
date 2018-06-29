@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="public/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>Prospus</title>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/jquery-1.9.1.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/jquery-ui.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/bootstrap.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>puidata/js/dropzone.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>puidata/js/filereader.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/jquery.mCustomScrollbar.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/bootstrap-filestyle.min.js"></script>
+
+  <script src="<?php echo PU_CDN_URL; ?>public/js/jquery.nanoscroller.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/script.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/theme-js.js"></script>
+  <!-- editor related js -->
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/jquery.highlight.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/rangy-core.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/rangy-cssclassapplier.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/bootbox.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/jquery.Jcrop.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/jquery.nicescroll.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/resizesensor.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/elementqueries.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/scripts/editor/editor.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/script.js"></script>
+
+  <script src="<?php echo PU_CDN_URL; ?>public/js/nprogress.js"></script>
+
+  <script src="<?php echo PU_CDN_URL; ?>public/js/classes.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/course-dialogue.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/socket.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/course-dialogue-chat.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/moment.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/jquery.autocomplete.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>puidata/js/dialogue.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/paste.js"></script>
+
+  <script src="<?php echo PU_CDN_URL; ?>public/js/store.min.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/jquery-idleTimeout.js"></script>
+  <script src="<?php echo PU_CDN_URL; ?>public/js/browser.js"></script>
+
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic' rel='stylesheet' type='text/css'>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link href="<?php echo PU_CDN_URL; ?>public/css/styles.css" media="screen, projection" rel="stylesheet">
+  <link href="<?php echo PU_CDN_URL; ?>public/css/jquery.mCustomScrollbar.css" media="screen, projection" rel="stylesheet">
+
+
+  <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/jquery.Jcrop.min.css"/>
+
+  </head>
+  <body class="sass-lang">
+      <div id="app"></div>
+      <div class="tab-content ref_top_chat_box" id= 'attachment_panel' style="display:none">
+          <!-- start preview template-->
+
+          <!--comment-for-file-type-attached-->
+          <div id="custom-preview-template" style="display:none">
+              <div class="dz-preview dz-file-preview logoFrame">
+                  <div class="dz-image"><img data-dz-thumbnail /></div>
+                  <div class="dz-progress">
+                      <a href="javascript:void(0)" target="_blank" class="canvas_view_mode"><canvas id="my_canvas" data-dz-uploadprogress height="40" width="40"></canvas></a>
+                  </div>
+                  <div class="dz-details right_margin">
+                      <div class="dz-filename"><span data-dz-name></span></div>
+                      <div class="dz-size"><span data-dz-size></span></div>
+                  </div>
+                  <span class="dialogue-date right"><ul><li><span id="currentTime">3:32 PM</span></li></ul></span>
+                  <div class="dz-error-message connection_notif">
+
+                      <span class="connect_wrap">
+                          <i class="icon connection_error"></i>
+                          <span data-dz-errormessage class="errMsg notif_title"> </span>
+                      </span>
+
+                  </div>
+                  <div class="dz-success-mark"></div>
+                  <div class="dz-error-mark">
+                      <title>Error</title>
+                  </div>
+              </div>
+          </div>
+          <!--comment-for-file-type-attached-->
+
+
+          <div class="tab-pane active dialogue_message_pane">
+              <div class="nano ref-set-height" style="position:relative">
+                  <div class="nano-content ref_hide_tab_content">
+                      <div class="dialogue-area ">
+                          <div class="dialogue-listing-chat" id= "chatWindows">
+
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+              <div class="mini-type-textarea">
+                  <div class="dialogue-txt-comment-mini ref-textarea-HT">
+                      <form class="clearfix">
+                          <div class="animate-div resizable clearfix">
+                              <div class="textarea-icon-wrap clearfix">
+                                  <!-- <div class="expanded-box right expand-collapse-box icon" data-toggle="tooltip" data-placement="left" title="Expand"></div> -->
+                                  <div class="expand-collapse-box icon dialogue_area_action_icon expand_icon expanded-box" data-toggle="tooltip" data-placement="left" title="Expand"></div>
+
+                                  <i class="icon-attachment-wrap" id="attachment-wrap"><!-- <img src="<?php //echo $assetsUrl; ?>img/attachment.png" width="17" height="15" id="attachment" class ="" data-toggle="tooltip" data-placement="left" title="Attach Files"/ > --></i>
+                                  <i class="icon icon-reply inactive hide" data-toggle="tooltip" data-placement="left" title="Reply"></i>
+
+                              </div>
+                              <div id="chatMsgBox" class="textarea clearfix ">
+                                  <textarea id="add-text"  class="form-control message" rows="2" placeholder="Type here"></textarea>
+                                  <!--<div id="divEditable"  class="form-control message" rows="2" placeholder="Type here" contenteditable="true"></div>-->
+
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="action-btn right">
+                      <button type="button" class="btn btn-style send-btn" style="display:none;">Submit</button>
+                  </div>
+
+              </div>
+
+          </div>
+      </div>
+
+      <div class="chatNotifications">
+      </div>
+
+      <div id="user-profile-crop" class="modal fade pu-popup" data-backdrop="static">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                        <h4 class="modal-title">Upload Image</h4>
+                    </div>
+                  <div class="modal-body">
+
+                  </div>
+                  <div class="modal-footer modal-custom-footer">
+                      <button type="button" class="btn btn-dark-blue hide" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn full-btn btn-dark-blue upload-img-js">Upload</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div id="custom-modal" class="modal fade pu-popup fullpopup" data-backdrop="static">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-header-title">
+                    </div>
+                    <div class="modal-header-icon">
+                    </div>
+                  </div>
+
+                  <div class="modal-body crop-img">
+
+                  </div>
+                  <div class="modal-footer hide">
+
+                      <button type="button" class="btn full-btn btn-dark-blue" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div id="myEditorImg" class="modal fade classes-click-modal " role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Image</h4>
+              <span class="modal-top-icon">
+                <input type="hidden" id="x" name="x" />
+                <input type="hidden" id="y" name="y" />
+                <input type="hidden" id="w" name="w" />
+                <input type="hidden" id="h" name="h" />
+                <span class="icon reset" id="resetImageEDT" data-toggle="tooltip" data-placement="bottom" title="Reset"></span>
+                <span class="icon crop" id="cropImageEDT" data-toggle="tooltip" data-placement="bottom" title="Crop"></span>
+                <span class="icon cancel" data-dismiss="modal" data-toggle="tooltip" data-placement="bottom" title="Cancel"></span>
+              </span>
+
+            </div>
+            <div class="modal-body">
+              <img src="" id="myImg"/>
+            </div>
+             <div class="modal-footer">
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+      <?php
+          $userInfo = $this->plugin('pu_view_helper')->getLoggedInUserInfo();
+          //echo '<pre>'; print_r($userInfo); die();
+          $header_notification_count = 0;
+          if (count($userInfo)) {
+              $header_notification_count = $this->plugin('pu_view_helper')->getNotificationCount($userInfo['user_id']);
+          }
+      ?>
+      <script type="text/javascript">
+          var PU_CDN_URL          = '<?php echo PU_CDN_URL; ?>';
+          var JS_ROUTE_PATH       = '<?php echo JS_ROUTE_PATH; ?>';
+          var idle_timeout        = '<?php echo IDLE_TIMEOUT; ?>';
+          var COURSE_DIALOGUE_TITLE_LENGTH = '<?php echo COURSE_DIALOGUE_TITLE_LENGTH; ?>'
+          window.file_list = [];
+          window.is_file_upload_in_progress = false;
+          window.domainUrl          = '<?php echo BASE_URL; ?>';
+          window.domainUrlApi          = '<?php echo BASE_URL; ?>';
+          <?php if(count($userInfo)) { ?>
+              <?php $invalid_mail = json_decode($this->expiration_msg,true); if(!isset($invalid_mail['email'])) { ?>
+                  window.setUsername        = '<?php echo $userInfo["first_name"].' ' .$userInfo["last_name"]; ?>';
+                  window.setUserID          = '<?php echo $userInfo["user_id"]; ?>';
+                  window.session_file_name  = '<?php echo $userInfo["session_file_name"]; ?>';
+                  window.firstName          = '<?php echo $userInfo["first_name"]; ?>';
+                  window.lastName           = '<?php echo $userInfo["last_name"]; ?>';
+                  window.initialName        = '<?php echo $userInfo["initial_name"]; ?>';
+                  window.profileImage       = '<?php echo $userInfo["profile_image"]; ?>';
+
+                  if(window.profileImage == 0) {
+                      window.profileImage = 0;
+                  }
+              <?php } ?>
+          <?php } ?>
+          window.pageName = '<?php echo ($this->page_name !='' ? $this->page_name : 'store' ); ?>';
+
+          hasPageLoaded = false;
+          window.__PRELOADED_STATE__ = {
+              'menu_list': JSON.stringify(<?php echo $res = $this->plugin('pu_view_helper')->getMenuData(); ?>),
+              'chatType': '',
+              'chatItems': JSON.stringify([]),
+              'courseList': JSON.stringify(<?php echo $this->course_list; ?>),
+              'view_type': '<?php echo $this->view_type; ?>',
+              'filter': JSON.stringify({}),
+              'page_name': window.pageName,
+              'header_notification' : JSON.stringify({}),
+              'header_notification_count': <?php echo $header_notification_count; ?>,
+              'loadMore': 0,
+              'notification_socket_count': 0,
+              'active_app': '',
+              'app_list': JSON.stringify(<?php echo $this->store_list; ?>),
+              'groupList': JSON.stringify(<?php echo $this->groups; ?>),
+              'groupFormFields': JSON.stringify(<?php echo $this->formArray; ?>),
+            //    user_type: 'guest'
+              'user_type': '<?php echo $userInfo["user_type"]; ?>',
+              'searchString' : '',
+              'invalid': <?php echo $this->expiration_msg; ?>
+          };
+          <?php if($this->form_fields != "{}") { ?>
+          window.form_fields = <?php echo $this->form_fields; ?>;
+          <?php } ?>
+        //   window.res = JSON.stringify(<?php echo $this->store_list; ?>);
+          <?php if(!empty($_GET['cid']) && !empty($_GET['did'])):?>
+            window.__PRELOADED_STATE__.currentChatDialogueDetail = {
+                expand_course_node_id: '<?php echo $_GET['cid'];?>',
+                course_node_id: '<?php echo $_GET['cid'];?>',
+                dialogue_node_id: '<?php echo $_GET['did'];?>',
+                production_node_id: '<?php echo $_GET['pid'];?>',
+            }
+          <?php endif;?>
+          <?php if(!empty($_GET['cid']) && !empty($_GET['pid'])):?>
+              window.__PRELOADED_STATE__.currentChatDialogueDetail = {
+                  expand_course_node_id: '<?php echo $_GET['cid'];?>',
+                  course_node_id: '<?php echo $_GET['cid'];?>',
+                  production_node_id: '<?php echo $_GET['pid'];?>',
+              }
+          <?php endif;?>
+      </script>
+      <?php if(!empty($_GET['cid']) && !empty($_GET['did'])):?>
+          <script>
+            window.cid = '<?php echo $_GET['cid'];?>';
+            window.did = '<?php echo $_GET['did'];?>';
+          </script>
+      <?php endif;?>
+      <?php if(!empty($_GET['cid']) && !empty($_GET['pid'])):?>
+          <script>
+            window.cid = '<?php echo $_GET['cid'];?>';
+            window.pid = '<?php echo $_GET['pid'];?>';
+          </script>
+      <?php endif;?>
+      <script src="<?php echo PU_CDN_URL; ?>puidata/js/circularloader.js"></script>
+      <script src="<?php echo PU_CDN_URL; ?>public/js/bundle.js"></script>
+
+      <div class="flx-loader hide" id="react-flx-loader">
+        <div class="main-loader">
+          <img src="<?php echo PU_CDN_URL; ?>public/img/prospus-white-logo.png">
+          <div class="loader-circle"></div>
+        </div>
+      </div>
+
+      <div class="load-prev-img">
+        <img src="<?php echo $baseUrl; ?>public/img/blueprint-banner.jpg">
+      </div>
+      <div id="business-model-bule-print" class="hide ">
+
+        <div class="blueprint-banner" style="background-image: url(public/img/blueprint-banner.jpg);"></div>
+      </div>
+      <script >
+            $("#business-model-bule-print").on('click', function() {
+                $(this).addClass('hide');
+            });
+      </script>
+      <?php if($_GET['token']): ?>
+        <input type="hidden" value="<?php echo $_GET['token'];?>" name="_token"/>
+      <?php endif;?>
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php for($row=0;$row<2;$row++) { ?>
+      <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>">
+         <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+         <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+         <?php if(intval($col) == (intval($this->currentColumnIndex)+4)) {  ?>
+         <?php if(intval($row) == 0) { ?>
+           <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+              <span class="top-col"><?php echo intval($this->currentColumnIndex)+2; ?></span>
+              <i class="fa fa-plus add add-role-segment"></i>
+           </td>
+
+           <td class="ExcelTableFormationCol collapse event col-<?php echo intval($this->currentColumnIndex)+3; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+3; ?></span></td>
+           <td class="ExcelTableFormationCol  col-<?php echo intval($this->currentColumnIndex)+4; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+4; ?></span></td>
+
+           <td class="ExcelTableFormationCol collapse event col-<?php echo intval($this->currentColumnIndex)+5; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+5; ?></span></td>
+           <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+6; ?>">
+                  <span class="top-col"><?php echo intval($this->currentColumnIndex)+6; ?></span>
+            </td>
+
+         <?php } else if(intval($row) == 1){ ?>
+         
+           <td class="ExcelTablerow ActorFlyoutOpen border-top col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+2; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon phase-icon"></span><span class="col-head-title">Actor</span>
+                 <i class="fa fa-caret-left arrow"></i> 
+              </div>
+           </td>
+
+           <td class="ExcelTablerow border-top collapse event col-<?php echo intval($this->currentColumnIndex)+3; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+4; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> 
+              </div>
+           </td>
+
+           <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+4; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+3 ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon phase-icon"></span><span class="col-head-title">Role</span>
+                 <i class="fa fa-caret-left arrow"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top collapse event col-<?php echo intval($this->currentColumnIndex)+5; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+4; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+6; ?> Process">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+6; ?>" class="col-head col-wrap show">
+                  <div class="node-circle node-white-circle node-white-circle">N</div>
+                  <span class="icon operation-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i>
+              </div>
+          </td>
+          <?php } ?>
+    <?php } ?>
+<?php } ?>
+      </tr>
+      <?php }?>
+      </tbody>
+   </table>
+</div>
+
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+   <tbody>
+      <?php 
+      $addRow  = 0;
+      for($row = 0;$row<count($this->tableDataArray);$row++) { ?>
+      <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+         <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+         <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>">
+         <?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+         <?php if(intval($col) == (intval($this->currentColumnIndex)+4)) {  ?>
+         <?php if(intval($row) == 0) { ?>
+            <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+             <span class="top-col-<?php echo intval($this->currentColumnIndex)+2; ?>"><?php echo intval($this->currentColumnIndex)+2; ?></span>
+              <i class="fa fa-plus add add-role-segment"></i>
+              <div class="add-col-wrap add-colums">
+                  <ul class="dropdown-menu show-<?php echo intval($this->currentColumnIndex)+5; ?>" >
+                    <li class="no-bg">
+                            <a class="add-left disabled"><div class="node-circle node-white-circle-expanded">N</div>Add left</a>
+                          <ul class="sub-item">
+                            <li class="no-bg disabled">
+                                        <a class="add-left-col">
+                                            <div class="node-circle node-white-circle ">N</div>
+                                  Actor
+                                          </a>
+                                      </li>
+                          </ul>
+                    </li>
+                    <li role="presentation"><a class="add-right"><div class="node-circle node-white-circle-expanded">N</div>Add right</a>
+                        <ul class="sub-item">
+                          <li data-toggle="modal" class="addAssociationRole">
+                                    <a class="addRoleSeries">
+                                <div class="node-circle node-white-circle">N</div>Actor
+                                      </a>
+                          </li>
+                          <!-- <li>
+                             <a class="add-process-series" href="#">
+                                <div class="node-circle node-white-circle">N</div>
+                                Process 
+                             </a>
+                          </li> -->
+                        </ul>
+                    </li>
+                    <li role="presentation" class="delete-phase-actor-series no-bg">
+                         <a role="menuitem" tabindex="-1" class="" >
+                             <div class=" node-circle node-white-circle">N</div>
+                            Delete Series
+                         </a> 
+                     </li>
+                  </ul>
+              </div>
+            </td>
+            <td class="ExcelTableFormationCol collapse event col-<?php echo intval($this->currentColumnIndex)+3; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+3; ?></span></td>
+            <td class="ExcelTableFormationCol  col-<?php echo intval($this->currentColumnIndex)+4; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+4; ?></span></td>
+            <td class="ExcelTableFormationCol collapse event col-<?php echo intval($this->currentColumnIndex)+5; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+5; ?></span></td>
+            <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+6; ?>">
+                <span class="top-col"><?php echo intval($this->currentColumnIndex)+6; ?></span>
+            </td>
+
+         <?php } else if(intval($row) == 1){ ?>
+           <td class="ExcelTablerow ActorFlyoutOpen border-top col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+2; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon phase-icon"></span><span class="col-head-title">Actor</span>
+                 <i class="fa fa-caret-left arrow"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top collapse event col-<?php echo intval($this->currentColumnIndex)+3; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+3; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+4; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+4; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon phase-icon"></span><span class="col-head-title">Role</span>
+                 <i class="fa fa-caret-left arrow"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top collapse event col-<?php echo intval($this->currentColumnIndex)+5; ?>">
+              <div data-id="<?php echo intval($this->currentColumnIndex)+5; ?>" class="col-head">
+                 <div class="node-circle node-white-circle node-white-circle">N</div>
+                 <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> 
+              </div>
+           </td>
+           <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+6; ?> Process">
+                <div data-id="<?php echo intval($this->currentColumnIndex)+6; ?>" class="col-head col-wrap show">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon operation-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i>
+                </div>
+          </td>
+         <?php } else { 
+            $startRow = 2; 
+            for ($k = 0; $k < $this->noOfSegment;$k++)
+            { 
+              $b = intval($k)*(3);
+              ?>
+              <?php if($row == intval($startRow+$b) && intval($col) == (intval($this->currentColumnIndex)+4)) { ?>
+              <?php if($row == 2)
+              {?>
+              <td class="ExcelTablerow" ><?php echo $this->roleArray[0]['group']; ?></td>
+              <?php } else { ?>
+              <td class="ExcelTablerow" ><?php echo $this->roleArray[1]['group']; ?></td>
+              <?php  } ?>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[0]['actor-event']; ?></td>
+              <td class="ExcelTablerow border-light-top"><?php echo $this->roleArray[0]['phase']; ?></td>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[0]['event']; ?></td>
+              <td class="ExcelTablerow Role-segment process-series"><?php echo $this->roleArray[0]['process']; ?>
+              </td>
+              <?php  
+              }
+            else if($row == intval($startRow+$b+1) && intval($col) == (intval($this->currentColumnIndex)+4)) {?>
+              <td class="ExcelTablerow"><?php echo $this->roleArray[1]['group']; ?></td>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[1]['actor-event']; ?></td>
+              <td class="ExcelTablerow "><?php echo $this->roleArray[1]['phase']; ?></td>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[1]['event']; ?></td>
+              <td class="ExcelTablerow Role-segment process-series"><?php echo $this->roleArray[1]['process']; ?>
+              </td>
+              <?php }  
+              else if($row == intval($startRow+$b+2) && intval($col) == (intval($this->currentColumnIndex)+4)) { ?>
+              <td class="ExcelTablerow"><?php echo $this->roleArray[2]['group']; ?></td>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[2]['actor-event']; ?></td>
+              <td class="ExcelTablerow"><?php echo $this->roleArray[2]['phase']; ?></td>
+              <td class="ExcelTablerow collapse event"><?php echo $this->roleArray[2]['event']; ?></td>
+              <td class="ExcelTablerow border-light-bottom Role-segment process-series "><?php echo $this->roleArray[2]['process']; ?>
+              </td>
+              <?php } ?>
+          <?php 
+        } ?>
+        <?php } ?>
+    <?php } ?>
+<?php } ?>
+        </tr>
+        
+        <?php } ?>
+    </tbody>
+</table>

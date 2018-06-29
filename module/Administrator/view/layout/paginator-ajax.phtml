@@ -1,0 +1,66 @@
+<?php //if ($this->pageCount > 1) { ?>
+<ul class="pagination pagination-sm strat_click pagination_col">
+    <?php if (isset($this->first) &&  $this->current != $this->first): ?>
+        <li>
+            <?php if($this->action == "") { ?>
+              
+             <a style="cursor:pointer;" onclick="paginationAjax('<?php echo $this->url($this->route);?>',<?php echo $this->first; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-double-left"></i></span>
+             </a>
+             <a style="cursor:pointer;" onclick="paginationAjax('<?php echo $this->url($this->route);?>',<?php echo $this->first; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-left"></i></span>
+             </a>
+             <?php } ?>
+             <?php if($this->action != "") { ?>
+             
+             <a style="cursor:pointer;" onclick="paginationInstanceAjax('<?php echo $this->url($this->route)."/".$this->action;?>',<?php echo $this->first; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-double-left"></i></span>
+             </a>
+             <a style="cursor:pointer;" onclick="paginationInstanceAjax('<?php echo $this->url($this->route)."/".$this->action;?>',<?php echo $this->first; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-left"></i></span>
+             </a>
+             <?php } ?>
+        </li>
+    <?php endif; ?> 
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+         <li>
+            <?php if($this->action == "") { ?>
+             <a style="cursor:pointer;" onclick="paginationAjax('<?php echo $this->url($this->route);?>',<?php echo $page; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><?php echo $page; ?></span>
+             </a>
+             <?php } ?>
+             <?php if($this->action != "") { ?>
+             <a style="cursor:pointer;" onclick="paginationInstanceAjax('<?php echo $this->url($this->route)."/".$this->action;?>',<?php echo $page; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><?php echo $page; ?></span>
+             </a>
+             <?php } ?>
+         </li>
+        <?php else: ?>
+         <li>
+             <a><span class="current"><?php echo $page; ?></span></a>
+         </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+     <?php if (isset($this->last) &&  $this->current != $this->last): ?>
+        <li>
+             <?php if($this->action == "") { ?>
+             <a style="cursor:pointer;" onclick="paginationAjax('<?php echo $this->url($this->route);?>',<?php echo $this->last; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-right"></i></span>
+             </a>
+             <a style="cursor:pointer;" onclick="paginationAjax('<?php echo $this->url($this->route);?>',<?php echo $this->last; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-double-right"></i></span>
+             </a>
+             <?php } ?>
+             <?php if($this->action != "") { ?>
+             <a style="cursor:pointer;" onclick="paginationInstanceAjax('<?php echo $this->url($this->route)."/".$this->action;?>',<?php echo $this->last; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-right"></i></span>
+             </a>
+             <a style="cursor:pointer;" onclick="paginationInstanceAjax('<?php echo $this->url($this->route)."/".$this->action;?>',<?php echo $this->last; ?>,'<?php echo $order_by; ?>','<?php echo $order; ?>',<?php echo $itemPerPage; ?>)" >
+                 <span><i class="fa fa-angle-double-right"></i></span>
+             </a>
+             <?php } ?>
+        </li>
+    <?php endif; ?>
+</ul>
+<?php //} ?>

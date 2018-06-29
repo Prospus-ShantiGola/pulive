@@ -1,0 +1,62 @@
+$header-bg		: 	#868b8e;
+$hedaerHT		:	40px;
+$logoBG			:   #24ba9f;
+$logo-size		:  25px;
+
+.sass-lang {
+	.header{
+		width:$fullWidth;
+		height: $hedaerHT;
+		background:$header-bg;
+		color:$whiteColor;
+	}
+}
+
+.sass-lang {
+	.logo{
+		background:$logoBG;
+		padding:8px 12px;
+		img {
+		    width: $logo-size;
+		}
+	}
+}
+
+.sass-lang {
+	.top-header ul{
+		li{
+			padding-right:10px;
+		}
+
+		li:last-child{
+			padding-right:$zero;
+			line-height:$zero;
+		}
+
+		a{
+			color:$whiteColor;
+
+			&:hover,
+			&:focus,
+			&:active,
+			&:visited	
+			{
+				color:$whiteColor;
+			}
+		}	
+
+		img.user-icon{
+			width: 50px;
+			height: 40px;
+		}
+	}
+}
+.sass-lang {
+	.top-header-right {
+		ul{
+			display: $flex;
+	    	align-items: $center;
+	    	line-height: $zero;
+		}	    
+	}
+}

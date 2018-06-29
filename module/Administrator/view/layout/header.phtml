@@ -1,0 +1,169 @@
+<body>
+<div id="pastedText" contenteditable="true"></div>
+<header class="header-temp" >
+
+    <div class="header-wrapper clearfix">
+        <div class="logo left ">
+            <a href="#" class="strat_click" strat-id="n_ajax" ><img src="<?php echo PU_CDN_URL; ?>public/img/prospus-white-logo.png" alt=""></a>
+        </div>
+
+        <div class="user-roles left">
+          <div class="user-wrap dropdown users-role">
+                <a data-toggle="dropdown" href="javascript:void(0);" class="select-user-role strat_click" strat-id="n_ajax">
+                    <span class="changed-user-role" data-roleid="">
+                      Prospus . Guest
+                    </span>
+
+                    <?php /* ?><span class="caret-img">
+                      <img src="<?php echo $this->basePath(); ?>/img/down_arrow.png" alt="" class="img-responsive">
+                    </span> <?php */ ?>
+
+                </a>
+                <?php /* ?><ul id="user-roles-ul" class="dropdown-menu select-user-role" role="menu" aria-labelledby="dLabel">
+                  <li class="active-list" onclick="" ><a data-role-id="" class="roles"><span class="icon dot"></span>Content Administrator</a></li>
+                  <li class="active-list" onclick="" ><a data-role-id="" class="roles"><span class="icon dot"></span>Domain Administrator</a></li>
+                  <li class="active-list" onclick="" ><a data-role-id="" class="roles"><span class="icon dot"></span>Program Administrator</a></li>
+                </ul>
+                <?php */ ?>
+          </div>
+        </div>
+
+        <div class="right-header clearfix right">
+            <?php
+                $initials = '';
+                $imgPath = 0;
+                //echo '<pre>'; print_r(array(PREFIX,$_SESSION));
+                if(isset($_SESSION[PREFIX.'user_info']) && !empty($_SESSION[PREFIX.'user_info'])) {
+                    // user informatin from SESSION
+                    $userInfo          = $_SESSION[PREFIX . 'user_info'];
+                    $session_file_name = $_SESSION[PREFIX . 'session_file'];
+                    $uniqueId1         = $_SESSION[PREFIX . 'uniqueId1'];
+                    $initials          = strtoupper(substr($userInfo['first_name'],0,1).substr($userInfo['last_name'],0,1));
+                    // if user profile image exists, show image, else show initials
+                    if(isset($userInfo['profile_image']) && !empty($userInfo['profile_image'])){
+                        $imgPath = $userInfo["profile_image"];
+                        $profileImageHtml = '<img src="'.$imgPath.'" alt="drop arrow">';
+                        $imgPath = '"'.$userInfo["profile_image"].'"';
+                    } else {
+                        $profileImageHtml = '<span class="initials-box" >'.$initials.'</span>';
+                    }
+                    $notificationCount = $this->plugin('pu_view_helper')->getNotificationCount($userInfo['node_id']);
+                    $notificationCount = $notificationCount ? $notificationCount : 0;
+                    ?>
+                    <div class="login-box">
+                      <div class="links-box">
+                          <div class="user-action dropdown ">
+                              <a data-toggle="dropdown" href="javascript:void(0);">
+                                  <div class="user-icon">
+                                      <?php echo $profileImageHtml; ?>
+                                  </div>
+                              </a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                  <li class=""><a href="javascript:void(0)" class="logout-hidden logout-class logout-user-all">Logout</a></li>
+                                  <li class="inactive"><a href="javascript:void(0)" class="">Settings</a></li>
+                              </ul>
+                          </div>
+                          <input class="logout-class" type="hidden" id="first_name" name="first_name" value="<?php echo $userInfo['first_name']; ?>">
+                          <input type="hidden" class="logout-class" id="last_name" name="last_name" value="<?php echo $userInfo['last_name']; ?>">
+                          <input class="logout-class" type="hidden" id="date_of_birth" name="date_of_birth" value="">
+                          <input class="logout-class" type="hidden" id="email_address" name="email_address" value="<?php echo $userInfo['email_address']; ?>">
+                          <input class="logout-class" type="hidden" id="node_id" name="node_id" value="<?php echo $userInfo['node_id']; ?>">
+                      </div>
+                    </div>
+                    <div class="user-img mini-chat inactive" id="miniDialogue" ><i class="icon sm-mini-chat"></i></div>
+                     <div class="user-img ">
+                        <span id="courseNotification">
+                          <i class="icon-sm notification-white"></i>
+                          <i class="notification-counter notification-counter-js <?php echo $x = $notificationCount ? '' : 'hide' ?>"><?php echo $notificationCount; ?></i>
+                        </span>
+                    </div>
+                    <div class="user-img inactive"><i class="icon-sm search-white"></i></div>
+
+
+                    <?php
+                } else {
+                    ?><a class="signup-col" href="#login"><i class="icon-sm user-dp"></i><span>LOGIN/REGISTER</span></a><?php
+                }
+            ?>
+
+
+        </div>
+    </div>
+</header>
+<script type="text/javascript">
+    var session_file_name   = '<?php echo $session_file_name; ?>';
+    var setUserID           = '<?php echo $userInfo["node_id"]; ?>';
+    var setUsername         = '<?php echo $userInfo["first_name"] . ' ' . $userInfo["last_name"]; ?>';
+    var firstName           = '<?php echo $userInfo["first_name"]; ?>';
+    var lastName            = '<?php echo $userInfo["last_name"]; ?>';
+    var initialName         = '<?php echo $initials; ?>';
+    var profileImage        = <?php echo $imgPath; ?>;
+    var FLASH_NOTIFICATION_COUNT = <?php echo FLASH_NOTIFICATION_COUNT; ?>;
+    var PU_CDN_URL = '<?php echo PU_CDN_URL; ?>';
+    /*
+     * Created By: Divya Rajput
+     * Date: 9th August 2017 
+     * Purpose: For creating Singup JSON data 
+     */
+    var form_fields = JSON.stringify(<?php echo SIGNUP_FORM_DATA; ?>);
+    /*End Here*/
+</script>
+<?php /* ?>
+<div class="wel-wrap" style="display: none;">
+   <div class="wel-container">
+        <div class="welcm-container">
+          <div class="wlcm-table">
+              <div class="welcm-main">
+                  <div class="wlcm-logo">
+                      <img src="<?php echo PU_CDN_URL; ?>public/img/prospus-black-logo.png">
+                  </div>
+                  <!-- Slider -->
+                  <div class="slider">
+                      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                          <div class="item active">
+                            <div class="wlcm-text">
+                              <h1>Lorem Ipsum</h1>
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                          </div>
+                          </div>
+                          <div class="item">
+                           <div class="wlcm-text">
+                              <h1>Lorem Ipsum</h1>
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                          </div>
+                          </div>
+                          <div class="item">
+                           <div class="wlcm-text">
+                              <h1 >Lorem Ipsum</h1>
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                          </div>
+                          </div>
+                        </div>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <footer>
+             <div class="wlcm-text">
+               <div class="progress" id="progressBar">
+                  <div class="rounded">
+                    <div class="progress-bar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                  </div>
+                </div>
+                 <p class="loader">Loading....</p>
+              </div>
+        </footer>
+    </div>
+</div>
+<?php */ ?>

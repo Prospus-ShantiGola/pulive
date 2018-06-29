@@ -1,0 +1,20 @@
+@media screen and (max-width: 1024px) {
+	.services p {
+			width: 80%;
+	}
+}
+
+
+@media screen and (max-width: 1367px) {
+    .canvasMidPane.activePane #edtCanvasView{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 1024px) {
+    #edtCanvasView{
+        width: 100%;
+    }
+    #edtInnerCanvasView .innerCanvasContainer{
+        padding: 10px;
+    }
+}

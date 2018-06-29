@@ -1,0 +1,280 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+			for($row=0;$row<2;$row++) {
+				?>
+			   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+				  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+				<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+          <?php if(intval($col) == (intval($this->currentColumnIndex))) {  ?>
+             <?php if(intval($row) == 0) { ?>
+             
+                <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+1; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+6; ?></span>
+            <i class="fa fa-plus add add-operation check-domain"></i>
+             <div class="add-col-wrap add-check-domain">
+                    <ul class="dropdown-menu show-<?php echo intval($this->currentColumnIndex)+6; ?>" >
+                       <li role="presentation" class="">
+                            <a role="menuitem" tabindex="-1" class="">
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add right
+                            </a>
+                            <ul class="sub-item">
+                                <li role="presentation" class="">
+                                    <a role="menuitem" tabindex="-1" href="#" class="">
+                                        <div class="node-circle node-white-circle-expanded">N</div>
+                                        Role 
+                                    </a>
+                                    <ul class="sub-item">
+                                        <li><a href="#" class="addDomain"><div class="node-circle node-white-circle">N</div>Logic</a></li>
+                                        <li><a href="#" class="addSegmentRole"><div class="node-circle node-white-circle">N</div>Human</a></li>
+                                    </ul>
+                                </li>                                            
+                            </ul>
+                        </li>
+                        <li role="presentation" class="deleteSegmentRole roleSeries">
+                            <a role="menuitem" tabindex="-1" href="#" class="">
+                                <div class="node-circle node-white-circle">N</div>
+                                Delete Series 
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+              
+            </td>
+               
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top   col-<?php echo intval($this->currentColumnIndex)+1; ?>">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+1; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon role-icon domain-count"></span><span class="col-head-title">Domain</span><i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+            <?php }  ?>
+             
+            <?php } ?>
+				  <?php } ?>
+			   </tr>
+			<?php } ?>
+      </tbody>
+   </table>
+</div>
+
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+    <tbody>
+      <?php 
+      $incrmentCounter  = 3;
+			$logicLastLength = intval($this->currentRowIndex)+intval($this->currentLength)-2;
+
+			 $index = 0;
+       $lastRow =  ($logicLastLength)+1;
+
+        if($this->suboperationCount < 2){
+            $startcol = intval($this->currentColumnIndex)+2;
+            $endcol   = intval($this->currentColumnIndex)+3;
+        } else {
+            $startcol = intval($this->currentColumnIndex)+ 2;
+            $endcol = intval($this->currentColumnIndex)  + intval($this->suboperationCount*2);
+        }
+
+
+			 for($row=0;$row<count($this->tableDataArray);$row++) {?>
+
+        <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+           <?php if(($row == $lastRow) && ($col >= $startcol && $col <= intval($endcol))) { ?>
+              
+              <?php if($this->suboperationCount==0){ ?>
+              <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?> </td>  
+              <?php } else { ?>
+                <td class="role operation-series"><div class="blank-div segment-node"></div> </td>
+              <?php } ?>
+
+            <?php } else {?>
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?> </td>
+            <?php }?>
+
+            <?php if(intval($col) == (intval($this->currentColumnIndex))) {  ?>
+             <?php if(intval($row) == 0) { ?>
+             
+                <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+1; ?>"><span class="top-col">
+                <?php echo intval($this->currentColumnIndex)+6; ?></span>
+            <i class="fa fa-plus add add-operation check-domain show"></i>
+                <div class="add-col-wrap add-check-domain">
+                    <ul class="dropdown-menu show-<?php echo intval($this->currentColumnIndex)+1; ?> display-delete-class" >
+                       <li role="presentation" class="">
+                            <a role="menuitem" tabindex="-1" class="">
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add right
+                            </a>
+                           <ul class="sub-item">
+                                <li role="presentation" class="">
+                                    <a role="menuitem" tabindex="-1" href="#" class="">
+                                        <div class="node-circle node-white-circle-expanded">N</div>
+                                        Role 
+                                    </a>
+                                    <ul class="sub-item">
+                                        <li><a href="#" class="addDomain"><div class="node-circle node-white-circle">N</div>Logic</a></li>
+                                        <li><a href="#" class="addSegmentRole"><div class="node-circle node-white-circle">N</div>Human</a></li>
+                                    </ul>
+                                </li>                                            
+                            </ul>
+                        </li>
+                        <li role="presentation" class="deleteSegmentRole roleSeries">
+                                    <a role="menuitem" tabindex="-1" href="#" class="">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Delete Series 
+                                    </a>
+                                </li>
+                    </ul>
+                </div>
+            </td>
+               
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+1; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon role-icon domain-count"></span><span class="col-head-title">Domain</span><i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+            <?php } 
+					 else {?>
+                    <td class="ExcelTablerow operation-series role creation-bg domain "><?php echo $this->temproleArray[0]['domain_series']; ?></td>
+                    <?php            
+                    } 
+              	} 
+             
+
+         } ?>
+        </tr>
+		
+		<?php if(intval($row) ==  intval($logicLastLength)) {?>
+        <tr class="" >
+      <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2)+intval($this->eventCount));$col++) { ?>
+      		<?php if(intval($this->currentCol) == intval($col)) { ?>
+           
+           <td class="ExcelTablerow operation-series operation1 border-light-bottom "><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['operation1']; ?></td>
+           <td class="ExcelTablerow operation-series operation-event"><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['event_operation']; ?></td>
+
+            <?php  
+           if($this->suboperationCount > 0) {
+                for($o = 0;$o < (intval($this->suboperationCount));$o++){ ?>
+                   <td class="ExcelTablerow border-light-bottom creation-bg operation-series sub-operation "><?php echo $this->subOperationArray[$incrmentCounter]['sub_operation1']; ?></td>
+                <td class="ExcelTablerow border-light-bottom  operation-series role sub-operation role"><?php echo $this->subOperationArray[$incrmentCounter]['sub_event_operation']; ?></td>
+            <?php } 
+
+            } ?> 
+
+            <td class="ExcelTablerow operation-series operation2"><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['operation2']; ?></td> 
+            <td class="ExcelTablerow operation-series operation-event"><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['event']; ?></td> 
+
+             <?php if($this->eventCount > 0){
+                for($e = 0;$e < $this->eventCount;$e++){ ?>
+          <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[$incrmentCounter]['eventStatus']; ?></td>
+            <?php } }  ?>
+
+            <td class="ExcelTablerow operation-series role"><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['role']; ?></td> 
+            <?php $countSerielNo = 5; ?>
+                  <?php 
+                  if($this->noOfRole > 0){
+                    for($k = 0;$k < $this->noOfRole;$k++){ 
+                    $countSerielNo = intval($k)+5; ?>
+            <td class="ExcelTablerow operation-series role"><?php echo $this->roleArray[$incrmentCounter]['role_series']; ?></td>
+
+            <?php } }  ?>
+
+             <td class="ExcelTablerow operation-series role domain"><?php echo $this->domainArray[$incrmentCounter]['domain']; ?></td>
+
+			<td class="ExcelTablerow operation-series system"><?php echo $this->logicOperationPhaseArray[$incrmentCounter]['system']; ?></td>
+          <?php } else { ?>
+          
+           <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?> "><?php if(intval($this->currentCol) > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+          
+          <?php } ?>
+        <?php } ?>
+        </tr>
+  
+      <?php for($i=0;$i<(count($this->logicOperationPhaseArray)-1);$i++) {
+
+        if($i == 0 && $incrmentCounter=='3'){
+          $AddClass = 'creation-bg border-light-top border-light-bottom blankRowTd';
+          $bolderLeft = 'blankLeftBorder';
+          $bolderRight = 'blankRightBorder';
+          $bgclass = '';
+
+        }
+        else if($i == 1 && $incrmentCounter=='3'){
+          $bgclass = 'creation-bg';
+          $bolderLeft = '';
+          $bolderRight = '';
+          $AddClass = ''; 
+        }
+        
+      else {
+          $AddClass = '';  
+          $bolderLeft = '';
+          $bolderRight = '';
+          $bgclass = '';
+          
+         }
+        
+       ?>
+      	<tr class="" >
+      <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2));$col++){ 
+
+          if($col % 2 == 0 ){
+            $bolderClass = 'border-right';
+          }
+          else {
+           $bolderClass = ''; 
+          }
+
+       ?>
+      		<?php if(intval($this->currentCol) == intval($col)) { ?>
+           <td class="ExcelTablerow operation-series operation1 <?php echo $AddClass?> <?php echo $bolderLeft?>" >
+			 <?php echo $this->logicOperationPhaseArray[$i]['operation1']; ?></td>
+             <td class="ExcelTablerow operation-series operation-event <?php echo $AddClass?>"><?php echo $this->logicOperationPhaseArray[$i]['event_operation']; ?></td> 
+             
+              <?php if($this->suboperationCount > 0) {
+                    for($o = 0;$o < (intval($this->suboperationCount));$o++){   ?>
+                       <td class="ExcelTablerow operation-series role <?php echo $AddClass?>"><?php echo $this->subOperationArray[$i]['sub_operation1']; ?></td>
+                       <td class="ExcelTablerow operation-series role <?php echo $AddClass?>"><?php echo $this->subOperationArray[$i]['sub_event_operation']; ?></td>
+          <?php } }?>
+
+
+
+          
+            <td class="ExcelTablerow operation-series operation2 <?php echo $AddClass?>"><?php echo $this->logicOperationPhaseArray[$i]['operation2']; ?></td> 
+            <td class="ExcelTablerow operation-series operation-event <?php echo $AddClass?>"><?php echo $this->logicOperationPhaseArray[$i]['event']; ?></td> 
+
+            <?php if($this->eventCount > 0){
+                for($e = 0;$e < $this->eventCount;$e++){ ?>
+          <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[$i]['eventStatus']; ?></td>
+            <?php } }  ?>
+            
+            <td class="ExcelTablerow operation-series role <?php echo $AddClass?>">	<?php echo $this->logicOperationPhaseArray[$i]['role']; ?></td> 
+            
+            <?php $countSerielNo = 5;
+                    if($this->noOfRole > 0){
+                      for($k = 0;$k < $this->noOfRole;$k++){ 
+                    $countSerielNo = intval($k)+5; ?>
+                    <td class="ExcelTablerow operation-series role <?php echo $AddClass?>"><?php echo $this->roleArray[$i]['role_series']; ?></td>
+            <?php } } ?>
+            
+              <td class="ExcelTablerow operation-series role domain <?php echo $bgclass;?><?php echo $AddClass?>"><?php echo $this->domainArray[$i]['domain']; ?></td>
+
+
+            <td class="ExcelTablerow operation-series system <?php echo $AddClass?> <?php echo $bolderRight;?>"><?php echo $this->logicOperationPhaseArray[0]['system']; ?></td>
+          <?php } else { ?>
+          <td class="  <?php echo $bolderClass?> col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow <?php } ?> ">
+          <div class="blank-div segment-node <?php if(intval($col) == 1 ){ ?> borderDashed <?php }?>"></div></td>
+          <?php } ?>
+        <?php } ?>
+        </tr>
+     <?php } ?> 
+  <?php } ?>
+
+<?php } ?>
+</tbody>
+</table>
+

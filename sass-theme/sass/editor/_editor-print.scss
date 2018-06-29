@@ -1,0 +1,55 @@
+@page  
+{ 
+    size: auto;
+    margin: 0.30in 0.30in 0.30in 0.30in;
+
+} 
+* {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+body{
+ margin: 0mm 0mm !important;
+}
+
+.edtContainer{
+	border:0px !important;
+}
+
+.edtColumns, .edtHeader, #hiddenTemp, .numbering{
+	display:none !important;
+}
+
+#edt{
+	display:block;
+	margin:0px !important;
+	padding:0px;
+	color: #444;
+}
+
+#edt .edtParagraph{
+	padding-bottom:5px;
+	font-size:12px;
+	height:auto !important;
+	line-height:none !important;
+	color: #444;
+}
+#edt .edtParagraph{
+	font-size:12px;
+	color:#444;
+}
+
+.statementson .edt .edtParagraph::before{
+	font-size:10pt !important;
+	height: auto !important;
+}
+.edtContainer{
+	width: 100%;
+	font-size:12px;
+	color: #444;
+}
+table td{
+	font-size: 12px;
+	color: #444;
+	line-height: 22px;
+}

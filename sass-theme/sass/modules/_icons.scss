@@ -1,0 +1,449 @@
+$iconWT		:		20px;
+$iconHT		:		20px;
+$iconBG		:       green;
+$sm-icon	:       30px;
+$md-icon	:       60px;
+$lg-icon	:       90px;
+$leftActionDetailBg     :     #242f43;
+
+.sass-lang {
+	.Icon{
+		width: $iconWT;
+		height: $iconHT;
+		background: url(../img/sprite_icons.svg);
+		background-position:0px 0px;
+		line-height:$zero;
+		float: $left;		
+	}
+	.dialogue-chat{
+		background-position:-79px -40px;
+	}
+	.chat{
+		background-position:-40px 318px;
+	}
+	.voice{
+		background-position:-160px -60px;
+	}
+	.video{
+		background-position:-159px -100px;
+	}
+	.qa{
+		background-position:-160px -141px;
+	}
+	.forum{
+		background-position:-121px -339px;
+	}
+	.letter{
+		background-position:-121px -261px;
+	}
+	.notification{
+		background-position:-40px -60px;
+	}
+	.actor{
+		background-position:-120px -60px;
+	}	
+	.dialogue{
+		background-position:-120px -99px;
+	}	
+	.event{
+		background-position:-40px -139px;
+	}	
+	.resources{
+		background-position:-40px -218px;
+	}
+	.tick{
+		background-position:-79px -359px;
+	}
+	.white-tick {
+	    background-position: -78px -399px;
+	}
+	.questions{
+		background-position:-79px -499px;
+	}
+	.email{
+		background-position:-240px 397px;
+	}
+	.course{
+		background-position:-201px -839px;
+	}
+	.smiley {
+	    background-position: -240px 40px;
+	}
+	.image {
+    	background-position: -241px 80px;
+	}
+	.forms{
+		background-position: -242px 200px;
+	}
+	.filter {
+	    background-position: -241px 161px;
+	}
+	.plus{
+		background-position:-82px -738px;
+	}
+	.close-lg{
+		background-position:-78px -658px;
+	}
+	.close-white{
+		background-position:0px -318px
+	}
+	.close-sm {
+	    background-position: -79px -737px;
+	    transform: rotate(225deg);
+	}
+	.spreadsheet{
+		background-position:-161px -182px;
+	}
+	.flowchart{
+		background-position:-159px -221px;
+	}
+	.diagram{
+		background-position:-159px -341px;
+	}
+	.drawing{
+		background-position:-160px -300px;
+	}
+	.links{
+		background-position:-160px -260px;
+	}
+	.pin{
+		background-position:-199px -459px
+	}
+	.unpin{
+		background-position:-198px -499px
+	}
+	.faviourite{
+		background-position:-200px -539px
+	}
+	.globe{
+		background-position:-199px -778px
+	}
+	.dot-sm {
+    	background-position:-241px 241px;
+	}
+	.dot-md {
+	    background-position:-239px 281px;
+	    height: 22px;
+	}
+	.user{
+		background-position:-238px 359px;
+	}
+	.attachment{
+	    background-position: -280px 419px;
+	}
+	.expand{
+		background-position:-279px 380px;
+	}
+	.collapse-icon {
+	    background-position: -280px 340px;
+	}
+	.actor-md {
+	    background-position: -280px 300px;
+	}
+	.send {
+	    background-position: -81px -696px;
+	}
+	.reply {
+	    background-position: -280px 260px;
+	}
+
+
+	.dashboard-white{
+		background-position:0px -40px;
+	}
+	.dialogue-white {
+	    background-position: -241px 121px;
+	}
+	.search-white{
+		background-position:-80px -1px;
+	}
+	.notification-white{
+		background-position:-40px -20px;
+	}
+	.actor-white{
+		background-position:0px -120px;
+	}
+	.setting-white{
+		background-position:0px -200px;
+	}
+	.calendar-white {
+	    background-position: 0px -240px;
+	}
+	.close-white {
+	    background-position: 0px -319px;
+	}
+	.user-white{
+		background-position:0px -119px;
+	}
+	.chanel-green{
+		background-position:-40px -338px;
+	}
+
+
+	.chanel-white{
+		background-position:-40px -378px;
+	}
+	.user-green{
+		background-position:0px -79px;
+	}
+	.dashboard-green{
+		background-position:0px 0px;
+	}
+	.close-green {
+	    background-position: 0px -358px;
+	}
+	.setting-green{
+		background-position:0px -159px;
+	}
+	.calendar-green {
+	    background-position: 0px -280px;
+	}
+	.search-green {
+	    background-position: -239px 318px;
+	}	
+	.action-green{
+		background-position:-84px -160px;
+	}
+	.view-green{
+		background-position:-79px -201px
+	}
+	.filter-green{
+		background-position:-80px -120px
+	}
+	.actor-green{
+		background-position:-120px -20px;
+	}
+	.dialogue-green{
+		background-position:-120px -139px;
+	}
+	.event-green{
+		background-position:-40px -179px;
+	}
+	.resources-green{
+		background-position:-40px -259px;
+	}
+	.home-green {
+	    background-position: -160px -797px;
+	}
+	.pin {
+	    background-position:-359px -279px;
+	}
+	.unpin {
+	    background-position: -359px -319px;
+	}
+
+}
+.sass-lang {
+	.left-action-bar{
+		> ul{
+			> li > a:hover,
+			> li > a.active{
+				background: $leftActionDetailBg;
+				cursor: pointer;				
+				i.dashboard-green{
+					background-position:0 -40px;
+				}
+				i.user-green{
+					background-position:0px -120px;
+				}
+				
+				i.resources-green{
+					background-position:0 -40px;
+				}
+				
+				i.chanel-green{
+					background-position:-40px -377px;
+				}
+
+			}
+		}
+	}
+}
+.sass-lang {
+	.tab{
+		.notification.active{
+			background-position:-279px 140px;
+		}
+		.actor-md.active{
+			background-position:-280px 61px;
+		}
+		.dialogue.active{
+			background-position:-120px -139px;
+		}
+		.resources.active{
+			background-position:-40px -298px;
+		}
+		.event.active{
+			background-position:-40px -178px;
+		}
+		.course.active{
+			background-position:-321px 359px;
+		}
+	}
+}
+.sass-lang {
+	.fixed-Icon {
+	    position: absolute;
+	    bottom: 0;
+	    left: 0;
+	}
+}
+
+.sass-lang {
+	.sm-icon{
+		width:$sm-icon;
+		max-width:$sm-icon;
+	}
+	.md-icon{
+		width:$md-icon;
+		max-width:$md-icon;
+	}
+	.lg-icon{
+		width:$lg-icon;
+		max-width:$lg-icon;
+	}
+}
+.sass-lang {
+	.arrow{
+		position: $relative;
+		&:before,
+		&:after{
+			top: 0px;
+			left:0px;
+			border: $border-size $border-style $border-transparent;
+			content: " ";
+			height: $zero;
+			width: $zero;
+			position: $absolute;
+			pointer-events: $None;
+		}
+		&:before {
+		    border-color: rgba(194, 225, 245, 0);		    
+		    border-width: 12px;
+		    margin-left: -12px;
+		}
+		&:after {
+		    border-color: rgba(136, 183, 213, 0);		    
+		    border-width: 10px;
+		    margin-left: -10px;
+		}
+		
+	}
+	.arrow_down {
+		&:before{
+			border-top-color: $border-gray;
+		}
+		&:after{
+			border-top-color: $border-white;
+		}
+	}
+	.arrow_up{
+		&:before{
+			border-bottom-color: $border-gray;
+			margin-top: -4px;
+		}
+		&:after{
+			border-bottom-color: $border-white;
+		}
+		
+	}
+	.arrow_right{
+		&:before{
+			border-width: 10px;
+			border-left-color: $border-gray;
+			margin-top: 6px;
+			margin-left: 0px;
+		}
+		&:after{
+			border-width: 8px;
+			border-left-color: $border-white;
+			margin-left: 0px;
+			margin-top: 8px;
+		}
+	}
+	.arrow_left{		
+		&:before{
+			border-right-color: $border-gray;
+			margin-top: -4px;
+		}
+		&:after{
+			border-right-color: $border-white;
+		}
+	}
+}
+.sass-lang {
+	.notification_wrap {
+	    position: relative;
+	    .notification_icon {
+		    position: absolute;
+		    background: red;
+		    min-width: 18px;
+		    min-height: 18px;
+		    right: -50%;
+		    top: -50%;
+		    border-radius: 50%;
+		    color: #fff;
+		    display: flex;
+		    flex: 1;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 5px;
+		    font-size: 10px;
+		}
+	}
+}
+.sass-lang {
+	.chat-letter-icon{
+		@include flex;
+		max-width: 150px;
+		width: 150px;
+
+		.Icon{
+			margin-right: $padding-small-horizontal;
+		}
+	}
+}
+.sass-lang {
+	.edtHeader .icon{
+		background-size:inherit;
+	}
+	.edtHeader .icon.doDynamicText {
+	    background-position: -5px -215px;
+	}
+	.edtHeader span.doSplit {
+	    background-position: -34px -184px;
+	}
+	span.icon.doHyperLink {
+	    background-position: -67px -187px;
+	}
+
+	span.icon.doTagFields {
+	    background-position: -97px -126px;
+	}
+	span.icon.doRemoveBlankStatements {
+	    background-position: -96px -185px;
+	}
+	span.icon.doFindReplace {
+	    background-position: -96px -215px;
+	}
+	span.doUndo.icon {
+	    background-position: -120px -36px;
+	}
+	span.doRedo.icon {
+	    background-position: -118px -6px;
+	}
+	span.icon.expand {
+	    background-position: -64px -66px;
+	}
+	span.icon.more-icon {
+		background-position: -67px -4px;
+	}
+	span.icon.doImageUpload {
+	    background-position: -36px -215px;
+	    vertical-align: middle;
+	}
+}
+
+
+
+

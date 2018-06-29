@@ -1,0 +1,2807 @@
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #111;
+    overflow: hidden;
+    font-size: 12px;   
+}
+
+/*------global classes------*/
+#Ref-workflow  .right {
+    float: right;
+}
+#Ref-workflow  .left {
+    float: left;
+}
+/*------global classes end------*/
+#Ref-workflow  .btn {
+    -webkit-border-radius: 2px;
+    -o-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #35484c;
+    min-width: 60px;
+    min-height: 26px;
+    text-transform: capitalize;
+    font-size: 12px;
+    padding: 4px 10px;
+    line-height: normal;
+}
+#Ref-workflow  .btn-style {
+    background-color: #fff;
+    border: 0 none;
+    border:1px solid #35484c;
+}
+#Ref-workflow  .btn-style.active, #Ref-workflow  .btn-style:active {
+    box-shadow:none;
+}
+#Ref-workflow .btn-style:hover,
+#Ref-workflow .btn-style:focus,
+#Ref-workflow .item-list li:hover .btn-style {
+    color: #333;
+    opacity: 0.9;
+}
+#Ref-workflow .btn-default, #Ref-workflow .btn-default[disabled] {
+    background-color: #eee;
+    color: #333;
+}
+#Ref-workflow .btn-sm {
+    border-radius: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 10px 18px 0 14px;
+}
+#Ref-workflow .btn.btn-white:hover,
+#Ref-workflow .btn.btn-white:focus {
+    background-color: #D1D1D1;
+    color: #333;
+}
+#Ref-workflow .btn i {
+    height: 15px;
+    width: 16px;
+    margin-left: -4px;
+    float: none !important;
+    margin-right: 2px;
+    vertical-align: middle;
+    display: inline-block;
+}
+/*------buttons end------*/
+
+#Ref-workflow .form-control {
+    height: 25px;
+    padding: 2px 0 0;
+    font-size: 12px;
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px #333 solid;
+}
+
+#Ref-workflow .form-control:focus {
+    box-shadow: 0 0 0 transparent;
+	border-color: #66afe9;
+}
+
+#Ref-workflow .detail-fields {
+    width: 100%;
+}
+#Ref-workflow .detail-value {
+    float: left;
+    padding: 10px 0 10px 9px;
+    width: 65%;
+    word-break: keep-all;
+    position: relative;
+    color: #555;
+}
+#Ref-workflow .detail-heading {
+    color: #000;
+    display: block;
+    font-size: 21px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+#Ref-workflow .vessel-label,
+#Ref-workflow .detail-label {
+    margin: 10px 0 10px 0;
+    color: #000;
+    width: 35%;
+    /*text-transform: capitalize;*/
+    float: left;
+    font-weight: 600;
+}
+#Ref-workflow .popup-wrapper {
+    background-color: #fff;
+    display: none;
+    height: auto;
+    margin-top: 0;
+    position: absolute;
+    right: -700px;
+    top: 0;
+    width: 100%;
+    z-index: 1020;
+}
+#Ref-workflow .popup-body{
+	height: 100%;
+}
+#Ref-workflow .show-popup {
+    display: block !important;
+}
+#Ref-workflow .show {
+    display: block!important;
+}
+/* New Updations */
+
+#Ref-workflow .icon {
+    background: url("../../img/workflow/all_icons.svg");
+    background-position: 0px 1px;
+    height: 20px;
+    margin: 4px 0 0 28px;
+    width: 20px;
+    display: inline-block;
+}
+#Ref-workflow .icon {
+    margin: 0;
+}
+#Ref-workflow .operation-head .wf-wrap:first-child .wf-role i.section-close {
+    display: none;
+}
+#Ref-workflow .icon.small-close {
+    background-position: -41px -160px;
+}
+#Ref-workflow .icon.workflow {
+    background-position: -38px -202px;
+}
+#Ref-workflow .nano > .nano-pane > .nano-slider {
+    background: none repeat scroll 0 0 #7E7E7E;
+    border-radius: 0;
+}
+#Ref-workflow .nano > .nano-pane {
+    width: 6px;
+    border-radius: 0;
+    right: -1px;
+}
+#Ref-workflow .arrow-up {
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    height: 0;
+    position: absolute;
+    right: 8px;
+    top: -9px;
+    width: 0;
+}
+
+#Ref-workflow .workflow-wrapper {
+    background-color: #efefef;
+    border-left: 1px solid #bfbfbf;
+    position: relative;
+     display: flex;
+    /* overflow-y: auto;
+    overflow-x: hidden;*/
+    z-index: 3;
+}
+#Ref-workflow .workflow-sidebar {
+    width: 200px;
+    float: left;
+    border-right: 1px solid #ccc;
+}
+#Ref-workflow .workflow-sidebar .form-control {
+    height: 25px;
+    margin-top: -4px;
+}
+#Ref-workflow .operation-item,
+#Ref-workflow .operation-sub-item {
+    border-bottom: 1px solid #bfbfbf;
+    /*height: 53px;*/
+    
+    min-height: 54px;
+    padding: 14px 10px;
+    background-color: #ffffff;
+}
+#Ref-workflow .operation-item .title,
+#Ref-workflow .operation-sub-item .title {
+    border: 0 none;
+    float: left;
+    padding: 0;
+    word-break: break-all;          /*Add by sarvjit on 05/10/16*/
+    width: 75%;
+}
+#Ref-workflow .workflow-sidebar .operation-head .title {
+    color: #FF6908;
+    font-weight: 700;
+    cursor: default;
+}
+#Ref-workflow .workflow-sidebar .operation-item span:nth-child(2) {
+    height: 22px;
+    margin-top: 0;
+}
+#Ref-workflow .operation-item {
+    background-color: #fff;
+}
+#Ref-workflow .workflow-item-section {
+    border-right: 1px solid #bfbfbf;
+    float: left;
+    width: 150px;
+}
+#Ref-workflow .operation-status {
+    padding: 12px 20px;
+}
+#Ref-workflow .operation-status .btn {
+    margin-bottom: 10px;
+    width: 100%;
+}
+#Ref-workflow .workflow-editor {
+    background-color: #efefef;
+    /*width: 1000px;*/
+    /*overflow-x: auto;*/
+    
+    float: left;
+    position: relative;
+/*    height: 350px;*/
+}
+#Ref-workflow .workflow-survey-section {
+    float: left;
+}
+#Ref-workflow .workflow-editor .rolesWorkflow {
+    background-color: #fff;
+    float: left;
+}
+#Ref-workflow .workflow-action-col {
+    border-right: 1px solid #bfbfbf;
+    float: left;
+}
+#Ref-workflow .workflow-action-col .operation-item .btn {
+    background-color: #FFF;
+    padding: 1px 4px;
+    vertical-align: top;
+    border-radius: 4px;
+    margin-top: -1px;
+    float: left;
+}
+#Ref-workflow .workflow-action-col .btn i {
+    float: right !important;
+    margin: 0;
+}
+#Ref-workflow .workflow-action-col .operation-head .wf-role {
+    padding: 2px 4px 3px;
+}
+#Ref-workflow .wf-role {
+    margin-right: 5px;
+    width: 190px;
+}
+#Ref-workflow .wf-count {
+    width: 60px;
+}
+#Ref-workflow .workflow-action-block {
+    overflow-y: auto;
+    position: relative;
+    overflow-x: hidden;
+}
+#Ref-workflow .icon.add-small {
+    background-position: -20px -222px;
+}
+#Ref-workflow .icon.added {
+    background-position: 0 -243px;
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+}
+#Ref-workflow .wf-count i {
+    font-size: 20px;
+    height: 20px;
+}
+#Ref-workflow .operation-sub-item i:first-child {
+    font-size: 18px;
+    margin: 0 6px 0 0;
+    float: left;
+}
+#Ref-workflow .operation-head {
+    padding: 15px 10px;
+}
+#Ref-workflow .workflow-action-col .operation-item.operation-head {
+    height: 53px;
+    padding: 14px 10px;
+}
+#Ref-workflow .dropdown-menu.role-count {
+    min-width: 50px;
+    width: 60px;
+}
+#Ref-workflow .dropdown-menu.role-count a {
+    padding: 3px 6px;
+}
+#Ref-workflow .workflow-editor > .nano > .nano-content {
+    overflow-x: auto;
+    overflow-y: hidden;
+    right: 0 !important;
+}
+#Ref-workflow .workflow-editor > .nano > .nano-pane {
+    display: none !important;
+}
+#Ref-workflow .workflow-item-section .operation-head {
+    padding: 12px 20px;
+    background: #EFEFEF;
+    border: none;
+    min-height: initial;
+}
+#Ref-workflow .workflow-item-section .btn {
+    width: 100%;
+    border-radius: 0;
+}
+#Ref-workflow .operation .small-close {
+    margin-right: -4px;
+}
+#Ref-workflow .icon-move {
+    background: url("../../img/workflow/move-icon.svg") 0 bottom rgba(0, 0, 0, 0) no-repeat;
+    height: 17px;
+    width: 15px;
+}
+/* workflow ends here  */
+
+#Ref-workflow .absLinePos1 {
+    left: -1px !important;
+}
+#Ref-workflow .ab-actions {
+    text-align: right;
+    padding: 0 4px;
+}
+#Ref-workflow .ab-actions > a {
+    margin-left: -2px;
+    display: inline-block !important;
+    cursor: pointer;
+}
+#Ref-workflow .action-block-title {
+    color: #000;
+    font-weight: 600;
+    padding: 4px;
+}
+#Ref-workflow .icon.add-note {
+    background-position: -60px -201px;
+}
+#Ref-workflow .icon.view-note {
+    background-position: -82px -201px;
+}
+#Ref-workflow .action-block-title > span:first-child {
+    display: inline-block;
+    width: 90%;
+}
+#Ref-workflow .close-ab {
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 100%;
+    margin: 2px 0 0;
+    text-align: center;
+    width: 10px;
+}
+#Ref-workflow .workflow-action-block .icon.action {
+    background-position: -24px -203px;
+}
+#Ref-workflow .kk .icon.action {
+    vertical-align: top;
+    width: 14px;
+}
+#Ref-workflow .icon.wf-icon {
+    background-position: -39px -201px;
+}
+#Ref-workflow .add-role {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#Ref-workflow .workflow-action-col .operation-head > div {
+    float: left;
+}
+#Ref-workflow .wf-wrap {
+    position: relative;
+    margin-right: 5px;
+    width: auto;
+    min-width: 255px;
+}
+/* workflow Editor Ends */
+#Ref-workflow .workflow-submit-btn .icon.icon-submit {
+    background-position: -102px -377px;
+}
+
+#Ref-workflow .icon-input.icon-save {
+    background-position: -98px -39px;
+}
+#Ref-workflow .icon-input.icon-send {
+    background-position: -98px -99px;
+}
+#Ref-workflow .icon-input.icon-crop {
+    background-position: -99px -157px;
+    min-height: 27px;
+}
+/* ******** workflow dashboard start here ******* */
+
+#Ref-workflow .set-border {
+    border-bottom: 1px solid #bfbfbf;
+    padding-bottom: 10px;
+}
+#Ref-workflow .btn-workflow-panel {
+    margin: 10px 10px 0 10px;
+}
+#Ref-workflow .btn-workflow-panel .btn-white {
+    width: 100%;
+    margin-bottom: 10px;
+}
+#Ref-workflow .btn-workflow-panel .btn-white:last-child {
+    margin-bottom: 0px;
+}
+#Ref-workflow .table-workflow tr th:nth-child(1),
+#Ref-workflow .table-workflow tr td:nth-child(1) {
+    width: 15%;
+    padding-left: 15px;
+}
+#Ref-workflow .table-workflow tr th:nth-child(2),
+#Ref-workflow .table-workflow tr td:nth-child(2) {
+    width: 35%;
+}
+#Ref-workflow .table-workflow tr th:nth-child(3),
+#Ref-workflow .table-workflow tr td:nth-child(3) {
+    width: 30%;
+}
+#Ref-workflow .table-workflow tr th:nth-child(4),
+#Ref-workflow .table-workflow tr td:nth-child(4) {
+    width: 10%;
+}
+#Ref-workflow .table-workflow tr th:nth-child(5),
+#Ref-workflow .table-workflow tr td:nth-child(5) {
+    width: 10%;
+}
+#Ref-workflow .table-workflow tr td:nth-child(1) label {
+    margin-bottom: 0px;
+    padding-top: 5px;
+    line-height: 0px
+}
+#Ref-workflow .table-workflow tr td:nth-child(1) input {
+    margin: 0px;
+}
+#Ref-workflow .table-workflow tr td:nth-child(5) i {
+    font-size: 20px;
+}
+#Ref-workflow .orange-title {
+    color: #ff6908;
+    font-weight: bold;
+
+}
+#Ref-workflow .icon.workflows {
+    background-position: 0 -199px;
+}
+#Ref-workflow .accordion-wrap .icon.workflows {
+    background-position: -2px -204px;
+}
+#Ref-workflow .survey-title {
+    padding: 10px 0 7px 15px;
+    height: 37px;
+}
+#Ref-workflow .survey-type-wrap {
+    width: 100%;
+    float: left;
+    border-top: 1px solid #bfbfbf;
+    height: calc(100% - 101px);
+    overflow-y: auto;
+}
+#Ref-workflow .survey-left-col {
+    float: left;
+    position: relative;
+    border-right: 1px solid #bfbfbf
+}
+#Ref-workflow .survey-right-col {
+    float: left;
+    position: relative;
+    background: #F4F2F3;
+}
+#Ref-workflow .survey-left-wrap {
+    width: 100%;
+    float: left;
+}
+#Ref-workflow .survey-right-col .detail-label {
+    width: 22%
+}
+#Ref-workflow .survey-right-col .detail-value {
+    width: 76%
+}
+
+#Ref-workflow #view-survey-proposal-form .checkbox.first {
+    min-height: inherit;
+}
+
+#Ref-workflow #edit-new-survey-proposal-form .checkbox.first {
+    margin-top: 0;
+    min-height: inherit;
+    margin-bottom: 5px;
+}
+
+#Ref-workflow #view-survey-proposal-form .general-info span{
+    margin-top: 0;
+}
+#Ref-workflow .ui-widget input, #Ref-workflow .ui-widget select, #Ref-workflow .ui-widget textarea, #Ref-workflow .ui-widget button {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+#Ref-workflow .report-wrap {
+    padding-left: 20px;
+}
+#Ref-workflow .report-wrap .checkbox {
+    margin-bottom: 0;
+}
+#Ref-workflow .report-wrap .custom-error-msg {
+    top: -8px;
+}
+input[disabled] + .add-on {
+    cursor: not-allowed;
+}
+/*.professional-detail.disabled .block-title .checkbox label {
+    opacity: 0.6;
+    cursor: not-allowed;
+}*/
+#Ref-workflow .professional-edit-title .checkbox .validetta-bubble {
+    top: 10px !important;
+}
+#Ref-workflow #blk-accreditations .small {
+    margin-bottom: 10px;
+}
+#Ref-workflow .professional-edit-head .custom-error-msg {
+    top: -5px;
+}
+#Ref-workflow .professional-edit-wrap .text-right {
+    max-width: 620px;
+}
+/******** Alert ********/
+#Ref-workflow .alert {
+    color: #fff;
+    text-align:center;
+    font-weight:700;
+    font-size:15px;
+}
+#Ref-workflow .alert-success {
+    background-color: #ff6600;
+    border-color: #ff6600;
+    position:absolute;
+    z-index: 10;
+    top:0;
+    width: 100%;
+}
+#Ref-workflow .full-content .alert-success {
+    width:100% !important;
+}
+#Ref-workflow .alert-danger {
+    background-color:#ff1f1f;
+    border-color: #ff1f1f;
+}
+#Ref-workflow .alert.alert-success, .alert.alert-danger {
+    /*height:43px;*/
+}
+form {
+    margin: 0;
+}
+#Ref-workflow .priority-content .detail-value {
+    font-style: italic;
+}
+#Ref-workflow .table.table-survey-sponsor th:first-child,
+#Ref-workflow .table.table-survey-sponsor td:first-child {
+    width: 30%;
+}
+#Ref-workflow .table.table-survey-sponsor th:nth-child(2),
+#Ref-workflow .table.table-survey-sponsor td:nth-child(2) {
+    width: 45%;
+}
+#Ref-workflow .table.table-survey-sponsor th:nth-child(3),
+#Ref-workflow .table.table-survey-sponsor td:nth-child(3) {
+    width: 25%;
+}
+
+#Ref-workflow .table.choose-surveyor-tbl th:first-child,
+#Ref-workflow .table.choose-surveyor-tbl td:first-child,
+#Ref-workflow .table.table-vessel-owner-actual td:first-child,
+#Ref-workflow .table.table-vessel-manager-actual td:first-child,
+#Ref-workflow .table.table-vessel-administrator-actual td:first-child{
+    width: 10%;
+}
+#Ref-workflow .table.choose-surveyor-tbl th:nth-child(2),
+#Ref-workflow .table.choose-surveyor-tbl td:nth-child(2),
+#Ref-workflow .table.table-vessel-owner-actual td:nth-child(2),
+#Ref-workflow .table.table-vessel-manager-actual td:nth-child(2),
+#Ref-workflow .table.table-vessel-administrator-actual td:nth-child(2) {
+    width: 25%;
+}
+#Ref-workflow .table.choose-surveyor-tbl th:nth-child(3),
+#Ref-workflow .table.choose-surveyor-tbl td:nth-child(3),
+#Ref-workflow .table.table-vessel-owner-actual td:nth-child(3),
+#Ref-workflow .table.table-vessel-manager-actual td:nth-child(3),
+#Ref-workflow .table.table-vessel-administrator-actual td:nth-child(3){
+    width: 40%;
+    text-transform: lowercase;
+}
+#Ref-workflow .table.choose-surveyor-tbl th:nth-child(4),
+#Ref-workflow .table.choose-surveyor-tbl td:nth-child(4),
+#Ref-workflow .table.table-vessel-owner-actual td:nth-child(4),
+#Ref-workflow .table.table-vessel-manager-actual td:nth-child(4),
+#Ref-workflow .table.table-vessel-administrator-actual td:nth-child(4){
+    width: 25%;
+}
+
+#Ref-workflow .ui-datepicker-buttonpane .ui-priority-secondary {
+    display: none;
+}
+#Ref-workflow .specialistContainer {
+    margin-top: 13px;
+}
+#Ref-workflow #view-survey-proposal-form .specialistContainer {
+    margin-top: 0;
+}
+#Ref-workflow .overview-waiting ._jsPlumb_endpoint_anchor_{
+    background-color: #CCC;
+}
+#Ref-workflow .role-manage-wrap .small {
+    padding-left: 20px;
+    margin-top: 0;
+    display: inline-block;
+}
+#Ref-workflow .edit-form-data .role-manage-wrap .small {
+    margin-top: 0;
+}
+#Ref-workflow .view-professional .checkbox label {
+    padding-left: 0;
+}
+.industry-wrap .small,
+#Ref-workflow #view-survey-proposal-form .input-append.date, 
+#Ref-workflow #view-survey-proposal-form .area-field {
+    padding-left: 20px;
+}
+#Ref-workflow .small-accept + .small {
+    padding-left: 20px;
+    margin-top: -3px;
+}
+#Ref-workflow .choose-relation .sub-title {
+    margin: 10px 0;
+    font-weight: 600;
+}
+#Ref-workflow .general-info + label {
+    margin-top: 3px;
+}
+#Ref-workflow .phase1 .small-accept {
+    margin-top: -35px;
+}
+#Ref-workflow .firefox .phase1 .small-accept {
+    margin-top: -27px;
+}
+#Ref-workflow #blk-scope .detail-wrap > div:last-child .detail-title {
+    margin-bottom: 0;
+}
+#Ref-workflow #blk-scope .detail-wrap .detail-title {
+    margin: 5px 0 10px;
+}
+#Ref-workflow .relation-options .radio:nth-last-child(2) {
+    margin-bottom: 0;
+}
+#Ref-workflow .info-wrap {
+    padding: 10px 15px;
+}
+/*last work*/
+/********** setting pages css ***********/
+
+#Ref-workflow .right-edit-btn {
+    margin: -28px 0 10px;
+    text-align: right;
+}
+#Ref-workflow .fw-form .right-edit-btn {
+    margin: -20px 0 10px;
+}
+#Ref-workflow .employer-detail {
+    position: relative;
+}
+#Ref-workflow .right-edit-bottom {
+    margin: 5px 0;
+    text-align: right;
+}
+#Ref-workflow .fw-form .right-edit-bottom,
+#Ref-workflow .fw-form .right-edit-btn {
+    float: none;
+    max-width: 582px;
+}
+
+#Ref-workflow .margin-btm-zero {
+    margin-bottom: 0;
+}
+#Ref-workflow .ind-sec-wrap {
+    border-bottom: 1px #ccc solid;
+    position: relative;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+#Ref-workflow .ind-sec ul {
+    margin: 0;
+}
+#Ref-workflow .ind-sec li {
+    margin: 10px 20px;
+    list-style: inherit;
+}
+#Ref-workflow .ind-sec li:last-child {
+    margin-bottom: 0;
+}
+#Ref-workflow .modal-body h2 {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+#Ref-workflow .margin-zero {
+    margin: 0 0 10px;
+}
+#Ref-workflow .role-manage-head,
+#Ref-workflow .professional-edit-head {
+    padding-left: 20px;
+    padding-top: 2px;
+    position: relative;
+}
+#Ref-workflow .role-manage-head {
+    margin: 0px 0 -10px;
+}
+#Ref-workflow .role-manage-head li ul,
+#Ref-workflow .professional-edit-head li ul {
+    padding-left: 20px;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head {
+    padding-left: 31px;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head li label input {
+    margin-left:-16px;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head li:first-child {
+    padding:8px 0;
+}
+
+#Ref-workflow .edit-form-data .role-manage-sub-head li .checkbox, 
+#Ref-workflow .edit-form-data .role-manage-head .user-roles-opt {
+    margin-bottom: 10px;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head li .checkbox, 
+#Ref-workflow .edit-form-data .role-manage-head .user-roles-opt:last-child {
+    margin-bottom: 0px;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head li .checkbox, 
+#Ref-workflow .edit-form-data .role-manage-head .user-roles-opt > .radio {
+    min-height:auto;
+}
+#Ref-workflow .edit-form-data .role-manage-sub-head li .checkbox, 
+#Ref-workflow .edit-form-data .role-manage-head .user-roles-opt > .radio label .roleOptions{
+    margin-left: -20px;
+    margin-top: 2px;
+    vertical-align: top;
+}   
+#Ref-workflow .flexible-img-wrap .modal-body {
+    max-height: 490px;
+}
+#Ref-workflow #myDiv img {
+    max-height: 440px;
+    text-align: left;
+}
+/************* Dashboard arrange table for my profile *****************/
+
+#Ref-workflow .my-profile-table-arange th:first-child,
+#Ref-workflow .my-profile-table-arange td:first-child {
+    width: 12%;
+    padding-left: 15px;
+}
+#Ref-workflow .my-profile-table-arange th:nth-child(2),
+#Ref-workflow .my-profile-table-arange td:nth-child(2) {
+    width: 71%;
+}
+#Ref-workflow .my-profile-table-arange th:nth-child(3),
+#Ref-workflow .my-profile-table-arange td:nth-child(3) {
+    width: 17%;
+}
+#Ref-workflow .my-profile-table-arange .icon-wrap {
+    float: right;
+    height: 25px;
+    position: relative;
+    text-align: center;
+    width: 25px;
+}
+#Ref-workflow .my-profile-table-arange .icon-wrap a {
+    cursor: pointer;
+    display: block;
+    height: 25px;
+}
+#Ref-workflow .my-profile-table-arange .icon {
+    margin: 0;
+    background-position: -23px -57px;
+}
+#Ref-workflow .form-edit-wrap {
+    position: relative;
+    /*border-bottom: 1px #ccc solid;    
+    margin-bottom: 30px;
+    padding-bottom: 15px;*/
+}
+#Ref-workflow .pane-content .form-edit-wrap:last-child,
+#Ref-workflow .form-edit-wrap:last-child {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#Ref-workflow .pane-content h5 {
+    margin-bottom: 10px;
+}
+#Ref-workflow .sm-col-field {
+    width: 46%;
+    float: left;
+}
+#Ref-workflow .fw-form .number-dropdown .sm-col-field-wrap .sm-col-field:first-child {
+    margin-right: 2.2%;
+}
+#Ref-workflow .fw-form .number-dropdown .sm-col-field {
+    width: 24%;
+    max-width: 198px;
+}
+#Ref-workflow .sm-col-field-wrap .sm-col-field:first-child {
+    margin-right: 20px;
+}
+#Ref-workflow .view-professional .sm-col-field {
+    width: auto;
+}
+#Ref-workflow .professional-setting-form .form-selector,
+#Ref-workflow .add-business-profile-form .form-selector {
+    /*max-width: 370px;*/
+}
+#Ref-workflow .light-grey {
+    color: #999;
+}
+#Ref-workflow .italic {
+    font-style: italic;
+}
+#Ref-workflow .padding-top {
+    padding-top: 30px;
+}
+#Ref-workflow .display-inline {
+    display: inline-block;
+}
+#Ref-workflow .add-business-profile-form .checkbox.wrap-padding-top {
+    padding-top: 15px;
+}
+#Ref-workflow .icon.add-plus-white {
+    background-position: -103px -201px;
+}
+#Ref-workflow .sm-col-phn-field:first-child {
+    max-width: 100px;
+    float: left;
+}
+#Ref-workflow .sm-col-phn-field:last-child {
+    width: 260px;
+    margin-left: 10px;
+    float: left;
+}
+#Ref-workflow #professional-setting #popup-text {
+    font-size: 13px;
+    display: inline-block;
+}
+#Ref-workflow #professional-setting .modal-body {
+    text-align: left;
+}
+#Ref-workflow .profiessional-setting-wrap .form-selector {
+    max-width: 200px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+#Ref-workflow #professional-setting .no-title .modal-body {
+    padding: 10px 30px 5px 30px;
+}
+#Ref-workflow #professional-setting .icon.continue.white {
+    background-position: -103px -83px;
+}
+#Ref-workflow #professional-setting .btn i {
+    margin-right: 0;
+}
+#Ref-workflow #professional-setting .btn {
+    padding: 5px 8px 6px 14px;
+}
+#Ref-workflow #professional-setting input[type="radio"] {
+    margin-top: 5px;
+}
+#Ref-workflow .profiessional-setting-wrap {
+    padding-top: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+#Ref-workflow .profiessional-setting-wrap .custom-error-msg {
+    top: -5px;
+    left: 0;
+}
+#Ref-workflow .general-info span {
+    display: block;
+    margin: 5px 0;
+}
+#Ref-workflow .phase1 {
+    margin-bottom: 15px;
+}
+#Ref-workflow #view-survey-proposal-form .phase1 {
+    margin-bottom: 15px;
+}
+#Ref-workflow .detail-title {
+    margin: 10px 0;
+    position: relative;
+    font-weight: 600;
+    color: #000;
+}
+#Ref-workflow .right-btn {
+    /*position: absolute;
+  right: 0px;
+  top: -3px;*/
+}
+#Ref-workflow .editor-text-block li {
+    list-style: initial;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+#Ref-workflow .editor-text-block li:last-child {
+    margin-bottom: 0;
+}
+#Ref-workflow .add-clone {
+    margin-bottom: 15px;
+    position: relative;
+}
+#Ref-workflow .word-break {
+    word-break: break-all;
+}
+#Ref-workflow #blk-scope .add-clone {
+    margin-bottom: 8px;
+}
+#Ref-workflow #blk-scope .add-clone input {
+    float: left;
+    width: 88%;
+    margin-right: 10px;
+}
+#Ref-workflow #blk-scope .add-clone:first-child input {
+    width: 100%;
+}
+#Ref-workflow #blk-scope .add-clone i {
+    margin-top: 6px;
+}
+#Ref-workflow .checkbox.first,
+#Ref-workflow .radio:first-child {
+    margin-top: 0;
+}
+#Ref-workflow .checkbox:last-child,
+#Ref-workflow .radio:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+#Ref-workflow .detail-value.vessel-model-field {
+    padding-bottom:10px;
+}
+#Ref-workflow .user-roles-view-section .user-roles-opt .radio {
+    min-height:auto;
+}
+#Ref-workflow .user-roles-view-section .role-manage-sub-head li .checkbox {
+    padding:5px 0 0px;
+}
+#Ref-workflow .user-roles-view-section .role-manage-head li.user-roles-opt:first-child {
+    margin-bottom: 8px;
+}
+#Ref-workflow #blk-scope .phase1:last-child {
+    margin-bottom: 0px;
+}
+#Ref-workflow .details p {
+    font-size: 12px;
+}
+#Ref-workflow .input-brd-none {
+    display: inline-block;
+    width: 86%;
+}
+#Ref-workflow .input-brd-none input {
+    /*border: none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    border-bottom: 1px solid #CCC;
+    color: #111;
+    border-radius: 0;
+    width: 100%;*/
+    
+    height: 30px;
+}
+#Ref-workflow #blk-payment .final-work {
+    /*padding-left: 20px;
+  color: #ccc;*/
+}
+#Ref-workflow .timeline li {
+    border-bottom: 1px #ccc solid;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+#Ref-workflow .timeline li span {
+    display: inline-block;
+    vertical-align: top;
+}
+#Ref-workflow .timeline li span:first-child {
+    width: 22px;
+}
+#Ref-workflow .timeline li span:nth-child(2) {
+    /*width: 130px;*/
+}
+#Ref-workflow .timeline li span:last-child {
+    display: block;
+    padding-left: 25px;
+}
+#Ref-workflow .timeline li:last-child {
+    border-bottom: none;
+}
+#Ref-workflow .icon.document {
+    background-position: -20px -285px;
+}
+#Ref-workflow .icon.submit-icon {
+    background-position: -225px -460px;
+}
+#Ref-workflow .icon.survey-item-icon {
+    background-position: -200px -479px;
+}
+#Ref-workflow .icon.rejected-icon {
+    background-position: -201px -460px;
+}
+#Ref-workflow .icon.resubmit-icon {
+    background-position: -225px -479px;
+}
+#Ref-workflow .icon.accepted-icon {
+    background-position: -175px -460px;
+}
+#Ref-workflow .icon.view.white {
+    background-position: -103px -241px;
+}
+#Ref-workflow .icon.drag {
+    background-position: -39px -282px;
+    cursor: move;
+}
+#Ref-workflow .field-vertical .validetta-bubble {
+    background: none repeat scroll 0 0 transparent;
+    border-radius: 0;
+    color: #ff6600;
+    left: 85%!important;
+    margin-top: -23px !important;
+    padding: 3px 0 0 0;
+    text-align: left;
+    top: 2 !important;
+    z-index: 4;
+    font-size: 11px;
+    font-style: italic;
+    position: absolute;
+    font-family: arial;
+    line-height: 14px;
+}
+/*New Style */
+#Ref-workflow .number-dropdown .form-selector .compactmenu.theme-theme2 ul a, 
+#Ref-workflow .number-dropdown .compactanchor, 
+#Ref-workflow .number-dropdown .sm-col-field-wrap .nano ul span:first-child, 
+#Ref-workflow .number-dropdown .form-control {
+    text-align:right;
+    text-rendering: optimizeLegibility
+}
+#Ref-workflow .number-dropdown .form-selector .compactmenu.theme-theme2 ul a:hover {
+    background: #eee;
+}
+#Ref-workflow .number-dropdown .sm-col-field-wrap .sm-col-field {
+    width:48%;
+    margin-right: 4%;
+}
+#Ref-workflow .kyc .sm-col-field-wrap .sm-col-field {
+   width:30.6%;
+}
+#Ref-workflow .number-dropdown .compactmenu {
+    width:100% !important;
+
+}
+#Ref-workflow .number-dropdown .compactanchor {
+    background-position:92% 50%;
+}
+#Ref-workflow .number-dropdown .sm-col-field-wrap .sm-col-field:last-child {
+    margin-right:0;
+}
+#Ref-workflow .other-relation-field {
+    position: relative;
+}
+#Ref-workflow .other-relation-field .custom-error-msg {
+    position: relative;
+    top: 0;
+}
+
+/* Vessels */
+#Ref-workflow #vessels, #users {
+    margin: 0 -17px;
+    padding: 0;
+}
+#Ref-workflow #vessels {
+    margin: 0 -20px;
+}
+
+#Ref-workflow #vessels .add-accordion li, #Ref-workflow #users .add-accordion li {
+    padding: 10px 22px;
+}
+
+#Ref-workflow .block-head-btn-right {
+    margin-right:5px;
+}
+#Ref-workflow /*.add-accordion {
+    margin:10px -20px 0;
+}*/
+#Ref-workflow .add-accordion li {
+    float:left;
+    width:100%;
+    padding:10px;
+}
+
+#Ref-workflow /*.add-accordion li .detail-label{
+    margin:4px 0 0;
+}*/
+#Ref-workflow .add-accordion li:nth-child(2n+1) {
+    background-color: #F5F5F5;
+}
+
+/* Invoice */
+#Ref-workflow .compactmenu.theme-theme2 .compactanchor {
+    color: #555;
+}
+#Ref-workflow .payment-total-wrap.invoice-subtotal {
+    right: -5px;
+}
+#Ref-workflow .invoice-detail {
+    margin-top:20px;
+}
+#Ref-workflow .txt-black {
+    color:#111;
+}
+#Ref-workflow .panel-title {
+    font-size:12px;
+}
+#Ref-workflow .invoice-main {
+    padding:10px 15px;
+    background:#EFEFEF;
+    border-bottom:1px solid #dadada;
+    cursor:not-allowed;
+    margin-bottom: 0;
+    border-radius:0;
+}
+#Ref-workflow .invoice {
+    position:relative;
+}
+#Ref-workflow .numbers {
+    position: absolute;
+    top: -5px;
+    right: 3px;
+    font-weight:700;
+    font-size: 20px
+}
+#Ref-workflow .invoice-main.active{
+    background:#fff;
+    cursor:pointer;
+}
+#Ref-workflow .main-sortable {
+    cursor:default;
+}
+#Ref-workflow .invoice-status {
+    margin-left: 22px;
+}
+#Ref-workflow .invoice-status .txt-orange {
+    color: #FF6908;
+}
+#Ref-workflow .invoice-status  span:first-child {
+    font-style:normal;
+}
+#Ref-workflow .invoice-status span {
+    display:block;
+}
+#Ref-workflow .price-details .payment-price .amount-sign {
+   text-align: right;
+    width: 28px;
+}
+#Ref-workflow .price-details .payment-price .no-action {
+    /*padding-left: 16px;
+    width: 54px;*/
+}
+    
+#Ref-workflow .pay-first
+.invoice-payment {
+    margin:0;
+}
+#Ref-workflow .invoice-head {
+    margin-bottom:10px;
+}
+
+#Ref-workflow .draggable-add-icon {
+    height: 15px;
+    width: 100px;
+    text-align: right;
+}
+#Ref-workflow .draggable-add-icon .icon {
+    margin:0;
+}
+#Ref-workflow .draggable-add-icon .pluse-icon {
+    background-position: -17px -223px;
+    width:20px;
+}
+#Ref-workflow .draggable-add-icon .minus-icon {
+     background-position: -226px -271px;
+     width: 19px;
+}
+#Ref-workflow .payment-price .additional {
+    padding-left: 22px;
+    background:url("../../img/workflow/add-icon.svg") no-repeat #FFF;
+    text-align: right;
+    text-rendering: optimizeLegibility;
+}
+#Ref-workflow .payment-price .add-amount{
+    background-position:4px 10px;
+}
+#Ref-workflow .payment-price .less-amount {
+    background-position: 4px -25px;
+}
+#Ref-workflow .pluse .icon.small-close {
+    margin-right:2px;
+}
+#Ref-workflow .last-invoice-detail .detail-value {
+    padding-bottom:0;
+}
+#Ref-workflow .invoice-contact .detail-value span:first-child  {
+    margin-top:0;
+}
+#Ref-workflow .invoice-contact .detail-value span:last-child  {
+    margin-bottom:0;
+}
+#Ref-workflow .last-invoice-detail .detail-value span:last-child {
+     margin-bottom:0;
+}
+#Ref-workflow .last-invoice-detail .detail-value span:first-child {
+    margin-top:0;
+}
+#Ref-workflow .input-brd-none {
+    width: 86%;
+}
+
+#Ref-workflow .amt-payble-blk {
+    padding-top: 10px;
+}
+#Ref-workflow .payment-options {
+    padding-left: 20px;
+    margin-top: -5px;
+}
+#Ref-workflow #blk-payment h2 {
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+}
+#Ref-workflow .payble-amt {
+    font-size: 20px;
+    font-weight: 600;
+}
+#Ref-workflow .card-img-field .relative span:first-child {
+    width: 88%;
+    display: inline-block;
+    margin-right: 3px;
+}
+/*#vessels, .add-accordion {
+    margin:10px -20px 0;
+}
+#vessels, #users {
+    margin:10px -20px 0;
+}*/
+/******** Missing Error ********/
+#Ref-workflow .popup-right-block .missing-field {
+    right:0;
+}
+#Ref-workflow .missing-field {
+    background: #ff3300;
+    padding: 10px 15px;
+    color: #fff;
+    float: right;
+    position: absolute;
+    z-index: 10014;
+    right: 58px;
+    width: auto;
+    text-align: center;
+    border-radius: 2px 0 0 2px;
+    font-weight: bold;
+    top: 0;
+}
+#Ref-workflow .missing-field:after {
+    border-bottom: 19px solid transparent;
+    border-left: 12px solid #ff3300;
+    border-top: 18px solid transparent;
+    content: "";
+    height: 0;
+    position: absolute;
+    right: -11px;
+    top: 0;
+    width: 0;
+}
+/* New Design */
+#Ref-workflow .category-other {
+    margin-top: 20px;
+}
+#Ref-workflow .detail-value .input-group.valideta-professional-inpt .validetta-bubble {
+    top: 22px !important;
+}
+#Ref-workflow .table tbody tr.active-tr {
+    background:#d8e8e7;
+}
+#Ref-workflow .list-bottom .pagination > li > a, .pagination > li > span {
+    border:0;
+}
+#Ref-workflow .comapny-name {
+    color:#fff;
+}
+#Ref-workflow .comapny-name span {
+    padding-right:8px;
+    padding:0 8px 0 5px;
+}
+#Ref-workflow .comapny-name .icon.org{
+    vertical-align:middle;
+    background-position: -33px -356px;
+}
+#Ref-workflow .block-title button {
+    font-family: "Open Sans",sans-serif;
+}
+#Ref-workflow .close-btn.open .badge {
+    border-radius: 10%;
+    height: 24px;
+    padding: 7px 3px;
+    width: 24px;
+    background:#8da5af;
+    line-height:10px;
+}
+/* Invoice */
+/*#invoice1 .payment-total-wrap {
+    right:20px;
+}*/
+#Ref-workflow .invoice-subtotal .payment-amt {
+    width: 13.5%;
+}
+/*.invoice-pay-list > .payment-price:last-child {
+    text-align:right;
+}*/
+#Ref-workflow .invoice-pay-list > .payment-price:last-child .no-action {
+    float: right;
+}
+#Ref-workflow .invoice-pay-list > .pay {
+    padding-right: 14px;
+    text-align:right;
+}
+
+#Ref-workflow .pay-first > span{
+    width: auto;
+}
+#Ref-workflow .pay-first .percent-right {
+   /* float: right;
+    padding-right: 29px;*/
+    width: 22px;
+}
+
+
+/* Invoice New Structure */
+#Ref-workflow .invoice-pay-list .col-md-9 {
+    padding-right: 0;
+}
+#Ref-workflow .row .column {
+    text-align: right;
+    padding-left: 0;
+    width: 28%; 
+}
+#Ref-workflow .row .column:last-child, .pay-first.column{
+    float: right;
+}
+#Ref-workflow .row .column:last-child {
+    width: 28%;
+}
+#Ref-workflow .payable {
+    padding-left: 10px;
+}
+.payable .radio:first-child {
+    margin-top: 10px;
+}
+
+/* Comment by Mohit form-field error commenting */
+/*.chrome .validetta-bubble-down .validetta-bubble, .chrome .add-surveyor-error, .chrome .hin-alert, .chrome .validetta-bubble-down .validation-alert, .chrome .validetta-bubble, .chrome .validetta-data-date {
+    margin-top: -19px !important;
+}*/
+
+#Ref-workflow .safari #item-image-full-view .close,
+#Ref-workflow .chrome #item-image-full-view .close {
+    margin-bottom: -25px;
+}
+#Ref-workflow .chrome .user-action i {
+    font-weight:500;
+}
+#Ref-workflow .chrome .icon.left-arrow.circle {
+    background-position: -82px -308px;
+}
+#Ref-workflow .safari .user-wrap.dropdown {
+    min-width: 164px;
+}
+#Ref-workflow .safari .user-wrap .dropdown-menu {
+    width: 164px;
+}
+#add-workspace #uploadFile {
+    visibility: hidden;
+    position: absolute;
+}
+#Ref-workflow .icon.edit.white {
+    background-position: -102px -221px;
+}
+#Ref-workflow .item-selected .detail-value {
+    padding-bottom:1px;
+}
+
+/* Dialouge */
+#Ref-workflow .font-normal {
+    font-style: normal;
+}
+#Ref-workflow .dialouge-content-main {
+    padding:10px 0;
+}
+#Ref-workflow .dialouge-head {
+    border-bottom: 1px solid #ccc;
+}
+#Ref-workflow .dialouge-head p {
+    margin:0;
+}
+#Ref-workflow .dialouge-head p a{
+    font-size:18px;
+    color: #333;
+}
+#Ref-workflow .font-normal i {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+#Ref-workflow .dialouge-day {
+    text-align: center;
+    height: 1px;
+    background-color: #000;
+    margin: 10px -15px;
+}
+#Ref-workflow .dialouge-day span {
+    position: relative;
+    top: -9px;
+    background: #fff;
+    padding: 0 15px;
+}
+#Ref-workflow .dialouge-bottom-textarea {
+    bottom: 0;
+    width:100%;
+    background: #fff;
+}
+
+
+/**********************vaishali 02 sep 2015 *****************************/
+/* Sort */
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th {
+    padding:0 ;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th .fieldTitle {
+    padding: 11px 5px;
+
+}
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th .fieldTitle:hover*/, 
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th .fieldTitle:focus{color:#fff;background:#8da5af!important;transition:all 0.6s ease 0s;} 
+
+
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th:hover span {color:#fff;} */
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th .fieldTitle:hover .icon.sort-filter{
+    background-position:-37px -416px; 
+}
+
+
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.active{color:#fff;background:#8da5af!important;transition:all 0.6s ease 0s;} 
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.active span {color:#fff;} 
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.active .icon.sort-filter{background-position:-37px -416px;}*/
+
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th:first-child:hover,
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th:first-child:focus{background:#fff!important;transition:all 0.6s ease 0s;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown span{cursor:default;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown ul.dropdown-menu li.filter-hover-none .search-item-wrap .input-group span.input-group-btn .btn-default img{max-width:10px;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th span i {
+    display: inline-block;
+}
+
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown:active span{color:#fff;background:#8da5af!important;transition:all 0.6s ease 0s;}*/
+
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown:hover span.filterBtnBox , 
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown:focus span.filterBtnBox ,
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown:active span.filterBtnBox{background:none!important;}*/
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 10;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    left: 14px;
+    z-index: 9;
+}
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown ul.text-filter li.parent-item ul.dropdown-menu:before{content:none;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr th.dropdown ul.text-filter li.parent-item ul.dropdown-menu:after{content:none;}
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr  .dropdown:nth-child(5) , #Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown:nth-child(2){cursor:default;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr.active th{background:#fff;cursor:pointer;}
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr.active ul.dropdown-menu li.filter-bottom input.btn-style {
+    background-color: #fff;
+    border: none;
+    
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery .filterBtnBox .btn-style i {
+    display: inline-block;
+    padding-right: 5px;
+    margin-left: 0;
+}
+/* .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr.active ul.dropdown-menu li.filter-bottom span.filterBtnBox input{
+    background: transparent;
+    border: medium none;
+    color: #35484c;
+    font-weight: 400;
+    margin: 0;
+    padding:0;
+    min-width:auto;
+    min-height:auto;
+    float:left;
+} 
+ .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr.active ul.dropdown-menu li.filter-bottom span.filterBtnBox{
+    background: #fff;
+    cursor: default;
+    margin: 0 !important;
+    min-height: auto;
+    padding: 5px 10px 5px 8px;
+    font-size: 12px;
+} 
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr.active ul.dropdown-menu li.filter-bottom span.filterBtnBox i{
+    color: #35484c;
+    display: inline-block;
+    margin-left: 0 !important;
+    margin-top:0px;
+    margin-right:2px;
+    float: left;
+} 
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr.active ul.dropdown-menu li.filter-bottom span.filterBtnBox:hover{
+    transition:all 0.6s ease 0s;
+    background:#8da5af;
+    color:#fff;
+} */
+
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr th.dropdown:hover ul.dropdown-menu li.filter-bottom span.filterBtnBox{ background: #fff!important;}
+.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr.active ul.dropdown-menu li.filter-bottom span.filterBtnBox:first-child{margin-right:5px!important;}*/
+/*.main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr.active ul.dropdown-menu li.filter-bottom {text-align:center;}*/
+#Ref-workflow .activeFilterBg{color:#fff!important;background:#8da5af!important;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr.active ul.dropdown-menu li.filter-hover-none .search-item-wrap .input-group input.form-control{border:1px solid #dadada; height:34px; border-right: 0;}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead  tr.active ul.dropdown-menu li.filter-hover-none .search-item-wrap .input-group span.input-group-btn button.btn{ height:34px; background:#fff!important;border-radius:0!important;border:1px solid #dadada;}
+#Ref-workflow .icon.sort-filter {
+    background-position:-60px -416px; 
+    height: 16px;
+    vertical-align: top;
+}
+
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown .btn-sub-filter {
+    padding: 4px 10px 4px 8px;
+    cursor: default;
+    margin-right: 5px;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown .btn-sub-filter:last-child {
+    margin-right: -10px;
+    background: #eee !important;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown .btn-sub-filter, 
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery table.table-workspace thead tr .dropdown .btn-sub-filter:hover {
+    background: #fff !important;
+}
+#Ref-workflow .btn-sub-filter i {
+    cursor: default;
+    margin: 0 2px 0 0!important;
+    color: #35484c !important;
+    height: 14px;
+}
+#Ref-workflow .filter-bottom .btn-sub-filter .btn {
+    padding: 0;
+    margin: 0;
+    background: none;
+    min-width: auto;
+    min-height: auto;
+}
+#Ref-workflow .parent-item .custom-filter-wrap .cf-wrap select {
+    height: 34px;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery .table.table-workspace thead tr th:first-child, 
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery .table.table-workspace thead tr td:first-child {
+    padding-left:8px;
+}
+/**********************vaishali 02 sep 2015 *****************************/
+
+
+/* Latest */
+.formilist-last-strip {
+    height: 44px;
+    position: relative;
+}
+.less-content-strip {
+    position: absolute;
+    height:44px;
+}
+.form-strip-logo {
+    width:30px;
+    margin: 0 auto;
+}
+.form-strip-logo img {
+    max-width: 100%;
+}
+.item-listing li a {
+    text-decoration: none;
+    color: #333;
+}
+#Ref-workflow .fw-form .professional-text-bind .form-control {
+    max-width: 344px;
+}
+#Ref-workflow .fw-form .professional-text-bind .input-group-btn {
+    float: left;
+}
+#Ref-workflow .media-section .media-dates {
+    margin-top: -2px;
+    margin-bottom: 4px;
+}
+#Ref-workflow .professional-width-limit {
+    width: 177px;
+}   
+#Ref-workflow .italic-date {
+    font-style: italic;
+}
+/*.profiessional-setting-wrap .compactmenu ul:first-child {
+    width: 92%;
+}*/
+#Ref-workflow .media-section .block-title .close-btn {
+    margin-top: -4px;
+}
+#Ref-workflow .choose-relation {
+    position: relative;
+}
+#Ref-workflow .choose-relation .validate-new {
+    position: absolute;
+    top: 33px;
+}
+#Ref-workflow /*.firefox .right-end-navigations .main-title-wrap {
+    max-width: 183px !important;
+}*/
+#Ref-workflow #blk-general .input-group .form-control[readonly] {
+    border-radius: 2px 0 0 2px;
+}
+#Ref-workflow #blk-general .detail-value label {
+    word-wrap: break-word;
+}
+#Ref-workflow .payment-field {
+    padding-left: 27px;
+}
+#Ref-workflow .payment-field .dollar {
+    float: left;
+    width: auto;
+    padding-top: 5px;
+}
+#Ref-workflow .payment-field .base-price {
+    float: left;
+    margin-left: 9px;
+}
+#Ref-workflow .payment-field .small-close {
+    margin: 0px;
+    width: 15px;
+    float: left;
+    position: absolute;
+    right: 12px;
+    top: 5px;
+}
+#Ref-workflow .manage-summary .col-md-3.column {
+    padding:0;
+}
+#Ref-workflow .phases_textbox.inactive {
+    cursor:auto;
+}
+#Ref-workflow .firefox #add-new-survey-proposal-form .draggable-row .base-price::-moz-placeholder, 
+#Ref-workflow .firefox #add-new-survey-proposal-form .payment-calendar-blk .phases_textbox::-moz-placeholder, 
+#Ref-workflow .firefox #add-new-survey-proposal-form .check-item .specialist-type::-moz-placeholder {
+    font-size: 11px;
+}
+#Ref-workflow .dialogue-chat-wrap {
+    padding: 10px 15px;
+}
+#Ref-workflow .title-loader {
+    background: rgba(160, 155, 163, 0.7);
+    text-align: center;
+    padding:10px 0;
+    position: relative
+}
+#Ref-workflow .add-payment-detail-flyOut-wrap .compactmenu.theme-theme2 ul a, 
+#Ref-workflow .add-bank-detail-flyOut-wrap .compactmenu.theme-theme2 ul a
+ {
+    background-color: #f6f6f6;
+    border-bottom: 1px solid #ccc;
+}
+#Ref-workflow .add-bank-detail-flyOut-wrap .compactmenu.theme-theme2 ul a:hover {
+    background: #eee;
+}
+#Ref-workflow .manage-flyout-width {
+    width: 490px;
+}
+#Ref-workflow .share-item-filter ul li a {
+  padding-left: 29px;
+  display: inline-block;
+  width: 100%;
+}
+#Ref-workflow .item-list .share-item-filter > a:hover {
+    background: none !important;
+}
+#Ref-workflow .share-item-filter ul li a span {
+  padding: 0;
+  width: 100%;
+  text-transform: capitalize;
+  font-size: 12px;
+}
+#Ref-workflow .share-item-filter ul li a span .icon {
+    float:right;
+    margin-top: 0;
+}
+#Ref-workflow #session-end-modal {
+    z-index:1070;
+}
+#Ref-workflow .parent-item .custom-filter-wrap .filter-bottom {
+    margin: 10px -10px -10px;
+}
+#Ref-workflow .table.choose-share-user-table th:first-child, 
+#Ref-workflow .table.choose-share-user-table td:first-child {
+    width: 5%;
+}
+#Ref-workflow .table.choose-share-user-table th:nth-child(2), 
+#Ref-workflow .table.choose-share-user-table td:nth-child(2) {
+    width: 30%;
+}
+#Ref-workflow .input-append.date .datepicker, 
+#Ref-workflow .input-append.date .datepicker-custom {
+    text-align: left;
+}
+#Ref-workflow .main-wrapper .detail .WorkSpaceSurvery .check-list label {
+    word-break: break-all;
+}
+#Ref-workflow .card-img-field .relative .cc-cards {
+    margin-top: 3px;
+}
+#Ref-workflow .card-img-field .relative .cc-cards span:first-child {
+    width:auto;
+    margin-right:0;
+}
+#Ref-workflow #personal-infor-error .validetta-bubble {
+    width: 100%;
+    margin: -16px 0 0 0 !important;
+}
+#Ref-workflow .professional-edit-head .add-clone {
+    padding-left: 0;
+}
+#Ref-workflow .wlcm-table .slider .carousel-inner {
+    min-height: 142px;
+}
+#Ref-workflow .general-section .input-txt-field, 
+#Ref-workflow .professional-text-bind input:not(.disabled), 
+#Ref-workflow .vessel-manufacturer-name, 
+#Ref-workflow .basic-detail .input-txt-field{
+    cursor: pointer !important;
+}
+#Ref-workflow .form-selector ::-moz-placeholder {
+    color: #777;
+    opacity: 1;
+}
+#Ref-workflow .dropdown-menu .filterBtnBox {
+    padding: 10px 8px !important;
+}
+#Ref-workflow .vessel_area_tree li .textContainer {
+    vertical-align: super;
+    word-break: break-all;
+}
+#Ref-workflow .vessel_area_tree li .textContainer input {
+    color: #111;
+}
+#Ref-workflow .vessel_area_tree li .text-blue {
+    color:#1c67c4;
+    /*width: 90%;*/
+    display: table-cell;;
+        cursor: pointer;
+}
+
+#Ref-workflow .vessel_area_tree li .item-layout i {
+    margin-right: 5px;
+        /*display: inline-block;
+    vertical-align: top;*/
+}
+#Ref-workflow .vessel_area_tree li .item-names .saveArea, 
+#Ref-workflow .vessel_area_tree li .item-names .saveObject
+ {
+   /* padding-left: 5px;*/
+    vertical-align: super;
+}
+
+#Ref-workflow .vessel_area_tree li .add-new-obj {
+    color: #969696;
+    margin: 0 0 0px 15px;
+    padding: 0px 10px;
+    border-radius: 0px;
+    cursor: pointer;
+    float: left;
+}
+#Ref-workflow .vessel_area_tree li .add-new-obj:hover {
+    background: #555;
+    color:#fff;
+    border-radius: 2px;
+}
+#Ref-workflow .vessel_area_tree .item-names  {
+    max-width: 100%;
+   /* padding: 3px 0;
+    min-height: 32px;*/
+}
+#Ref-workflow .vessel_area_tree .item-layout  {
+    max-width: 100%;
+    padding: 3px 0;
+    min-height: 32px;
+}
+#Ref-workflow .vessel_area_tree .vessel-area {
+    margin-top: 2px;
+}
+#Ref-workflow .vessel_area_tree .vessel-area .left {
+    width: auto;
+}
+#Ref-workflow .vessel_area_tree .icon.cube-blue {
+    background-position: -55px -437px;
+}
+
+#Ref-workflow .item-names .obj-wrap{
+    display: none;
+    line-height: 2;
+}
+#Ref-workflow .vessel-area:hover .obj-wrap {
+    display: block;
+}
+/*.vessel-border {
+    border-bottom: 1px solid #ccc;
+    margin: 0 -16px 0 -39px;
+}*/
+#Ref-workflow .vessel-layout-tab > .vessel_area_tree {
+    position: relative;
+    margin: 0 -15px;
+    padding-left: 0;
+}
+#Ref-workflow .vessel_area_tree {
+    padding-left: 24px;
+}
+
+#Ref-workflow .vessel_area_tree li:before{     
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-bottom:1px solid #e5e5e5;
+}
+#Ref-workflow .vessel_area_tree li:first-child:before{
+    /*border-bottom: none;                              
+    */                                          /*Testing purpose intending ul li for vessel layout*/
+}
+#Ref-workflow .vessel-layout-tab > .vessel_area_tree > li:first-child:before {
+    border:0;
+}
+#Ref-workflow .object-area i {
+    float: left;
+}
+#Ref-workflow .object-area .textContainer {
+    width: 92%;
+    float: left;
+}
+#Ref-workflow .item-name.object-area {
+    min-height: auto !important;
+}
+#Ref-workflow .vessel-length-group.vessel-custom-length > div {
+    width: 100%;
+    margin-right: 0;
+}
+#Ref-workflow .vessel-custom-length .vessel-length-type, 
+#Ref-workflow .vessel-custom-length .length-wrapper {
+    #Ref-workflow width: 32.2%;
+    float: left;
+    margin-right: 2%;
+}
+#Ref-workflow .vessel-custom-length .vessel-length-type .compactanchor  {
+    background-position: 86% 50%;
+}
+#Ref-workflow .vessel-custom-length .length-wrapper {
+    margin-right: 0;
+    width: 65.8%;
+}
+
+/*.new-area .left {
+    float:none;
+}*/
+#Ref-workflow .new-area .vessel-area {
+    width: 100%;
+    float: left;
+}
+#Ref-workflow .new-area i {
+    float: left;
+}
+#Ref-workflow .new-area .text-blue {
+    float: left;
+    width: auto;
+}
+#Ref-workflow .length-value .imperial-unit {
+    width: 53%;
+    float: left;
+    margin-right: 3%;
+}
+#Ref-workflow .length-value .imperial-unit:last-child {
+    margin-right: 0;
+    width: 44%;
+}
+#Ref-workflow .length-value .imperial-unit:last-child .compactanchor {
+    background-position: 86% 50%;
+}
+#Ref-workflow .length-value .imperial-unit .compactmenu.theme-theme2 ul a {
+    text-align: right;
+}
+#Ref-workflow .save-area {
+    display: inline-block;
+    margin-left: 5px;
+}
+#Ref-workflow .save-area .icon.select.white {
+    background-position: -137px -20px;
+}
+#Ref-workflow #blk-payment .summary-wrap > .row {
+    margin-bottom: 10px;
+}
+#Ref-workflow .firefox .icon-input.icon-crop {
+    background-position: -99px -156px;
+    min-height: 28px;
+}
+#Ref-workflow .firefox .inner-addon .btn {
+    padding: 4px 7px 5px 24px;
+}
+#Ref-workflow .item-listing li .item-name{
+    width:70%;
+    max-width:none;
+}
+#Ref-workflow .item-listing li .item-name i {
+    float:left;
+}
+#Ref-workflow .item-listing li .item-name .textContainer {
+    width:85%;
+    float:left;
+}
+#Ref-workflow .fw-form .number-dropdown .compactanchor {
+    background-position: 95% 50%;
+}
+#Ref-workflow .fw-form .add-clone input {
+    max-width: 542px;
+}
+#Ref-workflow .fw-form .text-right {
+    max-width: 565px;
+}
+#Ref-workflow .media-count {
+    margin: 3px 0 0 5px;
+}
+/*********** Proffesional New Html ***********/
+#Ref-workflow .ask-employer span {
+    margin-bottom: 10px;
+     float:left;
+}
+#Ref-workflow .ask-employer input {
+    margin-bottom: 10px;
+}
+#Ref-workflow .ask-employer input:last-child {
+    margin-bottom: 0px;
+}
+#Ref-workflow #show-employee .show-new-employe:first-child .detail-label{
+    margin: 0;
+}
+#Ref-workflow #show-employee .show-new-employe:first-child .detail-value{
+    padding:0 0 0 9px;
+}
+#Ref-workflow #show-employee .show-new-employe:nth-child(2) .detail-value{
+    padding:0 0 0 9px;
+}
+#Ref-workflow #show-employee .show-new-employe:nth-child(3) .detail-value{
+    padding:0px 0 0 9px;
+}
+/*********** End Proffesional New Html ***********/
+
+#Ref-workflow .role-manage-title .disabled, 
+#Ref-workflow .role-manage-head .disabled{
+    #Ref-workflow opacity: 0.5;
+}
+#Ref-workflow .area-layout, .area-layout-sub {
+    float: left;
+}
+#Ref-workflow .vessel_area_tree li .item-layout .area-layout-sub i {
+    float:left;
+    height: 20px;
+    overflow: hidden;
+}
+
+
+/* Observer */
+/* ================= */
+
+#Ref-workflow .table.table-observer th:last-child,
+#Ref-workflow .table.table-observer td:last-child {
+    width: 16%;
+}
+#Ref-workflow .table.table-observer th:nth-child(5),
+#Ref-workflow .table.table-observer td:nth-child(5) {
+    width: 31%;
+}
+#Ref-workflow .table.table-observer th:nth-child(4),
+#Ref-workflow .table.table-observer td:nth-child(4) {
+    width: 18%;
+}
+#Ref-workflow .table.table-observer th:nth-child(3),
+#Ref-workflow .table.table-observer td:nth-child(3) {
+    width: 16%;
+}
+#Ref-workflow .table.table-observer th:nth-child(2),
+#Ref-workflow .table.table-observer td:nth-child(2) {
+    width: 14%;
+}
+#Ref-workflow .table-observer th:first-child,
+#Ref-workflow .table-observer td:first-child {
+    width: 5%;
+}
+/* Latest End */
+
+
+/*********** Bank Account ***************/
+
+#Ref-workflow .bank-header li {
+    position:relative;
+    float:left;
+    border-left:0px;
+    border-right: 0;
+}
+#Ref-workflow .bank-header li a {
+    padding:8px 15px 8px 23px;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: 700;
+    display:block;
+    text-align: center;
+    text-decoration: none;
+    cursor: default;
+}
+#Ref-workflow .bank-header li span {
+    background: #fff;
+    border-radius: 100px;
+    height: 25px;
+    left: -8px;
+    position: absolute;
+    text-align: center;
+    top: 7px;
+    width: 25px;
+    border: 2px dashed #ccc;
+    line-height: 21px;
+    color:#ccc;
+    font-weight:700;
+    z-index: 1;
+}
+#Ref-workflow .bank-header li:first-child span {
+    left: -12px !important;
+}
+#Ref-workflow .bank-header li:first-child {
+    width: 23%;
+}
+#Ref-workflow .bank-header li:first-child a {
+    padding-left:17px;
+}
+#Ref-workflow .bank-header li:nth-child(2) {
+    width: 14%;
+}
+#Ref-workflow .bank-header li:nth-child(3) {
+    width: 34%;
+}
+#Ref-workflow .bank-header li:last-child {
+    width: 27%;
+}
+#Ref-workflow .bank-header li:after {
+   background:url("all_icons.svg") repeat scroll 0 1px;
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -15px;
+    width: 23px;
+    height: 42px;
+    z-index: 1;
+}
+
+#Ref-workflow .bank-header li.active a {
+    background:#ff6600;
+    color:#fff;
+    border:2px solid #ff6600;
+    border-left: 0;
+    border-right: 0;
+}
+#Ref-workflow .bank-header li.active span{
+    background:#ff6600;
+    border: 2px solid #fff;
+    color:#fff;
+    left: -5px;
+}
+#Ref-workflow .bank-header li.active:after {
+    background-position: -48px -377px;
+}
+#Ref-workflow .bank-header li.prev a {
+    background:#e4e4e4;
+    color:#999999;
+    border:2px solid #e4e4e4;
+    border-left: 0;
+    border-right: 0;
+}
+
+#Ref-workflow .bank-header li.prev span{
+    background: #e4e4e4;
+    border: 2px solid #fff;
+    color:#999999;
+}
+#Ref-workflow .bank-header li.prev:after {
+    background-position: -1px -376px;
+}
+
+#Ref-workflow .bank-header li.next a {
+    border:2px dashed #ccc;
+    border-left: 0;
+    border-right: 0;
+}
+#Ref-workflow .bank-header li.next span {
+    left: -10px;
+}
+#Ref-workflow .bank-header li.next:after {
+    background-position: -25px -376px;
+}
+
+#Ref-workflow .generalSurveyHeight .list-bottom {
+    z-index: 10;
+}
+#Ref-workflow .list-bottom.Ajaxpage-getVesselSurveyWithPagination.gensurveyPagination {
+    width: 88%;
+}
+#Ref-workflow /*#sidebar-accordion-survey-general .panel:nth-child(2) {
+    margin-top: 0;
+}*/
+#Ref-workflow .sidebar_wrap .accordion-wrap .panel.panelTopZero{
+    margin-top: 0
+}
+
+
+/* For vessle layout*/
+#Ref-workflow .item-names .text-blue, .role-designation .text-blue {
+    background: url('img/icon-edit-circle.svg') no-repeat right 0px;
+    padding-right: 25px;
+}
+#Ref-workflow .text-deckName.editcancel {
+    background: none;
+}
+
+/*.item-survey-id {
+    font-weight: 300;
+}
+*/
+#Ref-workflow .subtitle.input-right-align {
+    padding: 10px 0 10px 9px;
+    margin-left: 35%;
+}
+
+/*classed added for enter-save and edit button for Deck name on vessel layout -- added by Animesh*/
+
+#Ref-workflow .vessel_area_tree li .text-deckName{
+    color:#000;
+    /*width: 90%;*/
+    display: table-cell;
+    cursor: pointer;
+}
+
+#Ref-workflow .vessel-area .text-deckName{
+    float: left;
+    width: auto;
+}
+
+#Ref-workflow .vessel-area .text-deckName{
+    background: url('img/icon-edit-black-circle.svg') no-repeat right 0px;
+    padding-right: 25px;
+}
+
+
+#Ref-workflow #view-workspace .item-cloud:hover {
+    background: none!important;
+    color: #666;
+    border-color: #888!important;
+}
+
+#Ref-workflow #view-workspace .item-cloud.active:hover{
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+/* ========remove vessel admint view box ===========az*/
+
+#Ref-workflow .ui-rm-otr-bx .item-cloud.active:hover{
+    background:none!important;
+    color: #000!important;
+}
+#Ref-workflow .ui-rm-otr-bx .item-cloud:hover{                                
+    color: #666!important;
+    border:none!important;
+}
+
+  
+#Ref-workflow .ui-rm-otr-bx .cloud-chart,
+#Ref-workflow .ui-rm-otr-bx .cloud-wrap.phase-list {
+    margin-left: -12px!important;
+    margin-top: -3px;
+}
+#Ref-workflow .ui-rm-otr-bx .cloud-wrap.clearfix.priority-list {
+    margin-top: -3px!important;
+}
+
+#Ref-workflow .ui-rm-otr-bx .phase-list .item-cloud{
+    min-width: 0!important;
+}
+#Ref-workflow .ui-rm-otr-bx .item-cloud.yellow.active:hover{
+    border:none!important;
+}
+
+
+/* ========closed remove vessel admint view box ===========az*/
+
+#Ref-workflow #view-workspace .item-cloud.yellow.active:hover {
+    background: #ffbaba;
+    color: #fff;
+    border: 1px #c30007 solid;
+}
+
+#Ref-workflow .overly-third-part {
+    background: rgb(222, 221, 221);
+    height: 600px;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    top: 0;
+}
+
+#Ref-workflow .arrow_box-tooltip {
+    position: absolute;
+    background: #f8fcbb;
+    border: 1px solid #f8fcbb;
+    width: 110px;
+    text-align: center;
+    height: 70px;
+    top: 70px;
+    vertical-align: middle;
+    left: -40px;
+    box-shadow: 1px 2px 2px #666;
+    padding: 15px 10px;
+    line-height: 110%;
+    font-weight: 600;
+}
+#Ref-workflow .arrow_box-tooltip:after, .arrow_box-tooltip:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+#Ref-workflow .arrow_box-tooltip:after {
+    border-color: rgba(248, 252, 187, 0);
+    border-right-color: #f8fcbb;
+    border-width: 17px;
+    margin-top: -17px;
+}
+#Ref-workflow .arrow_box-tooltip:after {
+    border-color: rgba(248, 252, 187, 0);
+    border-right-color: #f8fcbb;
+    border-width: 17px;
+    margin-top: -17px;
+}
+
+#Ref-workflow .overly-panel {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+#Ref-workflow .overly-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    margin-left: -50%;
+    text-align: center;
+    height: 76px;
+    margin-top: -38px;
+}
+#Ref-workflow .overly-content h6 {
+    font-size: 20px;
+    color: #555;
+    margin: 0;
+    line-height: 130%;
+    margin-top: 15px;
+}
+
+#Ref-workflow .item-list a.comg-sn {
+    float: left;
+}
+
+#Ref-workflow .item-list a.comg-sn + label {
+    padding-top: 8px;
+    float: right;
+    font-style: italic;
+    padding-right: 18px;
+}
+#Ref-workflow #messagebox.form-control {
+    border-bottom: 0px;   
+    border-top: 1px solid #dbdbdb;
+    padding-right: 20px;   
+    padding-top: 10px;
+    height: 76px;
+}
+#Ref-workflow #messagebox.form-control:focus {
+    border-top: 1px solid #000;
+}
+#Ref-workflow .chatbox{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 15px;
+    z-index: 10;
+    cursor: pointer;
+}
+#Ref-workflow .icon.chat-collapse {
+    background-position: -142px -242px;
+}
+#Ref-workflow .icon.chat-expand {
+    background-position: -142px -221px;
+}
+
+
+#Ref-workflow .media-cross a {
+    margin-top: 4px;
+}
+
+
+#Ref-workflow .item-slide-wrap.priority-item-slide.hide.show .detail-label {
+    margin-bottom: 5px;
+}
+
+#Ref-workflow /*.selected-items.selected-priority-items.clearfix {
+    margin-top: 10px;
+}*/
+
+#Ref-workflow #add-workspace .selected-items {
+    margin: 15px 0 -15px;
+}
+#Ref-workflow #view-workspace .selected-items {
+    margin: 15px 0 -15px;
+}
+#Ref-workflow .priority-list .item-cloud {
+    margin-bottom: 0px;
+}
+#Ref-workflow .ui-item-active{
+    background: #d8e8e7;
+}
+
+#Ref-workflow .ui-orgnization-btn{
+    margin-top: 10px;
+    text-align: right;
+    margin-bottom: -8px;
+    display: inline-block;
+    
+
+}
+#Ref-workflow .ui-orgnization-btn .btn-style:hover{
+    background-color: #000!important;
+    color: #fff!important;
+    border-color: #000!important;
+}
+#Ref-workflow .ui-org-text{
+        font-weight: 700;
+        width: calc(100% - 111px);
+        display: inline-block;
+        vertical-align: top;
+
+}
+
+#Ref-workflow .ui-org-title {
+    color: #8da5af;
+    border-top: 1px solid transparent;
+    padding: 0 0px 0px 15px;
+    width:100%;
+    position: relative;
+}
+ 
+#Ref-workflow .ui-cancel-selection {    
+    float: right;
+    margin-top: 13px;
+}
+#Ref-workflow .ui-org-text span{
+    padding-left: 10px;
+}
+
+#Ref-workflow .right-edit-bottom.ui-marg-rght {
+    margin-right: 3px;
+}
+
+#Ref-workflow .ui-org-text i {
+    margin-left: -24px;
+}
+#Ref-workflow .ui-org-text {
+    margin-left: 25px;
+}
+ 
+#Ref-workflow .professionalError {
+    color: #ff6600;
+    font-size: 11px;
+    font-family: arial;
+    position: absolute;
+    left: 38px;
+    top: 23px;
+} 
+/* ========remove vessel admint view box ===========az*/  
+
+#Ref-workflow .ui-rm-otr-bx .item-cloud.active:after {
+    border-bottom: 2px solid black;
+    /* padding: 0; */
+    /* margin: 0 10px; */
+    content: "";
+    /*position: absolute;
+    bottom:6px;
+    left: 12px;
+    width: calc(100% - 24px);*/
+    display: block;
+    width: 100%;    
+}
+
+#Ref-workflow .ui-rm-otr-bx .item-cloud.active {
+    font-weight: 900;
+    /*text-decoration: underline;*/
+    background: none!important;
+    color: #000!important;
+}
+
+#Ref-workflow .ui-rm-otr-bx .item-cloud.active:focus {
+    text-decoration: none;
+}
+
+#Ref-workflow .ui-rm-otr-bx .item-cloud{
+    border: none;
+    text-align: left;
+     /*min-width: 15%;*/
+    margin-left: -1px;
+    margin-right: -3px;
+    min-width: auto;
+}
+#Ref-workflow .ui-rm-otr-bx .cloud-chart .cloud-arrow {
+  background: url("../../img/workflow/arrow-view-vessel.png") no-repeat scroll left top 9px rgba(0, 0, 0, 0);
+    width: 7px;
+    
+}
+#Ref-workflow .ui-rm-otr-bx .item-cloud.orange.active {
+     background: none!important; 
+     color: #000!important; 
+     border: none!important; 
+     cursor: pointer;
+}
+#Ref-workflow .ui-rm-otr-bx .item-cloud.orange.active:hover {
+    background: none!important;
+    color: #000!important;
+    border:none!important;
+}
+
+
+#Ref-workflow .ui-rm-otr-bx #view-priority-slide{
+    margin-left: -10px;
+    cursor: pointer!important;
+}
+
+#Ref-workflow .ui-rm-otr-bx .detail-value {
+    width: 67%;
+
+}
+#Ref-workflow .ui-rm-otr-bx .selected-items {
+    margin-top: 3px!important;
+}
+
+
+
+/* ========remove vessel admint view box ===========az*/
+
+
+
+/*.firefox .menu-main-wrap .nano > .nano-content{
+    overflow-y: hidden;
+}*/
+/* Responsive */
+/********* Vessels ***********/
+
+@media only screen and (min-width: 1625px) and (max-width: 1920px) {
+    #Ref-workflow #invoice1 .invoice-pay-list .col-md-8 {
+        width:75%;
+    }
+    #Ref-workflow #invoice1 .invoice-pay-list  > .col-md-4{
+        width:25%;
+    }
+    #Ref-workflow .payment-total-wrap {
+        right: 12.5%;
+    }
+}
+@media only screen and (max-width: 1540px) {
+    #Ref-workflow .hin-field {
+        width: 29%;
+    }
+    #Ref-workflow #add-vessel-1 .hin-field {
+        width: 29.8%;
+    }
+    #Ref-workflow .phn-col:nth-child(3),
+    #Ref-workflow .phn-col:last-child {
+        width: 27.5%;
+    }
+    #Ref-workflow .fw-form .phn-col {
+        width: 22%;
+    }
+    #Ref-workflow .check-item > span:last-child {
+        width: 62%;
+    }
+    #Ref-workflow #view-survey-proposal-form .check-item > span:last-child {
+        width: 73%;
+    }
+    #Ref-workflow .pane-content .professional-cat .validetta-bubble {
+        top: -34px !important;
+    }
+    #Ref-workflow .card-img-field .relative span:first-child {
+        width: 100%;
+    }
+   #Ref-workflow  .card-img-field .relative .cards {
+        margin-top: 1px;
+    }
+    #Ref-workflow .card-img-field .relative .cards span:first-child{
+        width: auto;
+        margin-right: 0;
+    }
+}
+@media only screen and (max-width: 1540px) {
+#Ref-workflow .pane-content .professional-cat .validetta-bubble {
+        top: 0 !important;
+    }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1366px) {
+   #Ref-workflow  .col-md-3 .profile-pic.allow-edit .file-attach {
+        font-size: 17px;
+        top: 12%;
+    }
+    #Ref-workflow .profile-pic {
+        max-height: 90px;
+    }
+    #Ref-workflow .profile-loader {
+        left: 33%;
+        top: 31%;
+    }
+}
+@media only screen and (max-width: 1366px) {
+    #Ref-workflow #add-vessel-1 .hin-field {
+        width: 104px;
+    }
+   #Ref-workflow  .vessel-length-group > div {
+        width: 47.2%;
+    }
+}
+@media only screen and (max-width: 1365px) {
+
+    /*************** Window break on Scroll ***********************/
+/*    
+    body {
+        -ms-overflow-x: scroll;
+        overflow-x: scroll;
+        width: 1364px;
+    }*/
+   #Ref-workflow  .user-action-wrap {
+        position: relative;
+        float: right;
+    }
+/*    .content-wrapper-new {
+        width: 1099px!important;
+    }*/
+ /*   .control-bar .left-head {
+        width: 816px!important;
+        float: left;
+    }
+    .control-bar .right-head {
+        width: 548px!important;
+        float: left;
+    }*/
+    /*************** End ***********************/
+}
+/*.hidden-ViewWorkflow {
+    width: 1244px;
+    height: 667px;
+    margin-left: -196px;
+    background-color: transparent;
+    z-index: 999;
+    position: absolute;
+    display: none;
+}*/
+
+/*Edited by Savjeet 12-04-16*/
+#Ref-workflow .hidden-ViewWorkflow {
+    width: 100%;
+    height: 100%;
+/*    margin-left: -191px;*/
+    background-color: transparent;
+    z-index: 999;
+    position: absolute;
+    display: none;
+}
+#Ref-workflow .phaseRow,
+#Ref-workflow .phaseRow .operation-item {
+    background-color: #EFEFEF;
+}
+
+#Ref-workflow .form-control{
+    box-shadow: none !important;
+}
+#Ref-workflow .employers-detail #emploment .radio label span.small-accept{
+    margin-left: -23px;
+}
+
+
+
+
+
+#Ref-workflow .bodyfixed{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+
+/*Professional profile current employer alignment start here*/
+#Ref-workflow div#DontKnow, #Ref-workflow div#current-empolyer{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+#Ref-workflow div#DontKnow{
+    margin-bottom: 0;
+}
+/*Professional profile current employer alignment end here*/
+
+#Ref-workflow .workcategoryvalidate .validetta-bubble {
+    top: 0 !important;
+}
+#Ref-workflow .workcategoryvalidate label {
+    margin-bottom: 14px !important;
+}
+#Ref-workflow .show-new-employe.radio-list .invalidemiailemp .validetta-bubble {
+    top: -126% !important;
+}
+#Ref-workflow #common-prof-detail span.small {
+    padding-left: 0 !important;
+}
+#Ref-workflow .edit-form-data .role-manage-head .user-roles-opt > .radio label .roleOptions{
+    margin-right: 4px;
+}
+#Ref-workflow #blk-accreditations .add-clone, #blk-accreditations .checkbox {
+    margin-bottom: 0;
+}
+#Ref-workflow .detail-value.orgtypespacing .checkbox {
+    margin-bottom: 5px;
+}
+
+
+#Ref-workflow .gen-surveylist.table.table-observer th:nth-child(5), .gen-surveylist.table.table-observer td:nth-child(5) {
+    width: 20%;
+}
+#Ref-workflow .gen-surveylist.table.table-observer th:last-child, .gen-surveylist.table.table-observer td:last-child {
+    width: 10%;
+}
+
+
+#Ref-workflow .innerOperations .operation_input, .innerOperations .operation_sub_input {
+    margin-top: 0;
+    background: none !important;
+    padding: 9px 0px 0 0;
+}
+/*Workflow css start here*/
+#Ref-workflow .firefox .inner-addon .btn.workflow-submit-btn, .firefox .inner-addon .btn.workflow-cancel-btn {
+    padding: 4px 10px;
+}
+#Ref-workflow #add-general-setting-form .phn-col .compactmenu {
+    z-index: 1022 !important;
+}
+#Ref-workflow #default-phase input.form-control {
+    height: 25px;
+    padding: 2px 0 0;
+    font-size: 12px;
+}
+
+/*Workflow css end here*/
+
+#Ref-workflow .workflow-cancel-btn:hover, .workflow-submit-btn:hover{
+    background-color: #000000!important;
+    color: #fff!important;
+    border-color: #000000!important;
+}
+#Ref-workflow .workflow-submit-btn:hover i.icon.icon-submit {
+    background-position: -147px -202px;
+}
+#Ref-workflow .workflow-cancel-btn:hover i.small-close {
+    background-position: -124px -44px;
+}
+#Ref-workflow .modal .btn-style:hover i.select.white{
+    background-position: -124px -23px;
+}
+#Ref-workflow .btn-style:hover i.cancel.white{
+    background-position: -123px -43px;
+}
+#Ref-workflow .workflow-submit-btn, .workflow-cancel-btn {
+    border: solid 1px #000;
+}
+#Ref-workflow .inner-addon {
+    display: inline-block;
+}
+
+#Ref-workflow .form-action {
+ /*    padding: 15px; */
+    background: #f8f8f8;
+    float: left;
+    display: inline-block;
+    width: 100%;
+    height: 64px;
+}
+#Ref-workflow .inside-padding{
+	padding: 15px;
+}
+
+/*=============closed here timestamp css start here by az==========*/
+
+/*Survey view item width 100% edited by Mohit*/
+#Ref-workflow .survey-view-item .detail-value {
+    width: 100%;
+}
+
+#Ref-workflow #add-workflow-note{
+    position:absolute;
+    height: 100%;
+}
+
+/*
+#Ref-workflow .form-control, .compactanchor{
+    border: none; 
+    border-bottom: 1px solid #dadada;
+    box-shadow: none;
+    border-radius: 0px;
+    height: 38px;
+    padding: 18px 0px 0 0;
+}
+#Ref-workflow .form-control.disabled, .compactanchor.disabled {
+    border-bottom: 1px solid #dadada;
+    color: #dadada;
+}
+
+#Ref-workflow .form-control:focus, .compactanchor:focus {
+    border-bottom: 1px solid #9cd9ff;
+}*/

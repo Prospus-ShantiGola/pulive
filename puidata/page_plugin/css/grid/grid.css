@@ -1,0 +1,445 @@
+    body{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin: 0px;
+	padding: 0px;
+    overflow: hidden;
+}
+
+#gridContainer {
+    padding: 0px;
+    width: 100%;
+    display: block;
+    /*height: 100vh;*/
+    overflow: hidden;
+}
+
+.gridViewSt{
+	border-collapse: separate;
+	border-spacing: 0;
+	margin: 0;
+	border-width: 0;
+	table-layout: fixed;
+	outline-width: 0;
+    position: relative;
+    display: none;
+}
+#gridViewHead{
+    float: left;
+}
+
+#gridViewHead thead{
+    position: relative;
+}
+.gridViewSt thead tr td, .gridViewSt tbody td.index{
+	background-color:#eee;
+}
+
+.gridViewSt thead tr td{
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.gridViewSt thead tr td:first-child,.gridViewSt thead tr td:nth-child(2),
+.gridViewSt tbody td.index{
+	text-align:center;
+}
+
+.gridViewSt td{
+	border-top-width: 0;
+	border-left-width: 0;
+	border-right: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
+	empty-cells: show;
+	line-height: normal;
+	padding: 5px 10px;
+	background-color: #FFF;
+	vertical-align: middle;
+	outline-width: 0;
+	position: relative;
+    box-sizing:padding-box;
+}
+
+
+.gridViewSt td:first-child {
+    border-left: 1px solid #CCC;
+    width: 30px;
+    cursor: default;
+}
+
+.gridViewSt td:nth-child(2){
+    width: 30px;
+}
+.gridViewSt thead tr:first-child td {
+    border-top: 1px solid #CCC;
+    cursor: default;
+}
+
+.gridViewSt .tdContainer.current{
+	background-color:#CFF;
+}
+
+
+*.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#gridContextMenu{
+	position: absolute;
+	display: none;
+	left: 0px;
+	top: 0px;
+}
+
+#gridContextMenu ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px 0px;
+	width: 180px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+#gridContextMenu ul li{
+	padding: 4px 10px;
+	cursor: pointer;
+	border-bottom: 1px solid #ccc;
+}
+
+#gridContextMenu ul li:hover{
+	background-color: #f0f0f0;
+}
+
+#gridContextMenu ul li:last-child{
+	border-bottom: 0;
+}
+
+#gtresizer { width: 5px; height: 100%; background: transparent; position:absolute; right: 0; top: 40px; cursor:col-resize; z-index: 999}
+#gridLine { width: 1px; height: 100%; background: transparent; border-left: 1px dotted #666; position:absolute; right: 0; top: 0; display:none; z-index: 999}
+#editItemBox{
+	border:0px;
+	outline: none;
+	resize: none;
+	width: 100%;
+	background: transparent;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0px;
+	padding: 0px;
+}
+
+#gridloader, #gridResult{
+font-weight: bold;
+}
+
+
+.gridViewTable.gridViewTable-HT {
+    float: left;
+    width: 100%;
+    height: calc(100% - 72px);
+    overflow: hidden;
+    position: relative;
+}
+
+#gridHeader {
+     width: 100%;
+    float: left;
+    padding: 10px;
+    margin: 0px 0;
+    line-height: 0;
+    display: none;
+    height: 40px;
+}
+#gridResult {
+    position: relative;
+    top: -7px;
+}
+#gridHeader .gridHeadCol {
+	display: inline-block;
+	padding: 0px;
+	margin-right: 7px;
+}
+.gridHeadCol ul.dropdown-menu{
+    margin-top:7px;
+}
+.gridHeadCol ul.dropdown-menu li a {
+    padding: 3px 10px 4px 10px;
+}
+.gridHeadCol ul.dropdown-menu li a:hover,
+.gridHeadCol ul.dropdown-menu li a:hover,
+.gridHeadCol ul.dropdown-menu li a:hover{
+	background:#f2f2f2;
+	border-radius: 0;
+}
+.gridHeadCol ul.dropdown-menu li a input {
+    margin-right: 5px;
+    margin-top:0px;
+}
+.gridHeadCol span:hover{
+	cursor: pointer;
+}
+.grid-icon {
+    background: url("http://sta.pu.prospus.com/puidata/page_plugin/component/img/spreadsheet_Sprite.svg");
+    background-position: -7px -8px;
+    height: 20px;
+    margin: 0px;
+    width: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+.grid-icon.add{
+	background-position:-8px -9px;
+}
+.grid-icon.delete{
+	background-position: -8px -55px;
+}
+.grid-icon.reset{
+	background-position: -7px -33px;
+}
+.grid-icon.view{
+	background-position:-34px -8px;
+}
+.inline-textarea,
+.inline-input{
+    border:0px;
+    border-bottom:1px solid #dbdbdb;
+    font-size: 11px;
+}
+.inline-textarea{
+	resize:none;
+}
+.inline-textarea:focus,
+.inline-input:focus{
+    border-bottom:1px solid #000;
+    box-shadow:none;
+    outline: 0;
+    padding: 0;
+}
+.prs-plugin #editGridDataModal select.form-select {
+    border: 0px;
+    background: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url("http://sta.pu.prospus.com/puidata/page_plugin/component/img/dropdown-arrow.png") no-repeat right 17px;
+    color: #000;
+    box-shadow: none;
+    font-weight: normal;
+    padding: 2px 0;
+    font-size: 11px;
+    height: 26px;
+    padding-right: 10px;
+    padding-bottom: 0;
+    width: 100%;
+    border-bottom:1px solid #dbdbdb;
+    border-radius: 0;
+}
+#editGridValue{
+	font-size: 11px;
+}
+.prs-plugin select.form-select:focus{
+    border-bottom: 1px solid #ccc;
+}
+.prs-plugin  input.input-check {
+    vertical-align: top;
+    margin: 2px 5px 3px 2px
+}
+#gridHeader .gridHeadCol.ver-name {
+    float: right;
+    margin: 10px 0;
+}
+#gridContainer .mCSB_container{
+    overflow: initial;
+}
+.filter-plugin .rightDrpDownMenu{
+    left:initial !important;
+    right:0px;
+    background:red;
+}
+.filter-plugin .filter-menu ul.dropdown-menu.multi-menu.rightDrpDownMenu:before{
+    left:initial;
+    right: 20px;
+}
+.filter-plugin .filter-menu ul.dropdown-menu.multi-menu.rightDrpDownMenu:after{
+    left:initial;
+    right: 18px;
+}
+.filter-plugin .filter-menu ul.dropdown-menu.multi-menu.rightDrpDownMenu .multi-sub-menu.dropdown-menu{
+    left: initial;
+    right: 100%;
+}
+#gridHeader .tooltip{
+    position: fixed;
+}
+.gridHeadCol .dropdown-menu{
+    padding: 0;
+    margin:10px 0px;
+    width: 180px;
+}
+.gridHeadCol .dropdown-menu .mCSB_container_wrapper {
+    margin-bottom: 0px !important;
+    margin-right: 0px;
+}
+.gridHeadCol .dropdown-menu .mCSB_container {
+    padding: 0 !important;
+}
+.gridHeadCol .dropdown-menu ul.drp-menu {
+    padding-top:5px;
+    position: relative;
+    width: 178px;
+    padding-bottom: 10px;
+    list-style-type: none;
+    display: block;
+    margin: 0;
+    padding-left: 0;
+}
+.gridHeadCol .dropdown-menu ul.drp-menu a {
+    display: inline-block;
+    width: 100%;
+    color: #000;
+    line-height: normal;
+    padding: 5px 0px 5px 10px;
+}
+.gridHeadCol .dropdown-menu ul.drp-menu a:hover,
+.gridHeadCol .dropdown-menu ul.drp-menu a:focus {
+    background: #eee;
+    outline: 0;
+    width: 100%;
+}
+.gridHeadCol .dropdown-menu ul.drp-menu a input {
+    vertical-align: top;
+    margin-top: 2px;
+    margin-right: 5px;
+    float: left;
+}
+.gridHeadCol .dropdown-menu ul.drp-menu a span.class-title  {
+    float: left;
+    width: calc(100% - 25px);
+}
+.gridHeadCol .dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 10;
+}
+
+.gridHeadCol .dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    left: 14px;
+    z-index: 9;
+}
+
+
+#grid_full_page_loader {
+    z-index: 9999;
+    top:0;
+    left:0;
+}
+
+
+.disabled-icon {
+    cursor: no-drop;
+    opacity: 0.5;
+}
+/*//code for add animation effect for loader*/
+/*.loader-wrapper{
+    opacity: 0;
+      -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+    transition: opacity .5s;
+		top: 0px;
+}
+.loader-wrapper.loader-fade-in{
+  opacity: 1;
+  display: block;
+}
+
+@-webkit-keyframes pageLoader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pageLoader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}*/
+.gridHeadCol .dropdown-menu ul.drp-menu a span.grid-icon {
+    float: left;
+    margin-right: 6px;
+    width: 15px;
+    height: 15px;
+}
+.grid-icon.yes {
+    background-position: -37px -57px;
+}
+.grid-icon.no {
+    background-position: -37px -36px;
+}
+.grid-fixed-header{
+    position: fixed;
+    z-index: 1;
+    top:40px;
+    width: 100%;
+}
+.mCSB_container_wrapper{
+    margin-right:0px !important;
+    margin-bottom:0px !important;
+}
+.mCSB_scrollTools.mCSB_scrollTools_horizontal .mCSB_dragger .mCSB_dragger_bar,
+.mCSB_scrollTools.mCSB_scrollTools_horizontal{
+    height: 4px;
+    padding: 0;
+    margin: 0;
+}
+
+.mCSB_scrollTools.mCSB_scrollTools_vertical .mCSB_dragger .mCSB_dragger_bar,
+.mCSB_scrollTools.mCSB_scrollTools_vertical{
+    width: 4px;
+    padding: 0;
+    margin: 0;
+}
+.mCSB_1_scrollbar .mCSB_dragger .mCSB_draggerRail{
+    width: 4px;
+}
+.gridViewSt tr:first-child th span {
+    cursor: pointer;
+    font-size: 20px;
+}
+.gridViewSt tr td:nth-child(1),
+.gridViewSt tr td:nth-child(2) {
+    max-width: 35px;
+    padding: 5px 0;
+    text-align: center;
+    line-height: 0;
+}
+#gridView {
+    padding-bottom: 10px;
+}

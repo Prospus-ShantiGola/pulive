@@ -1,0 +1,68 @@
+.sass-lang {
+	.panel-group{
+		margin:10px 0;
+		width: 100%;
+	}
+}
+.sass-lang {
+	.panel-group {
+		.panel {
+			width: 100%;
+		    border: $zero;
+		    box-shadow: $None;
+		    background:transparent;
+		    border-radius: 0px;
+		}
+	}
+}
+.sass-lang {
+	.panel-default {
+		> .panel-heading{
+		    background: transparent;
+		    padding: $zero;
+		    width: $fullWidth;
+		}
+	    
+	}
+}
+.sass-lang {
+	.panel-body{
+		border:$zero;
+		padding:$zero;
+	}
+}
+.sass-lang {
+	.panel-default > .panel-heading + .panel-collapse > .panel-body{
+		border:$zero;
+	}
+}
+.sass-lang {
+	.panel-title{ 
+		color: $blackColor;
+		font-size: $font-size-small;
+		text-transform: uppercase;
+		margin-bottom: $zero;
+
+		a{
+			width: $fullWidth;
+			text-decoration: none;
+		}
+
+		span{
+			padding: 3px 10px;
+	    	float: $left;
+		}
+
+		a.collapsed:after {
+		    content: "\f106";
+		}
+
+		a:after{
+		    font-family: 'FontAwesome';
+		    content: "\f107";
+		    float: $right;
+		    font-size: 20px;
+		    line-height: $line-height;
+		}
+	}
+}

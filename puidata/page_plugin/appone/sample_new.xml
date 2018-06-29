@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <ImportApplication xmlns="http://tempuri.org/">
+      <AppOneApplicationXML>
+        <![CDATA[
+<AppOneApplication xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AppOneApplication_v2_6.xsd">
+  <Version>2.6</Version>
+  <Sender>
+    <UserName>marinemax</UserName>
+    <Password>Password123</Password>
+    <RecordID>1396479302</RecordID>
+  </Sender>
+  <Dealer>
+    <SenderID />
+    <AppOneID>1000472</AppOneID>
+    <Type>Recreational</Type>
+    <Name>The Big Dealer, Inc. (MR)</Name>
+    <Address1>123 STREET</Address1>
+    <City>STATEN ISLAND</City>
+    <State>NV</State>
+    <ZipCode>10308</ZipCode>
+    <Phone>123-456-7890</Phone>
+    <Fax>123-456-7899</Fax>
+    <SalesPersonName>Shane Pierce</SalesPersonName>
+    <FIPersonName>Butch Goodhue</FIPersonName>
+  </Dealer>
+  <Borrowers>
+    <Borrower>
+      <NumOrder>1</NumOrder>
+      <Type>INDIVIDUAL</Type>
+      <FirstName>DJ</FirstName>
+      <LastName>ADELMAN</LastName>
+      <SSN>654-46-5465</SSN>
+      <DOB>1989-02-10</DOB>
+      <HomePhone>654-065-4065</HomePhone>
+      <MobilePhone>650-465-0465</MobilePhone>
+      <DLNo>6546546540650</DLNo>
+      <Addresses>
+        <Address>
+          <IsCurrent>true</IsCurrent>
+          <IsMailing>true</IsMailing>
+          <StreetNo>516156</StreetNo>
+          <StreetName>516156 STREET</StreetName>
+          <City>PARROTT</City>
+          <County>TERRELL</County>
+          <State>GA</State>
+          <ZipCode>39877</ZipCode>
+          <Status>RENT</Status>
+          <HowLongYears>4</HowLongYears>
+          <HowLongMonths>0</HowLongMonths>
+          <MonthlyPayment>888</MonthlyPayment>
+        </Address>
+      </Addresses>
+      <EmploymentInfo>
+        <Employment>
+          <IsCurrent>true</IsCurrent>
+          <NumOrder>1</NumOrder>
+          <Status>EMPLOYED</Status>
+          <Occupation>aerh</Occupation>
+          <EmployerName>Test company</EmployerName>
+          <GrossSalary>3232</GrossSalary>
+          <HowLongYears>8</HowLongYears>
+          <HowLongMonths>0</HowLongMonths>
+        </Employment>
+      </EmploymentInfo>
+      <OtherIncome>
+        <Amount>500</Amount>
+        <AmountType>MONTHLY</AmountType>
+        <Source>MILITARY</Source>
+      </OtherIncome>
+    </Borrower>
+  </Borrowers>
+  <Collateral>
+    <Type>MARINE</Type>
+    <StockNo>0Z21A</StockNo>
+    <Age>USED</Age>
+    <Serial>1GNDT13W1V2160941</Serial>
+    <Year>2004</Year>
+    <Make>Fountain Powe</Make>
+    <Model>29 Fever</Model>
+    <Style>4DR</Style>
+    <Color>RED</Color>
+    <Mileage>36780</Mileage>
+    <MSRP>18900</MSRP>
+    <IsCPO>true</IsCPO>
+    
+    <Motors>
+      <Motor>
+        <NumOrder>1</NumOrder>
+        <Age>NEW</Age>
+        <Serial>654321</Serial>
+        <Year>2002</Year>
+        <Make>V/M</Make>
+        <Model>Emodel</Model>
+        <Type>INBOARD</Type>
+        <HorsePower>145</HorsePower>
+        <MSRP>450</MSRP>
+      </Motor>
+      <Motor>
+        <NumOrder>2</NumOrder>
+        <Serial>2352632362</Serial>
+        <Year>2002</Year>
+        <Make>V/M</Make>
+        <Model>Pmodel</Model>
+        <MSRP>0</MSRP>
+      </Motor>
+    </Motors>
+    <Trailer>
+      <Serial>234234234234</Serial>
+      <Year>2004</Year>
+      <Make>T Make and Model</Make>
+      <MSRP>5000</MSRP>
+    </Trailer>
+  </Collateral>
+  <Structure>
+    <SellingPrice>111219</SellingPrice>
+    <TradeInAllowance>25000</TradeInAllowance>
+    <TradeInPayoff>0</TradeInPayoff>
+    <Rebate>0</Rebate>
+    <CashDown>20870</CashDown>
+    <Taxes>6298</Taxes>
+    <TotalFees>3563</TotalFees>
+    <TotalProducts>0</TotalProducts>
+    <TotalAmountFinanced>75211</TotalAmountFinanced>
+    <Term>240</Term>
+    <Rate>8.00</Rate>
+    <DaysToFirstPayment>30</DaysToFirstPayment>
+  </Structure>
+  <TradeInInfo>
+    <TradeIn>
+      <NumOrder>1</NumOrder>
+      <Serial>12312319492349235</Serial>
+      <Year>1995</Year>
+      <Make>A &amp; L Fiberglass</Make>
+      <Model>Lagoon Classic</Model>
+      <Mileage>15934</Mileage>
+      <TradeInAllowance>25000</TradeInAllowance>
+      <TradeInPayoff>0</TradeInPayoff>
+    </TradeIn>
+  </TradeInInfo>
+</AppOneApplication>
+        ]]>
+      </AppOneApplicationXML>
+    </ImportApplication>
+  </soap:Body>
+</soap:Envelope>

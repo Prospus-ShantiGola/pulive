@@ -1,0 +1,17 @@
+<?php 
+  
+echo $this->header;
+$html = '<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">Hello, '.$this->toFirstName .'.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">Please verify your email address '.$this->email .' for your Prospus account.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td ><a style="color: #fff; text-decoration: none; padding: 8px 20px; background: #49a9fa; border-radius: 2px; font-size: 14px; margin-right: 10px;" href="' . SOCKET_HOST_NAME .'login/verifyMail?token='.$hashKey. '">Verify Now</a></td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         ."<tr><td style='font:13px Arial, Helvetica, sans-serif; color:#333333'>Once you have successfully verified using the link above, you'll be taken back to Prospus.</td></tr>"
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr>';
+              
+    
+echo $html;
+echo $this->footer;
+?>

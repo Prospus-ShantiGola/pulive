@@ -1,0 +1,126 @@
+$btnbg :transparent;
+$radiusNone: 0px;
+$btnPadding:5px 10px;
+$btnBorderColor:#000;
+$btnshadow:none;
+
+$btnWhiteColor:#fff;
+$btnColor:#000;
+
+$btnBrandColor:#99cbcc;
+$btnBrandBorder:#99cbcc;
+
+$btnBlackColor:#333;
+$btnBlackBorder:#333;
+
+
+
+	
+.course-btn{    
+	background: $bg-gray;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 85px;
+    padding: 5px 10px;
+    line-height: 12px;
+    font-size: 11px;
+    a{
+    	color: #000;
+    	text-decoration: none;
+    }
+	.Icon{
+		margin-right: 5px;
+	}
+}
+.sass-lang {
+	.btn-light-green{
+		border-color:$btnBrandColor;
+		color:$btnBrandColor;
+		background: transparent;
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus{
+			color:$btnColor;
+			border-color:$btnBrandColor;
+			background: transparent;
+		}
+	}
+	.btn-black{
+		border-color:$btnBlackColor;
+		color:$btnBlackBorder;
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus{
+			color:$btnWhiteColor;
+			border-color:$btnBlackBorder;
+			background: $btnColor;
+		}
+		
+	}
+}
+.sass-lang {
+	.btn-group-icon i {
+	    margin-right: 10px;
+	    font-style: italic;
+	}
+	.btn-group-icon {
+	    padding: 0;
+	    border: 0;
+	    font-size: 13px;
+	    font-style: italic;
+	    color: #9d9d9d;
+	}
+}
+.btn-anchor {
+    border: 0;
+    background: transparent;
+    font-size: 9px;
+    i {
+    	width: 20px;
+    	text-align: center;
+	}
+	span{
+		width: 100%;
+		text-align: center;
+		 float: left;
+	}
+	&:focus{
+		outline: 0;
+	}
+}
+.bootbox .modal-dialog button.btn-sm {
+    padding: 2px !important;
+    font-size: 11px;
+    min-width: 40px !important;
+    margin-right: 0;
+}
+.dashBoardProductionButtons {
+	.flex-item{
+		justify-content:center;
+	}
+	a{
+		background: #242f43;
+	    border: 1px solid #242f43;
+	    padding: 4px 10px;
+	    color: #fff;
+	    min-width: 70px;
+	    text-align: center;
+	    margin:0 5px !important;
+		&:hover {
+		    background: #242f43 !important;
+		    opacity: 0.8;
+		    color: #fff !important;
+		}
+		&:focus,
+		&:active{
+			color: #fff !important;
+		}
+		i{
+			display: none
+		}
+	}
+	
+}

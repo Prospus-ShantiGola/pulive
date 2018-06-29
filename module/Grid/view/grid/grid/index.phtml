@@ -1,0 +1,458 @@
+<?php if($this->post['type'] == 'mainPage') { ?>
+
+    <div class="fixed-top-header">
+        <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+            <tbody>
+            <tr class="row-0">
+                <td class="ExcelTableFormationRow"><div class="left-col"></div></td>
+                <td class="ExcelTableFormationCol col-1 collapse"><span class="top-col">1</span></td>
+                <td class="ExcelTableFormationCol collapse event col-2"><span class="top-col event">2</span></td>
+                <td class="ExcelTableFormationCol col-3"><span class="top-col">3</span></td>
+                <td class="ExcelTableFormationCol collapse event col-4"><span class="top-col event">4</span></td>
+                <td class="ExcelTableFormationCol col-5"><span class="top-col">5</span></td>
+                <td class="ExcelTableFormationCol col-6"><span class="top-col">6</span></td>
+                <td class="ExcelTableFormationCol col-7">
+                    <span class="top-col gridMenu" data-id="drpAddOperation">7</span>
+                </td>
+                <td class="ExcelTableFormationCol col-8"></td>
+            </tr>
+            <tr class="row-1">
+                <td class="ExcelTableFormationRow"><div class="left-col">1</div></td>
+                <td class="ExcelTablerow col-1 collapse"><div data-id="1" class="col-head">
+                        <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon time-icon"></span><span class="col-head-title">Timeline</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                <td class="ExcelTablerow col-2 collapse event "><div data-id="2" class="col-head event">
+                        <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                <td class="col-3"><div data-id="3" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon process-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i> </div></td>
+                <td class="ExcelTablerow col-4 collapse event"><div data-id="4" class="col-head event">
+                        <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span></span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                <td class="col-5">
+                    <div data-id="5" class="col-head">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon phase-icon"></span>
+                        <span class="col-head-title">Unstructured</span>
+                        <i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+                <td class="col-6">
+                    <div data-id="6" class="col-head">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon phase-icon"></span>
+                        <span class="col-head-title">Structured</span>
+                        <i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+                <td class="col-7">
+                    <div data-id="7" class="col-head">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon phase-icon"></span>
+                        <span class="col-head-title">Phase</span>
+                        <i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-8"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <table class="fixed-left-column" border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+        <tbody>
+
+        <tr class="row-0">
+            <td class="ExcelTableFormationRow"><div class="left-col"></div></td>
+            <td class="ExcelTableFormationCol col-1 collapse dfd"><span class="top-col">1</span></td>
+            <td class="ExcelTableFormationCol collapse event col-2"><span class="top-col event">2</span></td>
+            <td class="ExcelTableFormationCol col-3"><span class="top-col">3</span>
+                <!-- <i class="fa fa-plus add add-phase-segment"></i>
+                <div class="add-col-wrap add-colums"  >
+                      <ul class="dropdown-menu show-3" >
+                        <li class="no-bg ">
+                          <a class="add-left disabled">
+                            <div class=" node-circle node-white-circle-expanded">N</div>
+                            Add left
+                          </a>
+                          <ul class="sub-item">
+                            <li class="no-bg disabled"> <a class="add-left-col">
+                              <div class="node-circle node-white-circle">N</div>
+                              Phase </a> </li>
+                            <li class="no-bg disabled"> <a class="">
+                              <div class="node-circle node-white-circle">N</div>
+                              Operation </a> </li>
+                          </ul>
+                        </li>
+                        <li role="presentation">
+                        <a class="add-right">
+                          <div class="node-circle node-white-circle-expanded">N</div>
+                          Add right </a>
+                          <ul class="sub-item">
+                            <li data-toggle="modal" data-target="#Seriespoup"> <a class="popupPhaseClass">
+                              <div class="node-circle node-white-circle">N</div>
+                              Phase </a> </li>
+                            <li class="add-operation-series"> <a class="" href="#">
+                              <div class="node-circle node-white-circle">N</div>
+                              Operation </a> </li>
+                          </ul>
+                        </li>
+                      </ul>
+                </div> -->
+            </td>
+            <td class="ExcelTableFormationCol collapse event col-4"><span class="top-col event">4</span></td>
+            <td class="ExcelTableFormationCol col-5"><span class="top-col">5</span></td>
+            <td class="ExcelTableFormationCol col-6"><span class="top-col">6</span></td>
+            <td class="ExcelTableFormationCol col-7">
+                <span class="top-col gridMenu" data-id="drpAddOperation">7</span>
+            </td>
+            <td class="ExcelTableFormationCol col-8"></td>
+        </tr>
+
+        <tr class="row-1">
+            <td class="ExcelTableFormationRow"><div class="left-col">1</div></td>
+            <td class="ExcelTablerow col-1 collapse"><div data-id="1" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon time-icon"></span><span class="col-head-title">Timeline</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+            <td class="ExcelTablerow col-2 collapse event "><div data-id="2" class="col-head event">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+            <td class="col-3"><div data-id="3" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon process-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i> </div></td>
+            <td class="ExcelTablerow col-4 collapse event"><div data-id="4" class="col-head event">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span></span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+            <td class="col-5">
+                <div data-id="5" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon phase-icon"></span>
+                    <span class="col-head-title">Unstructured</span>
+                    <i class="fa fa-caret-left arrow"></i>
+                </div>
+            </td>
+            <td class="col-6">
+                <div data-id="6" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon phase-icon"></span>
+                    <span class="col-head-title">Structured</span>
+                    <i class="fa fa-caret-left arrow"></i>
+                </div>
+            </td>
+            <td class="col-7">
+                <div data-id="7" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon phase-icon"></span>
+                    <span class="col-head-title">Phase</span>
+                    <i class="fa fa-caret-left arrow"></i>
+                </div>
+            </td>
+            <td class="ExcelTablerow col-8"></td>
+        </tr>
+
+        <tr class="row-2">
+            <td class="ExcelTableFormationRow"><div class="left-col">2</div></td>
+            <td class="ExcelTablerow col-1"><div class="">
+                    <div class="time-col"> <span class="doted-border"></span>
+                        <div class="node-circle node-white-sm-circle">N</div>
+            <span class="col-text"> 
+            <span class="col-node-text custom-node"></span>
+          </span> </div>
+                </div></td>
+            <td class="ExcelTablerow col-2 collapse event">
+                <div class="creation-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+          <span class="col-text"> <span class="creation"></span> 
+          <span class="col-node-text custom-node">Creation</span>
+         </span>
+                </div>
+            </td>
+            <td class="ExcelTablerow col-3">
+                <div class="segment-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <!-- <span style="display:none;" >Add Segment</span> -->
+                    <div class="col-text segment-text operation-text">
+            <span class="col-node-text">
+              <input type="text" class="custom-node undefined" placeholder="Undefined">
+            </span>
+                    </div>
+                </div>
+            </td>
+            <td class="ExcelTablerow col-4 collapse event">
+                <div class="creation-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text"> <span class="creation"></span>
+                        <span class="col-node-text custom-node">Creation</span>
+                    </div>
+                </div>
+            </td>
+            <td class="ExcelTablerow col-5 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow transparent col-6 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow transparent col-7 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow col-8"></td>
+        </tr>
+
+        <tr class="row-3">
+            <td class="ExcelTableFormationRow"><div class="left-col">3</div></td>
+            <td class="ExcelTablerow col-1"><div class="lastRow">
+                    <div class="time-col">
+                        <div class="node-circle node-white-sm-circle">N</div>
+                        <div class="borderDashed last-borderDashed"></div>
+                        <span class="col-text"> </span> </div>
+                </div></td>
+            <td class="ExcelTablerow col-2 collapse event"><div class="lastRow creation-node border-light-top">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text"> <span class="destructure"></span>
+                        <span class="col-node-text custom-node">Destruction</span>
+                    </div>
+                </div></td>
+            <td class="ExcelTablerow col-3"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow col-4 collapse event"><div class="lastRow creation-node border-light-top">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text"> <span class="destructure"></span>
+                        <span class="col-node-text custom-node">Destruction</span>
+                    </div>
+                </div></td>
+            <td class="ExcelTablerow col-5 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow col-6 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow col-7 creation-bg"><div class="blank-div segment-node"></div></td>
+            <td class="ExcelTablerow col-8"></td>
+        </tr>
+
+        <?php for($row=4;$row<4;$row++) { ?>
+            <tr class="row-<?php echo $row; ?>">
+                <td class="ExcelTableFormationRow"><div class="left-col"><?php echo $row; ?></div></td>
+                <td class="ExcelTablerow col-1"></td>
+                <td class="ExcelTablerow collapse col-2"></td>
+                <td class="ExcelTablerow col-3"></td>
+                <td class="ExcelTablerow collapse  col-4"></td>
+                <td class="ExcelTablerow col-5"></td>
+                <td class="ExcelTablerow collapse col-6"></td>
+                <td class="ExcelTablerow col-7"></td>
+                <td class="ExcelTablerow col-8"></td>
+                <td class="ExcelTablerow col-9"></td>
+                <td class="ExcelTablerow col-10"></td>
+                <td class="ExcelTablerow col-11"></td>
+                <td class="ExcelTablerow col-12"></td>
+                <td class="ExcelTablerow col-13"></td>
+                <td class="ExcelTablerow col-14"></td>
+            </tr>
+        <?php } ?>
+
+        </tbody>
+    </table>
+<?php } ?>
+
+<?php if($this->post['type'] == 'phase') { ?>
+  <?php if($this->post['confirm'] == 'YES') { ?>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title" id="myModalLabel">Heads Up!</h4>
+            </div>
+       		<div class="modal-body">
+                <div class="series-content">Are you sure you want to add new phase then all the previous operation removed from the series.</div>
+            </div> 
+        	<div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="openCreatePhase('<?php echo $this->post['columnNumber']; ?>','<?php echo $this->post['preNoSegment']; ?>');" >Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" >No</button>
+            </div>
+        </div>
+    </div>
+  <?php } else if($this->post['confirm']=='SubOpeartion'){ ?>
+    <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title" id="myModalLabel">Sub Operation</h4>
+            </div>
+            <div class="modal-body">
+                  <div class="series-content">Define the type of Sub-Operation you want to add to your panel.</div>
+                    <div class="main-wrap">
+                        <div class="first-col">
+                            <div>
+                              <span>Sub-Operation1</span>
+                              <span>Sub-Operation2</span>
+                            </div>
+                        </div>
+
+                        <div class="main-wrap-col main-col-width col-border">
+                            <div class="main-col-title">Sequential</div>
+                            <div class="main-col-inner">
+                              <span>Logic</span>
+                              <span>Human</span>
+                            </div>
+                            <div class="main-col-inner skin-minimal">
+                              <span class="node-input set-radio">
+                                <input type="radio" value="" disabled name="sub_op1" class="">
+                              </span>
+                              <span class="node-input set-radio">
+                                <input type="radio" value="seq_human_1" checked name="sub_op1" class="">
+                              </span>
+                            </div>
+                            <div class="main-col-inner skin-minimal">
+                              <span class="node-input set-radio">
+                                <input type="radio" value="seq_logic_2"  name="sub_op2" class="">
+                              </span>
+                              <span class="node-input set-radio">
+                                <input type="radio" value="seq_human_2" checked name="sub_op2" class="">
+                              </span>
+                            </div>
+                        </div>
+                       
+
+                         <div class="main-wrap-col main-col-width">
+                            <div class="main-col-title">Non-Sequential</div>
+                            <div class="main-col-inner">
+                              <span>Logic</span>
+                              <span>Human</span>
+                            </div>
+                            <div class="main-col-inner">
+                              <span></span>
+                              <span></span>
+                            </div>
+                            <div class="main-col-inner skin-minimal">
+                              <span class="node-input set-radio">
+                                <input type="radio" value="non_seq_logic_2" name="sub_op2" class="">
+                              </span>
+                              <span class="node-input set-radio">
+                                <input type="radio" value="non_seq_human_2" name="sub_op2" class="">
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                  
+              </div> 
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="createSubOperation('<?php echo $this->post['columnNumber']; ?>','<?php echo $this->post['preNoSegment']; ?>','<?php echo $this->post['myRow']; ?>','<?php echo $this->post['opIndexNo']; ?>');" >OK</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" >Cancel</button>
+            </div>
+          </div>
+    </div>
+  <?php } else if($this->post['confirm']=='EventStatus'){ ?>
+    <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title" id="myModalLabel">Status capture point</h4>
+            </div>
+            <div class="modal-body">
+                    
+
+                     <!--  <ul class="staus-drp" >
+                            <li  class="skin-minimal ">
+                                <span class="node-input set-radio event-status">
+                                 <input type="radio" value="eventstatus" checked name="eventstatus" class=""> Add Event Status
+                                </span>
+                            </li>
+                      </ul> -->
+
+                        <ul class="staus-drp" id="checkEvent">
+                            
+                            <li role="presentation" class="skin-minimal- add-before-the-event-has-started">
+                                <span class="node-input set-radio">
+                                  <div class="custom-checkbox">                                         
+                                    <input type="checkbox" value="before" checked name="event_status[]" class="">
+                                    <label>Before the event has started </label>    
+                                  </div>
+                                </span>
+                            </li>
+
+
+
+                            <li role="presentation" class="skin-minimal- add-after-the-event-has-ended">
+                                
+                                <span class="node-input set-radio">
+                                  <div class="custom-checkbox">                                         
+                                    <input type="checkbox" value="after" name="event_status[]" class="">
+                                    <label>After the event has ended </label>    
+                                  </div>
+                                </span>
+
+                            </li>
+                            <li role="presentation" class="skin-minimal- add-before-the-event-has-started">
+                               
+                                <span class="node-input set-radio">
+                                  <div class="custom-checkbox">                                         
+                                     <input type="checkbox" value="completion" name="event_status[]" class="">
+                                    <label>After completion of Role-Operation</label>    
+                                  </div>
+                                </span>
+
+
+                            </li>
+                            <li role="presentation" class="skin-minimal- add-after-completion-of-role-operation">
+                                
+                                <span class="node-input set-radio">
+                                  <div class="custom-checkbox">                                         
+                                     <input type="checkbox" value="destructor" name="event_status[]" class="">
+                                    <label>After the destruction event</label>    
+                                  </div>
+                                </span>
+
+
+                            </li>
+                                                
+     
+                        </ul>
+                     
+              
+
+                     <!--  <ul class="staus-drp" >
+                            <li  class="skin-minimal ">
+                                  <span class="node-input set-radio event-status">
+                                      <input type="radio" value="delete" name="eventstatus" class=""> Delete Event Status
+                                </span>
+                            </li>
+                      </ul> -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="createEventStatus('<?php echo $this->post['columnNumber']; ?>','<?php echo $this->post['preNoSegment']; ?>','<?php echo $this->post['myRow']; ?>');" >OK</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" >Cancel</button>
+            </div>     
+            </div>
+              </div> 
+           
+          </div>
+    </div>
+  <?php } else { ?>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Phase Series</h4>
+            </div>
+       		<div class="modal-body">
+                <div class="series-content">Define the number of segment for the new series</div>
+                <div class="select-box">
+                	<input type="hidden" id="columnNumber" name="columnNumber" value="<?php echo $this->post['columnNumber']; ?>"  />
+                    <input type="hidden" id="preNoSegment" name="preNoSegment" value="<?php echo $this->post['preNoSegment']; ?>"  />
+                    <select id="noOfSegment" name="noOfSegment" >
+    					<?php for($index=2;$index<11;$index++) { ?>
+                        	<option value="<?php echo $index; ?>" ><?php echo $index; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div> 
+        	<div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="createPhase();" >OK</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" >Cancel</button>
+            </div>
+        </div>
+    </div>
+  <?php }  ?>
+<?php } ?>
+
+
+<!-- code here for sub operation madal-->
+
+<script type="text/javascript">
+    $('body .event-status').click(function(){
+        //$('.event-status input').on('ifChecked', function(event){
+        var chVal='';
+        $.each($("input[name='eventstatus']:checked"), function() {
+            chVal = $(this).val();
+            if(chVal=='delete'){
+                $("#checkEvent").hide();
+            }
+            else {
+                $("#checkEvent").show();
+            }
+        });
+    })
+</script>
+

@@ -1,0 +1,1258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AppOne Application Import Schema File -->
+<!-- Contains the schema definitions for the XML file submitted to the AppOne Connect ImportApplication() web service method -->
+<!-- Modified by Balaji on 12/08/2016 for Applicant Other Income Source-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AppOneApplication" nillable="false">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Version" type="XMLVersion" minOccurs="1" maxOccurs="1" nillable="false" />
+
+        <xs:element name="Sender" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserName" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="4" />
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Password" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="8" />
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RecordID" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="1" />
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Dealer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SenderID" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AppOneID" type="xs:unsignedInt" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Type" type="DealerType" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="5" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address1" minOccurs="1" maxOccurs="1" nillable="false">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="5" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address2" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="City" type="City" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="County" type="County" minOccurs="0" maxOccurs="1" nillable="true" />
+              <xs:element name="State" type="State" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="ZipCode" type="ZipCode" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="Phone" type="Phone" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="Fax" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+              <!-- Added by Param on 6/5/2012 - Name of Sales Person -->
+              <xs:element name="SalesPersonName" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <!-- Added by Param on 6/5/2012 - Name of F&I Manager -->
+              <xs:element name="FIPersonName" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!-- Added by Param on 8/12/2016 -->
+        <xs:element name="JointCreditAcknowledgment" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+        
+        <xs:element name="Borrowers" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Borrower" minOccurs="1" maxOccurs="2">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="Type" type="BorrowerType" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <xs:element name="RelationshipToPrimaryBorrower" type="ApplicantRelation" minOccurs="0" maxOccurs="1" nillable="false" />                    
+                    <!-- Modified by Param on 9/5/2013 -->
+                    <xs:element name="RelationshipDescription" minOccurs="0" maxOccurs="1" nillable="false">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="100" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="FirstName" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="MiddleName" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <!-- Modified by Param on 9/5/2013 -->
+                    <xs:element name="LastName" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+
+                    <xs:element name="Suffix" type="NameSuffix" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="SSN" type="SSN" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="DOB" type="xs:date" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="HomePhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="MobilePhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="DLNo" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="15" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="DLState" type="State" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="Email" type="Email" minOccurs="0" maxOccurs="1" nillable="false" />
+
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessName" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="50" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessType" type="BusinessEntityType" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessTaxID" type="FederalTaxID" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessPhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessHowLongYears" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <!-- Added by Param on 9/5/2013 -->
+                    <xs:element name="BusinessHowLongMonths" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+
+                    <xs:element name="Addresses" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Address" minOccurs="0" maxOccurs="3">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="IsCurrent" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <!-- Added by Balaji on 3/2/2015 -->
+                                <xs:element name="IsMailing" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <!-- Modified by Param on 3/2/2015 to accomodate single line address for mailing address -->
+                                <xs:element name="StreetNo" minOccurs="0" maxOccurs="1" nillable="true">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="0" />
+                                      <xs:maxLength value="20" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="StreetName" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1" />
+                                      <!-- Modified by Param on 3/2/2015 to increase field length to accomodate single line address for mailing address -->
+                                      <xs:maxLength value="100" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="AptNo" minOccurs="0" maxOccurs="1" nillable="true">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="0" />
+                                      <xs:maxLength value="10" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="City" type="City" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="County" type="County" minOccurs="0" maxOccurs="1" nillable="true" />
+                                <xs:element name="State" type="State" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="ZipCode" type="ZipCode" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <!-- Modified by Param on 3/2/2015 to allow this field to be left out for mailing address -->
+                                <xs:element name="Status" type="AddressStatus" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="HowLongYears" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="HowLongMonths" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="MonthlyPayment" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="LandLordMortgageCo" minOccurs="0" maxOccurs="1" nillable="true">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="0" />
+                                      <xs:maxLength value="30" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="LandLordMortgagePhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="EmploymentInfo" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Employment" minOccurs="0" maxOccurs="3">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="IsCurrent" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="Status" type="EmploymentStatus" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="Occupation" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="EmployerName" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="3" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Address" minOccurs="0" maxOccurs="1" nillable="true">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="0" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="City" type="City" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="State" type="State" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="ZipCode" type="ZipCode" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <!-- Modified by Param on 9/5/2013 -->
+                                <xs:element name="GrossSalary" type="xs:unsignedInt" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <!-- Added by Param on 9/5/2013 -->
+                                <xs:element name="GrossSalaryType" type="IncomeType" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="WorkPhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="HowLongYears" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="HowLongMonths" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="OtherIncome" minOccurs="0" maxOccurs="1" nillable="false">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <!-- Modified by Param on 9/5/2013 -->
+                          <xs:element name="Amount" type="xs:unsignedInt" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <!-- Added by Param on 9/5/2013 -->
+                          <xs:element name="AmountType" type="IncomeType" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Source" type="OtherIncomeSource" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <!-- Added by Balaji on 12/08/2016 for Applicant Other Income Source Description-->
+                          <xs:element name="Description" minOccurs="0" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="100" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="References" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Reference" minOccurs="0" maxOccurs="4">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Type" type="ReferenceType" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="3" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Checking" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="Savings" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="Address" minOccurs="0" maxOccurs="1" nillable="true">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="0" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="City" type="City" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="State" type="State" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="ZipCode" type="ZipCode" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="Phone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                    <xs:element name="CreditBureaus" minOccurs="0" maxOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="CreditBureau" minOccurs="0" maxOccurs="3">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Source" type="CreditBureauSource" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="Score" type="xs:unsignedShort" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="ScoreRangeLow" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="ScoreRangeHigh" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="ScoreRankPercent" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <!-- Added by Param on 12/06/2011 -->
+                                <!-- The base64 encoded representation of the raw XML report -->
+                                <!-- NOTE: at this time only CREDCO XML format is supported -->
+                                <xs:element name="XMLReport" type="xs:base64Binary" minOccurs="0" maxOccurs="1" nillable="false" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Collateral" minOccurs="0" maxOccurs="1" nillable="false">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Type" type="CollateralType" minOccurs="1" maxOccurs="1" nillable="false" />
+
+              <!-- added by Param on 6/5/2012 - Stock Number -->
+              <xs:element name="StockNo" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <xs:element name="Age" type="CollateralAge" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="Serial" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Year" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Make" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Model" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Style" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- added by Param on 12/06/2011 - Color of the unit -->
+              <xs:element name="Color" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <xs:element name="Mileage" type="xs:unsignedInt" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Length" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="FuelType" type="FuelType" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="RVClass" type="RVClass" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="MSRP" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="CostPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="SellingPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+
+              <!-- Added by Radhika on 7/6/2015 - -->
+              <xs:element name="IsCPO" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+              
+              <!-- Added by Balaji on 16/6/2016 - -->
+              <xs:element name="EnableManualEntry" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+              
+              <!-- Added by Balaji on 09/28/2016 - -->
+              <xs:element name="Horsepower" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Drive" type="DriveType" minOccurs="0" maxOccurs="1" nillable="false" />                   
+              <!-- END by Balaji on 09/28/2016 - -->
+              <xs:element name="Motors" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <!-- Modified by Balaji on 03/07/2016 - -->
+                    <xs:element name="Motor" minOccurs="0" maxOccurs="3">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Age" type="CollateralAge" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="Serial" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="20" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Year" type="xs:unsignedShort" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Make" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Model" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Type" type="MotorType" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="HorsePower" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="FuelType" type="FuelType" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="MSRP" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="CostPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="SellingPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <xs:element name="Trailer" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Age" type="CollateralAge" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="Serial" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Year" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="Make" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Model" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Axles" type="xs:unsignedByte" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="MSRP" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="CostPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="SellingPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <!-- Added by Balaji on 09/28/2016 - -->
+              <xs:element name="Implements" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>                   
+                    <xs:element name="Implement" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Age" type="CollateralAge" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="Serial" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="20" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Year" type="xs:unsignedShort" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Make" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Model" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>                          
+                          <xs:element name="CostPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="SellingPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <!-- END by Balaji on 09/28/2016 - -->
+              <xs:element name="Options" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Option" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="50" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Description" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="255" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>                          
+                          <xs:element name="SellingPrice" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <!-- Added by Balaji on 21st Jan 2016 for DIO changes-->
+                          <xs:element name="IsTaxable" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <!-- Added by Balaji on 21st Jan 2016 for DIO changes-->
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- Added by Param on 6/5/2012 - Collateral Valuation -->
+              <!-- Currently only 1 valuation is supported for a single collateral record i.e. valuations for marine collateral w/ boat/motor/trailer is not supported at this time -->
+              <xs:element name="Valuation"  minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Source" type="CollateralValuationSource" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <xs:element name="Region" minOccurs="1" maxOccurs="1" nillable="false">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="2" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="ValuationDate" type="xs:date" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <xs:element name="VehicleCode" minOccurs="1" maxOccurs="1" nillable="false">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <!-- Added by Radhika on 7/3/2012  -->
+                    <xs:element name="Condition" type="CollateralCondition" minOccurs="0" maxOccurs="1" nillable="false" />
+
+                    <xs:element name="MSRP" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseLoanValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseRetailValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseWholeSaleValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseAvgTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="BaseRoughTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="MileageAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="TradeInAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="LoanAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="RetailAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="WholeSaleAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="AvgTradeInAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="RoughTradeInAdjustmentValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalLoanValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalRetailValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalWholeSaleValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalAvgTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="FinalRoughTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+
+                    <!-- Added by Param on 7/8/2015 Only needed if Unit is CPO unit and for KBB Bookout only - -->
+                    <xs:element name="FinalCPOValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+
+                    <xs:element name="Options" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="Option" minOccurs="0" maxOccurs="unbounded" nillable="true">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="Code" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1" />
+                                      <xs:maxLength value="30" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                                  <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                      <xs:minLength value="1" />
+                                      <xs:maxLength value="50" />
+                                    </xs:restriction>
+                                  </xs:simpleType>
+                                </xs:element>
+                                <xs:element name="IsIncluded" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="IsIncludedInTrim" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                                <xs:element name="TradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="LoanValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="RetailValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="WholeSaleValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="AvgTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                                <xs:element name="RoughTradeInValue" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Structure" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SellingPrice" type="xs:decimal" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="TradeInAllowance" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="TradeInPayoff" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Rebate" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="CashDown" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Taxes" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <!-- modified by Param on 6/5/2012 - Changed element name from Fees to TotalFees -->
+              <xs:element name="TotalFees" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <!-- modified by Param on 6/5/2012 - Changed element name from Products to TotalProducts -->
+              <xs:element name="TotalProducts" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="TotalAmountFinanced" type="xs:decimal" minOccurs="1" maxOccurs="1" nillable="false" />
+              <xs:element name="Term" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="Rate" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+              <!-- Added by Param on 6/5/2012 - Days to First Payment -->
+              <xs:element name="DaysToFirstPayment" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+
+              <!-- added by Param on 6/5/2012 - Fee Itemizations -->
+              <!-- Fees within AppOne are configured on a per dealer basis as they vary by state/collateral -->
+              <!-- Any fees submitted here will be validated to ensure that fee codes match what has been configured for the specific dealer -->
+              <!-- It is recommended that you call the method available on the web service to retrieve the Fee configurations for a specific dealer before building this section -->
+              <xs:element name="Fees" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Fee" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <!-- The unique code for the fee - Note - this must match the code exactly as it is configured in AppOne for the specific dealer -->
+                          <xs:element name="Code" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="50" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Amount" type="xs:decimal" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="IsTaxed" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- added by Param on 6/5/2012 - Product Itemizations -->
+              <!-- Products within AppOne are configured on a per dealer basis as they vary by dealer/state/organization -->
+              <!-- Any products submitted here will be validated to ensure that product codes match what has been configured for the specific dealer -->
+              <!-- It is recommended that you call the method available on the web service to retrieve the Product configurations for a specific dealer before building this section -->
+              <!-- NOTE: For AppOne RMS dealers, only VSC and GAP is supported and offered at this time -->
+              <xs:element name="Products" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Product" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <!-- The unique code for the product - Note - this must match the code exactly as it is configured in AppOne for the specific dealer -->
+                          <xs:element name="Code" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="30" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="Name" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="50" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CompanyName" minOccurs="1" maxOccurs="1" nillable="false">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="1" />
+                                <xs:maxLength value="100" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CostPriceAmount" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="SellingPriceAmount" type="xs:decimal" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="IsTaxed" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false" />
+                          <xs:element name="TaxAmount" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="DeductibleAmount" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="CoverageTerm" type="xs:unsignedShort" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="CoverageMileage" type="xs:unsignedInt" minOccurs="0" maxOccurs="1" nillable="false" />
+                          <xs:element name="CoverageDescription" minOccurs="0" maxOccurs="1" nillable="true">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:minLength value="0" />
+                                <xs:maxLength value="100" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="CoverageType" type="ProductCoverageType" minOccurs="0" maxOccurs="1" nillable="false" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="TradeInInfo" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TradeIn" minOccurs="0" maxOccurs="2">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="NumOrder" type="xs:unsignedByte" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <xs:element name="Serial" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Year" type="xs:unsignedShort" minOccurs="1" maxOccurs="1" nillable="false" />
+                    <xs:element name="Make" minOccurs="1" maxOccurs="1" nillable="false">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Model" minOccurs="1" maxOccurs="1" nillable="false">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="1" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Style" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="30" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Mileage" type="xs:unsignedInt" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="TradeInAllowance" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="TradeInPayoff" type="xs:decimal" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="LienHolder" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="50" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="LienHolderPhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+                    <xs:element name="LienHolderAccountNum" minOccurs="0" maxOccurs="1" nillable="true">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:minLength value="0" />
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="InsuranceInfo" minOccurs="0" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Company" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Agent" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AgentPhone" type="Phone" minOccurs="0" maxOccurs="1" nillable="false" />
+              <xs:element name="PolicyNumber" minOccurs="0" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="0" />
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Deductible" type="xs:decimal" minOccurs="1" maxOccurs="1" nillable="false" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <!-- XML Version Enumeration -->
+  <xs:simpleType name="XMLVersion">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1.0" />
+      <xs:enumeration value="2.0" />
+      <xs:enumeration value="2.1" />
+      <!-- Added by Param on 9/5/2013 -->
+      <xs:enumeration value="2.2" />
+      <!-- Added by Param on 3/2/2015 -->
+      <xs:enumeration value="2.3" />
+      <!-- Added by Balaji on 19th May 2015 -->
+      <xs:enumeration value="2.4" />
+      <!-- Added by Balaji on 19th May 2015 -->
+      <!-- Added by Balaji on 21st Jan 2016 for DIO changes-->
+      <xs:enumeration value="2.5" />
+      <!-- Added by Balaji on 19th May 2016 for DIO changes-->
+      <!-- Added by Param on 8/12/2016 for Joint Credit Acknowledgment Changes -->
+      <xs:enumeration value="2.6" />      
+      <!-- Added by Balaji on 09/28/2016 for Tractor Implements changes-->
+      <xs:enumeration value="2.7" />
+      <!-- Added by Balaji on 11/01/2016 for Applicant Other Income Source-->
+      <xs:enumeration value="2.8" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Dealer Type Enumeration -->
+  <xs:simpleType name="DealerType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Recreational" />
+      <xs:enumeration value="RMS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Name Suffix Enumeration -->
+  <xs:simpleType name="NameSuffix">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SR" />
+      <xs:enumeration value="JR" />
+      <xs:enumeration value="I" />
+      <xs:enumeration value="II" />
+      <xs:enumeration value="III" />
+      <xs:enumeration value="IV" />
+      <xs:enumeration value="V" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Address Status Enumeration -->
+  <xs:simpleType name="AddressStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OWN" />
+      <xs:enumeration value="RENT" />
+      <xs:enumeration value="WITHRELATIVES" />
+      <xs:enumeration value="WITHFRIENDS" />
+      <xs:enumeration value="OTHER" />
+      <xs:enumeration value="UNKNOWN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Employment Status Enumeration -->
+  <xs:simpleType name="EmploymentStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EMPLOYED" />
+      <xs:enumeration value="SELFEMPLOYED" />
+      <xs:enumeration value="TEMPSTAFFINGAGENCY" />
+      <xs:enumeration value="STUDENT" />
+      <xs:enumeration value="RETIRED" />
+      <xs:enumeration value="MILITARY" />
+      <xs:enumeration value="HOMEMAKER" />
+      <xs:enumeration value="UNEMPLOYED" />
+      <xs:enumeration value="UNKNOWN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Other Income Source Enumeration -->
+  <xs:simpleType name="OtherIncomeSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Aid for Dependent Children" />
+      <xs:enumeration value="Child Support" />
+      <xs:enumeration value="Cost of Living Allowance (COLA)" />
+      <xs:enumeration value="Disability" />
+      <xs:enumeration value="Family Subsistence Supplemental Allowance (FSSA)" />
+      <xs:enumeration value="Housing Allowances" />
+      <xs:enumeration value="Military Basic Allowance for Subsistence (BAS)" />
+      <xs:enumeration value="Municipal Bond Interest" />  
+      <xs:enumeration value="Other Non-Taxable Sources of Income" />
+      <xs:enumeration value="Public Assistance" />      
+      <xs:enumeration value="Social Security Benefits" />
+      <xs:enumeration value="Railroad Pension" />
+      <xs:enumeration value="Workman's Compensation" />
+      <xs:enumeration value="Other" />
+      <xs:enumeration value="UNKNOWN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Reference Type Enumeration -->
+  <xs:simpleType name="ReferenceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="BANK" />
+      <xs:enumeration value="PERSONAL" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Credit Bureau Source Enumeration -->
+  <xs:simpleType name="CreditBureauSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EQUIFAX" />
+      <xs:enumeration value="EXPERIAN" />
+      <xs:enumeration value="TRANSUNION" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Collateral Type Enumeration Radhika added and modified collateral types on 5/27/2015 -->
+  <xs:simpleType name="CollateralType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AUTOMOBILE" />
+      <xs:enumeration value="MARINE" />
+      <xs:enumeration value="RV" />
+      <xs:enumeration value="POWERSPORTS - MOTORCYCLE" />
+      <xs:enumeration value="POWERSPORTS - ATV" />
+      <xs:enumeration value="POWERSPORTS - PERSONAL WATERCRAFT" />
+      <xs:enumeration value="AUTO - CLASSIC CARS" />
+      <xs:enumeration value="AUTO - CONVERSION" />
+      <xs:enumeration value="PIANO" />
+      <xs:enumeration value="POWERSPORTS - TRAILERS" />
+      <xs:enumeration value="POWERSPORTS - UTV/SIDE-BY-SIDE" />
+      <xs:enumeration value="POWERSPORTS - SNOWMOBILES" />
+      <xs:enumeration value="POWERSPORTS - SIDE CARS" />
+      <xs:enumeration value="TRAILERS" />
+      <!-- Added by Balaji on 09/28/2016 - -->
+      <xs:enumeration value="TRACTORS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Collateral Age Enumeration -->
+  <xs:simpleType name="CollateralAge">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NEW" />
+      <xs:enumeration value="USED" />
+      <xs:enumeration value="DEMO" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Motor Type Enumeration -->
+  <xs:simpleType name="MotorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INBOARD" />
+      <xs:enumeration value="OUTBOARD" />
+      <!-- added by Radhika on 10/2/2014 -->
+      <xs:enumeration value="STERNDRIVE" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Fuel Type Enumeration -->
+  <xs:simpleType name="FuelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GAS" />
+      <xs:enumeration value="DIESEL" />
+      <xs:enumeration value="ELECTRIC" />
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="GASELECTRIC" />
+      <xs:enumeration value="ETHANOL" />
+      <xs:enumeration value="CNG" />
+      <xs:enumeration value="HYDROGEN"/>
+      <xs:enumeration value="BIODIESEL"/>
+      <xs:enumeration value="PROPANE"/>
+      <xs:enumeration value="OTHER" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- RV Class Enumeration -->
+  <xs:simpleType name="RVClass">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CLASSA" />
+      <xs:enumeration value="CLASSB" />
+      <xs:enumeration value="CLASSC" />
+      <xs:enumeration value="TRAVELTRAILER" />
+      <xs:enumeration value="FIFTHWHEEL" />
+      <xs:enumeration value="TENTCAMPER" />
+      <xs:enumeration value="PARKMODEL" />
+      <xs:enumeration value="TRUCKCAMPER" />
+      <xs:enumeration value="OTHER" />
+      <xs:enumeration value="UNKNOWN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Application Relation Enumeration -->
+  <xs:simpleType name="ApplicantRelation">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SPOUSE" />
+      <xs:enumeration value="PARENT" />
+      <xs:enumeration value="RESIDES WITH" />
+      <xs:enumeration value="OTHER" />
+      <xs:enumeration value="UNKNOWN" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Collateral Valuation Source Enumeration -->
+  <xs:simpleType name="CollateralValuationSource">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NADA" />
+      <xs:enumeration value="KBB" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Collateral Condition Enumeration -->
+  <xs:simpleType name="CollateralCondition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="EXCELLENT" />
+      <xs:enumeration value="FAIR" />
+      <xs:enumeration value="GOOD" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ZipCode">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="5" />
+      <xs:maxLength value="5" />
+      <xs:pattern value="[0-9]{5,5}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="City">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="3" />
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="County">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="0" />
+      <xs:maxLength value="50" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="State">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="2" />
+      <xs:maxLength value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Phone">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="12" />
+      <xs:maxLength value="12" />
+      <xs:pattern value="[0-9]{3,3}-[0-9]{3,3}-[0-9]{4,4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Email">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="5" />
+      <xs:maxLength value="100" />
+      <xs:pattern value="[A-Za-z0-9_]+([-+.'][A-Za-z0-9_]+)*@[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SSN">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="11" />
+      <xs:maxLength value="11" />
+      <xs:pattern value="[0-9]{3,3}-[0-9]{2,2}-[0-9]{4,4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="FederalTaxID">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="10" />
+      <xs:maxLength value="10" />
+      <xs:pattern value="[0-9]{2,2}-[0-9]{7,7}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Product Coverage Type Enumeration -->
+  <xs:simpleType name="ProductCoverageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SINGLE" />
+      <xs:enumeration value="JOINT" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Income Type Enumeration -->
+  <xs:simpleType name="IncomeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ANNUALLY" />
+      <xs:enumeration value="MONTHLY" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Borrower Type Enumeration -->
+  <xs:simpleType name="BorrowerType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INDIVIDUAL" />
+      <xs:enumeration value="BUSINESS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Business Entity Type Enumeration -->
+  <xs:simpleType name="BusinessEntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CORPORATION" />
+      <xs:enumeration value="LLC" />
+      <xs:enumeration value="PARTNERSHIP" />
+      <xs:enumeration value="SHELLCORPORATION" />
+      <xs:enumeration value="SOLEPROPRIETORSHIP" />
+      <xs:enumeration value="TRUST" />
+      <xs:enumeration value="OTHER" />
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Drive Type Enumeration -->
+  <xs:simpleType name="DriveType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="2WD" />
+      <xs:enumeration value="4WD" />              
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

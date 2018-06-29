@@ -1,0 +1,1345 @@
+<input type="hidden" id="temp-class-ins-" value="">
+<input type="hidden" id="clone-counter" value="1">
+<input type="hidden" id="hidden_instance_temp_id" value="<?php echo $this->temp_instance_id; ?>">
+
+<?php
+
+function getProperty($propertyArray, $obj,$listOfRole) { 
+        
+    ?>
+
+    <?php foreach ($propertyArray as $key => $value) { ?>
+        <?php
+        $caption3 = '';
+        if (intval($value['encrypt_status']) == 1) {
+            $caption3 = $obj->encryption_decryption('mc_decrypt', array('decrypt' => $value['caption'], 'key' => ENCRYPTION_KEY));
+        } else {
+            $caption3 = $value['caption'];
+        }
+        ?>
+        <li>
+            <div class="node-content clearfix">
+                <span class="number_print"></span>
+                <div class="node-left">
+                    <div class="node-circle node-white-circle-expanded">N</div>
+                    <div class="node-head node-input"> 
+                        <span><?php echo $caption3; ?></span>
+                    </div>
+                </div>
+            </div>
+            <ol>
+                <?php if (is_array($value['child'])) { ?>
+                    <?php getProperty($value['child'], $obj,$listOfRole); ?>
+                <?php } else { ?>
+                    <?php if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "input") { ?>
+                        <?php if($value['node_class_property_id'] == $listOfRole['class_pId']['required_roles_pid'] || $value['node_class_property_id'] == $listOfRole['class_pId']['visible_roles_pid']) { 
+                            
+                            if (!empty($listOfRole['roles'])) {
+                            $count = 1;    
+                            foreach ($listOfRole['roles'] as $_key => $_value) { ?>
+                                        <li>
+                                            <div class="node-content clearfix">
+                                                <span class="number_print"></span>
+                                                <div class="node-head node-input">
+                                                    <?php if($count == 1){ ?>
+                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                    <?php } ?>
+                                                    <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data="">
+                                                    <input type="checkbox" class="checkClass_<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" id="checkVal_<?php echo $count; ?>" onchange="setValueOfNodeZcheckBox(this,<?php echo $value['node_class_property_id'] ?>)" value="<?php echo trim($_key); ?>">
+                                                </div>
+                                                <div class="node-left">
+                                                    <div class="node-circle node-white-circle">N</div>
+                                                    <div class="condition-z"> 
+                                                        <?php echo $_value; ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <ol></ol>
+                                        </li>
+                                    <?php }
+                                }
+                         } else { ?>
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print"></span>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                        <div class="node-head node-input"> 
+                                            <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                            <?php
+                                            $randData = generateRandomString($length = 10);
+                                            $string1 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string1, $matches);
+
+                                            if (count($matches) > 0 && isset($matches[1])) {
+                                                $newString2 = '';
+                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                    $newString2.= 'check' . $randData . '' . $val . "('this.value');";
+                                                    $replaceStr = 'check' . $randData . '' . $val;
+                                                    $string1 = str_replace($val, $replaceStr, $string1);
+                                                }
+                                                $newString2 = substr($newString2, 0, -1);
+                                            }
+                                            ?>
+                                            
+                                            <input type="input" class=" instanceRunTab validationCheck noReload" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newString2 ?>" <?php if($value['node_class_property_id'] == '6307' && $value['node_class_id'] == '768') { ?> onblur="getSubClassesForClassNID(<?php echo $value['node_class_property_id']; ?>);" <?php } ?> <?php if($value['node_class_property_id'] == '7988' && $value['node_class_id'] == '822') { ?> onblur="getSubClassesOfLocationRole(<?php echo $value['node_class_property_id']; ?>);" <?php } ?> > 
+
+                                            <?php if (!empty($matches[1]) && $string1 != "") { ?>
+                                                <script type="text/javascript">
+                                                    <?php echo $string1; ?>
+                                                </script>
+                                            <?php } ?>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <ol></ol>
+                            </li>
+                        <?php }?>
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "radio") { ?>
+                        <?php if (!empty($value['nodeClassYInstanceValue'])) {
+                            for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) { ?>
+                                <li>
+                                    <div class="node-content clearfix">
+                                        <span class="number_print"></span>
+                                        <div class="node-head node-input"> 
+                                            <?php if ($k == 0) { ?>
+                                                <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                <?php
+                                                $randData = generateRandomString($length = 10);
+                                                $string7 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string7, $matches);
+
+                                                if (count($matches) > 0 && isset($matches[1])) {
+                                                    $newString7 = '';
+
+                                                    foreach (array_reverse($matches[1]) as $key => $val) {
+                                                        $newString7 .= 'check' . $randData . '' . $val . "('this.value');";
+                                                        $replaceStr = 'check' . $randData . '' . $val;
+                                                        $string7 = str_replace($val, $replaceStr, $string7);
+                                                    }
+                                                    $newString7 = substr($newString7, 0, -1);
+                                                }
+                                                ?>    
+
+                                                <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" value="" validate-data="<?php echo $newString7; ?>">
+                                                <?php if (!empty($matches[1]) && $string7 != "") { ?>
+                                                    <script type="text/javascript">
+                                                        <?php echo $string7; ?>
+                                                    </script>
+                                                <?php } ?>
+                                            <?php } ?>
+
+                                            <input type="radio" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onclick="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)" value="<?php echo $value['nodeClassYInstanceValue'][$k]; ?>"> 
+                                        </div>
+                                        <div class="node-left">
+                                            <div class="node-circle node-white-circle">N</div>
+                                            <div class="condition-z"> 
+                                                <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ol></ol>
+                                </li> 
+                            <?php }
+                        } ?>
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "check box") { ?>
+                        <?php if (!empty($value['nodeClassYInstanceValue'])) {
+                        for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) { ?>
+                                    <li>
+                                        <div class="node-content clearfix">
+                                            <span class="number_print"></span>
+                                            <div class="node-head node-input"> 
+                                                <?php if ($k == 0) { ?>
+                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                    <?php
+                                                    $randData = generateRandomString($length = 10);
+                                                    $string6 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string6, $matches);
+
+                                                    if (count($matches) > 0 && isset($matches[1])) {
+                                                        $newString6 = '';
+                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                            $newString6.= 'check' . $randData . '' . $val . "('this.value');";
+                                                            $replaceStr = 'check' . $randData . '' . $val;
+                                                            $string6 = str_replace($val, $replaceStr, $string6);
+                                                        }
+                                                        $newString6 = substr($newString6, 0, -1);
+                                                    }
+                                                    ?>         
+
+                                                    <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString6; ?>"> 
+
+                                                    <?php if (!empty($matches[1]) && $string6 != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                            <?php echo $string6; ?>
+                                                                            </script>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                                <input type="checkbox" class="checkClass_<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" id="checkVal_<?php echo $k; ?>" onchange="setValueOfNodeZcheckBox(this,<?php echo $value['node_class_property_id'] ?>)" value="<?php echo trim($value['nodeClassYInstanceValue'][$k]); ?>">
+                                            </div>
+                                            <div class="node-left">
+                                                <div class="node-circle node-white-circle">N</div>
+                                                <div class="condition-z"> 
+                                                    <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ol></ol>
+                                    </li> 
+                                <?php }
+                            } ?>
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "drop down") { ?>
+                        <li>
+                            <div class="node-content clearfix">
+                                <span class="number_print"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                    <div class="node-head node-input"> 
+                                        <?php
+                                        $randData = generateRandomString($length = 10);
+                                        $string4 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string4, $matches);
+
+                                        if (count($matches) > 0 && isset($matches[1])) {
+                                            $newString4 = '';
+                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                $newString4.= 'check' . $randData . '' . $val . "('this.value');";
+                                                $replaceStr = 'check' . $randData . '' . $val;
+                                                $string4 = str_replace($val, $replaceStr, $string4);
+                                            }
+                                            $newString4 = substr($newString4, 0, -1);
+                                        }
+                                        ?>
+
+                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" class="validationCheck" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" validate-data="<?php echo $newString4; ?>" />
+
+
+                                        <select class="form-control select-field nodeZselect nodeselection-dropdown" name="instance_property_caption[]" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onchange="<?php echo $newString4; ?>"> 
+                                            <?php for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) { ?>
+                                                <option value="<?php echo $value['nodeClassYInstanceValue'][$k] ?>"><?php echo $value['nodeClassYInstanceValue'][$k] ?></option>
+
+                                        <?php } ?>
+                                        </select>
+
+                                        <?php if (!empty($matches[1]) && $string4 != "") { ?>
+                                            <script type="text/javascript">
+                                                <?php echo $string4; ?>
+                                            </script>
+                                        <?php } ?>
+                                    </div>
+                                    <ol></ol>
+                                </div>
+                            </div>
+                        </li>
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "file") { ?>
+                        <li>
+                            <div class="node-content clearfix">
+                                <span class="number_print"></span>
+                                <div class="node-head node-input"> 
+                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                    <?php
+                                    $randData = generateRandomString($length = 10);
+                                    $string5 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string5, $matches);
+
+                                    if (count($matches) > 0 && isset($matches[1])) {
+                                        $newString5 = '';
+                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                            $newString5.= 'check' . $randData . '' . $val . "('this.value');";
+                                            $replaceStr = 'check' . $randData . '' . $val;
+                                            $string5 = str_replace($val, $replaceStr, $string5);
+                                        }
+                                        $newString5 = substr($newString5, 0, -1);
+                                    }
+                                    ?>
+
+                                    <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" validate-data="<?php echo $newString5; ?>" placeholder="" value="">  
+
+                                    <input type="file" class="nodeZinput" id="filenodeZ<?php echo $value['node_class_property_id']; ?>" name="filenodeZ<?php echo $value['node_class_property_id']; ?>" placeholder="" onchange="setValueOfNodeZForFile(this,<?php echo $value['node_class_property_id']; ?>)" >  
+                                </div>
+                                <?php if (!empty($matches[1]) && $string5 != "") { ?>
+                                    <script type="text/javascript">
+                                        <?php echo $string5; ?>
+                                    </script>
+                                <?php } ?>      
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <!-- <div class="condition-z"> 
+                                        Radio
+                                    </div> -->
+                                </div>
+                            </div>
+                            <ol></ol>
+                        </li>
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "text area") { ?>
+                        <li>
+                            <div class="node-content clearfix">
+                                <span class="number_print"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                    <div class="node-head node-input"> 
+                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+
+
+                                        <?php
+                                        $randData1 = generateRandomString($length = 10);
+                                        $string2 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+
+                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string2, $matches2);
+
+                                        if (count($matches2) > 0 && isset($matches2[1])) {
+                                            $newString3 = '';
+                                            foreach (array_reverse($matches2[1]) as $key => $val) {
+                                                $newString3.= 'check' . $randData1 . '' . $val . "('this.value');";
+                                                $replaceStr1 = 'check' . $randData1 . '' . $val;
+                                                $string2 = str_replace($val, $replaceStr1, $string2);
+                                            }
+                                            $newString3 = substr($newString3, 0, -1);
+                                        }
+                                        ?>
+                                        <textarea cols="30" rows="1" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString3; ?>" ></textarea>
+                                        <?php if (!empty($matches2[1]) && $string2 != "") { ?>
+                                            <script type="text/javascript">
+                                                <?php echo $string2; ?>
+                                            </script>
+                                        <?php } ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <ol></ol>
+                        </li>                                                   
+                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "calendar") { ?>
+                        <li>
+                            <div class="node-content clearfix">
+                                <span class="number_print"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                    <div class="node-head node-input"> 
+                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                        <?php
+                                        $randData = generateRandomString($length = 10);
+                                        $stringCalendar = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $stringCalendar, $matches);
+
+                                        if (count($matches) > 0 && isset($matches[1])) {
+                                            $newStringCaledar = '';
+                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                $newStringCaledar.= 'check' . $randData . '' . $val . "('this.value');";
+                                                $replaceStr = 'check' . $randData . '' . $val;
+                                                $stringCalendar = str_replace($val, $replaceStr, $stringCalendar);
+                                            }
+                                            $newStringCaledar = substr($newStringCaledar, 0, -1);
+                                        }
+                                        ?>
+                                        <input type="text" readonly class="instanceRunTab validationCheck datepicker" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newStringCaledar ?>" > 
+
+                                        <?php if (!empty($matches[1]) && $stringCalendar != "") { ?>
+                                            <script type="text/javascript">
+                                                <?php echo $stringCalendar; ?>
+                                            </script>
+                                        <?php } ?>
+                                        <script>
+                                            $(function () {
+                                                $(".datepicker").datepicker();
+                                            });
+                                        </script>  
+                                    </div>
+                                </div>
+                            </div>
+                            <ol></ol>
+                        </li>                                                   
+                    <?php } else { ?>
+                        <li>
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print"></span>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                        <div class="node-head node-input"> 
+                                            <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                            <?php
+                                            $randData1 = generateRandomString($length = 10);
+                                            $string2 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+
+                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string2, $matches2);
+
+                                            if (count($matches2) > 0 && isset($matches2[1])) {
+                                                $newString3 = '';
+                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                    $newString3.= 'check' . $randData1 . '' . $val . "('this.value');";
+                                                    $replaceStr1 = 'check' . $randData1 . '' . $val;
+                                                    $string2 = str_replace($val, $replaceStr1, $string2);
+                                                }
+                                                $newString3 = substr($newString3, 0, -1);
+                                            }
+                                            ?>
+                                            <textarea cols="30" rows="1" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString3 ?>" ></textarea>
+                                            <?php if (!empty($matches2[1]) && $string2 != "") { ?>
+                                                <script type="text/javascript">
+                                                    <?php echo $string2; ?>
+                                                </script>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ol></ol>
+                            </li>
+                            <ol></ol>
+                        </li>                                           
+                <?php } } ?>
+            </ol>
+        </li>
+    <?php } ?>
+<?php } ?>
+
+<?php
+if (empty($this->instances['property']) && $this->is_instance == "N") {
+    $addClass = 'no-content-property-bg-gray';
+} else {
+    $addClass = '';
+}
+
+$textNum = 0;
+?>
+
+<form id="instance_structure_form" name="instance_structure_form" class="form_active <?php echo $addClass ?>" method="post" action="" enctype="multipart/form-data" >
+    <div class="nano1 <?php echo $addClass ?>">
+        <div class="paper-line dual-pane-height nano-content1 print-drp niceScrollDiv" id="node-wrapper">       
+            <div class="nice-scroll-box">
+                <input type="hidden" id="node_class_id" name="node_class_id" value="<?php echo $this->class_id; ?>" />
+                <input type="hidden" id="node_instance_id" name="node_instance_id" value="" />
+
+                <?php if ($this->is_instance != 'N') { ?>
+                    <ol class="class-wrapper sortable">
+                        <li>
+                            <div class="node-content clearfix">
+                                <span class="number_print"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle-expanded">N</div>                        
+                                    <div class="node-head node-input"> 
+                                        <span><?php echo $this->newNodeId; ?> </span>
+                                        <input type="hidden" id="instance_caption" name="instance_caption" value="<?php echo $this->newNodeId; ?>" placeholder="Instance" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ol class="sortable add-validation" >
+
+                                <?php foreach ($this->instances['property'] as $key => $value) { ?>
+                                    <li>                                            
+                                        <div class="node-content clearfix">
+                                            <span class="number_print"></span>
+                                            <div class="node-left">
+                                                <div class="node-circle node-white-circle-expanded">N</div>
+                                                <div class="node-head node-input"> 
+                                                    <span>
+                                                        <?php
+                                                        $type = "text";
+                                                        if (intval($value['encrypt_status']) == 1) {
+                                                            if (strtolower($this->encryption_decryption('mc_decrypt', array('decrypt' => $value['caption'], 'key' => ENCRYPTION_KEY))) == "password") {
+                                                                $type = "password";
+                                                            }
+                                                            echo $this->encryption_decryption('mc_decrypt', array('decrypt' => $value['caption'], 'key' => ENCRYPTION_KEY));
+                                                        } else {
+                                                            if (strtolower($value['caption']) == "password") {
+                                                                $type = "password";
+                                                            }
+                                                            echo $value['caption'];
+                                                        }
+                                                        ?>
+                                                    </span>
+                                                </div>
+                                            </div>                                                  
+                                        </div>
+                                        <ol>
+                                            <?php
+                                            if (is_array($value['child'])) {
+
+                                                getProperty($value['child'], $this,$this->listOfRole);
+                                            } else {
+
+                                                if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "input") {
+                                                    ?>
+                                                    <li>
+                                                        <div class="node-content clearfix">
+                                                            <span class="number_print"></span>
+                                                            <div class="node-left">
+                                                                <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                <div class="node-head node-input"> 
+
+                                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                                    <?php
+                                                                    $randData = generateRandomString($length = 10);
+                                                                    $string1 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string1, $matches);
+
+                                                                    if (count($matches) > 0 && isset($matches[1])) {
+                                                                        $newString2 = '';
+                                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                            $newString2.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                            $replaceStr = 'check' . $randData . '' . $val;
+                                                                            $string1 = str_replace($val, $replaceStr, $string1);
+                                                                        }
+                                                                        $newString2 = substr($newString2, 0, -1);
+                                                                    }
+                                                                    ?>
+
+
+                                                                    <input type="<?php echo $type ?>" class="validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newString2 ?>"  > 
+
+
+                                                                    <?php if (!empty($matches[1]) && $string1 != "") { ?>
+                                                                        <script type="text/javascript">
+                                                                            <?php echo $string1; ?>
+                                                                        </script>
+                                                                    <?php } ?>  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ol></ol>
+                                                    </li>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "radio") { ?>
+                                                    <?php
+                                                    if (!empty($value['nodeClassYInstanceValue'])) {
+                                                        for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) {
+                                                            ?>
+                                                            <li>
+                                                                <div class="node-content clearfix">
+                                                                    <span class="number_print"></span>
+                                                                    <div class="node-head node-input"> 
+
+                                                                        <?php if ($k == 0) { ?>
+
+                                                                            <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                            <?php
+                                                                            $randData = generateRandomString($length = 10);
+                                                                            $string7 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string7, $matches);
+
+                                                                            if (count($matches) > 0 && isset($matches[1])) {
+                                                                                $newString7 = '';
+
+                                                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                    $newString7.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                    $replaceStr = 'check' . $randData . '' . $val;
+                                                                                    $string7 = str_replace($val, $replaceStr, $string7);
+                                                                                }
+                                                                                $newString7 = substr($newString7, 0, -1);
+                                                                            }
+                                                                            ?>    
+
+                                                                            <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" value="" validate-data="<?php echo $newString7; ?>">
+                                                                            <?php if (!empty($matches[1]) && $string7 != "") { ?>
+                                                                                <script type="text/javascript">
+                                                                                <?php echo $string7; ?>
+                                                                                </script>
+                                                                            <?php } ?>
+
+                                                                        <?php } ?>
+
+                                                                        <input type="radio" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onclick="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)" value="<?php echo $value['nodeClassYInstanceValue'][$k]; ?>"> 
+                                                                    </div>
+                                                                    <div class="node-left">
+                                                                        <div class="node-circle node-white-circle">N</div>
+                                                                        <div class="condition-z"> 
+                                                                            <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <ol></ol>
+                                                            </li> 
+                                                        <?php }
+                                                    }
+                                                    ?>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "check box") { ?>
+
+                                                    <?php
+                                                    if (!empty($value['nodeClassYInstanceValue'])) {
+                                                        for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) {
+                                                            ?>
+
+                                                            <li>
+                                                                <div class="node-content clearfix">
+                                                                    <span class="number_print"></span>
+                                                                    <div class="node-head node-input"> 
+
+                                                                        <?php if ($k == 0) { ?>
+
+                                                                            <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                            <?php
+                                                                            $randData = generateRandomString($length = 10);
+                                                                            $string6 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string6, $matches);
+
+                                                                            if (count($matches) > 0 && isset($matches[1])) {
+                                                                                $newString6 = '';
+                                                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                    $newString6.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                    $replaceStr = 'check' . $randData . '' . $val;
+                                                                                    $string6 = str_replace($val, $replaceStr, $string6);
+                                                                                }
+                                                                                $newString6 = substr($newString6, 0, -1);
+                                                                            }
+                                                                            ?>         
+
+                                                                            <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString6; ?>"> 
+
+                                                                            <?php if (!empty($matches[1]) && $string6 != "") { ?>
+                                                                                <script type="text/javascript">
+                                                                            <?php echo $string6; ?>
+                                                                                </script>
+                                                                            <?php } ?>
+
+                                                                            <?php } ?>
+
+                                                                        <input type="checkbox" class="checkClass_<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" id="checkVal_<?php echo $k; ?>" onchange="setValueOfNodeZcheckBox(this,<?php echo $value['node_class_property_id'] ?>)" value="<?php echo trim($value['nodeClassYInstanceValue'][$k]); ?>">
+                                                                    </div>
+                                                                    <div class="node-left">
+                                                                        <div class="node-circle node-white-circle">N</div>
+                                                                        <div class="condition-z"> 
+                                                            <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <ol></ol>
+                                                            </li> 
+                                                            <?php }
+                                                        }
+                                                        ?>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "drop down") { ?>
+                                                    <li>
+                                                        <div class="node-content clearfix">
+                                                            <span class="number_print"></span>
+                                                            <div class="node-left">
+                                                                <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                <div class="node-head node-input"> 
+
+                                                                    <?php
+                                                                    $randData = generateRandomString($length = 10);
+                                                                    $string4 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string4, $matches);
+
+                                                                    if (count($matches) > 0 && isset($matches[1])) {
+                                                                        $newString4 = '';
+                                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                            $newString4.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                            $replaceStr = 'check' . $randData . '' . $val;
+                                                                            $string4 = str_replace($val, $replaceStr, $string4);
+                                                                        }
+                                                                        $newString4 = substr($newString4, 0, -1);
+                                                                    }
+                                                                    ?>
+
+                                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" class="validationCheck" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" validate-data="<?php echo $newString4; ?>" />
+
+
+                                                                    <select class="form-control select-field nodeZselect nodeselection-dropdown" name="instance_property_caption[]" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onchange="<?php echo $newString4; ?>"> 
+                                                                        <?php for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) { ?>
+                                                                            <option value="<?php echo $value['nodeClassYInstanceValue'][$k] ?>"><?php echo $value['nodeClassYInstanceValue'][$k] ?></option>
+
+                                                                        <?php } ?>
+                                                                    </select>
+
+                                                                        <?php if (!empty($matches[1]) && $string4 != "") { ?>
+                                                                        <script type="text/javascript">
+                                                                            <?php echo $string4; ?>
+                                                                        </script>
+                                                                        <?php } ?>
+
+                                                                </div>
+                                                                <ol></ol>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "file") { ?>
+                                                    <li>
+                                                        <div class="node-content clearfix">
+                                                            <span class="number_print"></span>
+                                                            <div class="node-head node-input"> 
+                                                                <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                <?php
+                                                                $randData = generateRandomString($length = 10);
+                                                                $string5 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string5, $matches);
+
+                                                                if (count($matches) > 0 && isset($matches[1])) {
+                                                                    $newString5 = '';
+                                                                    foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                        $newString5.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                        $replaceStr = 'check' . $randData . '' . $val;
+                                                                        $string5 = str_replace($val, $replaceStr, $string5);
+                                                                    }
+                                                                    $newString5 = substr($newString5, 0, -1);
+                                                                }
+                                                                ?>
+
+                                                                <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" validate-data="<?php echo $newString5; ?>" placeholder="" value="">  
+
+                                                                <input type="file" class="nodeZinput" id="filenodeZ<?php echo $value['node_class_property_id']; ?>" name="filenodeZ<?php echo $value['node_class_property_id']; ?>" placeholder="" onchange="setValueOfNodeZForFile(this,<?php echo $value['node_class_property_id']; ?>)" >  
+                                                            </div>
+                                                                <?php if (!empty($matches[1]) && $string5 != "") { ?>
+                                                                <script type="text/javascript">
+                                                                    <?php echo $string5; ?>
+                                                                </script>
+                                                                <?php } ?>      
+                                                            <div class="node-left">
+                                                                <div class="node-circle node-white-circle">N</div>
+                                                                <!-- <div class="condition-z"> 
+                                                                    Radio
+                                                                </div> -->
+                                                            </div>
+                                                        </div>
+                                                        <ol></ol>
+                                                    </li>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "text area") { ?>
+                                                    <li>
+                                                        <div class="node-content clearfix">
+                                                            <span class="number_print"></span>
+                                                            <div class="node-left">
+                                                                <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                <div class="node-head node-input"> 
+                                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                    <?php
+                                                                    $randData1 = generateRandomString($length = 10);
+                                                                    $string2 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+
+                                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string2, $matches2);
+
+                                                                    if (count($matches2) > 0 && isset($matches2[1])) {
+                                                                        $newString3 = '';
+                                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                            $newString3.= 'check' . $randData1 . '' . $val . "('this.value');";
+                                                                            $replaceStr1 = 'check' . $randData1 . '' . $val;
+                                                                            $string2 = str_replace($val, $replaceStr1, $string2);
+                                                                        }
+                                                                        $newString3 = substr($newString3, 0, -1);
+                                                                    }
+                                                                    ?>
+                                                                    <textarea cols="30" rows="1" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString3 ?>" ></textarea>
+                                                                        <?php if (!empty($matches2[1]) && $string2 != "") { ?>
+                                                                        <script type="text/javascript">
+                                                                            <?php echo $string2; ?>
+                                                                        </script>
+                                                                        <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ol></ol>
+                                                    </li>
+
+                                                <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "calendar") { ?>
+                                                    <li>
+                                                        <div class="node-content clearfix">
+                                                            <span class="number_print"></span>
+                                                            <div class="node-left">
+                                                                <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                <div class="node-head node-input"> 
+                                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                                    <?php
+                                                                    $randData = generateRandomString($length = 10);
+                                                                    $stringCalendar = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $stringCalendar, $matches);
+
+                                                                    if (count($matches) > 0 && isset($matches[1])) {
+                                                                        $newStringCaledar = '';
+                                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                            $newStringCaledar.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                            $replaceStr = 'check' . $randData . '' . $val;
+                                                                            $stringCalendar = str_replace($val, $replaceStr, $stringCalendar);
+                                                                        }
+                                                                        $newStringCaledar = substr($newStringCaledar, 0, -1);
+                                                                    }
+                                                                    ?>
+                                                                    <input type="text" readonly class="instanceRunTab validationCheck datepicker" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newStringCaledar ?>" > 
+
+                                                                    <?php if (!empty($matches[1]) && $stringCalendar != "") { ?>
+                                                                                                                            <script type="text/javascript">
+                                                                        <?php echo $stringCalendar; ?>
+                                                                                                                            </script>
+                                                                    <?php } ?>
+                                                                    <script>
+                                                                        $(function () {
+                                                                            $(".datepicker").datepicker();
+                                                                        });
+                                                                    </script>  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <ol></ol>
+                                                    </li>   
+
+                                                <?php } else { ?>
+                                                    <li>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                        <?php
+                                                                        $randData1 = generateRandomString($length = 10);
+                                                                        $string2 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+
+                                                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string2, $matches2);
+
+                                                                        if (count($matches2) > 0 && isset($matches2[1])) {
+                                                                            $newString3 = '';
+                                                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                $newString3.= 'check' . $randData1 . '' . $val . "('this.value');";
+                                                                                $replaceStr1 = 'check' . $randData1 . '' . $val;
+                                                                                $string2 = str_replace($val, $replaceStr1, $string2);
+                                                                            }
+                                                                            $newString3 = substr($newString3, 0, -1);
+                                                                        }
+                                                                        ?>
+                                                                        <textarea cols="30" rows="1" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString3 ?>" ></textarea>
+                                                                        <?php if (!empty($matches2[1]) && $string2 != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                                <?php echo $string2; ?>
+                                                                            </script>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>
+                                                        <ol></ol>
+                                                    </li>                                           
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </ol>
+                                    </li>                                       
+                                <?php } ?>                              
+                            </ol>
+                        </li>
+                        <ol>
+                            
+                            <!--for subclasses-->
+                            <?php if($this->class_id == '768' || $this->class_id == '822') { ?>
+                            <li id="mapping_joining_div" data-curr-num="<?php echo current($this->classArray['childsArray'])['currNum']; ?>" data-temp-instance-number="<?php echo $this->temp_instance_id; ?>" class="instance_sub_class_list_view" >
+                                
+                            </li>
+                            <?php } else { ?>
+                            <li class="instance_sub_class_list_view" >
+                                <input type="hidden" id="temp-instance-id" name="temp-instance-number" value="<?php echo $this->newNodeId; ?>">
+                                <ol class="instance-sortable-list">
+                                    <?php $temp_instance_id = $this->temp_instance_id;
+
+                                        foreach ($this->classArray['childsArray'] as $key => $val) {
+                                            ?>
+                                        <li class="parent-sub-class-list sub-class-list1">
+                                            <?php
+                                            $tempCaption = ($this->classArray['class_data'][$key]['Plural']) ? ($this->classArray['class_data'][$key]['Plural']) : ($this->classArray['class_data'][$key]['Common Name']);
+                                            $tempCaption = ($tempCaption) ? ($tempCaption) : $val['caption'];
+
+                                            if (intval($val['encrypt_status']) == 1) {
+                                                $caption2 = $this->encryption_decryption('mc_decrypt', array('decrypt' => $tempCaption, 'key' => ENCRYPTION_KEY));
+                                            } else {
+                                                $caption2 = $tempCaption;
+                                            }
+                                            $tempSubClassLabel = ($this->classArray['class_data'][$key]['Singular']) ? ($this->classArray['class_data'][$key]['Singular']) : ($this->classArray['class_data'][$key]['Common Name']);
+
+                                            $subClassLabel = ($tempSubClassLabel) ? ($tempSubClassLabel) : $caption2;
+
+                                            $subClassLabelNew = strtoupper($caption2) . '(s) (' . $val['child_node_id'] . ')';
+
+                                            $number_diff = intval($val['newNum']) - intval($val['currNum']);
+                                            ?>
+                                            <div class="node-content clearfix" onclick="getInstanceSubClassStructure(<?php echo $val['node_class_id']; ?>, <?php echo $val['child_node_id']; ?>, 'Edit', this, <?php echo $this->newNodeId; ?>, '<?php echo base64_encode($subClassLabel); ?>', '',<?php echo $val['currNum']; ?>)">
+                                                <span class="number_print1"><?php echo $val['currNum']; ?></span>
+                                                <div class="node-left">
+                                                    <div class="node-circle node-white-circle-expanded">N</div>
+                                                    <div class="node-head node-input">
+                                                        <span class="sub-class-style"><input type="hidden" class="temp-sub-class-ins-<?php echo $val['child_node_id']; ?>"><?php echo $subClassLabelNew; ?></span>
+                                                    </div>
+                                                </div>      
+
+                                                <!--new-chevron-add-->
+                                                <div class="node-right-sub clearfix">
+                                                    <a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+                                                    <input type="hidden" class="hidden_number_print" value="<?php echo $number_diff; ?>">
+                                                    <span class="action-plus inactive" style="pointer-events:none" onclick="javascript:getInstanceCloneSubClassStructure(<?php echo $val['node_class_id']; ?>, <?php echo $val['child_node_id']; ?>, 'Clone', this, <?php echo $this->newNodeId; ?>, '<?php echo base64_encode($subClassLabel); ?>', 1, event,<?php echo $number_diff; ?>)">
+                                                        <i class="icon plus-class"></i>
+                                                    </span>
+                                                </div>
+                                                <ol>
+                                                <?php if (is_array($val['child'])) { ?>
+                                                    <?php getProperty($val['child'], $this,$this->listOfRole); ?>
+                                                <?php } ?>
+                                                </ol>
+                                            </div>
+                                        </li>
+                                    <?php $temp_instance_id++; $textNum++;
+                                    } ?>
+                                </ol>
+                            </li>
+                            <?php } ?>
+                        </ol>
+                    </ol>
+                <?php } else { ?>
+                    <?php if (!empty($this->instances['property']) && $this->is_instance == "N") { ?>
+                        <ol class="class-wrapper sortable">
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print"></span>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle-expanded">N</div>
+                                        <div class="node-head node-input"> <span><?php echo $this->newNodeId; ?> </span><input type="hidden" id="instance_caption" name="instance_caption" value="<?php echo $this->newNodeId; ?>" placeholder="Instance" /></div>
+                                    </div>
+                                </div>
+
+                                <ol class="sortable" >
+
+                                    <?php foreach ($this->instances['property'] as $key => $value) { ?>
+                                        <li>
+                                            <div class="node-content clearfix">
+                                                <span class="number_print"></span>
+                                                <div class="node-left">
+                                                    <div class="node-circle node-white-circle-expanded">N</div>
+                                                    <div class="node-head node-input"> 
+                                                        <span>
+
+                                                            <?php
+                                                            if (intval($value['encrypt_status']) == 1) {
+                                                                echo $this->encryption_decryption('mc_decrypt', array('decrypt' => $value['caption'], 'key' => ENCRYPTION_KEY));
+                                                            } else {
+                                                                echo $value['caption'];
+                                                            }
+                                                            ?>
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <ol>
+                                                <?php if (is_array($value['child'])) { ?>
+                                                    <?php getProperty($value['child'], $this,$this->$listOfRole); ?>
+                                                <?php } else {
+                                                    ?>
+                                                    <?php if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "input") { ?>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                                        <?php
+                                                                        $randData = generateRandomString($length = 10);
+                                                                        $string1 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string1, $matches);
+
+                                                                        if (count($matches) > 0 && isset($matches[1])) {
+                                                                            $newString2 = '';
+                                                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                $newString2.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                $replaceStr = 'check' . $randData . '' . $val;
+                                                                                $string1 = str_replace($val, $replaceStr, $string1);
+                                                                            }
+                                                                            $newString2 = substr($newString2, 0, -1);
+                                                                        }
+                                                                        ?>
+
+
+                                                                        <input type="<?php echo $type ?>" class="validationCheck instanceRunTab" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newString2 ?>" > 
+
+
+                                                                        <?php if (!empty($matches[1]) && $string1 != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                                    <?php echo $string1; ?>
+                                                                            </script>
+                                                                        <?php } ?>  
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "radio") { ?>
+                                                        <?php
+                                                        if (!empty($value['nodeClassYInstanceValue'])) {
+                                                            for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) {
+                                                                ?>
+
+                                                                <li>
+                                                                    <div class="node-content clearfix">
+                                                                        <span class="number_print"></span>
+                                                                        <div class="node-head node-input"> 
+
+                                                                        <?php if ($k == 0) { ?>
+                                                                                <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                                <?php
+                                                                                $randData = generateRandomString($length = 10);
+                                                                                $string7 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                                preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string7, $matches);
+
+                                                                                if (count($matches) > 0 && isset($matches[1])) {
+                                                                                    $newString7 = '';
+
+                                                                                    foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                        $newString7.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                        $replaceStr = 'check' . $randData . '' . $val;
+                                                                                        $string7 = str_replace($val, $replaceStr, $string7);
+                                                                                    }
+                                                                                    $newString7 = substr($newString7, 0, -1);
+                                                                                }
+                                                                                ?>    
+
+                                                                                <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" value="" validate-data="<?php echo trim($newString7); ?>">
+                                                                                    <?php if (!empty($matches[1]) && $string7 != "") { ?>
+                                                                                    <script type="text/javascript">
+                                                                                    <?php echo $string7; ?>
+                                                                                    </script>
+                                                                                <?php } ?>
+                                                                                <?php } ?>
+
+                                                                            <input type="radio" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onclick="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)" value="<?php echo $value['nodeClassYInstanceValue'][$k]; ?>"> 
+                                                                        </div>
+                                                                        <div class="node-left">
+                                                                            <div class="node-circle node-white-circle">N</div>
+                                                                            <div class="condition-z"> 
+                                                                                <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ol></ol>
+                                                                </li> 
+                                                            <?php }
+                                                        } ?>
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "check box") { ?>
+
+                                                        <?php
+                                                        if (!empty($value['nodeClassYInstanceValue'])) {
+                                                            for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) {
+                                                                ?>
+
+                                                                <li>
+                                                                    <div class="node-content clearfix">
+                                                                        <span class="number_print"></span>
+                                                                        <div class="node-head node-input"> 
+
+                                                                            <?php if ($k == 0) { ?>
+                                                                                <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                                                <?php
+                                                                                $randData = generateRandomString($length = 10);
+                                                                                $string6 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                                preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string6, $matches);
+
+                                                                                if (count($matches) > 0 && isset($matches[1])) {
+                                                                                    $newString6 = '';
+                                                                                    foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                        $newString6.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                        $replaceStr = 'check' . $randData . '' . $val;
+                                                                                        $string6 = str_replace($val, $replaceStr, $string6);
+                                                                                    }
+                                                                                    $newString6 = substr($newString6, 0, -1);
+                                                                                }
+                                                                                ?>         
+
+                                                                                <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString6; ?>"> 
+
+                                                                                <?php if (!empty($matches[1]) && $string6 != "") { ?>
+                                                                                    <script type="text/javascript">
+                                                                                    <?php echo $string6; ?>
+                                                                                    </script>
+                                                                                    <?php } ?>
+                                                                                <?php } ?>
+
+                                                                            <input type="checkbox" class="checkClass_<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption<?php echo $value['node_class_property_id']; ?>" id="checkVal_<?php echo $k; ?>" onchange="setValueOfNodeZcheckBox(this,<?php echo $value['node_class_property_id'] ?>)" value="<?php echo trim($value['nodeClassYInstanceValue'][$k]); ?>">
+
+                                                                        </div>
+                                                                        <div class="node-left">
+                                                                            <div class="node-circle node-white-circle">N</div>
+                                                                            <div class="condition-z"> 
+                                                                                <?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <ol></ol>
+                                                                </li> 
+                                                            <?php }
+                                                        } ?>
+
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "drop down") { ?>
+
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+
+                                                                        <?php
+                                                                        $randData = generateRandomString($length = 10);
+                                                                        $string4 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string4, $matches);
+
+                                                                        if (count($matches) > 0 && isset($matches[1])) {
+                                                                            $newString4 = '';
+                                                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                $newString4.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                $replaceStr = 'check' . $randData . '' . $val;
+                                                                                $string4 = str_replace($val, $replaceStr, $string4);
+                                                                            }
+                                                                            $newString4 = substr($newString4, 0, -1);
+                                                                        }
+                                                                        ?>
+
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" class="validationCheck instanceRunTab" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" validate-data="<?php echo $newString4; ?>" />
+
+
+                                                                        <select class="form-control select-field nodeZselect nodeselection-dropdown instanceRunTab" name="instance_property_caption[]" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" onchange="<?php echo $newString4; ?>"> 
+                                                                            <?php for ($k = 0; $k < count($value['nodeClassYInstanceValue']); $k++) { ?>
+                                                                                <option value="<?php echo $value['nodeClassYInstanceValue'][$k] ?>"><?php echo $value['nodeClassYInstanceValue'][$k] ?></option>
+
+                                                                            <?php } ?>
+                                                                        </select>
+
+                                                                        <?php if (!empty($matches[1]) && $string4 != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                                <?php echo $string4; ?>
+                                                                            </script>
+                                                                        <?php } ?>
+
+                                                                    </div>
+                                                                    <ol></ol>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "file") {
+                                                        ?>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-head node-input"> 
+                                                                    <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                    <?php
+                                                                    $randData = generateRandomString($length = 10);
+                                                                    $string5 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                    preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string5, $matches);
+
+                                                                    if (count($matches) > 0 && isset($matches[1])) {
+                                                                        $newString5 = '';
+                                                                        foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                            $newString5.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                            $replaceStr = 'check' . $randData . '' . $val;
+                                                                            $string5 = str_replace($val, $replaceStr, $string5);
+                                                                        }
+                                                                        $newString5 = substr($newString5, 0, -1);
+                                                                    }
+                                                                    ?>
+
+                                                                    <input type="hidden" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" validate-data="<?php echo $newString5; ?>" placeholder="" value="">  
+
+                                                                    <input type="file" class="nodeZinput" id="filenodeZ<?php echo $value['node_class_property_id']; ?>" name="filenodeZ<?php echo $value['node_class_property_id']; ?>" placeholder="" onchange="setValueOfNodeZForFile(this,<?php echo $value['node_class_property_id']; ?>)" >  
+                                                                </div>
+                                                                <?php if (!empty($matches[1]) && $string5 != "") { ?>
+                                                                    <script type="text/javascript">
+                                                                    <?php echo $string5; ?>
+                                                                    </script>
+                                                                    <?php } ?>      
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle">N</div>
+                                                                    <!-- <div class="condition-z"> 
+                                                                        Radio
+                                                                    </div> -->
+                                                                </div>
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "text area") { ?>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                        <?php
+                                                                        $randData1 = generateRandomString($length = 10);
+                                                                        $string2 = $value['nodeZStructure']['VALIDATION'][0]['value'];
+
+                                                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string2, $matches2);
+
+                                                                        if (count($matches2) > 0 && isset($matches2[1])) {
+                                                                            $newString3 = '';
+                                                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                $newString3.= 'check' . $randData1 . '' . $val . "('this.value');";
+                                                                                $replaceStr1 = 'check' . $randData1 . '' . $val;
+                                                                                $string2 = str_replace($val, $replaceStr1, $string2);
+                                                                            }
+                                                                            $newString3 = substr($newString3, 0, -1);
+                                                                        }
+                                                                        ?>
+                                                                        <textarea cols="30" rows="1" class="instanceRunTab validationCheck" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" validate-data="<?php echo $newString3 ?>" ></textarea>
+                                                                        <?php if (!empty($matches2[1]) && $string2 != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                <?php echo $string2; ?>
+                                                                                                                    </script>
+                                                            <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>                                                   
+                                                    <?php } else if (strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == "calendar") {?>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                                                        <?php
+                                                                        $randData = generateRandomString($length = 10);
+                                                                        $stringCalendar = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                                                        preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $stringCalendar, $matches);
+
+                                                                        if (count($matches) > 0 && isset($matches[1])) {
+                                                                            $newStringCaledar = '';
+                                                                            foreach (array_reverse($matches[1]) as $key => $val) {
+                                                                                $newStringCaledar.= 'check' . $randData . '' . $val . "('this.value');";
+                                                                                $replaceStr = 'check' . $randData . '' . $val;
+                                                                                $stringCalendar = str_replace($val, $replaceStr, $stringCalendar);
+                                                                            }
+                                                                            $newStringCaledar = substr($newStringCaledar, 0, -1);
+                                                                        }
+                                                                        ?>
+                                                                        <input type="text" readonly class="instanceRunTab validationCheck datepicker" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" placeholder="" validate-data ="<?php echo $newStringCaledar ?>" > 
+
+                                                                        <?php if (!empty($matches[1]) && $stringCalendar != "") { ?>
+                                                                            <script type="text/javascript">
+                                                                    <?php echo $stringCalendar; ?>
+                                                                                                                        </script>
+                                                                <?php } ?>
+                                                                        <script>
+                                                                            $(function () {
+                                                                                $(".datepicker").datepicker();
+                                                                            });
+                                                                        </script>  
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>                                                   
+                                                    <?php } else { ?>
+                                                        <li>
+                                                            <div class="node-content clearfix">
+                                                                <span class="number_print"></span>
+                                                                <div class="node-left">
+                                                                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                                    <div class="node-head node-input"> 
+                                                                        <input id="instance_property_id<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+                                                                        <textarea cols="30" rows="1" class="instanceRunTab checkFillInstanceValue" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder=""></textarea>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                            <ol></ol>
+                                                        </li>
+                                                    <?php }
+                                                } ?>
+                                            </ol>
+                                        </li>
+
+                                    <?php } ?> 
+
+                                </ol>
+                            </li>
+                        </ol>
+                    <?php } else { ?>
+                        <?php if ($this->is_instance == "N") { ?>
+                            <ol class="class-wrapper sortable">
+                                <li>
+                                    <div class="node-content clearfix">
+                                        <span class="number_print"></span>
+                                        <div class="node-left">
+                                            <div class="node-head node-input"> 
+                                                <span class="no-dataAvilable">No <?php echo $this->nodeType; ?> classes have been assigned to the selected Property. <?php /* Please edit to assign NODE <?php echo $this->nodeType;?> to your property. */ ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        <?php } ?>
+                    <?php } ?>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</form>
+
+<?php
+function generateRandomString($length = 10) {
+
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+?>
+
+<script type="text/javascript">
+    dualPaneHeight();
+    manageNiceScroll();
+    rightPaneicon();
+    $("#second-instance-div-heading").html("New Instance : Properties");
+    $(".list-row-instance-class").removeClass('current');
+
+    $(".default_row_instance").remove();
+    $(".lisat-instance-row0").before("<tr class='default_row_instance current'><td><input type='checkbox'><label></label></td><td><?php echo $this->newNodeId; ?></td><td></td><td></td></tr>");
+
+    if ($.trim($('#first_instance_div div.set-content-height tr.list-row td').text()) == 'No Instance Found')
+    {
+        $(".lisat-instance-row0").hide();
+    }
+    //setTimeout(function () { $('.saveDraft').show(); },'1000');
+    // code to increase the text area of instance  @pass the class Name 
+    textareaIncreaseHeight('instanceRunTab');
+
+    var is_instance = $("#is_instance").val();
+    if ($(".list-row.current").find('td:last').html() == "Published")
+    {
+        $(".Version-icon").show();
+        $(".Edit-icon").addClass('inactiveLink');
+        $(".Edit-icon").css("pointer-events", "none");
+        $('.saveDraft').hide();
+    } else
+    {
+        if ($.trim($('#node_y_class_id').val()) == domain_course_class_id) {
+            $('a.Edit-icon').addClass('inactiveLink');
+            $("a.Edit-icon").css("pointer-events", "none");
+        } else {
+            $("a.Edit-icon").removeClass('inactiveLink');
+            $("a.Edit-icon").css("pointer-events", "all");
+        }
+
+        $(".Version-icon").hide();
+        //$('.saveDraft').show();
+    }
+</script>

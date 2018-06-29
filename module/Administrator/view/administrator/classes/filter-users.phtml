@@ -1,0 +1,21 @@
+<?php if(count($this->userArray) > 0) { foreach($this->userArray as $key => $value) { ?>
+<tr id="row_parti_<?php echo $value['node_id']; ?>">
+    <td <?php if($this->mode == 'view') { ?>style="display:none;"<?php } ?> >
+        <div class="custom-checkbox">
+            <input type="checkbox" id="parti_<?php echo $value['node_id']; ?>" class="parti_c" value="<?php echo $value['node_id']; ?>" <?php if($value['select'] == 'Y') { ?>checked="true"<?php } ?> >
+        </div>
+    </td>
+    <td><?php echo $value['first_name']." ".$value['last_name']; ?></td>
+    <td><?php echo $value['email_address']; ?></td>
+    <td><?php echo $value['domain']; ?></td>
+</tr>
+<?php } ?> 
+<tr id="no_user_select" style="display:none;">
+    <td colspan="4" align="center" >No User Selected</td>
+</tr>
+<?php } else { ?>
+<tr id="no_user_select">
+    <td colspan="4" align="center" >No User Selected</td>
+</tr>
+<?php } ?>
+                   

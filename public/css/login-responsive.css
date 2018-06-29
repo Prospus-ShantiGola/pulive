@@ -1,0 +1,23 @@
+
+@media screen and (max-width:767px){
+	body{
+		overflow: auto;
+	}
+	.popup-responsive.modal {
+	    top: 0px;
+	    margin-top: 0px;
+	    overflow: auto;
+	    position: relative;
+	}
+	.popup-responsive .modal-dialog {
+	    top: 0%;
+	    width: 100%;
+	    margin: 0px;
+	}
+	.popup-responsive .modal-content {
+	    border-radius: 0px;
+	    width: 100%;
+	    box-shadow: none;
+	    border:0px;
+	}
+}

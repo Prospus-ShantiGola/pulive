@@ -1,0 +1,730 @@
+<div class="fixed-top-header">
+    <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+        <tbody>
+        <?php
+            for($row=0;$row<2;$row++) {
+                ?>
+                <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                    <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data']; ?></td>
+                        <?php if($this->status == 'First' && $col == intval($this->currentColumnIndex)) { ?>
+                            <?php if($row==0) { ?>
+                                <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col+1; ?></span></td>
+                                <?php if($this->day) { ?>
+                                    <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col+2; ?></span></td>
+                                    <td class="ExcelTableFormationCol collapse event blank"><span class="top-col"><?php echo $col+3; ?></span></td>
+                                    <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col+4; ?></span></td>
+                                    <?php /*$col+=4;*/ } ?>
+                                <?php /*if ($col==intval($this->newRPhaseColNo) && !$this->isRPhasePro) { ?>
+                                    <td class="ExcelTableFormationCol collapse event blank"><span class="top-col"><?php echo $col+1; ?></span></td>
+                                <?php } */?>
+                            <?php } elseif($row==1) { ?>
+                                <td class="ExcelTablerow collapse event blank border-right">
+                                    <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                        <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                    </div>
+                                </td>
+                                <?php if($this->day) { ?>
+                                    <td class="ExcelTablerow blank ">
+                                        <div data-id="" class="col-head">
+                                            <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span>
+                                            <span class="col-head-title">Day</span><i class="fa fa-caret-left arrow"></i>
+                                        </div>
+                                    </td>
+                                    <td class="ExcelTablerow collapse event blank border-right">
+                                        <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                            <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                        </div>
+                                    </td>
+                                    <td class="ExcelTablerow blank ">
+                                        <div data-id="" class="col-head">
+                                            <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span>
+                                            <span class="col-head-title">Time</span><i class="fa fa-caret-left arrow"></i>
+                                        </div>
+                                    </td>
+                                    <?php /*$col+=4;*/ } ?>
+                                <?php if ($col==intval($this->newRPhaseColNo) && !$this->isRPhasePro) { ?>
+                                    <td class="ExcelTablerow collapse event blank border-right">
+                                        <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                            <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                        </div>
+                                    </td>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+                        <?php if($this->day) { $newCol = $col+4; } else { $newCol = $col; } ?>
+                        <?php if ($this->day && $newCol==intval($this->newRPhaseColNo)-1 && !$this->isRPhasePro) { ?>
+
+                            <?php if($row == 0) { ?>
+                                <td class="ExcelTableFormationCol col-<?php echo $newCol+1; ?>"><span class="top-col"><?php echo $newCol+1; ?></span>
+                                    <i class="fa fa-plus add add-phase-segment"></i><div class="add-col-wrap add-colums"><ul class="dropdown-menu show-7"><li role="presentation">
+                                        <a class="add-phase-operations"><div class="node-circle node-white-circle-expanded">N</div>Add Operation</a></li></ul></div></td>
+                                <td class="ExcelTableFormationCol collapse event blank"><span class="top-col"><?php echo $newCol+2; ?></span></td>
+                                <td class=""></td>
+                                <?php $col+=2; ?>
+                            <?php } elseif($row == 1) { ?>
+                                <td class="ExcelTablerow blank border-right">
+                                    <div data-id="" class="col-head">
+                                        <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span><span class="col-head-title">Phase</span>
+                                    </div>
+                                </td>
+                                <td class="ExcelTablerow collapse event blank border-right">
+                                    <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                        <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                    </div>
+                                </td>
+                                <td class=""></td>
+                                <?php $col+=2; ?>
+                            <?php } ?>
+
+                        <?php } elseif($col == intval($this->newRPhaseColNo)-1 && !$this->isRPhasePro) { ?>
+
+                            <?php if($row == 0) { ?>
+                                <td class="ExcelTableFormationCol collapse event blank"><span class="top-col"><?php echo $col+2; ?></span></td>
+                            <?php } elseif($row == 1) { ?>
+                                <td class="ExcelTablerow collapse event blank border-right">
+                                    <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                        <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                    </div>
+                                </td>
+                            <?php } ?>
+
+                        <?php } ?>
+
+
+
+                    <?php } ?>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+    <tbody>
+    <?php
+        $operationSegmentCount = $this->exitsOperation;
+
+        if ($operationSegmentCount != 0) {
+            if ($this->type == 'below') {
+                $operationRowIndex = intval($this->currentRowIndex);
+                if ($this->suboperationCount > 0 && $this->currentLength > 6) {
+                    $lastRowAddDynamic = intval($this->currentLength) - 2;
+                } else {
+                    $lastRowAddDynamic = intval($this->currentLength) - 2;
+                }
+            } else {
+                if (intval($this->currentRowIndex) - 1 == 1) {
+                    $operationRowIndex = intval($this->currentRowIndex) - 1;
+                } else {
+                    $operationRowIndex = intval($this->currentRowIndex) - 2;
+                    $lastRowAddDynamic = 0;
+                }
+            }
+        } else {
+            $lastRowAddDynamic = '4';
+            $operationRowIndex = intval($this->currentRowIndex);
+        }
+
+        $lastRow =  ($operationRowIndex+$lastRowAddDynamic)+1;
+        if($this->suboperationCount < 2){
+            $startcol = intval($this->currentColumnIndex)+4;
+            $endcol   = intval($this->currentColumnIndex)+5;
+        } else {
+            $startcol = intval($this->currentColumnIndex)+ 4;
+            $endcol = intval($this->currentColumnIndex)  + intval($this->suboperationCount*3);
+        }
+
+        $flag = 'Y';$noflag='Y';
+
+        /* Code By Amit Malakar*/
+        if(intval($this->currentColumnIndex) == 7 || intval($this->currentColumnIndex) == 6)
+        {
+            $preRow         = intval($this->currentRowIndex) - 1;
+            $preRowArray    = $this->tableDataArray[$preRow];
+        }
+        /* Code By Amit Malakar*/
+        $totalSegmentsCreated = 0;
+        for($row=0;$row<count($this->tableDataArray);$row++) { ?>
+            <?php if($row <= (intval($this->currentRowIndex))) { ?>
+                <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                    <?php $weekSegFlag = 0; for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+
+                        <?php
+                        if($this->type=='below') {
+                            if($this->suboperationCount!=0 || !empty($this->suboperationCount)){
+                                if(($row == $lastRow) && ($col >= $startcol && $col <= intval($endcol)))
+                                { ?>
+                                    <td class="role operation-series"><div class="blank-div segment-node"></div></td>
+                                <?php } else {?>
+                                    <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                                <?php }?>
+                            <?php } else {?>
+                                <?php if($col == intval($this->currentColumnIndex)) { ?>
+                                    <?php if($row < $this->currentRowIndex && $this->status == 'First') { ?>
+                                        <td class="creation-bg <?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><div class="blank-div segment-node"></div></td>
+                                    <?php } else { ?>
+                                        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                                    <?php } ?>
+                                    <?php  if($this->status == 'First') { ?>
+                                        <td class="creation-bg collapse event"><div class="blank-div segment-node"></div></td>
+                                        <?php if($this->day) { ?>
+                                            <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                            <td class="creation-bg collapse col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                            <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                        <?php } ?>
+                                    <?php } ?>
+                                <?php } else { ?>
+
+                                    <?php if(intval($this->currentColumnIndex) == 7 && intval($row) == intval($preRow)) { ?>
+
+                                        <?php if($this->type == 'below') { ?>
+                                            <?php if(intval($col) > 0 && intval($col) < 5) { ?>
+                                                <?php if(intval($col) == 1) { ?>
+                                                    <td class="ExcelTablerow border-left merge-td cell_7_1 blank parent_2_1 fTHLC-left-col collapse col-1"><div class="blank-div segment-node borderDashed"></div></td>
+                                                <?php } else { ?>
+                                                    <td class="ExcelTableFormationCol blank">
+                                                        <div class="blank-div segment-node"></div>
+                                                    </td>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                                            <?php } ?>
+                                        <?php } ?>
+
+                                    <?php } else if(intval($this->currentColumnIndex) == 6 && intval($row)==intval($preRow) && $col <= 4) { ?>
+                                        <td class="<?php if($col==5){echo 'creation-bg';}?> col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+                                    <?php } else { ?>
+                                        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+
+                        <?php } else { // above ?>
+                            <?php if($col == intval($this->currentColumnIndex)) { ?>
+
+                                <?php if($row==$this->currentRowIndex) { $weekSegFlag = 1;?>
+                                    <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row).'_'.($row+($this->noOfSegment*2)-1);?> ExcelTablerow"><?php echo preg_replace($this->weekRegxPattern, 'Segment1', $this->phaseArray[0]['phase']); ?></td>
+                                    <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                    <?php if($this->day) { ?>
+                                        <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row).'_'.($row+($this->noOfSegment*2)-1);?> ExcelTablerow"><?php echo preg_replace($this->weekRegxPattern, 'Segment1', $this->phaseArray[0]['day']); ?></td>
+                                        <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                        <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <?php if($row==0) { ?>
+                                        <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col; ?></span></td>
+                                        <td class="ExcelTableFormationCol blank collapse event"><span class="top-col"><?php echo $col+1; ?></span></td>
+                                    <?php } elseif($row==1) { ?>
+                                        <td class="ExcelTablerow blank"><div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span><span class="col-head-title">Structured</span></div></td>
+                                        <td class="ExcelTablerow collapse event blank"><div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span></div></td>
+                                    <?php } else { ?>
+                                        <td class="creation-bg <?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><div class="blank-div segment-node"></div></td>
+                                        <td class="creation-bg collapse event"><div class="blank-div segment-node"></div></td>
+                                    <?php } ?>
+                                    <?php if($this->day && !$this->isDayPro) { // and day col isn't there ?>
+                                        <?php if($row==0) { ?>
+                                            <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col+2; ?></span></td>
+                                            <td class="ExcelTableFormationCol blank collapse event"><span class="top-col"><?php echo $col+3; ?></span></td>
+                                            <td class="ExcelTableFormationCol blank"><span class="top-col"><?php echo $col+4; ?></span></td>
+                                        <?php } elseif($row==1) { ?>
+                                            <td class="ExcelTablerow blank "><div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span><span class="col-head-title">Day</span><i class="fa fa-caret-left arrow"></i></div></td>
+                                            <td class="ExcelTablerow collapse event blank border-right"><div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i></div></td>
+                                            <td class="ExcelTablerow blank "><div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span><span class="col-head-title">Time</span><i class="fa fa-caret-left arrow"></i></div></td>
+                                        <?php } else { ?>
+                                            <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                            <td class="creation-bg collapse col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                            <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                        <?php } ?>
+                                    <?php  } ?>
+                                <?php } if($this->extend) { $col++; } ?>
+                            <?php } else { ?>
+
+                                <?php if($this->day) { $newCol = $col+3; } else { $newCol = $col; } ?>
+                                <?php if($this->extend) { $newCol++; } // TO CHECK ?>
+                                <?php if($row==0 && $newCol == intval($this->newRPhaseColNo)-1 && !$this->isRPhasePro)  { ?>
+                                    <td class="ExcelTableFormationCol "><span class="top-col"><?php echo $newCol+1; ?></span></td>
+                                    <td class="ExcelTableFormationCol collapse event blank"><span class="top-col"><?php echo $newCol+2; ?></span></td>
+
+                                <?php } elseif($row==1 && $newCol == intval($this->newRPhaseColNo)-1 && !$this->isRPhasePro) { ?>
+                                    <td class="blank cell_1_8 col-8">
+                                        <div data-id="7" class="col-head">
+                                            <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon phase-icon"></span><span class="col-head-title">Phase</span>
+                                        </div>
+                                    </td>
+                                    <td class="ExcelTablerow collapse event blank border-right">
+                                        <div data-id="" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                                            <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                                        </div>
+                                    </td>
+                                <?php } else { ?>
+                                    <?php $phaseFlag = 0;
+                                    if($this->extend && $newCol == intval($this->newRPhaseColNo) && $weekSegFlag) {
+                                        $phaseFlag = 1;
+                                    } elseif(!$this->extend && $newCol == intval($this->newRPhaseColNo)-1 && $weekSegFlag) {
+                                        $phaseFlag = 1;
+                                    } ?>
+                                    <?php if($phaseFlag) { ?>
+                                        <td class="col-<?php echo intval($newCol); ?> ExcelTablerow"><?php echo $this->rPhaseArray[0]['phase']; ?></td>
+                                        <td class="collapse event col-<?php echo intval($newCol); ?> ExcelTablerow"><?php echo $this->rPhaseArray[0]['event']; ?></td>
+                                        <?php if($this->extend) { echo '<td class=""></td>'; } ?>
+                                        <?php $weekSegFlag = 0; } else { ?>
+                                        <td class="<?php echo $newCol.'-'.intval($this->newRPhaseColNo) .'-'.$weekSegFlag; ?> <?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                                    <?php } ?>
+                                <?php } ?>
+
+
+                            <?php } ?>
+                        <?php } // above ends ?>
+
+
+                    <?php } ?>
+                </tr>
+            <?php } ?>
+            <?php
+            if($this->exitsOperation == 0){
+                if ($this->type == 'below') {
+                    $rowIndex = intval($this->currentRowIndex);
+                } else {
+                    if (intval($this->currentRowIndex) - 1 == 1) {
+                        $rowIndex = intval($this->currentRowIndex);
+                    } else {
+                        $rowIndex = intval($this->currentRowIndex) - 2;
+                    }
+                }
+                if($this->type == 'below' && $row+1 == $this->currentRowIndex) { // $('.icon-plus').hide();?>
+                    <?php $j=1;for($i=0; $i<$this->noOfSegment; $i++) { ?>
+                        <tr class="b1 <?php //echo $row+$i+$j; ?>" >
+                            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                                <?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+                                    <?php if($this->day) { ?>
+                                        <?php if($i%7==0) { ?>
+                                            <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row+1).'_'.($row+($this->noOfSegment*2));?> ExcelTablerow border-light-top"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegCount+($i/7)+1), $this->phaseArray[0]['phase']); ?></td>
+                                        <?php } else { ?>
+                                            <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row+1).'_'.($row+($this->noOfSegment*2));?> ExcelTablerow border-light-top"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegCount+$i+1), $this->phaseArray[0]['phase']); ?></td>
+                                    <?php } ?>
+                                <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)) { ?>
+                                    <?php if($this->day) { ?>
+                                        <?php if($i%7==0) { ?>
+                                            <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                        <?php } else { ?>
+                                            <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"></td>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <td class="<?php echo $newCol.'-'.$this->newRPhaseColNo; ?> collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                    <?php } ?>
+                                    <?php if($this->day) { ?>
+                                        <td class="col-<?php echo intval($col)+2; ?> schedule_<?php echo ($row+1).'_'.($row+($this->noOfSegment*2));?> ExcelTablerow"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegDayCount+$i+1), $this->phaseArray[0]['day']); ?></td>
+                                        <td class="collapse col-<?php echo intval($col)+3; ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                        <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                    <?php } ?>
+                                    <?php if($this->status == 'First') { ?>
+                                        <!--<td class="!! "></td>-->
+                                    <?php } ?>
+                                    <?php if($this->extend && $this->strucSegCount==0) { $col++; }  // removed for LRLRE ?>
+                                <?php } else { ?>
+
+
+
+
+                                    <?php if($this->day) { $newCol = $col+3; } else { $newCol = $col; } ?>
+
+                                    <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                        <?php if($i==0) { ?>
+                                            <td class="col-<?php echo intval($newCol); ?> ExcelTablerow"><?php echo $this->rPhaseArray[0]['phase']; ?></td>
+                                            <td class="collapse event col-<?php echo intval($newCol); ?> ExcelTablerow"><?php echo $this->rPhaseArray[0]['event']; ?></td>
+                                            <td class=""></td>
+                                            <?php $col+=2; if($this->strucSegCount) { $col++; } ?>
+                                        <?php } else { ?>
+                                            <td class="ExcelTablerow merge-td blank col-<?php echo intval($newCol); ?>"><div class="blank-div segment-node"></div></td>
+                                            <td class="ExcelTablerow creation-bg collapse event col-<?php echo intval($newCol)+1; ?>"><div class="blank-div segment-node"></div></td>
+                                            <td class=""></td>
+                                            <?php $col+=2; if($this->strucSegCount) { $col++; } ?>
+                                        <?php } $newCol+=2; ?>
+                                    <?php } else { ?>
+                                        <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                            <td class="ExcelTablerow merge-td blank col-<?php echo intval($newCol); ?>"><div class="blank-div segment-node"></div></td>
+                                            <td class="ExcelTablerow creation-bg collapse event col-<?php echo intval($newCol)+1; ?>"><div class="blank-div segment-node"></div></td>
+                                            <!--<td class=""></td>-->
+                                        <?php } else { ?>
+                                            <?php if($this->extend) { $newCol+=2; } ?>
+                                            <?php if($newCol <= ($this->cols)+1) { ?>
+                                                <td class="<?php if($col==5){echo 'creation-bg';}?> col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
+
+
+
+
+
+
+
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                        <tr class="b2 <?php $j++; //echo $row+$i+$j; ?>">
+                            <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                                <?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+                                    <?php if($this->day) { ?>
+                                        <?php if($i%7==0) { ?>
+                                            <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+                                        <?php } else { ?>
+                                            <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+                                    <?php } ?>
+                                <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)) { ?>
+                                    <?php if($this->day) { ?>
+                                        <?php if(($i+1)%7==0) { ?>
+                                            <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                        <?php } else { ?>
+                                            <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"></td>
+                                        <?php } ?>
+                                    <?php } else { ?>
+                                        <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                    <?php } ?>
+                                    <?php if($this->day) { ?>
+                                        <td class="col-<?php echo intval($col)+2; ?> ExcelTablerow"><?php echo $this->phaseArray[1]['day']; ?></td>
+                                        <td class="collapse col-<?php echo intval($col)+3; ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                        <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                    <?php } ?>
+                                    <?php if($this->status == 'First') { ?>
+                                        <!--<td class=""></td>-->
+                                    <?php } ?>
+                                    <?php if($this->extend && $this->strucSegCount==0) { $col++; } // removed for LRLRE ?>
+                                <?php } else { ?>
+                                    <?php if((intval($this->noOfSegment) - 1) == intval($i) && intval($col) > 0 && intval($col) < 5) {  ?>
+                                        <td class="<?php echo $preRowArray[$col]['tdClass']; ?>"><?php echo $preRowArray[$col]['data'];?></td>
+                                    <?php } else { ?>
+
+
+                                        <?php if($this->day) { $newCol = $col+3; } else { $newCol = $col; } ?>
+
+                                        <?php if($i == ($this->noOfSegment)-1) { ?>
+
+                                            <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                                <td class="col-<?php echo intval($newCol)+1; ?> ExcelTablerow"><?php echo $this->rPhaseArray[1]['phase']; ?></td>
+                                                <td class="collapse col-<?php echo intval($newCol)+2; ?> ExcelTablerow"><?php echo $this->rPhaseArray[1]['event']; ?></td>
+                                                <td class=""></td>
+                                                <?php $col+=2; if($this->strucSegCount) { $col++; } ?>
+                                            <?php } elseif($newCol <= 4) { ?>
+                                                <td class="<?php echo $this->lastRowData[$col]['tdClass'];?>"><?php echo $this->lastRowData[$col]['data'];?></td>
+                                            <?php } else { ?>
+
+                                                <?php if($this->extend) { ?>
+                                                    <?php if($newCol < ($this->cols)) { ?>
+                                                        <td class="<?php echo $newCol.'-'.$this->cols.'-'.$col; ?> creation-bg"><div class="blank-div segment-node"></div></td>
+                                                    <?php } ?>
+                                                <?php } else { ?>
+                                                    <?php if($newCol <= ($this->cols)) { ?>
+                                                        <td class="<?php echo $newCol.'-'.$this->cols.'-'.$col; ?> creation-bg"><div class="blank-div segment-node"></div></td>
+                                                    <?php } else if($newCol == $this->cols+1) { ?>
+                                                        <td class="<?php echo $newCol.'-'.$this->cols.'-'.$col; ?>"></td>
+                                                    <?php } ?>
+                                                <?php } ?>
+
+                                            <?php } ?>
+
+                                        <?php } else { ?>
+
+                                            <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                                <td class="ExcelTablerow merge-td blank col-<?php echo intval($newCol); ?>"><div class="blank-div segment-node"></div></td>
+                                                <td class="ExcelTablerow creation-bg collapse event col-<?php echo intval($newCol)+1; ?>"><div class="blank-div segment-node"></div></td>
+                                                <td class=""></td>
+                                                <?php $col+=2; if($this->strucSegCount) { $col++; } ?>
+                                            <?php } else { ?>
+                                                <?php if($this->extend) { $newCol+=2; } ?>
+                                                <?php if($newCol <= ($this->cols)+1) { ?>
+                                                    <td class="<?php if($col==5){echo 'creation-bg';}?> col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+                                                <?php } ?>
+                                            <?php } ?>
+
+                                        <?php } ?>
+
+
+
+                                    <?php } ?>
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+                    <?php $totalSegmentsCreated++; }  ?>
+                <?php } else { ?>
+
+
+
+
+                    <?php if(intval($row) ==  intval($rowIndex)) { //$this->type='below' && ?>
+                        <?php $j=0; for($i=1; $i<=$this->noOfSegment; $i++) { $lastRowDataFlag = 0;?>
+                            <?php if($this->noOfSegment==$totalSegmentsCreated) { $i = $this->noOfSegment; } ?>
+                            <tr class="a2 <?php //echo $row+$i+$j; ?>">
+                                <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+
+
+                                    <?php if(intval($this->currentColumnIndex) == intval($col) ){ // && $lastRowDataFlag == 0) { ?>
+                                        <?php if($this->day) { ?>
+                                            <?php if(($i-1)%7==0) { ?>
+                                                <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+                                            <?php } else { ?>
+                                                <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+                                        <?php } ?>
+
+                                    <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)){// && $lastRowDataFlag == 0) { ?>
+                                        <?php if($this->day) { ?>
+                                            <?php if($i%7==0) { ?>
+                                                <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                            <?php } else { ?>
+                                                <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"></td>
+                                            <?php } ?>
+                                        <?php } else { ?>
+                                            <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                        <?php } ?>
+                                        <?php if($this->day) { ?>
+                                            <td class="col-<?php echo intval($col)+2; ?> ExcelTablerow"><?php echo $this->phaseArray[1]['day']; ?></td>
+                                            <td class="collapse col-<?php echo intval($col)+3; ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                            <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                        <?php } ?>
+
+                                        <?php //if($this->extend) { $col++; } ?>
+                                    <?php } else { ?>
+
+                                        <?php if($this->day) { $newCol = $col+3; } else { $newCol = $col; } ?>
+                                        <?php if($this->extend) { $newCol+=1; } // TO CHECK +2 ?>
+                                        <?php if($i == $this->noOfSegment) { ?>
+                                            <?php /* ?><td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node">--</div><?php } ?></td><?php */ ?>
+
+                                            <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                                <td class="col-<?php echo intval($newCol)+1; ?> ExcelTablerow"><?php echo $this->rPhaseArray[1]['phase']; ?></td>
+                                                <td class="collapse col-<?php echo intval($newCol)+2; ?> ExcelTablerow"><?php echo $this->rPhaseArray[1]['event']; ?></td>
+                                                <td class=""></td>
+                                            <?php } else { ?>
+                                                <?php if($newCol<intval($this->newRPhaseColNo)) { if($this->extend){ $lastRowDataFlag = 1;} ?>
+                                                    <td class="<?php echo $newCol.'-'.$this->newRPhaseColNo; ?> <?php echo $this->lastRowData[$col]['tdClass'];?>"><?php echo $this->lastRowData[$col]['data'];?></td>
+                                                <?php } ?>
+                                            <?php } ?>
+
+                                        <?php } else { ?>
+
+                                            <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                                <td class="ExcelTablerow merge-td blank col-<?php echo intval($newCol); ?>"><div class="blank-div segment-node"></div></td>
+                                                <td class="ExcelTablerow creation-bg collapse event col-<?php echo intval($newCol)+1; ?>"><div class="blank-div segment-node"></div></td>
+                                                <td class=""></td>
+                                            <?php } else { ?>
+                                                <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+                                            <?php } ?>
+
+                                        <?php } ?>
+
+
+
+                                    <?php }?>
+
+
+                                <?php } ?>
+                            </tr>
+
+                            <?php // CHECK CONDITION HERE ?>
+
+                            <?php if($this->noOfSegment-1 >= $i) { ?>
+                                <tr class="a1 <?php $j++; //$row+$i+$j; ?>" >
+                                    <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+
+
+                                        <?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+                                            <?php if($this->day) { ?>
+                                                <?php if($i%7==0) { ?>
+                                                    <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row).'_'.($row+($this->noOfSegment*2)-1);?> ExcelTablerow  border-light-top"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegCount+($i/7)+1), $this->phaseArray[0]['phase']); ?></td>
+                                                <?php } else { ?>
+                                                    <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="blank-div segment-node"></div></td>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <td class="col-<?php echo intval($col); ?> schedule_<?php echo ($row).'_'.($row+($this->noOfSegment*2)-1);?> ExcelTablerow"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegCount+$i+1), $this->phaseArray[0]['phase']); ?></td>
+                                            <?php } ?>
+
+                                        <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)) { ?>
+                                            <?php if($this->day) { ?>
+                                                <?php if($i%7==0) { ?>
+                                                    <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                                <?php } else { ?>
+                                                    <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"></td>
+                                                <?php } ?>
+                                            <?php } else { ?>
+                                                <td class="collapse col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                            <?php } ?>
+                                            <?php if($this->day) { ?>
+                                                <td class="col-<?php echo intval($col)+2; ?> schedule_<?php echo ($row).'_'.($row+($this->noOfSegment*2)-1);?> ExcelTablerow"><?php echo preg_replace($this->weekRegxPattern, 'Segment'.($this->strucSegDayCount+$i+1), $this->phaseArray[0]['day']); ?></td>
+                                                <td class="collapse col-<?php echo intval($col)+3; ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                                <td class="creation-bg"><div class="blank-div segment-node"></div></td>
+                                            <?php } ?>
+                                            <!--<td class=""></td>-->
+                                            <?php //if($this->extend) { $col++; } ?>
+                                        <?php } else { ?>
+                                            <?php if($this->currentColumnIndex == 6 && $col == 5) { ?>
+                                                <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"><div class="segment-node blank-div segment-node"></div></td>
+                                            <?php } elseif($this->currentColumnIndex == 7 && $col == 5) { ?>
+                                                <td class="creation-bg col-<?php echo intval($col); ?> ExcelTablerow"><div class="segment-node blank-div segment-node"></div></td>
+                                                <td class="creation-bg collapse event"><div class="blank-div segment-node"></div></td>
+                                            <?php } else { ?>
+
+                                                <?php if($this->day) { $newCol = $col+3; } else { $newCol = $col; } ?>
+                                                <?php if($this->extend) { $newCol+=1; } // TO CHECK ?>
+                                                <?php if($newCol == intval($this->newRPhaseColNo)) { ?>
+                                                    <td class="ExcelTablerow merge-td blank col-<?php echo intval($newCol); ?>"><div class="blank-div segment-node"></div></td>
+                                                    <td class="ExcelTablerow creation-bg collapse event col-<?php echo intval($newCol)+1; ?>"><div class="blank-div segment-node"></div></td>
+                                                    <td class=""></td>
+                                                <?php } else { ?>
+                                                    <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+                                                <?php } ?>
+
+
+                                            <?php } ?>
+                                        <?php } ?>
+
+
+
+
+                                    <?php } ?>
+                                </tr>
+                            <?php } ?>
+                        <?php } ?>
+                    <?php } ?>
+
+
+
+
+
+                <?php } ?>
+            <?php } else { ?>
+
+                <?php
+
+                for($k=0;$k<1;$k++){
+                    if(intval($row) ==  intval($operationRowIndex)+$lastRowAddDynamic) { ?>
+                        <tr class="" >
+                            <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2)+intval($this->eventCount));$col++) { ?>
+
+                                <?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+                                    <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+                                <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)  ) { ?>
+                                    <?php if($k==0){?>
+                                        <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                                    <?php } else {?>
+                                        <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="segment-node blank-div segment-node"></div></td>
+                                    <?php } ?>
+
+                                <?php } else if(intval($this->currentColumnIndex)+2 == intval($col)) { ?>
+                                    <td class="ExcelTablerow operation-series operation1 border-light-bottom"><?php echo $this->operationPhaseArray[5]['operation1']; ?></td>
+
+                                    <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[5]['event_operation']; ?></td>
+
+                                    <?php
+
+                                    if($this->suboperationCount > 0) {
+
+                                        for($o = 0;$o < (intval($this->suboperationCount));$o++){ ?>
+                                            <td class="ExcelTablerow border-light-bottom role operation-series sub-operation"><?php echo $this->subOperationArray[5]['sub_operation1']; ?></td>
+                                            <td class="ExcelTablerow border-light-bottom  role operation-series sub-operation"><?php echo $this->subOperationArray[5]['sub_event_operation']; ?></td>
+                                        <?php }
+
+                                    } ?>
+
+                                    <td class="ExcelTablerow operation-series operation2"><?php echo $this->operationPhaseArray[5]['operation2']; ?></td>
+                                    <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[5]['event']; ?></td>
+
+                                    <?php if($this->eventCount > 0){
+                                        for($e = 0;$e < $this->eventCount;$e++){ ?>
+                                            <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[5]['eventStatus']; ?></td>
+                                        <?php } }  ?>
+
+                                    <td class="ExcelTablerow operation-series role">	<?php echo $this->operationPhaseArray[5]['role']; ?></td>
+
+                                    <?php
+                                    if($this->noOfRole > 0){
+                                        for($j = 0;$j < (intval($this->noOfRole));$j++){
+                                            ?>
+                                            <td class="ExcelTablerow operation-series role"><?php echo $this->roleArray[5]['role_series']; ?></td>
+                                        <?php } } ?>
+
+                                    <?php $logiccountSerielNo = '';
+                                    if($this->domaincount > 0){
+                                        for($m = 0;$m < $this->domaincount;$m++){
+                                            $logiccountSerielNo = intval($m)+intval($countSerielNo);
+
+                                            ?>
+                                            <td class="ExcelTablerow operation-series role creation-bg"><?php echo $this->domainArray[$incrmentCounter]['domain']; ?></td>
+
+                                        <?php } }  ?>
+
+                                    <td class="ExcelTablerow operation-series system"><?php echo $this->operationPhaseArray[5]['system']; ?></td>
+                                <?php } else { ?>
+                                    <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+4 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+
+                                <?php } ?>
+                            <?php } ?>
+                        </tr>
+
+
+                        <?php for($i=0;$i<count($this->operationPhaseArray)-1;$i++) { ?>
+                            <tr class="">
+                                <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2)+intval($this->eventCount));$col++) { ?>
+
+                                    <?php if(intval($this->currentColumnIndex) == intval($col) && ( $i==0 && $flag=='Y')) {  ?>
+                                        <td class="ExcelTablerow border-light-top"><?php echo $this->phaseArray[0]['phase']; ?></td>
+                                    <?php } else if(intval($this->currentColumnIndex)+1 == intval($col) && ($i==0 && $flag=='Y')) { $flag = 'N'; ?>
+                                        <td class="ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+                                    <?php } else if(intval($this->currentColumnIndex)+2 == intval($col) ) { ?>
+
+                                        <td class="ExcelTablerow operation-series operation1 "><?php echo $this->operationPhaseArray[$i]['operation1']; ?></td>
+
+                                        <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[$i]['event_operation']; ?></td>
+
+                                        <?php if($this->suboperationCount > 0) {
+                                            for($o = 0;$o < (intval($this->suboperationCount));$o++){   ?>
+                                                <td class="ExcelTablerow operation-series role sub-operation"><?php echo $this->subOperationArray[$i]['sub_operation1']; ?></td>
+                                                <td class="ExcelTablerow operation-series role sub-operation role"><?php echo $this->subOperationArray[$i]['sub_event_operation']; ?></td>
+                                            <?php } }?>
+
+                                        <td class="ExcelTablerow operation-series operation2">
+                                            <?php echo $this->operationPhaseArray[$i]['operation2']; ?></td>
+                                        <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[$i]['event']; ?></td>
+
+                                        <?php if($this->eventCount > 0){
+                                            for($e = 0;$e < $this->eventCount;$e++){ ?>
+                                                <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[$i]['eventStatus']; ?></td>
+                                            <?php } }  ?>
+
+                                        <td class="ExcelTablerow operation-series role"><?php echo $this->operationPhaseArray[$i]['role']; ?></td>
+
+                                        <?php if($this->noOfRole > 0){
+                                            for($m = 0;$m < (intval($this->noOfRole)/intval($this->exitsOperation));$m++){
+                                                ?>
+                                                <td class="ExcelTablerow operation-series role"><?php echo $this->roleArray[$i]['role_series']; ?></td>
+                                            <?php } }  ?>
+
+                                        <?php
+                                        if($this->domaincount > 0){
+                                            for($m = 0;$m < $this->domaincount;$m++){
+                                                ?>
+                                                <td class="ExcelTablerow operation-series domain creation-bg "><?php echo $this->domainArray[$i]['domain']; ?></td>
+                                            <?php } }  ?>
+
+                                        <td class="ExcelTablerow operation-series system"><?php echo $this->operationPhaseArray[$i]['system']; ?></td>
+                                    <?php } else { ?>
+                                        <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+4 > intval($col)) { ?>
+                                                <div class="blank-div segment-node"></div><?php } ?></td>
+                                    <?php } ?>
+                                <?php } ?>
+                            </tr>
+                        <?php } ?>
+                    <?php } }?>
+            <?php } ?>
+
+        <?php } ?>
+    </tbody>
+</table>

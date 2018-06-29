@@ -1,0 +1,73 @@
+
+<?php 
+  $newArray   =  $this->tableDataArray[0];
+?>
+<div class="fixed-top-header">
+      <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+         <tbody>
+            <?php for($row=0;$row<2;$row++) { ?>
+               <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                     <?php if(intval($row) == 0 && intval($col) == 5) { ?>
+                        <td class="ExcelTableFormationCol blank cell_0_5 col-5"><span class="top-col">5</span></td>
+                     <?php } else if(intval($row) == 1 && intval($col) == 5) { ?>
+                        <td class="blank cell_1_5 col-5">
+                          <div class="col-head" data-id="5">
+                            <div class="node-circle node-white-circle node-white-circle">N</div>
+                            <span class="icon phase-icon"></span>
+                            <span class="col-head-title">Unstructured</span>
+                            <i class="fa fa-caret-left arrow"></i> 
+                          </div>
+                        </td>
+                     <?php } else if(intval($row) == 0 && intval($col) == 7 && count($newArray) > 8 ) { ?>
+                        <td class="ExcelTableFormationCol blank cell_0_5 col-5"><span class="top-col">7</span></td>
+                     <?php } else if(intval($row) == 0 && intval($col) == 8 && count($newArray) > 8 ) { ?>
+                        <td class="ExcelTableFormationCol blank cell_0_5 col-5"><span class="top-col">8</span></td>
+                     <?php } else if(intval($row) == 1 && intval($col) == 7 && count($newArray) > 8 ) { ?>
+                        <td class="blank cell_1_5 col-5">
+                          <div class="col-head" data-id="5">
+                            <div class="node-circle node-white-circle node-white-circle">N</div>
+                            <span class="icon phase-icon"></span>
+                            <span class="col-head-title">Structured</span>
+                            <i class="fa fa-caret-left arrow"></i> 
+                          </div>
+                        </td>
+                     <?php } else if(intval($row) == 1 && intval($col) == 8 && count($newArray) > 8 ) { ?>
+                        <td class="ExcelTablerow collapse event border-right blank cell_1_6 col-6">
+                           <div class="col-head" data-id="6">
+                              <div class="node-circle node-white-circle node-white-circle">N</div>
+                              <span class="icon event-icon"></span>
+                              <span class="col-head-title">.Event</span>
+                              <i class="fa fa-caret-left arrow rotate"></i>
+                           </div>
+                        </td>
+                     <?php } else { ?>
+                        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                     <?php } ?>
+                  <?php } ?>
+               </tr>
+         <?php }?>
+         </tbody>
+      </table>
+</div>
+
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+  <tbody>
+  <?php $addRow = 0; $newFlag = ''; $flag = ''; 
+
+  for($row=0;$row<count($this->tableDataArray);$row++) { ?>
+    
+    <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+    
+        <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+        		
+                  <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                  
+          <?php } ?>
+       
+        
+      </tr> 
+     
+  <?php } ?>
+  </tbody>
+</table>

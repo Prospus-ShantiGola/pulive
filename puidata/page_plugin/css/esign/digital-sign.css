@@ -1,0 +1,282 @@
+#signatureContainer,#signDocumentContainer{
+    display: none;
+}
+#digitalSign {
+    top: 10%;
+    left: 10%;
+    border: 1px solid;
+    display: block;
+    background-image:url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/signature-line.png);
+}
+#initialSign{
+    display: block;
+    border:1px solid #000;
+    background-image:url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/initail-line.png);
+}
+#digitalSign.digitalSign {
+    background-image:url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/signature-placeholder.png);
+}
+#initialSign.initialSign {
+    background-image:url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/initail-placeholder.png);
+}
+
+#signRegion{
+    display: none;
+    margin-left: 15px;
+}
+
+#docContainer #signThumbnails{
+    float: left;
+    text-align: center;
+    height: calc(100vh - 80px);
+    background-color: #f0f0f0;
+    width: 185px;
+}
+
+#sign,#signHereSpan{
+    position: absolute;
+    display: none;
+}
+.signed-row p {
+    margin-bottom: 5px;
+}
+#signHereSpan{
+    background-color: #f7f7f7;
+    font-weight: bold;
+    border: 1px solid #000;
+    padding:10px;
+}
+
+.signingDoc{
+    border: 1px solid #ccc;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.signingDocThumb{
+    width: 150px;
+    height: auto;
+    border: 1px solid #ccc;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.signingDocThumb.active{
+    border: 2px solid #000;
+}
+
+.signPplace{
+    position: absolute;
+    display: none;
+}
+
+
+
+.signIMG{
+    text-align: center;
+    height: calc(100vh - 80px);
+    background-color: #f0f0f0;
+    width: calc(100% - 370px);
+    float: left;
+}
+
+.signNav {
+    margin: 15px 0 15px 15px;
+}
+
+.signImgContainer, .signImgThumbContainer{
+    display: inline-block;
+    position: relative;
+}
+select#selectActor.form-select,
+select#doActorSign.form-select {
+    width: 100px;
+}
+.signedArrow {
+    padding: 8px 0px;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    margin-top: -40px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    text-align: center;
+    padding-left: 30px;
+    border-radius: 2px 0 0 2px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.69);
+    width: 110px;
+    margin-left:-125px;
+}
+.signImgContainer{
+    padding: 0 50px;
+}
+/*.signedArrow.leftArrow {
+    margin-left: 210px;
+}
+.signedArrow.leftArrow:after {
+    right: inherit;
+    left: 0;
+    margin-left: -15px;
+}
+.signedArrow.leftArrow.notSigned:after {    
+    border-right: 15px solid #c7c6c6;    
+    border-left: 0px;
+}
+.signedArrow.leftArrow.alreadySigned:after{
+    border-right: 15px solid green;    
+    border-left: 0px;
+}*/
+.signedArrow.alreadySigned{
+    margin-top:0;
+    top:auto;    
+    bottom: 4px;     
+    color: #fff;
+    background-color: green;
+    background-image: url(http://sta.pu.prospus.com/public/img/prospus-white-logo.png); 
+}
+.signedArrow.notSigned {   
+    color: #000;
+    background-color:#c7c6c6;
+    background-image: url(http://sta.pu.prospus.com/public/img/prospus-black-logo.png);   
+}
+.signedArrow:after {
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 0px;
+    margin-top: 0px;
+    margin-right: -15px;
+}
+.signedArrow.alreadySigned:after{
+    border-left: 15px solid green;
+}
+.signedArrow.notSigned:after{
+    border-left: 15px solid #c7c6c6;
+}
+.signed-wrap {
+    width: 550px;
+    display: inline-block;
+}
+.signed-wrap h4 {
+    width: 100%;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+    color: #000;
+    font-weight: 400;
+    margin-top: 5px;
+}
+.signed-row {
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+.signed-row .signed-col {
+    width: 47%;
+    float: left;
+    margin-right:13px;
+}
+.signed-row .signed-col h5 {
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+.signed-row .signed-col span {
+    font-size: 12px;
+}
+.signed-row .signed-col:nth-child(1) {
+    width: 350px;
+}
+.signed-row .signed-col:nth-child(2) {
+    width: 130px;
+}
+
+.signed-preview-col {
+    display: inline-block;
+}
+.signed-preview-col h5 {
+    font-size: 14px;
+    font-weight: bold;
+}
+.signed-preview-col canvas {
+    top: 10%;
+    left: 10%;
+    border: 1px solid;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-right: 8px;
+}
+#docContainer {
+    width: 100%;
+    float: left;
+    background: #f0f0f0;
+    padding-top:15px;
+}
+#right-signed-wrap{
+    float: left;
+    width: 185px;
+}
+#right-signed-wrap ul{
+    list-style-type: none;
+    display: inline-block;
+    width: 100%;
+    padding: 0;
+}
+
+#right-signed-wrap ul li{
+    display: inline-block;
+    width: 100%;    
+    padding: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    color: #000;
+    cursor: pointer;
+}
+
+/*#right-signed-wrap ul li a {
+    display: inline-block;
+    width: 100%;
+}
+#right-signed-wrap ul li a:hover,
+#right-signed-wrap ul li a:focus,
+#right-signed-wrap ul li a:active{
+    text-decoration: none;
+    background:#27ae60;
+}
+#right-signed-wrap ul li a:hover span,
+#right-signed-wrap ul li a:focus span,
+#right-signed-wrap ul li a:active span{
+    color: #fff
+}*/
+#right-signed-wrap ul li .custom-checkbox {
+    float: left;
+    margin-right: 10px;
+}
+.signed-title {
+    padding-left: 30px;
+    min-height: 25px;
+    padding-top: 2px;
+}
+.signed-title.sign_icon.signed_tick {
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/signed_icon.jpg);
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.signed-title.sign_icon {
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/unsigned_icon.jpg);
+    background-position: left center;
+    background-repeat: no-repeat;
+    display: inline-block;
+
+}
+#right-signed-wrap ul li.selected {
+    background: #333;
+    color: #fff;
+}

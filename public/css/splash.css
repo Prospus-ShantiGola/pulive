@@ -1,0 +1,20 @@
+body{-webkit-background-size:cover;-o-background-size:cover;background-size:cover;font-family:'Open Sans', sans-serif;margin:0;}
+.wlcm-wrapper{width:100%;height:100%;float:left;position:relative;z-index:2000;}
+.welcm-msg{width:100%;height:100%;float:left;}
+.welcm-container{max-width:754px;margin:0 auto;}
+.wlcm-table{display:table;height:475px;}
+.welcm-main{text-align:center;color:#636363;display:table-cell;vertical-align:middle;}
+.wlcm-text{text-align:center;}
+.wlcm-text h1{font-size:30px;color:#636363;margin-top:20px;margin-bottom:10px;}
+.wlcm-text p{font-size:12px;line-height:150%;}
+.wlcm-text .progress{width:15%;height:8px;margin:0 auto 2px;background:#c2c2c2;background:-moz-linear-gradient(top, #b9b9b9 0%, #cccccc 100%);background:-webkit-linear-gradient(top, #b9b9b9 0%,#cccccc 100%);background:-o-linear-gradient(top, #b9b9b9 0%,#cccccc 100%);background:-ms-linear-gradient(top, #b9b9b9 0%,#cccccc 100%);background:linear-gradient(to bottom, #b9b9b9 0%,#cccccc 100%);box-shadow:0px 0px 0px 1px #b9b9b9;border-radius:5px;}
+.slider{margin-top:38px;}
+.slider .carousel-indicators{position:static;margin-left:0;width:100%;}
+.slider .carousel-indicators li{background:#596163;border:0;}
+.slider .carousel-indicators li.active{background:#aec0c7;width:10px;height:10px;margin:1px;}
+.wlcm-text .progress-bar{background:#78c732;background:-moz-linear-gradient(top, #78c732 0%, #87d146 100%);background:-webkit-linear-gradient(top, #78c732 0%,#87d146 100%);background:-o-linear-gradient(top, #78c732 0%,#87d146 100%);background:-ms-linear-gradient(top, #78c732 0%,#87d146 100%);background:linear-gradient(to bottom, #78c732 0%,#87d146 100%);box-shadow:0px 0px 0px 1px #5c9c24;border-radius:5px;height:7px;}
+.wlcm-text .loader{margin-bottom:35px;color:#64787b;font-size:12px;width:100%;text-align:center;background-color:#fff;}
+.loader{color:#50585a;font-size:12px;font-style:italic;}
+.btm-footer{padding:20px;font-style:italic;color:#525a5c;font-size:12px;text-align:right;}
+.footer-logo img{vertical-align:bottom;margin-left:3px;}
+.progress-bar[aria-valuenow="0"]{min-width:0 !important;}

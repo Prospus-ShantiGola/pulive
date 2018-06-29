@@ -1,0 +1,321 @@
+<input type="hidden" id="temp-class" value="">
+<input type="hidden" id="delete-sub-class" value="">
+<input type="hidden" id="delete-sub-class-id" value="">
+
+<?php
+
+
+
+
+    if($this->mode == 'Display') {
+        $caption = "";
+        if(intval($this->classArray['encrypt_status']) == 1)
+        {
+            $caption =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$this->classArray['caption'],'key' =>ENCRYPTION_KEY));
+        }
+        else
+        {
+            $caption = $this->classArray['caption'];
+        }
+        ?>
+        <?php function getProperty($propertyArray,$flag,$obj){
+            foreach($propertyArray as $key => $value){
+                $caption1 = "";
+                if(intval($value['encrypt_status']) == 1)
+                {
+                    $caption1 = $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY));
+                }
+                else
+                {
+                    $caption1 = $value['caption'];
+                }
+                ?>
+                <li data-class="<?php echo $value['node_class_property_id']; ?>" class="calculate-position">
+                    <div class="node-content clearfix ">
+                        <span class="number_print"></span>
+                        <div class="node-left">
+                            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0){ ?>-expanded<?php } ?>">N</div>
+                            <div class="node-head node-input">
+                                <span style="color:#000 !important" class="sub-class-style"><?php echo $caption1; ?></span>
+                            </div>
+                            <input type="hidden" class="hidden-node-x <?php if($flag == 'Y'){ ?>initallyselected<?php } $flag = 'N'; ?>" name="nodex_<?php echo $value['node_class_property_id']; ?>" value="<?php echo substr($value['nodeXY'],0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo substr($value['nodeXY'],0,-1); ?>" parent="<?php echo $value['node_id'];?>">
+                        </div>
+                    </div>
+                    <?php if(count($value['child']) > 0){ ?>
+                        <ol>
+                            <?php getProperty($value['child'],$flag,$obj); ?>
+                        </ol>
+                    <?php } ?>
+                </li>
+            <?php }
+        } ?>
+
+        <?php function getChildArray($childsArray, $this) { ?>
+            <?php foreach($childsArray as $key => $val) { ?>
+
+                <li class="sub-class-list add-custom-hr-scroll-sub-class">
+                    <div class="node-content clearfix" onclick="getSubClassStructure(<?php echo $val['node_class_id'];?>, <?php echo $val['child_node_id'];?>)">
+                        <span class="number_print"></span>
+                        <div class="node-left">
+                            <div class="node-circle node-white-circle-expanded">N</div>
+                            <div class="node-head node-input">
+                                <?php
+                                    $caption2 = '';
+                                    if(intval($val['encrypt_status']) == 1)
+                                    {
+                                        $caption2 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$val['caption'],'key' =>ENCRYPTION_KEY));
+                                    }
+                                    else
+                                    {
+                                        $caption2 = $val['caption'];
+                                    }
+                                ?>
+
+                                <span style="color:#000 !important" class="sub-class-style"><input type="hidden" class="temp-sub-class-<?php echo $val['child_node_id'];?>"><?php echo $caption2.' ('.$val['child_node_id'].')'; ?></span>
+                            </div>
+                        </div>
+                        <div class="node-right-custom-icon node-sub-mar-left node-owl-wrap clearfix">
+                            <a class="custom-add-icons" data-toggle="tooltip" data-placement="left" title="Sub Class">
+                                <span class="custom-span-char">SC</span></a>
+                        </div>
+                        <!--new-chevron-add-->
+                        <div class="node-right-sub clearfix">
+                            <a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+                        </div>
+                        <!--new-chvron-add-->
+
+                    </div>
+                    <ol>
+                        <?php foreach($val['instances'] as $instance => $instanceArray) { ?>
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print"></span>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle<?php if(count($instanceArray['property']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                        <div class="node-head node-input">
+                                            <span style="color:#000 !important"><?php echo $instanceArray['caption']; ?></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <ol>
+                                    <?php if(count($instanceArray['property']) > 0) { $flag = 'Y'; ?>
+                                        <?php getProperty($instanceArray['property'],$flag,$this); ?>
+                                    <?php } ?>
+                                </ol>
+                            </li>
+                        <?php } ?>
+
+                        <?php if(isset($val['childsArray'])) {
+                            getChildArray($val['childsArray'], $this);
+                        } ?>
+                    </ol>
+                </li>
+            <?php } ?>
+        <?php } ?>
+
+        <div class="nano">
+            <div class="paper-line dual-pane-height nano-content print-drp" id="node-wrapper">
+                <div class="">
+                    <input type="hidden" id="node_y_class_id" name="node_y_class_id" value="<?php echo $this->classArray['node_class_id']; ?>" />
+                    <ol class="class-wrapper sortable">
+                        <li>
+                            <div class="node-content clearfix node-selected ">
+                                <span class="number_print"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle-expanded">N</div>
+                                    <div class="node-head node-input">
+                                        <span style="color:#000 !important"> <?php echo $caption; ?> (<?php echo $this->classArray['node_id']; ?>)</span>
+                                        <!-- $$& Amit Malakar -->
+                                        <input type="hidden" id="class_caption" name="class_caption" value="<?php echo $this->classArray['node_id']; ?>" placeholder="Class">
+                                        <input type="hidden" class="hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="class_node_x_y[]" value="16525,16543,<?php echo substr($nodeXY,0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="16525,16543,<?php echo substr($nodeXY,0,-1);?>" parent="<?php  echo $this->classArray['node_id'];?>">
+                                        <input type="hidden" class="hidden-node-z" name="class_node_y_z[]" value="<?php echo $nodeZ;?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+                                        <input type="hidden" class="hidden-node-z-main" name="class_z_main[]" value="<?php echo $this->nodeZMain;?>" id="z-main<?php echo time(); ?>" >
+                                    </div>
+                                </div>
+
+                            </div>
+                            <?php if(count($this->classArray['instances']) > 0) { ?>
+                                <ol>
+                                    <li style="display:none;" >
+                                        <div class="node-content clearfix">
+                                            <div class="node-left">
+                                                <div class="node-circle node-white-circle-expanded">N</div>
+                                                <div class="node-head node-input">
+                                                    <span>Common Name</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ol>
+                                            <li>
+                                                <div class="node-content clearfix">
+                                                    <div class="node-left">
+                                                        <div class="node-circle node-white-circle">N</div>
+                                                        <div class="node-head node-input">
+                                                            <span><?php echo $caption; ?></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ol></ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li style="display:none;" >
+                                        <div class="node-content clearfix">
+                                            <div class="node-left">
+                                                <div class="node-circle node-white-circle-expanded">N</div>
+                                                <div class="node-head node-input">
+                                                    <span>Node Type</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ol>
+                                            <li>
+                                                <div class="node-content clearfix">
+                                                    <div class="node-left">
+                                                        <div class="node-circle node-white-circle">N</div>
+                                                        <div class="node-head node-input">
+                                                            <span><?php echo $this->nodeType['type-name']; ?></span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <ol></ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <?php foreach($this->classArray['instances'] as $instance => $instanceArray) { ?>
+                                        <li>
+                                            <div class="node-content clearfix">
+                                                <span class="number_print"></span>
+                                                <div class="node-left">
+                                                    <div class="node-circle node-white-circle<?php if(count($instanceArray['property']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                                    <div class="node-head node-input">
+                                                        <span style="color:#000 !important"><?php echo $instanceArray['caption']; ?></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <ol>
+                                                <?php if(count($instanceArray['property']) > 0) { $flag = 'Y'; ?>
+                                                    <?php getProperty($instanceArray['property'],$flag,$this); ?>
+                                                <?php } ?>
+
+                                                <?php if(count($this->classArray['childsArray'])) {
+                                                    getChildArray($this->classArray['childsArray'], $this);
+                                                 } ?>
+
+                                            </ol>
+                                        </li>
+                                    <?php } ?>
+                                </ol>
+                            <?php } ?>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            dualPaneHeight();
+            $('.nano').nanoScroller();
+
+            <?php if(intval($this->classArray['node_type_id']) == 1) { ?>
+            $("#second-class-div-heading").html("Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+            $("#second-class-div-heading").attr('alt',"Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+
+            <?php } else if(intval($this->classArray['node_type_id']) == 2) { ?>
+            $("#second-class-div-heading").html("Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+            $("#second-class-div-heading").attr('alt',"Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+            <?php } else if(intval($this->classArray['node_type_id']) == 3) { ?>
+            $("#second-class-div-heading").html("Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+            $("#second-class-div-heading").attr('alt',"Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+            <?php } ?>
+
+
+            $("#common_name_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php if(trim($this->classArray['caption']) != "") { echo $caption; } else { echo $this->classArray['node_id']; } ?>");
+
+            $("#node_type_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php echo $this->nodeType['type-name']; ?>");
+            $("#status_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php if(intval($this->classArray['status']) == 1) { echo 'Published'; } else { echo 'Draft'; } ?>");
+
+            <?php if(intval($this->classArray['node_type_id']) == 1) { ?>
+
+            $(".Nodex-icon").addClass("inactiveLink");
+            $(".Nodex-icon").css("pointer-events","none");
+
+            $(".Nodez-icon").removeClass("inactiveLink");
+            $(".Nodez-icon").css("pointer-events","all");
+
+            $(".Subclass-icon").addClass("inactiveLink");
+            $(".Subclass-icon").css("pointer-events","none");
+
+            $(".Instance-icon").addClass("inactiveLink");
+            $(".Instance-icon").css("pointer-events","none");
+
+            <?php } else if(intval($this->classArray['node_type_id']) == 2) { ?>
+
+            $(".Nodex-icon").removeClass("inactiveLink");
+            $(".Nodex-icon").css("pointer-events","all");
+
+            $(".Nodez-icon").removeClass("inactiveLink");
+            $(".Nodez-icon").css("pointer-events","all");
+
+            $(".Subclass-icon").removeClass("inactiveLink");
+            $(".Subclass-icon").css("pointer-events","all");
+
+
+            <?php if(intval($this->classArray['status']) == 1) { ?>
+            $(".Instance-icon").removeClass("inactiveLink");
+            $(".Instance-icon").css("pointer-events","all");
+            <?php } else { ?>
+            $(".Instance-icon").addClass("inactiveLink");
+            $(".Instance-icon").css("pointer-events","none");
+            <?php } ?>
+            <?php } else if(intval($this->classArray['node_type_id']) == 3) {?>
+            $(".Nodez-icon").addClass("inactiveLink");
+            $(".Nodez-icon").css("pointer-events","none");
+
+            $(".Nodex-icon").addClass("inactiveLink");
+            $(".Nodex-icon").css("pointer-events","none");
+
+            $(".Subclass-icon").addClass("inactiveLink");
+            $(".Subclass-icon").css("pointer-events","none");
+
+            $(".Instance-icon").addClass("inactiveLink");
+            $(".Instance-icon").css("pointer-events","none");
+            <?php } ?>
+        </script>
+    <?php } ?>
+
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        $('#sortable').sortable({
+            placeholder: "ui-sortable-placeholder",
+            items: 'li.parent-sub-class-list',
+            doNotClear:true,
+            handle: '.node-content',
+            tolerance: 'pointer',
+            forcePlaceholderSize: true,
+            //toleranceElement: '> li.parent-sub-class-list',
+            maxLevels: 100,
+            expandOnHover: 700,
+            startCollapsed: true,
+            tabSize: 25,
+            update : function () {
+                var subchild_class_id 			= [];
+                var final_subchild_class_id 	= '';
+
+                $('li.parent-sub-class-list').each(function(i){
+                    subchild_class_id[i] 		= $(this).find('div.node-input span > input').attr('class').split('temp-sub-class-');
+                    final_subchild_class_id 	+= ','+parseInt($.trim(subchild_class_id[i][1]));
+                });
+
+                $('#child_ids_of_class').attr('value',final_subchild_class_id);
+            }
+        });
+        $( "#sortable" ).disableSelection();
+    });
+</script>
+

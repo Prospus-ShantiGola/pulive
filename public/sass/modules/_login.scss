@@ -1,0 +1,79 @@
+
+.flex-lg{
+	justify-content: center;
+    align-items: center;
+    display: flex;
+    width:100%;
+    height:100%;
+}
+.lg-container{
+     position: relative;
+    background: white;
+    text-align: center;
+    float: left;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    display:flex;
+}
+.lg-box {
+    background-color: white;
+    color: black;
+    width:400px;
+     max-height:800px;
+     margin:30px;
+}
+.lg-head{
+	font-size:32px;
+	color:black;
+     margin-bottom:30px;
+}
+.mid-container{
+    border-radius: 5px;
+    padding: 0;
+}
+.lg-userprofile.userprofile-wrap {
+    top: 100px;
+}
+img#profile-preview-img {
+    height: auto;
+}
+.btn.btn-dark-blue.lg-btn {
+    width: 100%;
+}
+.lg-foot {
+       text-align: center;
+    margin-top: 5px;
+}
+.lg-foot-rgt {
+    float: right;
+}
+a.lg-link1 {
+    margin-right: 5px;
+    color: grey;
+}
+a.lg-link {
+    /* color: rgba(0, 0, 0, 0.98); */
+    font-size: 12px;
+}
+.hr-sect {
+	display: flex;
+    flex-basis: 100%;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.35);
+    margin: 24px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 8px;
+}
+p.error-msg-txt.lg-txt {
+    margin-bottom: 10px;
+    margin-top: -10px;
+    text-align: left;
+}

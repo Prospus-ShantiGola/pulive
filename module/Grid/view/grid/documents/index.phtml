@@ -1,0 +1,547 @@
+<?php
+   $maxColumns = 0;
+   if(isset($this->statements)) {
+       $statementsHtml = '';
+       $numberingFlag = 0;
+       foreach($this->statements as $stmt) {
+          /*
+          * htmlspecialchars_decode added by Divya
+          * ON date: 4th May 2016
+          * as Awdhesh has applied htmlspecialchars
+          * and this content is not coming properly
+          */
+          $html = htmlspecialchars_decode(current($stmt));
+          $statementsHtml .= $html;
+
+           preg_match('/(?<=data-x=")[\d]+(?=")/', $html, $match1);
+           $maxColumns = (current($match1) > $maxColumns) ? current($match1) : $maxColumns;
+           preg_match('/(?<=data-s=")[\d.]+(?=")/', $html, $match2);
+           if(strlen(current($match2))>0) {
+               $numberingFlag = 1;
+           }
+       }
+       $maxColumns++;
+   }
+
+   ?>
+
+<div class="total-width-pane set-height">
+
+   <div class="edtContainer structuredMode" style="display:block">
+        <div id="hiddenTemp"></div>
+        <div id="tableContextMenu">
+            <ul>
+            <li><a href="javascript:void" data-action="rowAbove">Insert Row Above</a></li>
+            <li><a href="javascript:void" data-action="rowBelow">Insert Row Below</a></li>
+            <li><a href="javascript:void" data-action="columnLeft">Insert Column Left</a></li>
+            <li><a href="javascript:void" data-action="columnRight">Insert Column Right</a></li>
+            <li><a href="javascript:void" data-action="deleteRow">Delete Row</a></li>
+            <li><a href="javascript:void" data-action="deleteColumn">Delete Column</a></li>
+            <li><a href="javascript:void" data-action="deleteTable">Delete Table</a></li>
+            </ul>
+        </div>
+        <div id="tagContextMenu">
+            <ul>
+            <li><a href="javascript:void" data-action="removeTag">Remove Tag</a></li>
+            </ul>
+        </div>
+        <div id="signatureType">
+            <div>Select Signature</div>
+            <label><input type="radio" name="signType" value="full"> Full</label>
+            <label><input type="radio" name="signType" value="initial"> Initial</label>
+        </div>
+        <div id="printMarginBox">
+             <div>Margins (inches)</div>
+             <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginTop" value="1"> Top</div>
+             <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginBottom" value="1"> Bottom</div>
+             <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginLeft" value="1"> Left</div>
+             <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginRight" value="1"> Right</div>
+             <div><button id="edtPrintCommand">Print</button> <button id="edtPrintCommandCancel">Cancel</button></div>
+        </div>
+        <div id="edtformElements" class="edtdrp">
+             <ul>
+                <li><a href="javascript:void" data-action="createNew">Definitive</a></li>
+                <li><a href="javascript:void" data-action="createExisting">Referential</a></li>
+             </ul>
+        </div>
+        <div id="edtHyperlinkPopup" class="edtPopWrap">
+            <div>Link : <input type="text" id="edtHyperlinkText" class="form-control input-field" autofocus/></div>
+            <div>
+              <button id="saveedtHyperlinkText" class="btn btn-default btn-sm">Ok</button>
+              <button id="canceledtHyperlinkText" class="btn btn-default btn-sm">Cancel</button>
+            </div>
+        </div>
+        <div id="edtTagElements" class="edtdrp">
+            <ul>
+                <li><a href="javascript:void" data-action="Actor">Actor</a></li>
+                <li><a href="javascript:void" data-action="Role">Role</a></li>
+                <li><a href="javascript:void" data-action="Terms">Terms</a></li>
+                <li><a href="javascript:void" data-action="sign">Signature</a></li>
+                <li><a href="javascript:void" data-action="dynamicField">Dynamic Field</a></li>
+                <li><a href="javascript:void" data-action="toggleTags" data-val="visible">Toggle Tags</a></li>
+                <li><a href="javascript:void" data-action="showtaggeditems">Show Tagged Items</a></li>
+            </ul>
+        </div>
+        <div id="edtHyperlinkPreview" class="edtPopWrap">
+            <div>Visit : <a href="#" id="edtHyperlinkPreviewText" target="_blank"></a></div>
+            <div>
+              <button id="removeedtHyperlinkPreviewText" class="btn btn-default btn-sm">Remove Link</button>
+            </div>
+        </div>
+        <div id="edtformElementsTextProperties" class="edtPopUp edtPopWrap edtdrp">
+            <div>
+                <label class="label-field">Field Name:</label>
+                <input type="text" id="edtPropAttrName" class="form-control input-field" placeholder="Required"/>
+            </div>
+            <div>
+                <label class="label-field">Field Value :</label>
+                <input type="text" id="edtPropAttrValue" class="form-control input-field"/>
+            </div>
+            <div>
+                <button id="saveedtformElementsTextProperties" class="btn btn-default btn-sm">Save</button>
+                <button id="deleteedtformElementsTextProperties" class="btn btn-default btn-sm">Delete</button>
+                <button id="canceledtformElementsTextProperties" class="btn btn-default btn-sm">Cancel</button>
+                <div class="dropdown">
+                <button id="tagformElementsTextProperties" class="btn btn-default btn-sm" data-toggle="dropdown">Tag<span class="caret"></span></button>
+                  <ul class="dropdown-menu tagEdtDynamicField">
+                    <li><a href="javascript:void(0)" data-action="Actor">Actor</a></li>
+                    <li><a href="javascript:void(0)" data-action="Role">Role</a></li>
+                    <li><a href="javascript:void(0)" data-action="Terms">Terms</a></li>
+                  </ul>
+                </div>
+
+            </div>
+        </div>
+        <div id="edtformElementsTextPropertiesReference" class="edtPopUp">
+             <ul></ul>
+             <div>
+                <button id="canceledtformElementsTextPropertiesReference" class="btn btn-default btn-sm">Cancel</button>
+             </div>
+        </div>
+        <div class="color-plates-wrap unselectable edtdrp" id="ColorPlatesSection">
+             <table cellpadding="0" cellspacing="0">
+                <tr>
+                   <td style="background:#000000"></td>
+                   <td style="background:#434343" ></td>
+                   <td style="background:#666666"></td>
+                   <td style="background:#999999"></td>
+                   <td style="background:#B7B7B7"></td>
+                   <td style="background:#CCCCCC"></td>
+                   <td style="background:#D9D9D9"></td>
+                   <td style="background:#EFEFEF"></td>
+                   <td style="background:#F3F3F3"></td>
+                   <td style="background:#FFFFFF"></td>
+                </tr>
+             </table>
+             <table cellpadding="0" cellspacing="0">
+                <tr>
+                   <td style="background:#980000"></td>
+                   <td style="background:#FF0000"></td>
+                   <td style="background:#FF9900"></td>
+                   <td style="background:#FFFF00"></td>
+                   <td style="background:#00FF00"></td>
+                   <td style="background:#00FFFF"></td>
+                   <td style="background:#4A86E8"></td>
+                   <td style="background:#0000FF"></td>
+                   <td style="background:#9900FF"></td>
+                   <td style="background:#FF00FF"></td>
+                </tr>
+             </table>
+             <table cellpadding="0" cellspacing="0">
+                <tbody>
+                   <tr>
+                      <td style="background:#E6B8AF"></td>
+                      <td style="background:#F4CCCC"></td>
+                      <td style="background:#FCE5CD"></td>
+                      <td style="background:#FFF2CC"></td>
+                      <td style="background:#D9EAD3"></td>
+                      <td style="background:#D0E0E3"></td>
+                      <td style="background:#C9DAF8"></td>
+                      <td style="background:#CFE2F3"></td>
+                      <td style="background:#D9D2E9"></td>
+                      <td style="background:#EAD1DC"></td>
+                   </tr>
+                   <tr>
+                      <td style="background:#DD7E6B"></td>
+                      <td style="background:#EA9999"></td>
+                      <td style="background:#F9CB9C"></td>
+                      <td style="background:#FFE599"></td>
+                      <td style="background:#B6D7A8"></td>
+                      <td style="background:#A2C4C9"></td>
+                      <td style="background:#A4C2F4"></td>
+                      <td style="background:#9FC5E8"></td>
+                      <td style="background:#B4A7D6"></td>
+                      <td style="background:#D5A6BD"></td>
+                   </tr>
+                   <tr>
+                      <td style="background:#CC4125"></td>
+                      <td style="background:#E06666"></td>
+                      <td style="background:#F6B26B"></td>
+                      <td style="background:#FFD966"></td>
+                      <td style="background:#93C47D"></td>
+                      <td style="background:#76A5AF"></td>
+                      <td style="background:#6D9EEB"></td>
+                      <td style="background:#6FA8DC"></td>
+                      <td style="background:#8E7CC3"></td>
+                      <td style="background:#C27BA0"></td>
+                   </tr>
+                   <tr>
+                      <td style="background:#A61C00"></td>
+                      <td style="background:#CC0000"></td>
+                      <td style="background:#E69138"></td>
+                      <td style="background:#F1C232"></td>
+                      <td style="background:#6AA84F"></td>
+                      <td style="background:#45818E"></td>
+                      <td style="background:#3C78D8"></td>
+                      <td style="background:#3D85C6"></td>
+                      <td style="background:#674EA7"></td>
+                      <td style="background:#A64D79"></td>
+                   </tr>
+                   <tr>
+                      <td style="background:#85200C"></td>
+                      <td style="background:#990000"></td>
+                      <td style="background:#B45F06"></td>
+                      <td style="background:#BF9000"></td>
+                      <td style="background:#38761D"></td>
+                      <td style="background:#134F5C"></td>
+                      <td style="background:#1155CC"></td>
+                      <td style="background:#0B5394"></td>
+                      <td style="background:#351C75"></td>
+                      <td style="background:#741B47"></td>
+                   </tr>
+                   <tr>
+                      <td style="background:#5B0F00"></td>
+                      <td style="background:#660000"></td>
+                      <td style="background:#783F04"></td>
+                      <td style="background:#7F6000"></td>
+                      <td style="background:#274E13"></td>
+                      <td style="background:#0C343D"></td>
+                      <td style="background:#1C4587"></td>
+                      <td style="background:#073763"></td>
+                      <td style="background:#20124D"></td>
+                      <td style="background:#4C1130"></td>
+                   </tr>
+                </tbody>
+             </table>
+        </div>
+        <div class="edtHeader doc-wrap">
+
+            <div class="tollbar-panel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs doc-tollbar" role="tablist">
+                   <li role="presentation"><a href="#File" aria-controls="File" role="tab" class="open-file1" data-toggle="tab">File</a></li>
+                   <li class="" role="presentation"><a href="#Edit" aria-controls="Edit" role="Edit" data-toggle="tab">Page</a></li>
+                    <li class="" role="presentation"><a href="#View" aria-controls="View" role="Edit" data-toggle="tab">Options</a></li>
+                   <li role="presentation" ><a href="#Insert" aria-controls="messages" role="Insert" data-toggle="tab" class="inactiveTab" >Insert</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content doc-tollbar-wrap">
+
+
+                  <!-- div used inside the document panel -->
+
+                   <div role="tabpanel" class="tab-pane file1" id="File"></div>
+
+
+                   <div role="tabpanel" class="tab-pane " id="Edit">
+                        <div class="doc-edit-pane">
+                            <div>
+                                <h2>Page Setup</h2>
+                                <div class="doc-edit-inner-pane">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <span class="col-sm-12 print-mode inactivePrintMode" id="printMode">
+                                             <i class="icon tick"></i>
+                                             Print Layout View
+                                            </span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Page Size</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <span class="viewOptions">
+                                                        <select id="viewOpts" class="select-field">
+                                                            <option value="responsive" data-width="100">Responsive</option>
+                                                            <option value="letter" data-width="8.5" data-landscape-width="11">Letter</option>
+                                                            <option value="legal" data-width="8.5" data-landscape-width="14">Legal</option>
+                                                            <option value="tabloid" data-width="11" data-landscape-width="17">Tabloid</option>
+                                                            <option value="a3" data-width="11.69" data-landscape-width="16.54">A3</option>
+                                                            <option value="a4" data-width="8.27" data-landscape-width="11.69">A4</option>
+                                                            <option value="a5" data-width="5.83" data-landscape-width="8.27">A5</option>
+                                                        </select>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Orentation</label>
+                                            <div class="col-sm-8 radio-section">
+                                              <span class="unselectable printLandscape" style="display:none">
+                                                <input type="checkbox" id="printLandscape"/>Landscape
+                                              </span>
+                                              <select class="select-field" id="changeDocMode">
+                                                  <option data-value="potrait">Potrait</option>
+                                                  <option data-value="landscape">Landscape</option>
+                                              </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                <h2>Margins</h2>
+                                <div class="doc-edit-inner-pane">
+                                    <form class="form-horizontal">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group disabledField">
+                                                    <label class="col-sm-4 label-field">Top</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control input-field" placeholder="0.25">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group disabledField">
+                                                    <label class="col-sm-4 label-field">Bottom</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control input-field" placeholder="0.25">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group disabledField">
+                                                    <label class="col-sm-4 label-field">Left</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control input-field" placeholder="0.25">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group disabledField">
+                                                    <label class="col-sm-4 label-field">Right</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control input-field" placeholder="0.25">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-action-wrap">
+                          <a class="user-roles ref-hideTollbar">
+                            <i class="icon save" data-original-title="" title=""></i>
+                            <br><span>Save</span>
+                          </a>
+                          <a class="user-roles ref-hideTollbar">
+                            <i class="icon cancel" data-original-title="" title=""></i>
+                            <br><span>Close</span>
+                          </a>
+                        </div>
+
+                   </div>
+
+                   <div role="tabpanel" class="tab-pane " id="View">
+                        <div class="doc-edit-pane">
+                          <h2>Page Option</h2>
+                          <div class="toggle-outlines">
+                            <table class="table">
+                              <tr>
+                                <td>Table of Content </td>
+                                <td>
+                                  <div>
+                                    <label>
+                                      <input type="checkbox" id="do_Toc">
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>Toggle Tag</td>
+                                <td>
+                                  <div>
+                                    <label>
+                                      <input type="checkbox" id="do_toggle_tags" checked>
+                                    </label>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </div>
+
+                        </div>
+                        <div class="user-action-wrap">
+                          <a class="user-roles ref-hideTollbar">
+                            <i class="icon cancel" data-original-title="" title=""></i>
+                            <br><span>Close</span>
+                          </a>
+                        </div>
+
+                   </div>
+
+                   <div role="tabpanel" class="tab-pane" id="Insert">Insert</div>
+                </div>
+            </div>
+            <div class="alignment-type">
+                <ul class="switch-on-off" id="OnOffMode">
+                   <li class="active" data-value="structured">Structured</li>
+                   <li data-value="unstructured">Styled</li>
+                   <li id="getCanvasMode">Canvas</li>
+                </ul>
+            </div>
+            <div class="alignment-section">
+              <!--
+              Modified by Divya Rajput
+              On Date 27th April 2016
+              change hidden_document_instance_id to hidden_dialog_document_instance_id
+              -->
+              <input type="hidden" id="hidden_dialog_document_instance_id" value="<?php echo isset($this->post['node_instance_id']) ? $this->post['node_instance_id'] : ''; ?>" />
+              <input type="hidden" id="hidden_dialog_document_node_id" value="<?php echo isset($this->post['node_id']) ? $this->post['node_id'] : ''; ?>" />
+              <input type="hidden" id="hidden_dialog_type" value="<?php echo isset($this->templateVal['value']) ? $this->templateVal['value'] : ''; ?>" />
+
+                <!-- <span class="docTitle">128</span>
+                <i class="icon documents"></i>
+                <input type="text" class="form-control input-field" placeholder="Title" id="document_title" required="required" value="<?php echo isset($this->documentTitle) ? $this->documentTitle : ''; ?>"> -->
+                 <span class="unselectable" style="display:none">
+                   <select id="documentMode" class="select-field" >
+                      <option value="structured">Structured</option>
+                      <option value="unstructured">Styled</option>
+                   </select>
+                </span>
+                <span  class="unselectable unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Font">
+                   <select id="fontStyle" class="select-field" >
+                      <option value="select">Font Family</option>
+                      <option value="open sans">Open Sans</option>
+                      <option value="arial">Arial</option>
+                      <option value="verdana">Verdana</option>
+                      <option value="times new roman">Times New Roman</option>
+                   </select>
+                </span>
+                <span class="unselectable unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Font Size">
+                   <select id="fontSize" class="select-field" style="width:50px;">
+                      <option value="select">Size</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="14">14</option>
+                      <option value="18">18</option>
+                      <option value="24">24</option>
+                      <option value="48">48</option>
+                   </select>
+                </span>
+                <span class="doFontColor icon unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Text Color">&nbsp;</span>
+                <span class="doBG icon unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Text Highlight">&nbsp;</span>
+                <span class="doBold icon unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Bold">&nbsp;</span>
+                <span class="doItalic icon unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Italic">&nbsp;</span>
+                <span class="doUnderline icon unstructuredIcon showTootip" data-toggle="tooltip" data-placement="bottom" title="Underline">&nbsp;</span>
+                <span class="doList icon showTootip" data-toggle="tooltip" data-placement="bottom" title="Bulleted List">&nbsp;</span>
+                <span class="doTable icon showTootip" data-toggle="tooltip" data-placement="bottom" title="Table">&nbsp;</span>
+                <span class="doSplit icon showTootip" data-toggle="tooltip" data-placement="bottom" title="Line Break">&nbsp;</span>
+                <span class="doDynamicText icon showTootip" data-toggle="tooltip" data-placement="bottom" title="Form fields">&nbsp;</span>
+                <span class="doHyperLink icon"  data-toggle="tooltip" data-placement="bottom" title="Hyper Link">&nbsp;</span>
+              <!--   <span class="doTableofContent icon"  data-toggle="tooltip" data-placement="bottom" title="Table of Content">&nbsp;</span> -->
+                <span class="doTagFields icon" data-toggle="tooltip" data-placement="bottom" title="Tag Fields">&nbsp;</span>
+                <span class="doRemoveBlankStatements icon" data-align="edtJustify" data-toggle="tooltip" data-placement="bottom" title="Remove Blank Statements">&nbsp;</span>
+
+                <span class="doFindReplace icon"  data-toggle="tooltip" data-placement="bottom" title="Find and Replace">&nbsp;</span>
+                <span class="doUndo icon"  data-toggle="tooltip" data-placement="bottom" title="Undo">&nbsp;</span>
+                <span class="doRedo icon"  data-toggle="tooltip" data-placement="bottom" title="Redo">&nbsp;</span>
+
+
+                <span class="doImageUpload icon"  data-toggle="tooltip" data-placement="bottom" title="Upload Image"><input type='file' id="uploadImage"/></span>
+                <span class="doLeftAlign icon unstructuredIcon showTootip" data-align="edtLeftALign" data-toggle="tooltip" data-placement="bottom" title="Left Align">&nbsp;</span>
+                <span class="doCenter icon unstructuredIcon showTootip" data-align="edtCenter" data-toggle="tooltip" data-placement="bottom" title="Center">&nbsp;</span>
+                <span class="doRightAlign icon unstructuredIcon showTootip" data-align="edtRightAlign" data-toggle="tooltip" data-placement="bottom" title="Right Align">&nbsp;</span>
+                <span class="doJustify icon unstructuredIcon showTootip" data-align="edtJustify" data-toggle="tooltip" data-placement="bottom" title="Justify">&nbsp;</span>
+
+
+                <span class="unselectable statementNums showTootip" data-toggle="tooltip" data-placement="bottom" title="Statement Number">
+                  <input type="checkbox" id="sNumbers" <?php if($numberingFlag) echo 'checked="checked"'; ?> />
+                  <span class="icon smtNum"></span>
+                </span>
+                 <span class="doTotalsWords">&nbsp;</span>
+                <!-- <span class="unselectable viewOptions">
+                   <select id="viewOpts" class="select-field">
+                      <option value="responsive" data-width="100">Responsive</option>
+                      <option value="letter" data-width="8.5" data-landscape-width="11">Letter</option>
+                      <option value="legal" data-width="8.5" data-landscape-width="14">Legal</option>
+                      <option value="tabloid" data-width="11" data-landscape-width="17">Tabloid</option>
+                      <option value="a3" data-width="11.69" data-landscape-width="16.54">A3</option>
+                      <option value="a4" data-width="8.27" data-landscape-width="11.69">A4</option>
+                      <option value="a5" data-width="5.83" data-landscape-width="8.27">A5</option>
+                   </select>
+                </span>
+                <span class="unselectable printLandscape">
+                <input type="checkbox" id="printLandscape"/>Landscape
+                </span>
+                <span class="doPrint icon">&nbsp;</span>     -->
+                <!--  <span class="sepretor"></span> -->
+                <span class="versionName">V35</span>
+            </div>
+
+
+        </div>
+
+        <div class="edtMainCol">
+          <div class="edtCol1">
+            <div class="tocHeaderMain">
+            <div class="tocHeader">
+            <div class="heading">
+              <span class="textOutline">Outline</span>
+              <span><select id="edtAutoLevels" class="select-field"></select></span>
+              <span id="refreshTOC">&nbsp;</span></div>
+            </div>
+            <div class="edtTOC niceScrollDiv">
+                <ul></ul>
+              </div>
+              </div>
+          </div>
+
+          <div class="edtCol2">
+            <div class="edtColumns">
+             <?php if(isset($this->statements) && $maxColumns>0) {
+                for($i=1; $i<=$maxColumns; $i++)
+                    echo '<div>'.$i.'</div>';
+                } else { ?>
+             <div>1</div>
+             <?php } ?>
+            </div>
+            <div class="edtBody">
+                <div class="niceScrollDiv DocInsideHig mainScroll">
+                    <div class="edtCustomLoader"></div>
+                    <div class="collapsableEDTLevelsContent"></div>
+                    <div class="numbering"></div>
+                    <div contenteditable="true" spellcheck="false" class="edt structured" id="edt" style="background:#fff;">
+                      <?php if(!empty($statementsHtml)) {
+                            if(strtolower($this->templateVal['value'])=="canvas"){ ?>
+                            <div class="edtParagraph" data-x="0" data-s="" style="height: auto;"><br></div>
+                          <?php }
+                        else {
+                          echo $statementsHtml;
+                        }
+                      } else { ?>
+                        <div class="edtParagraph" data-x="0" data-s=""><br></div>
+                      <?php } ?>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+<div class="edt-loader"></div>

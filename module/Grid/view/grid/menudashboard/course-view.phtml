@@ -1,0 +1,1087 @@
+<?php
+
+
+    if(count($this->courseArray) > 1)
+    {
+        $title         = "";
+        $description   = "";
+        $objective     = "";
+
+        if($this->coursePropertiesArray[3]['node_class_property_id'] == $this->courseArray[0]['node_class_property_id'])
+        {
+            $title       =  $this->courseArray[0]['value'];
+        }
+        if($this->coursePropertiesArray[3]['node_class_property_id'] == $this->courseArray[1]['node_class_property_id'])
+        {
+            $title       =  $this->courseArray[1]['value'];
+        }
+        if($this->coursePropertiesArray[4]['node_class_property_id'] == $this->courseArray[2]['node_class_property_id'])
+        {
+            $description =  $this->courseArray[2]['value'];
+        }
+        if($this->coursePropertiesArray[5]['node_class_property_id'] == $this->courseArray[3]['node_class_property_id'])
+        {
+            $objective   =  $this->courseArray[3]['value'];
+        }
+    }
+    else
+    {
+        $title       =  $this->courseArray[0]['value'];
+        $description =  "";
+        $objective   =  "";
+    } ?>
+
+<input type="hidden" id="course_instance_id" value="<?php echo $this->node_instance_id;?>">
+<input type="hidden" id="mode_val" value="">
+<?php if($this->node_instance_id!=""){?>
+    <div class="control-bar course-title-bar">
+        <div class="row">
+            <div class="col-md-12 left-head">
+                <div class="block-head">
+                    <div class="course-top-panel editTopMode hide ">
+                        <div class="RightFlyoutOpen courseBoard" id="courseBoardFlyout">Standard</div>
+                        <input type="text" class="form-control input-field" id="course-value" value="<?php echo $title;?>" placeholder="Untitled" >
+                        <span class="inactive course-action"><i class="icon setting rollover"></span></i>
+                        <!-- <i class="icon setting FilesValueFlyoutOpen" id="FilesValueFlyout"></i> -->
+                    </div>
+                    <div class="course-top-panel viewTopMode">
+                        <span>Standard</span>
+                        <span><?php echo $title;?> </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } else {?>
+    <div class="control-bar course-title-bar">
+        <div class="row">
+            <div class="col-md-12 left-head">
+                <div class="block-head">
+                    <div class="course-top-panel">
+                        <div class="RightFlyoutOpen courseBoard" id="courseBoardFlyout">Default</div>
+                        <input type="text" class="form-control input-field" id="course-value" value="<?php echo $title;?>" placeholder="Untitled" >
+
+                        <span class="inactive course-action"><i class="icon setting rollover"></i></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php } ?>
+
+<div class="HalfPaneHeight nano mainAccordianHig " id="courseViewWrap">
+    <div class="nano-content">
+        <div class="course-detail-wrap mainAccordianDiv" >
+            <div class="course-detail-panel courseDetailSection">
+                <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#inlineCourse1" aria-expanded="true" aria-controls="inlineCourse1">
+                    <div class="left right-arrow">
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="left">
+                        <i class="icon blue-detail"></i>
+                        <h6>Details</h6>
+                    </div>
+                </a>
+                <div id="inlineCourse1" class="collapse " role="tabpanel" aria-labelledby="inlineCourse1">
+                    <?php if($this->node_instance_id!=""){?>
+                        <div class="course-dtl-wrap hide" id="edit-detail-course">
+                            <div>
+                                <label class="label-field">Description</label>
+                                <textarea class="form-control textarea-field resizeTextarea" id="course-description" rows="1"><?php echo $description?></textarea>
+                            </div>
+                            <div>
+                                <label class="label-field">Objective(s)</label>
+                                <textarea class="form-control textarea-field resizeTextarea" id="course-objective" rows="1"><?php echo $objective?></textarea>
+                            </div>
+                        </div>
+
+                        <div class="course-dtl-wrap" id="view-detail-course">
+                            <div>
+                                <label class="label-field">Description</label>
+                                <span class="view-mode"><?php echo $description?></span>
+                            </div>
+                            <div>
+                                <label class="label-field">Objective(s)</label>
+                                <span class="view-mode"><?php echo $objective?></span>
+                            </div>
+                        </div>
+                    <?php } else { ?>
+                        <div class="course-dtl-wrap">
+                            <div>
+                                <label class="label-field">Description</label>
+                                <textarea class="form-control textarea-field resizeTextarea" id="course-description" rows="1"><?php echo $description?></textarea>
+                            </div>
+                            <div>
+                                <label class="label-field">Objective(s)</label>
+                                <textarea class="form-control textarea-field resizeTextarea" id="course-objective" rows="1"><?php echo $objective?></textarea>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <div class="course-detail-panel">
+                <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#promptPanel" aria-expanded="true" aria-controls="promptPanel">
+                    <div class="left right-arrow">
+                        <i class="fa fa-angle-down"></i>
+                    </div>
+                    <div class="left">
+                        <i class="icon blue-prompt"></i>
+                        <h6>Prompts</h6><span class="people-count">(3 Prompts)</span>
+                    </div>
+                </a>
+                <div id="promptPanel" class="collapse" role="tabpanel" aria-labelledby="promptPanel">
+                    <div class="course-comment-section">
+                        <div class="production-panel">
+                            <ul>
+                                <li>
+                                    <div class="production-top-section"><i class="icon alert-event"></i><h5>Reminder</h5></div>
+                                    <div class="production-detailed-section">
+                                        <div class="production-detailed-left">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        </div>
+                                        <div class="production-detailed-right ">
+                                            <i class="icon time-event RightFlyoutOpen rollover" id="EventFlyout"></i>
+                                            <span class="inactive"><i class="icon close rollover"></i></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="production-top-section"><i class="icon ques"></i><h5>Questions</h5></div>
+                                    <div class="production-detailed-section">
+                                        <div class="production-detailed-left">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        </div>
+                                        <div class="production-detailed-right" >
+                                            <span class="inactive"><i class="icon sm-comment rollover"></i></span>
+                                            <span class="inactive"><i class="icon close rollover"></i></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="production-top-section"><i class="icon status"></i><h5>Status</h5></div>
+                                    <div class="production-detailed-section">
+                                        <div class="production-detailed-left">
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                        </div>
+                                        <div class="production-detailed-right">
+                                            <i class="icon alert-event RightFlyoutOpen rollover" id="EventFlyout"></i>
+                                            <span class="inactive"><i class="icon close rollover"></i></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-detail-panel">
+                <div class="detailed-panel">
+                    <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#inlineCourse2" aria-expanded="true" aria-controls="inlineCourse2">
+                        <div class="left right-arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="left">
+                            <i class="icon blue-event"></i>
+                            <h6>Actors</h6><span class="people-count">(4 Participants)</span>
+                        </div>
+                    </a>
+                    <div class="RightFlyoutOpen" id="userRightFlyout"><i class="icon setting"></i></div>
+                </div>
+                <div id="inlineCourse2" class="collapse" role="tabpanel" aria-labelledby="inlineCourse2">
+                    <div class="actor-wrap">
+                        <div class="actor-listing">
+                            <ul class="">
+                                <li class="clearfix">
+                                    <div class="user-pic-sm">
+                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Investible Project Manager</span></h2>
+                                        <p class="admin-role">(<i class="icon admin-user" data-original-title="" title=""></i>Marc Ragsdale)
+                                            <span >Course Administrator</span>
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="actor-listing">
+                            <ul class="">
+                                <li class="">
+                                    <div class="user-pic-sm">
+                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                    </div>
+                                    <div class="right-icon"><span class="inactive"><i class="icon close rollover"></i></span></div>
+                                </li>
+                                <li class="">
+                                    <div class="user-pic-sm">
+                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                    </div>
+                                    <div class="right-icon"><span class="inactive"><i class="icon close rollover"></i></span></div>
+                                </li>
+                                <li class="">
+                                    <div class="user-pic-sm">
+                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                    </div>
+                                    <div class="right-icon"><span class="inactive"><i class="icon close rollover"></i></span></div>
+                                </li>
+                                <!-- <li class="">
+                                    <div class="Add-more-actor">
+                                        <div class="option-wrap">
+                                            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon add-actor-icon"></i>
+                                            </a>
+                                            <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                                <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                                <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                                <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <input type="text" class="form-control input-field" required="required">
+                                        <div class="right-icon">
+                                            <i class="icon magnify"></i>
+                                            <i class="icon tick add-more-Users"></i>
+                                        </div>
+                                    </div>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-detail-panel">
+                <div class="detailed-panel">
+                    <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#inlineCourse3" aria-expanded="true" aria-controls="inlineCourse3">
+                        <div class="left right-arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="left">
+                            <i class="icon blue-dialogue"></i>
+                            <h6>Dialogue</h6><span class="people-count">(2 Dialogue)</span>
+                        </div>
+                    </a>
+                    <div class="inactive"><i class="icon plus-class rollover"></i></div>
+                </div>
+                <div id="inlineCourse3" class="collapse" role="tabpanel" aria-labelledby="inlineCourse3">
+                    <div class="course-comment-section">
+                        <ul>
+                            <li>
+                                <div class="dialogue-list-wrap">
+                                    <div class="openDialogueSec">
+                                        <h6>General</h6>
+                                    </div>
+                                    <div class="course-right-pane">
+                                        <i class="icon group-icon RightFlyoutOpen rollover" id="participantFlyout"></i>
+                                        <span class="inactive"><i class="icon sm-mini-dial rollover"></i></span>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="left-side">
+                                            <i class="icon sm-comment"></i>
+                                        </div>
+                                        <div class="right-side">
+                                            <h5>Tania<span class="course-date">04:15 pm</span></h5>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="dialogue-list-wrap">
+                                    <div class="view-comment openDialogueSec">
+                                        <h6>Lorem</h6><i class="icon sm-edit ref-showCmt"></i>
+                                    </div>
+                                    <div class="course-right-pane">
+                                        <i class="icon group-icon RightFlyoutOpen rollover" id="participantFlyout"></i>
+                                        <span class="inactive"><i class="icon sm-mini-dial rollover"></i></span>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="left-side">
+                                            <i class="icon sm-comment"></i>
+                                        </div>
+                                        <div class="right-side">
+                                            <h5>Tania<span class="course-date">04:15 pm</span></h5>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- <li class="clearfix">
+                                <div class="left text-comment">
+                                    <input type="text" class="form-control input-field"><i class="icon tick"></i>
+                                </div>
+                                <div class="right course-right-pane">
+                                    <i class="icon addUser RightFlyoutOpen" id="AddUserFlyout"></i>
+                                    <i class="icon sm-mini-dial"></i>
+                                </div>
+                                <ul>
+                                    <li class="edit-filed dial-input-field">
+                                        <div class="left">
+                                            <div class="option-wrap">
+                                                <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="icon sm-comment"></i>
+                                                </a>
+                                                <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                                    <li><a><i class="icon sm-comment"></i><span>Chat</span></a></li>
+                                                    <li><a><i class="icon letter"></i><span>Letter</span></a></li>
+                                                    <li class="inactive"><a><i class="icon audio"></i><span>Audio</span></a></li>
+                                                    <li class="inactive"><a><i class="icon video"></i><span>Video</span></a></li>
+                                                    <li class="inactive"><a><i class="icon forum"></i><span>Forum</span></a></li>
+                                                </ul>
+                                            </div>
+                                            <textarea class="form-control textarea-field resizeTextarea" rows="1"></textarea>
+
+                                            <i class="icon tick"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-detail-panel">
+                <div class="detailed-panel">
+                    <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#inlineCourse4" aria-expanded="true" aria-controls="inlineCourse4">
+                        <div class="left right-arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="left">
+                            <i class="icon blue-event"></i>
+                            <h6>Events</h6><span class="people-count">(1 Events)</span>
+                        </div>
+                    </a>
+                    <div class="RightFlyoutOpen" id="EventFlyout"><i class="icon plus-class"></i></div>
+                </div>
+
+                <div id="inlineCourse4" class="collapse" role="tabpanel" aria-labelledby="inlineCourse4">
+                    <div class="event-section-wrap">
+                        <h5><i class="icon event"></i><span>12/12/2015</span></h5>
+                        <div class="event-section-panel">
+                            <ul>
+                                <li>
+                                    <div class="mid-event-panel">
+                                        <h6>Lorem Ipsum dolor sit</h6><i class="icon sm-edit ref-showCmt"></i><span class="inactive"><i class="icon recurssion rollover"></i></span> <span class="course-date">04:15 pm</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry</p>
+                                    </div>
+                                    <div class="right-event-panel">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="mid-event-panel">
+                                        <h6>Lorem Ipsum dolor sit</h6><i class="icon sm-edit ref-showCmt"></i> <span class="course-date">04:15 pm</span>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and type setting industry</p>
+                                    </div>
+                                    <div class="right-event-panel">
+                                    </div>
+                                </li>
+                                <!--  <li class="edit-filed event-edit-filed">
+                                     <div class="">
+                                        <i class="icon event"></i>
+                                         <input type="text" class="form-control input-field" placeholder="">
+                                         <i class="icon tick RightFlyoutOpen" id="EventFlyout"></i>
+                                     </div>
+                                 </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="course-detail-panel">
+                <div class="detailed-panel">
+                    <a class="collapsed clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#inlineCourse5" aria-expanded="true" aria-controls="inlineCourse5">
+                        <div class="left right-arrow">
+                            <i class="fa fa-angle-down"></i>
+                        </div>
+                        <div class="left">
+                            <i class="icon blue-resources"></i>
+                            <h6>Resources</h6><span class="people-count">(3 Resources)</span>
+                        </div>
+                    </a>
+                    <div class="inactive"><i class="icon plus-class rollover"></i></div>
+                </div>
+                <div id="inlineCourse5" class="collapse" role="tabpanel" aria-labelledby="inlineCourse5">
+                    <div class="course-comment-section">
+                        <ul>
+                            <li>
+                                <div class="left">
+                                    <i class="icon document"></i>
+                                    <h6>Documents</h6>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="left">
+                                            <h6>Lorem ipsum dolor sit</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <h6>Lorem ipsum dolor sit</h6>
+                                        </div>
+                                    </li>
+                                    <!-- <li class="edit-filed document-edit">
+                                        <div class="document-left-pane">
+                                            <i class="icon document"></i>
+                                            <input type="text" class="form-control input-field" placeholder="">
+                                        </div>
+                                        <div class="right-icon">
+                                             <i class="icon addUser RightFlyoutOpen" id="AddUserFlyout"></i>
+                                            <i class="icon tick"></i>
+                                        </div>
+
+                                    </li> -->
+                                </ul>
+                            </li>
+
+                            <li>
+                                <div class="left">
+                                    <i class="icon link"></i>
+                                    <h6>Links</h6>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="left">
+                                            <h6>Lorem ipsum dolor sit</h6>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="left">
+                                            <h6>Lorem ipsum dolor sit</h6>
+                                        </div>
+                                    </li>
+                                    <!-- <li class="edit-filed link-edit-filed">
+                                        <div class="left">
+                                            <i class="icon link"></i>
+                                            <input type="text" class="form-control input-field" placeholder="">
+                                            <i class="icon tick"></i>
+                                        </div>
+                                    </li> -->
+                                </ul>
+                            </li>
+
+                            <li>
+                                <div class="left">
+                                    <i class="icon credential"></i>
+                                    <h6>Credentials</h6>
+                                </div>
+                                <!-- <ul>
+                                    <li class="edit-filed link-edit-filed">
+                                        <div class="left">
+                                            <i class="icon credential"></i>
+                                            <input type="text" class="form-control input-field" placeholder="">
+                                            <i class="icon tick"></i>
+                                        </div>
+                                    </li>
+                                </ul> -->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="HalfPaneHeight mainAccordianHig hide" id="courseDetailWrap">
+    <div class="">
+        <div class="mainAccordianDiv">
+            <table class="table table-style table-responsive table-head ActiveRow course-detail-table">
+
+                <thead>
+                <th class="filterDrp">
+                    <span>Type<i class="fa fa-angle-down"></i></span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li >Sort by ascending</li>
+                        <li>Sort by descending</li>
+                        <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li>Equals</li>
+                                <li>Doest not Equal</li>
+                                <li>Begins With</li>
+                                <li>Ends With</li>
+                                <li>Contains</li>
+                                <li>Does Not Contains</li>
+                            </ul>
+                        </li>
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box" type="button"></button>
+                                    </span>
+                            </div>
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp">
+                    <span>File Name<i class="fa fa-angle-down"></i></span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li >Sort by ascending</li>
+                        <li>Sort by descending</li>
+
+                    </ul>
+                </th>
+                <th class="filterDrp">
+                    <span>Date<i class="fa fa-angle-down"></i></span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li >Sort by ascending</li>
+                        <li>Sort by descending</li>
+
+                    </ul>
+                </th>
+                <th class="filterDrp">
+                    <span>Status<i class="fa fa-angle-down"></i></span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                        <li >Sort by ascending</li>
+                        <li>Sort by descending</li>
+
+                    </ul>
+                </th>
+                </thead>
+            </table>
+            <div class="nano">
+                <div class="nano-content fixedTableHig">
+                    <table class="table table-style table-responsive course-detail-table ActiveRow ">
+                        <tbody>
+                        <?php
+                            for ($i = 1; $i <= 10; $i++) {  ?>
+                                <tr class="dialogueViewWrap">
+                                    <td>Doc</td>
+                                    <td>Lorem ipsum</td>
+                                    <td>11/27/2015</td>
+                                    <td>Draft</td>
+                                </tr>
+                                <tr class="dialogueViewWrap">
+                                    <td>Doc</td>
+                                    <td>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</td>
+                                    <td>11/27/2015</td>
+                                    <td>Draft</td>
+                                </tr>
+                            <?php  }
+                        ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- new-course-dialogue-control-starts -->
+<?php
+    if(!empty($_POST['node_instance_id'])):
+        $fulldialogFilePath = realpath(dirname(__FILE__)."/../../../../../puidata/fulldialog.php");
+        include_once($fulldialogFilePath);
+    elseif(isset($_REQUEST['load_editor'])):
+        $params = ['type' => 'course', 'url' => 'puidata/fulldialog.php?action=chat&testing=testing'];
+        $dialogueParams = htmlentities(json_encode($params), ENT_QUOTES, 'UTF-8');
+        ?>
+        <span class="dialogue-container" data-dialogue-params="<?php echo $dialogueParams;?>">
+
+        <script type="text/javascript">
+            $(function() {
+                var dialogueContainer = $('.dialogue-container');
+                var params = dialogueContainer.data('dialogueParams');
+                var callback = function(response) {
+                    dialogueContainer.html(response);
+                    dialogueContainer.closest('.display-wrapper').find('.edtHeader.doc-wrap').addClass('hide');
+                    <?php if(empty($_POST['node_instance_id'])): ?>
+                    $('#newCourseControl').removeClass('hide');
+                    <?php endif;?>
+                }
+                ChatdialogueModule.loadChatView(params, callback);
+            });
+        </script>
+    </span>
+    <?php endif; ?>
+<!-- existing-dialogue-control-wrap-edit-starts-->
+<div class="control-bar existing-dialogue-control-wrap" id="existingDialogueControl">
+    <div class="row">
+        <div class="col-md-12 left-head-chat">
+            <!-- view-existing-block-head -->
+            <div class="block-head existing-dialogue-block-head">
+                <div class="course-top-panel clearfix">
+                    <div class="existTopPanel clearfix">
+                        <div class="existLeftPanel">
+                            <span class="hover_rename_box course_rename_view_mode">
+                                <span class="existCourseTitle">Course Title</span>
+                                <span class="edit-wrap"> <i class="icon sm-edit"></i></span>
+                            </span>
+
+                            <span class="colonDots">:</span>
+                            <span class="hover_rename_box dialogue_rename_view_mode">
+                                <span class="existDialogueTitle">Dialogue Title</span>
+                                <span class="edit-wrap"> <i class="icon sm-edit"></i></span>
+                            </span>
+                            <span class="editExistCourseTitle editExistTitle clearfix">
+                                <span class="edit-exist-input-wrap">
+                                    <input type="text" value="" class="form-control input-field" placeholder="Course Title" id="editExistCourse" data-value="entr-course-title" data-id="">
+                                    <input type="hidden" value="" class="form-control input-field" placeholder="Course Title" id="editExistCourseHidden" data-id="" property-id="" data-status="">
+                                </span>
+                                <span class="edit-exist-icons-wrap">
+                                    <i class="icon close cancel_edit_course"></i>
+                                    <i class="icon tick save_edit_course entr-course-title"></i>
+                                </span>
+                            </span>
+                            <span class="editExistDialogueTitle editExistTitle clearfix">
+                                <span class="edit-exist-input-wrap">
+                                    <input type="text" value="" class="form-control input-field" placeholder="Dialogue Title" id="editExistDialogue" data-value="entr-dialogue-title">
+
+                                    <input type="hidden" value="" class="form-control input-field" placeholder="Dialogue Title" id="editExistDialogueHidden" data-id="" property-id="" actor-id="" user-name="" data-status="">
+
+                                </span>
+                                <span class="edit-exist-icons-wrap">
+                                     <i class="icon close cancel_edit_dialogue" ></i>
+                                     <i class="icon tick save_edit_dialogue entr-dialogue-title"></i>
+                                </span>
+                            </span>
+
+
+                            <!-- add-->
+                            <div class="user-overview-wrap hide">
+                                <ul class="user-overview-box">
+                                    <li class="clearfix">
+                                        <div class="left admin-title-box">
+                                            <span class="admin-title">Admin</span>
+                                            <span class="colonDot">:</span>
+                                        </div>
+                                        <div class="right admin-info-box">
+                                            <span class="admin-info clearfix"><i class="icon user-update pull-left"></i><span>Vaishali Srivastava</span></span>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="left admin-title-box">
+                                            <span class="participant-title">Participant(s)</span>
+                                            <span class="colonDot">:</span>
+                                        </div>
+                                        <div class="right admin-info-box">
+                                                <span class='participant-info clearfix'>
+                                                </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- add -->
+                        </div>
+                        <div class="existRightPanel">
+                            <i class="icon collapse-up"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- view-existing-block-head -->
+        </div>
+        <!--         <div class="col-md-12 left-head collapsed-left-head">
+
+                        <div class="block-head collapsed-dialogue-block-head">
+                            <div class="course-top-panel clearfix">
+                                <div class="existTopPanel clearfix">
+                                    <div class="existLeftPanel">
+                                        <span class="hover_rename_box course_rename_edit_mode">
+                                            <span class="collapsedCourseTitle"></span>
+                                            <span><i class="icon sm-edit"></i></span>
+                                        </span>
+
+                                        <span class="colonDots">:</span>
+
+                                        <span class="hover_rename_box dialogue_rename_edit_mode">
+                                            <span class="collapsedDialogueTitle"></span>
+                                            <span><i class="icon sm-edit"></i></span>
+                                        </span>
+
+                                        <span class="editExistTitle course_edit_rename_box">
+                                           <span class="edit-exist-input-wrap">
+                                             <input type="text" value="" class="form-control input-field" placeholder="Course Title" id="editExistCourse" data-value="entr-course-title" data-id="">
+                                            <input type="hidden" value="" class="form-control input-field" placeholder="Course Title" id="editExistCourseHidden" data-id="" property-id="" data-status="">
+                                            </span>
+                                            <span class="edit-exist-icons-wrap">
+                                                <i class="icon close edit_course_cancel"></i>
+                                                <i class="icon tick save_edit_course entr_edit_course_title"></i>
+                                            </span>
+                                        </span>
+                                        <span class="editExistTitle dialogue_edit_rename_box">
+                                            <span class="edit-exist-input-wrap">
+                                                <input type="text" value="" class="form-control input-field" placeholder="Dialogue Title" id="editExistDialogue" data-value="entr-dialogue-title">
+                                                <input type="hidden" value="" class="form-control input-field" placeholder="Dialogue Title" id="editExistDialogueHidden" data-id="" property-id="" actor-id="" user-name="" data-status="">
+                                            </span>
+                                            <span class="edit-exist-icons-wrap">
+                                                <i class="icon close edit_dialogue_cancel"></i>
+                                                <i class="icon tick save_edit_dialogue entr_edit_dialogue_title"></i>
+                                            </span>
+                                        </span>
+
+
+
+                                    </div>
+                                    <div class="existRightPanel">
+                                        <i class="icon collapse-down"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div> -->
+    </div>
+</div>
+<!-- existing-dialogue-control-wrap-edit-ends-->
+
+<!-- new-course-dialogue-control-starts -->
+<div class="control-bar view-course-control-bar hide" id="viewCourseControlBar">
+    <div class="row">
+        <div class="col-md-12 left-head">
+            <!-- collapsed-up-course -->
+            <div class="block-head view-block-head">
+                <div class="course-top-panel">
+                    <div class="viewCourseTitleHeadline"> Lorem Ipsum Course Title</div>
+
+                </div>
+            </div>
+            <!-- collapsed-up-course-->
+        </div>
+    </div>
+</div>
+<!-- new-course-dialogue-control-ends -->
+<?php /* ?>
+<!-- existing-main-panel starts -->
+<div class="HalfPaneHeight mainAccordianHig existingSelectedCourseWrap hide" id="existingSelectedCourse">
+    <div class="existingMidTotal">
+        <!-- unread-msg-box -->
+        <!-- <div class="unread-msg-box">
+            <span class="total-msg-count letter-count">0 unread messages</span>
+            <span class="total-msg-count chat-count">0 unread messages</span>
+        </div> -->
+        <!-- unread-msg-box -->
+        <!-- message-wrapper-->
+
+        <!-- code here to display chat statement data  -->
+        <!-- <div id="message-wrap-chat-statement"></div> -->
+
+
+        <div id="chat-app-placeholder"></div>
+
+        <!-- editor-wrapper  view and edit letter and chat text area-->
+        <!-- <?php //echo $this->index;?> -->
+
+    </div>
+    <div class="checkEnterBox " style="display:none">
+        <div class="checkbox inactive">
+            <label>
+                <input type="checkbox" checked class="chat-statement-checkbox"> Please enter to submit
+            </label>
+        </div>
+    </div>
+</div>
+<?php */ ?>
+<!--existing-main-panel ends -->
+
+<!-- new-course-dialogue-starts -->
+<div class="HalfPaneHeight mainAccordianHig newCourseDefaultSec hide" id="newcourseDefaultWrap">
+    <div class="newDefaultContainer">
+        <div class="mainAccordianDiv1">
+            <div class="nano1 clearfix">
+                <div class="nano-content1 clearfix fixedTableHig1">
+                    <?php echo $this->index; ?>
+                    <!--editor-collapsed-mode-->
+                </div>
+            </div>
+            <!-- submit-checkbox-->
+            <div class="checkEnterBox" style="display:none">
+                <div class="checkbox inactive">
+                    <label>
+                        <input type="checkbox" checked  class="chat-statement-checkbox"> Please enter to submit
+                    </label>
+                </div>
+            </div>
+            <!-- submit-checkbox-->
+        </div>
+    </div>
+    <input type="hidden" value="" id="add-new-course-value">
+</div>
+<!-- new-course-dialogue-ends -->
+
+<!-- VIEW-COURSE-DEFAULT-SEC-starts -->
+<div class="HalfPaneHeight mainAccordianHig viewCourseDefaultSec hide" id="viewCourseDefaultWrapper">
+    <div class="viewDefaultContainer">
+        <div class="mainAccordianDiv">
+            <div class="nano1 clearfix">
+                <div class="nano-content clearfix fixedTableHig">
+                    <!-- under-construction-starts -->
+                    <div class="imitation-wrapper">
+                        <p>This page is under construction.</p>
+                    </div>
+                    <!-- under-construction-ends -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- VIEW-COURSE-DEFAULT-SEC-ends -->
+
+
+
+<?php if($this->node_instance_id!="")
+{ ?>
+    <input type="hidden" value="empty-statement" id="empty-statement">
+<?php } ?>
+
+<div id="custom_editor_wrapper">
+<!--
+Added by Divya Rajput
+For showing letter icon and their functionality
+Purpose: By default when we use a resourse template, letter icon is not there, so we have added below code to add letter icon in course view section
+-->
+<!-- In case of new course view -->
+<span class="letter-icon unselectable unstructuredIcon showTootip new-letter-icon" id="new-letter-icon" style="display: none;">
+    <div class="option-wrap dropdown" id="letterChatDrop">
+        <a id="dropLetterChatView" href="#" data-toggle="dropdown" class="drop-anchor-select dropdown-toggle">
+            <i class="icon letterIcon"></i><span>Letter</span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropLetterChatView">
+            <li><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Chat</span></a></li>
+            <li><a href="javascript:void(0)"><i class="icon letterIcon"></i><span>Letter</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Forum</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Q&A</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Video Call</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Voice Call</span></a></li>
+        </ul>
+    </div>
+</span>
+
+
+<!-- In case of existing course view -->
+<span class="letter-icon unselectable unstructuredIcon showTootip exist-letter-icon" style="display: none;">
+    <div class="option-wrap dropdown" id="existsLetterDrop">
+        <a id="dropLetterExists" href="#" data-toggle="dropdown" class="drop-anchor-select dropdown-toggle">
+            <i class="icon letterIcon"></i><span>Letter</span>
+        </a>
+        <ul class="dropdown-menu StatementType" aria-labelledby="dropLetterExists">
+            <li><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Chat</span></a></li>
+            <li><a href="javascript:void(0)"><i class="icon letterIcon"></i><span>Letter</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Email</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Forum</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Q&A</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Video Call</span></a></li>
+            <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Voice Call</span></a></li>
+        </ul>
+    </div>
+</span>
+<div id="tableContextMenu" style="display:none">
+    <ul>
+        <li><a href="javascript:void" data-action="rowAbove">Insert Row Above</a></li>
+        <li><a href="javascript:void" data-action="rowBelow">Insert Row Below</a></li>
+        <li><a href="javascript:void" data-action="columnLeft">Insert Column Left</a></li>
+        <li><a href="javascript:void" data-action="columnRight">Insert Column Right</a></li>
+        <li><a href="javascript:void" data-action="deleteRow">Delete Row</a></li>
+        <li><a href="javascript:void" data-action="deleteColumn">Delete Column</a></li>
+        <li><a href="javascript:void" data-action="deleteTable">Delete Table</a></li>
+    </ul>
+</div>
+<div id="tagContextMenu" style="display:none">
+    <ul>
+        <li><a href="javascript:void" data-action="removeTag">Remove Tag</a></li>
+    </ul>
+</div>
+<div id="signatureType" style="display:none">
+    <div>Select Signature</div>
+    <label><input type="radio" name="signType" value="full"> Full</label>
+    <label><input type="radio" name="signType" value="initial"> Initial</label>
+</div>
+<div id="printMarginBox" style="display:none">
+    <div>Margins (inches)</div>
+    <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginTop" value="1"> Top</div>
+    <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginBottom" value="1"> Bottom</div>
+    <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginLeft" value="1"> Left</div>
+    <div><input type="text" size="2" class="edtPrintMargins" id="edtPrintMarginRight" value="1"> Right</div>
+    <div><button id="edtPrintCommand">Print</button> <button id="edtPrintCommandCancel">Cancel</button></div>
+</div>
+<div id="edtformElements" class="edtdrp" style="display:none">
+    <ul>
+        <li><a href="javascript:void" data-action="createNew">Definitive</a></li>
+        <li><a href="javascript:void" data-action="createExisting">Referential</a></li>
+    </ul>
+</div>
+<div id="edtHyperlinkPopup" class="edtPopWrap" style="display:none">
+    <div>Link : <input type="text" id="edtHyperlinkText" class="form-control input-field" autofocus/></div>
+    <div>
+        <button id="saveedtHyperlinkText" class="btn btn-default btn-sm">Ok</button>
+        <button id="canceledtHyperlinkText" class="btn btn-default btn-sm">Cancel</button>
+    </div>
+</div>
+<div id="edtTagElements" class="edtdrp" style="display:none">
+    <ul>
+        <li><a href="javascript:void" data-action="Actor">Actor</a></li>
+        <li><a href="javascript:void" data-action="Role">Role</a></li>
+        <li><a href="javascript:void" data-action="Terms">Terms</a></li>
+        <li><a href="javascript:void" data-action="sign">Signature</a></li>
+        <li><a href="javascript:void" data-action="dynamicField">Dynamic Field</a></li>
+        <li><a href="javascript:void" data-action="toggleTags" data-val="visible">Toggle Tags</a></li>
+        <li><a href="javascript:void" data-action="showtaggeditems">Show Tagged Items</a></li>
+    </ul>
+</div>
+<div id="edtHyperlinkPreview" class="edtPopWrap" style="display:none">
+    <div>Visit : <a href="#" id="edtHyperlinkPreviewText" target="_blank"></a></div>
+    <div>
+        <button id="removeedtHyperlinkPreviewText" class="btn btn-default btn-sm">Remove Link</button>
+    </div>
+</div>
+<div id="edtformElementsTextProperties" class="edtPopUp edtPopWrap edtdrp" style="display:none">
+    <div>
+        <label class="label-field">Field Name:</label>
+        <input type="text" id="edtPropAttrName" class="form-control input-field" placeholder="Required"/>
+    </div>
+    <div>
+        <label class="label-field">Field Value :</label>
+        <input type="text" id="edtPropAttrValue" class="form-control input-field"/>
+    </div>
+    <div>
+        <button id="saveedtformElementsTextProperties" class="btn btn-default btn-sm">Save</button>
+        <button id="deleteedtformElementsTextProperties" class="btn btn-default btn-sm">Delete</button>
+        <button id="canceledtformElementsTextProperties" class="btn btn-default btn-sm">Cancel</button>
+        <div class="dropdown">
+            <button id="tagformElementsTextProperties" class="btn btn-default btn-sm" data-toggle="dropdown">Tag<span class="caret"></span></button>
+            <ul class="dropdown-menu tagEdtDynamicField">
+                <li><a href="javascript:void(0)" data-action="Actor">Actor</a></li>
+                <li><a href="javascript:void(0)" data-action="Role">Role</a></li>
+                <li><a href="javascript:void(0)" data-action="Terms">Terms</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<div id="edtformElementsTextPropertiesReference" class="edtPopUp" style="display:none">
+    <ul></ul>
+    <div>
+        <button id="canceledtformElementsTextPropertiesReference" class="btn btn-default btn-sm">Cancel</button>
+    </div>
+</div>
+<div class="color-plates-wrap unselectable edtdrp" id="ColorPlatesSection" style="display:none">
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="background:#000000"></td>
+            <td style="background:#434343" ></td>
+            <td style="background:#666666"></td>
+            <td style="background:#999999"></td>
+            <td style="background:#B7B7B7"></td>
+            <td style="background:#CCCCCC"></td>
+            <td style="background:#D9D9D9"></td>
+            <td style="background:#EFEFEF"></td>
+            <td style="background:#F3F3F3"></td>
+            <td style="background:#FFFFFF"></td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <td style="background:#980000"></td>
+            <td style="background:#FF0000"></td>
+            <td style="background:#FF9900"></td>
+            <td style="background:#FFFF00"></td>
+            <td style="background:#00FF00"></td>
+            <td style="background:#00FFFF"></td>
+            <td style="background:#4A86E8"></td>
+            <td style="background:#0000FF"></td>
+            <td style="background:#9900FF"></td>
+            <td style="background:#FF00FF"></td>
+        </tr>
+    </table>
+    <table cellpadding="0" cellspacing="0">
+        <tbody>
+        <tr>
+            <td style="background:#E6B8AF"></td>
+            <td style="background:#F4CCCC"></td>
+            <td style="background:#FCE5CD"></td>
+            <td style="background:#FFF2CC"></td>
+            <td style="background:#D9EAD3"></td>
+            <td style="background:#D0E0E3"></td>
+            <td style="background:#C9DAF8"></td>
+            <td style="background:#CFE2F3"></td>
+            <td style="background:#D9D2E9"></td>
+            <td style="background:#EAD1DC"></td>
+        </tr>
+        <tr>
+            <td style="background:#DD7E6B"></td>
+            <td style="background:#EA9999"></td>
+            <td style="background:#F9CB9C"></td>
+            <td style="background:#FFE599"></td>
+            <td style="background:#B6D7A8"></td>
+            <td style="background:#A2C4C9"></td>
+            <td style="background:#A4C2F4"></td>
+            <td style="background:#9FC5E8"></td>
+            <td style="background:#B4A7D6"></td>
+            <td style="background:#D5A6BD"></td>
+        </tr>
+        <tr>
+            <td style="background:#CC4125"></td>
+            <td style="background:#E06666"></td>
+            <td style="background:#F6B26B"></td>
+            <td style="background:#FFD966"></td>
+            <td style="background:#93C47D"></td>
+            <td style="background:#76A5AF"></td>
+            <td style="background:#6D9EEB"></td>
+            <td style="background:#6FA8DC"></td>
+            <td style="background:#8E7CC3"></td>
+            <td style="background:#C27BA0"></td>
+        </tr>
+        <tr>
+            <td style="background:#A61C00"></td>
+            <td style="background:#CC0000"></td>
+            <td style="background:#E69138"></td>
+            <td style="background:#F1C232"></td>
+            <td style="background:#6AA84F"></td>
+            <td style="background:#45818E"></td>
+            <td style="background:#3C78D8"></td>
+            <td style="background:#3D85C6"></td>
+            <td style="background:#674EA7"></td>
+            <td style="background:#A64D79"></td>
+        </tr>
+        <tr>
+            <td style="background:#85200C"></td>
+            <td style="background:#990000"></td>
+            <td style="background:#B45F06"></td>
+            <td style="background:#BF9000"></td>
+            <td style="background:#38761D"></td>
+            <td style="background:#134F5C"></td>
+            <td style="background:#1155CC"></td>
+            <td style="background:#0B5394"></td>
+            <td style="background:#351C75"></td>
+            <td style="background:#741B47"></td>
+        </tr>
+        <tr>
+            <td style="background:#5B0F00"></td>
+            <td style="background:#660000"></td>
+            <td style="background:#783F04"></td>
+            <td style="background:#7F6000"></td>
+            <td style="background:#274E13"></td>
+            <td style="background:#0C343D"></td>
+            <td style="background:#1C4587"></td>
+            <td style="background:#073763"></td>
+            <td style="background:#20124D"></td>
+            <td style="background:#4C1130"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</div>

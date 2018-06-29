@@ -1,0 +1,430 @@
+<?php 
+function eventStatus($eventStatusArray,$dataTableArray,$currentColumnIndex,$typeCpmpletion,$typedestructor) 
+{ 
+    $i          = 0;
+    $preC       = '';
+    $nextC      = '';
+    $bgClass    = '';
+    $countRow   = count($eventStatusArray)-1;
+
+    
+    /* First Row Start */
+    if($eventStatusArray[0]!=''){ ?>
+
+        <tr class="<?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[0]);$col++) 
+            { 
+              if($col > $currentColumnIndex){
+                 $bgClass    = 'creation-bg';
+              }
+            ?>              
+                   <?php if(intval($currentColumnIndex)+1 == $col) { 
+                      $preC = $dataTableArray[0][$col]; ?>
+                      <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                      <td class=""><?php echo $eventStatusArray[0]; ?></td>
+                   <?php } else { ?>
+                   <td class="<?php echo $dataTableArray[0][$col]['tdClass'];?>">
+                      <?php  echo $dataTableArray[0][$col]['data']; ?> 
+                   </td>
+                   <?php } ?>
+                
+            <?php       
+            } 
+            ?>
+        </tr>
+    <?php  
+
+    } else {
+
+      ?>
+          <tr class=" <?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[0]);$col++) 
+            { 
+            ?>              
+                   
+                   <td class="<?php echo $dataTableArray[0][$col]['tdClass'];?> <?php echo $bgClass;?>">
+                      <?php  echo $dataTableArray[0][$col]['data']; ?> 
+                   </td>
+                   <?php if(intval($currentColumnIndex)+1 == $col) { ?>
+                      <td class="ExcelTablerow operation-series creation-bg <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                   <?php } ?>
+                   
+                
+            <?php       
+            } 
+            ?>
+        </tr>
+
+      <?php
+
+    }
+    /* First Row End */
+
+    /* add after value */
+    if($eventStatusArray[0] == '')
+    {
+      if($eventStatusArray[1] != '' && $eventStatusArray[2] == '')
+      { 
+          ?>
+
+          <tr class=" <?php echo $dataTableArray[0][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[0]);$col++) 
+              { 
+              ?>              
+                     <?php if(intval($currentColumnIndex)+1 == $col) { 
+                      $preC = $dataTableArray[0][$col]; ?>
+                      <td class="ExcelTablerow operation-series <?php echo $preC['tdClass'];?>"><div class="blank-div segment-node"></div></td>
+                      <td class=""><?php echo $eventStatusArray[1]; ?></td>
+                   <?php } else { ?>
+                   <td class="ExcelTableFormationRow fTHLC-left-col  <?php echo $dataTableArray[0][$col]['tdClass'];?>">
+                    <?php if(intval($currentColumnIndex) != $col) { 
+                      echo $dataTableArray[0][$col]['data']; ?> 
+                      <?php } else { ?>
+                        <div class="blank-div segment-node"></div>
+                      <?php } ?>
+                   </td>
+                   <?php } ?>
+                  <?php       
+              } 
+                  ?>
+          </tr>
+
+          <tr class=" <?php echo $dataTableArray[1][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[1]);$col++) 
+              { 
+              ?>              
+                     
+                    
+                      <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php echo $dataTableArray[1][$col]['data'];?></div>
+                      </td>
+
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class="ExcelTablerow operation-series creation-bg"><div class="blank-div segment-node"></div></td>
+                     <?php } ?>
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+      <?php  
+      }
+    }
+    else
+    {  
+      if($eventStatusArray[1] == '' && $eventStatusArray[2] != '')
+      { 
+          ?>
+
+          <tr class=" <?php echo $dataTableArray[0][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[0]);$col++) 
+              { 
+              ?>              
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class=" <?php echo $preC['tdClass'];?>"><?php echo $preC['data']; ?></td>
+                        <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                     <?php } else { ?>
+                      <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?> <?php if(intval($currentColumnIndex)+1 <= $col) { echo $bgClass; } ?>"><div class="blank-div segment-node"></div>
+                      </td>
+                     <?php } ?>
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+          <tr class=" <?php echo $dataTableArray[0][$col]['tdClass'];?>" >
+              <?php       
+                for($col=0;$col<count($dataTableArray[0]);$col++) 
+                { 
+                ?>              
+                       
+                      <td class="col-<?php echo intval($col); ?> <?php if(intval($currentColumnIndex)+1 < $col) { echo $bgClass; } ?> <?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><div class="blank-div segment-node"></div>
+                      </td>
+
+                       <?php if(intval($currentColumnIndex)+1 == $col) { ?>
+                          <td class="ExcelTablerow operation-series creation-bg"><?php echo $eventStatusArray[2]; ?></td>
+                       <?php }  ?>
+                    
+                <?php       
+                } 
+                ?>
+          </tr>
+
+           <tr class=" <?php echo $dataTableArray[1][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[1]);$col++) 
+              { 
+              ?>    
+
+
+            <?php if(intval($currentColumnIndex)+2 == $col) { ?>
+            <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?> <?php if(intval($currentColumnIndex)+2 < $col) { echo $bgClass; } ?>">
+             <div class="node-circle node-white-circle node-white-circle">N</div>
+                      <div class="col-text operation-text"><span class="col-node-text custom-node actionNode" placeholder="Interaction" name="parent_6_11">Interaction</span></div>
+                  </div>
+              <i class="fa fa-bars  segment" style="display: none;"></i>
+          <div class="add-col-wrap  add-status nodeflyOut">
+                      <ul class="dropdown-menu show-5" role="menu" aria-labelledby="dropdownMenu4" style="left: 583.421875px; top: 486px;">
+                          <li role="presentation" class="no-bg">
+                              <a role="menuitem" tabindex="-1" class="nodeFlyout" data-toggle="modal" data-target="#nodeFlyout" data-direction="right">
+                                  <div class="node-circle node-white-circle-expanded">N</div>
+                                 View Class 
+                              </a>
+                          </li>
+                       </ul>
+                  </div>
+                      </td>
+                      <?php }else { ?>
+                       <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?> <?php if(intval($currentColumnIndex)+2 < $col) { echo $bgClass; } ?>">
+                       <div class="blank-div segment-node"></div></div>
+                      gg</td> 
+                      <?php } ?>
+
+
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class="<?php if(intval($currentColumnIndex)+2 < $col) { echo $bgClass; } ?>"><div class="blank-div segment-node"></div>4</td>
+                     <?php } ?>
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+      <?php  
+      }
+
+      if($eventStatusArray[1] == '' && $eventStatusArray[2] == '')
+      { 
+          ?>
+
+          <tr class=" <?php echo $dataTableArray[0][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[0]);$col++) 
+              { 
+              ?>              
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class=" <?php echo $preC['tdClass'];?>"><?php echo $preC['data']; ?></td>
+                        <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                     <?php } else { ?>
+                     
+
+<td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><div class="blank-div segment-node"></div></div>
+                      </td>
+
+                     <?php } ?>
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+         
+          <tr class=" <?php echo $dataTableArray[1][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[1]);$col++) 
+              { 
+              ?>              
+                     
+                     
+                     <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php echo $dataTableArray[1][$col]['data'];?></div></td>
+
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class=""><div class="blank-div segment-node"></div></td>
+                     <?php } ?>
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+      <?php  
+      }
+    }
+    /*add completiom here*/
+    if($typeCpmpletion == 'Y')
+    { ?>
+          <tr class=" <?php echo $dataTableArray[0][$col]['tdClass'];?>" >
+              <?php       
+              for($col=0;$col<count($dataTableArray[0]);$col++) 
+              { 
+              ?>              
+                    
+
+ <td class="col-<?php echo intval($col); ?> <?php if(intval($currentColumnIndex)+1 < $col) { echo $bgClass; } ?> <?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><div class="blank-div segment-node"></div></td>
+
+                     <?php if(intval($currentColumnIndex)+1 == $col) {  ?>
+                        <td class="ExcelTablerow operation-series" >
+                          <div class="creation-node event-before">
+                              <div class="node-circle node-white-circle node-white-circle" >N</div>
+                              <div class="col-text operation-text">
+                                  <span class="col-node-text custom-node">compl</span>
+                              </div>
+                          </div></td>
+                     <?php } ?>
+                     
+                  
+              <?php       
+              } 
+              ?>
+          </tr>
+          <?php
+          /*add destructive here */
+          if($typedestructor == 'O')
+          { ?>
+            <tr class=" <?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[2]);$col++) 
+            { 
+            ?>              
+                   <?php if(intval($currentColumnIndex)+1 == $col) { 
+                      $nextC = $dataTableArray[2][$col]; ?>
+                      <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                     <td class=""><?php echo $eventStatusArray[$countRow]; ?></td>
+
+                   <?php } else { ?>
+                   <td class="<?php echo $dataTableArray[2][$col]['tdClass'];?>">
+                      <?php  echo $dataTableArray[2][$col]['data']; ?> 
+                   </td>
+                   <?php } ?>
+                
+            <?php       
+            } 
+            ?>
+            </tr>
+         <?php  }
+      } ?>   
+      <?php  if($typedestructor == 'Y')
+          { ?>
+            <tr class=" <?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[2]);$col++) 
+            { 
+            ?>              
+                   
+                   
+
+<td class="col-<?php echo intval($col); ?> <?php if(intval($currentColumnIndex)+1 < $col) { echo $bgClass; } ?> <?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($currentColumnIndex)+1 == $col) { ?>
+                      <?php  echo $dataTableArray[2][$col]['data']; ?> 
+                      <?php } else { ?>
+                      <div class="blank-div segment-node"></div>
+                      <?php } ?></td>
+
+                   <?php if(intval($currentColumnIndex)+1 == $col) { ?>
+                      <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                   <?php } ?>
+            <?php       
+            } 
+            ?>
+        </tr>
+         <?php  }
+    
+
+    /* Last Row Start */
+    if($eventStatusArray[$countRow] != '')
+    {
+      ?>
+
+        <tr class=" <?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[2]);$col++) 
+            { 
+            ?>              
+                   <?php if(intval($currentColumnIndex)+1 == $col) { 
+                      $nextC = $dataTableArray[2][$col]; ?>
+                      <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                      <td class=""><?php echo $eventStatusArray[$countRow]; ?></td>
+                   <?php } else { ?>
+                   
+
+                   <td class="<?php echo $dataTableArray[2][$col]['tdClass'];?>">
+                      <?php  echo $dataTableArray[2][$col]['data']; ?> 
+                   </td>
+
+
+
+                   <?php } ?>
+                
+            <?php       
+            } 
+            ?>
+        </tr>
+          <?php  
+    }
+    else
+    {
+        ?>
+          <tr class=" <?php echo $dataTableArray[$soni][$col]['tdClass'];?>" >
+            <?php       
+            for($col=0;$col<count($dataTableArray[2]);$col++) 
+            { 
+            ?>              
+                   
+                   <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>">
+                      <?php  echo $dataTableArray[2][$col]['data']; ?> 
+                   </td>
+                   <?php if(intval($currentColumnIndex)+1 == $col) { ?>
+                      <td class="ExcelTablerow operation-series <?php echo $bgClass;?>" ><div class="blank-div segment-node"></div></td>
+                   <?php } ?>
+            <?php       
+            } 
+            ?>
+        </tr>
+      <?php
+    }
+} 
+?>
+
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+            for($row=0;$row<2;$row++) {
+                ?>
+               <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+                  <?php } ?>
+               </tr>
+            <?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php 
+$addRow           = 0; 
+$newFlag          = ''; 
+$flag             = 0; 
+$startRow         = $this->currentRowIndex;
+$endRow           = intval($this->currentRowIndex)+$this->currentLength;
+
+$dataTableArray   = array(); 
+$flag11 = 0;
+
+for($row=0;$row<count($this->tableDataArray);$row++) {
+  if($row >= $startRow && $row < $endRow){
+    $dataTableArray[] = $this->tableDataArray[$row];
+  }
+}
+
+for($row=0;$row<count($this->tableDataArray)-1;$row++) { ?>
+
+  <?php if($row >= $startRow && $row < $endRow){?>
+        <?php if($flag11 == 0){?>
+      <?php eventStatus($this->eventStatusArray,$dataTableArray,$this->currentColumnIndex,$this->typeCpmpletion,$this->typedestructor); ?>
+      
+      <?php } $flag11++; ?>
+
+  <?php } else { ?>
+      <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+        <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+          <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+
+          <?php } ?>
+      </tr> 
+  <?php } ?>   
+<?php  } ?>
+</tbody>
+</table>
+

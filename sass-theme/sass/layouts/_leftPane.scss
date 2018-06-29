@@ -1,0 +1,92 @@
+$list-heading-size		: 	14px;
+$tabBG					:   #f7f6f6;
+
+.sass-lang{
+	.list-detail{
+		
+	}
+	.list-row {	
+		border-bottom: $border-size $border-style $border-gray;
+
+		.tab{
+			padding:10px;
+			.active{
+				background-color:transparent;
+				color: $activebrandColor;
+			}
+			.flex-col.Icon{
+				position: relative;
+			}
+			.arrow{			
+				top:30px;
+				position: absolute
+			}
+			.arrow_down{
+				&:before,
+				&:after{
+					left: 10px;
+				}
+			}
+			.Icon{
+				cursor: pointer;
+			}
+			.course-date{
+				margin-right: 80px;
+			}
+		}		
+	}
+}
+.sass-lang{
+	.tabing-detail{
+		background:$tabBG;
+		padding:10px 10px 0px 40px;;
+		border-top:$border-size $border-style $border-gray;
+		.flex-row{
+			padding:10px 0;
+			border-bottom:$border-size $border-style $border-lighter;
+
+			&:first-child{
+				padding-top:0px;
+			}
+			&:last-child{
+				border-bottom:0px;
+			}
+		}
+	}	
+	.list-pane{
+		width: $fullWidth;
+	}
+}
+
+.sass-lang{
+	.circel-icon-wrap {
+		.flex-col {
+			span {
+			    padding: 5px 15px;
+			    align-items: $center;
+			    display: $flex;
+			}
+		}
+	}
+}
+
+.sass-lang{
+	#dialogue-list{
+		.list-row{
+			position: relative;
+		}
+	}
+}
+.sass-lang{
+	#actor-list{
+		.flex-row{
+			align-items:center;
+		}
+		.arrow_down{
+			&:before,
+			&:after{
+				top:-5px;
+			}
+		}
+	}
+}

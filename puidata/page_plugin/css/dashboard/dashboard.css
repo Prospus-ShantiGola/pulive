@@ -1,0 +1,175 @@
+@import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
+/*http://sta.pu.prospus.com/puidata/page_plugin/*/
+div#dealForm {
+    height: 100%;
+}
+.prs-plugin .universe-wrap.dashboardViewWrapper {
+    width: 100% !important;
+    height: 100%;
+}
+.prs-plugin #section_id_dashboard.active{
+    width: 59px;
+}
+.prs-plugin .dashboardViewPane{
+    font-family: 'Poppins', sans-serif;
+
+}
+.prs-plugin .dashboard-bg {
+    
+    background-size: cover;
+    background-position: center center;
+    width: calc(100% + 40px);
+    margin-left: -40px;
+    position: relative;
+    z-index: 8;
+}
+/*.prs-plugin .dashboard-pane-row {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-top:-60px;
+    text-align: center;
+}*/
+/*Edit by Imran reslove issue on MAC*/
+.prs-plugin .dashboard-pane-row {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    margin-top: -60px;
+    position: absolute;
+    text-align: center;
+    margin-left: 38%;
+}
+
+.prs-plugin .dashboard-pane-row .row {
+    width: 710px;
+    text-align: center;
+}
+.prs-plugin .dashboard-pane-col {
+    float: left;
+    width: 100%;
+    width: 250px;
+}
+.prs-plugin .lg-quote-icon {
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/quote.svg) no-repeat center center;
+}
+.prs-plugin .lg-deal-icon {
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/deal.svg) no-repeat center center;
+}
+.prs-plugin .lg-existing-deal-icon {
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/existing-deal.svg) no-repeat center center;
+}
+.prs-plugin .dashboard-pane-col h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 0 0 5px #000;
+}
+
+.prs-plugin .jq_flyout_body .main-title {
+    border-bottom: 1px solid #dbdbdb;
+    overflow: hidden;
+    height: 48px;
+    position: relative;
+    background: #fff;
+    z-index: 9;
+    width: calc(100% + 1px);
+}
+.prs-plugin .topbar-title {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1;
+}
+.prs-plugin .jq_flyout_body .listing-content-wrap{
+	text-align: left;
+}
+.prs-plugin .sidebar_wrap ul ul.data-list {
+    margin: 0;
+    padding: 0;
+}
+.prs-plugin ul.menu-items.dashboard_menu_section li.selectlist:nth-child(1) {
+    margin-bottom: 10px;
+}
+.prs-plugin ul.data-list div:nth-child(1) {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-family: 'Open Sans', sans-serif;
+}
+.prs-plugin ul.data-list div:nth-child(2) {
+    margin-bottom: 0px;
+    max-height: 3.0em;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+.prs-plugin ul.data-list li {
+    padding: 10px 10px 8px 10px;
+}
+.prs-plugin ul.data-list li:hover {
+    background: #e6e6e6;
+    text-decoration: none;
+    cursor: pointer;
+}
+.prs-plugin ul.data-list  li:nth-child(odd) {
+    background: #f4f4f4;
+}
+.prs-plugin a.dashboard-pane-col.inactive {
+    background: transparent;
+    opacity: 0.6;
+}
+.prs-plugin .circle {
+    position: relative;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid #000;
+    background-size: 90px;
+}
+.prs-plugin .arc {
+    overflow: hidden;
+    position: absolute;
+    top: -3px;
+    right: 50%;
+    bottom: 50%;
+    left: -3px;
+    transform-origin: 100% 100%;
+    transform: rotate(88deg) skewX(0deg);
+}
+.prs-plugin .arc:before {
+    box-sizing: border-box;
+    display: block;
+    border: solid 3px #fff;
+    width: 200%;
+    height: 200%;
+    border-radius: 50%;
+    transform: skewX(-1deg);
+    content: '';
+}
+.prs-plugin .leftArc{
+    transform: rotate(-1deg) skewX(0deg);
+}
+.prs-plugin .RightArc{
+    transform: rotate(88deg) skewX(0deg);
+}
+.prs-plugin .bottomArc{
+    transform: rotate(243deg) skewX(0deg);
+}
+.prs-plugin #j_my_createDeal_wrapper .jq_flyout_body .main-title {
+    width: calc(100% + 0px);
+}
+
+/*css hecks for ie10 and ie11*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .prs-plugin textarea.inline-input{
+        overflow: hidden !important;
+    }
+}

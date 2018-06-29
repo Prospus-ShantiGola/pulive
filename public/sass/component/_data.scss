@@ -1,0 +1,13 @@
+.list-item {
+  .app-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  .app-name {
+    width: calc(100% - 40px);
+    padding: 6px 0;
+    float: left;
+    font-size: 13px;
+  }
+}

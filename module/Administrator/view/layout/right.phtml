@@ -1,0 +1,295 @@
+<div class="user-action-wrap" id="main_action_menu" style="display:none;">
+
+	<!-- add-dialogue-icon -->
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role">
+		<i class="icon dialogue-chat"></i><br><span>Dialogue</span>
+	</a>
+
+	<!-- add-dialogue-icon -->
+	<!-- For Dashboard Only  -->
+	<a style="display:none;" class="tooltip-item user-roles strat_click nextShow next" href="javascript:void(0)" data-original-title="Down">
+		<i class="icon icon-next"></i><br>
+		<span>Down</span>
+	</a>
+	<a style="display:none;" href="javascript:void(0)" class="tooltip-item strat_click prevShow prev" data-original-title="Up">
+		<i class="icon icon-prev"></i><br>
+		<span>Up</span>
+	</a>
+
+	<!-- For Classes Only  -->
+
+	<a style="display:none;" onclick="nodeZShow();" class="tooltip-item user-roles Nodez-icon" data-original-title="NodeZ">
+		<i class="icon nodez"></i><br>
+		<span>Node-Z</span>
+	</a>
+
+	<a style="display:none;" onclick="nodeXShow();" class="tooltip-item user-roles Nodex-icon" data-original-title="NodeX">
+		<i class="icon nodex"></i><br>
+		<span>Node-X</span>
+	</a>
+
+	<a style="display:none;" onclick="newVersion();" class="tooltip-item user-roles Version-icon" data-original-title="Version">
+		<i class="icon version"></i><br>
+		<span>New Version</span>
+	</a>
+
+	<a style="display:none;" class="tooltip-item user-roles plusIcon Subclass-icon" data-original-title="AddSubclass">
+		<i class="icon Subclass"></i><br>
+		<span>Add Subclass</span>
+	</a>
+
+	<a style="display:none;" onclick="instanceClassProperty();" class="tooltip-item user-roles strat_click Instance-icon" data-original-title="Instance">
+		<i class="icon instance"></i><br>
+		<span>Instances</span>
+	</a>
+
+	<a style="display:none;" onclick="instanceClassNew();" class="tooltip-item user-roles strat_click Instance-Class-icon" data-original-title="Instance-Class">
+		<i class="icon instance-class"></i><br>
+		<span>Instances Class</span>
+	</a>
+
+	<a style="display:none;" onclick="saveClassProperty('D');" class="tooltip-item user-roles Save-icon saveDraft" data-original-title="Save">
+		<i class="icon save-as-draft"></i><br>
+		<span>Save As Draft</span>
+	</a>
+
+	<a style="display:none;" onclick="saveClassProperty('P');" class="tooltip-item user-roles Save-icon" data-original-title="Save">
+		<i class="icon publish"></i><br>
+		<span>Publish</span>
+	</a>
+
+		<a style="display:none;" onclick="editClassProperty();" class="tooltip-item user-roles Edit-icon" data-original-title="Edit">
+				<i class="icon edit"></i><br>
+				<span>Edit</span>
+		</a>
+
+		<a style="display:none;" onclick="gridView();" class="tooltip-item user-roles Compose-icon" data-original-title="Compose">
+				<i class="icon view"></i><br>
+				<span>Compose</span>
+		</a>
+
+	<a style="display:none;" onclick="cancelClassProperty();" class="tooltip-item user-roles strat_click Cancel-icon" data-original-title="Cancel">
+		<i class="icon cancel"></i><br>
+		<span>Cancel</span>
+	</a>
+	<span id="version"></span>
+
+	<!-- code here used to display Done href link for timeline functionality -->
+	<a style="display:none;" onclick="tmsavePhase();" class="tooltip-item user-roles Done-timeline" data-original-title="Done">
+		<i class="icon done"></i><br>
+		<span>Done</span>
+	</a>
+	<a style="display:none;" onclick="tmcancelPhase();" class="tooltip-item user-roles Cancel-timeline" data-original-title="Cancel1">
+		<i class="icon cancel"></i><br>
+		<span>Cancel</span>
+	</a>
+	<!-- end code here -->
+
+	<a style="display:none;" class="tooltip-item user-roles timeLineOpen strat_click open-process-meter three-pane-close" href="javascript:void(0)" data-original-title="Done1" strat-id="n_ajax" >
+		<i class="icon done"></i><br>
+		<span>Done</span>
+	</a>
+
+	<a style="display:none;" class="tooltip-item user-roles strat_click three-pane-close" href="javascript:void(0)" data-original-title="Close1" strat-id="n_ajax" >
+		<i class="icon edit"></i><br>
+		<span>Close</span>
+	</a>
+
+
+	<!-- For dialog flyout Only  -->
+	<a  style="display:none;" class="dialogue-tab chatIcon"  href="javascript:void(0)" data-original-title="NewDialogue">
+		<i class="icon new-dialogue"></i><br><span>New Dialogue</span>
+	</a>
+
+	<a  class="close-chat1 new-course-tab"  href="javascript:void(0)" style="display:none" data-original-title="new-course">
+			 <i class="icon new-course"></i><br>
+				<span>New Course</span>
+	</a>
+
+	<a  class="close-chat1 assign-course-tab"  href="javascript:void(0)" style="display:none" data-original-title="assign-course">
+			 <i class="icon assign-course"></i><br>
+			 <span>Assign Course</span>
+	</a>
+
+	<a  style="display:none;" class="close-chat DialogueCancel chatIcon"  href="javascript:void(0)" data-original-title="SaveasDraft">
+		<i class="icon save-as-draft"></i><br><span>Save as Draft</span>
+	</a>
+	<a  style="display:none;" class="close-chat DialogueCancel chatIcon"  href="javascript:void(0)" data-original-title="Send">
+		<i class="icon dialogue-send"></i><br><span>Send</span>
+	</a>
+	<a  style="display:none;" class="close-chat DialogueCancel chatIcon"  href="javascript:void(0)" data-original-title="Close">
+		<i class="icon dialogue-close"></i><br><span>Close</span>
+	</a>
+
+
+
+	<a  class="course-assign-cancel"  href="javascript:void(0)" data-original-title="course-assign-save">
+		<i class="icon save-as-draft"></i><br>
+		<span>Save</span>
+		</a>
+	<a  class="course-assign-cancel"  href="javascript:void(0)" data-original-title="course-assign-cancel">
+		<i class="icon dialogue-close"></i><br>
+		<span>Close Mode</span>
+	</a>
+
+ <!--fly-radio-icons-->
+ <!-- start add child class right menu -->
+	<a class="tooltip-item user-roles classesInstance_roles" onclick="setClassAndInstancePropertyNodeIds();" href="javascript:void(0)" data-original-title="classesInstance-Submit" style="display:none;"><i class="icon done"></i><br><span>Done</span></a>
+	<a class="tooltip-item user-roles classesInstance_roles classesInstance_Cancel" href="javascript:void(0)" data-original-title="classesInstance-Cancel" style="display:none;"><i class="icon cancel"></i><br><span>Close</span></a>
+		<!-- end add child class right menu -->
+
+ <!--fly-radio-icons-->
+</div>
+
+<div class="user-action-wrap" id="dialogue_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Cancel"  id="course-dialogue-publish"><i class="icon publish"></i><br><span>Send</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Save" onclick="saveCourseDialouge('D');" id="course-dialogue-draft">
+		<i class="icon save-as-draft"></i><br><span> Save as draft</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Cancel" id="course-dialogue-cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="course_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue" id="dialogue_role"><i class="icon dialogue-chat" data-original-title="" title=""></i><br><span>Dialogue</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Save" id="edit-course" style="display:none"><i class="icon edit"></i><br><span> Edit</span></a>
+	<a class="user-roles" href="#" data-original-title="Cancel" onclick="saveCourse('P');" id="course-publish" style="display:none"><i class="icon publish"></i><br><span>Publish</span></a>
+	<a class="user-roles" href="#" data-original-title="Save" onclick="saveCourse('D');" id="course-draft" style="display:none"><i class="icon save-as-draft"></i><br><span> Save as draft</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Cancel" id="course-cancel" style="display:none"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="blank_course_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+</div>
+
+<!--added-process-side-icons-->
+<div class="user-action-wrap" id="process_action_menu" style="display:none;" >
+		<!--<a class="user-roles" href="javascript:void(0)" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Save As Draft</span></a>-->
+		<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+		<a class="user-roles draft-process inactiveLink" href="javascript:void(0)" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Save As Draft</span></a>
+		<a class="user-roles publish-process inactiveLink" href="javascript:void(0)" data-original-title="Publish"><i class="icon publish"></i><br><span>Publish</span></a>
+		<a class="user-roles instance-view inactiveLink" href="javascript:void(0)" data-original-title="Instance View"><i class="icon view"></i><br><span>Instance View</span></a>
+		<a class="user-roles cancel-process inactiveLink" href="javascript:void(0)" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="accounts_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Account</span></a>
+</div>
+
+<div class="user-action-wrap" id="association_action_menu" style="display:none;" >
+		<a class="user-roles inactive show" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+		<a style="display:none;" class="user-roles edit-association" onclick="editAssociationProperty();" data-original-title="Edit"><i class="icon save-as-draft"></i><br><span>Edit</span></a>
+		<a style="display:none;" class="user-roles draft-association" onclick="saveAssociationProcessProperty('D');" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Save As Draft</span></a>
+		<a style="display:none;" class="user-roles publish-association" onclick="saveAssociationProcessProperty('P');" data-original-title="Publish"><i class="icon publish"></i><br><span>Publish</span></a>
+		<a style="display:none;" class="user-roles instance-view" onclick="instanceView();" data-original-title="Instance View"><i class="icon view"></i><br><span>Instance View</span></a>
+		<a style="display:none;" class="user-roles cancel-association" onclick="showDefaultView()" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="workflow_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+    <a style="display:none;" class="user-roles draft-workflow" onclick="saveWorkflowProperty('D');" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Save As Draft</span></a>
+    <a style="display:none;" class="user-roles publish-workflow" onclick="saveWorkflowProperty('P');" data-original-title="Publish"><i class="icon publish"></i><br><span>Publish</span></a>
+    <a style="display:none;" class="user-roles cancel-workflow" onclick="showDefaultView()" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="dialogue_action_menu" style="display:none;" >
+		<a class="user-roles" href="javascript:void(0)" data-original-title="Save"><i class="icon save-as-draft"></i><br><span>Dialogue</span></a>
+</div>
+
+<div class="user-action-wrap" id="actors_action_menu" style="display:none;" >
+		<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+		<a class="user-roles editActorFrom" href="javascript:void(0)" data-original-title="Save"><i class="icon edit" data-original-title="" title=""></i><br><span> Edit</span></a>
+		<a class="user-roles viewActorFrom" href="javascript:void(0)" data-original-title="Cancel"><i class="icon publish"></i><br><span>Publish</span></a>
+		<a class="user-roles viewActorFrom" href="javascript:void(0)" data-original-title="Save"><i class="icon save-as-draft"></i><br><span> Save as draft</span></a>
+		<a class="user-roles viewActorFrom" href="javascript:void(0)" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="document_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+	<a class="user-roles addDocument" id="add-document-open"><i class="icon add-doc"></i><br><span>Add Document</span></a>
+	<a class="user-roles save-document-data" id="save-document-data" onclick="saveDocument('D');" data-original-title="Save"><i class="icon save document-save"></i><br><span> Save as draft</span></a>
+	<a class="user-roles save-document-data" onclick="saveDocument('P');" data-original-title="Save"><i class="icon publish document-save"></i><br><span> Publish</span></a>
+	<a class="user-roles doPrint"><i class="icon print"></i><br><span>Print</span></a>
+	<a class="user-roles" onclick="closeDocument();" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Close</span></a>
+</div>
+
+<div class="user-action-wrap" id="folderList_action_menu" style="display:none;" >
+		<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+		<a class="user-roles addDocument" id="add-document"><i class="icon add-doc"></i><br><span>Add Document</span></a>
+		<a class="user-roles addSubFolder"><i class="icon add-folder"></i><br><span>Add Folder</span></a>
+		<a class="user-roles deleteFolderDocument" id="delete-folder-document" > <i class="icon delete"></i><br><span>Delete</span></a>
+</div>
+
+<div class="user-action-wrap" id="canvas_action_menu" style="display:none;" >
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+	<a class="user-roles" id="saveCanvasTable"><i class="icon save"></i><br><span>Save</span></a>
+	<a class="user-roles" id="printCanvasTableMode"><i class="icon print"></i><br><span>Print</span></a>
+	<a class="user-roles" id="addNewPageCanvasTable"><i class="icon add-folder"></i><br><span>Add New Page</span></a>
+	<a class="user-roles" id="openMapFlyout"><i class="icon icon_relationship"></i><br><span>Map Field</span></a>
+</div>
+
+
+
+<div class="user-action-wrap" id="version_action_menu" style="display:none;" >
+</div>
+
+<div class="user-action-wrap" id="sub_class_action_menu" style="display:none;">
+		<!-- start add child class right menu -->
+		<a class="tooltip-item user-roles sub_class_action_menu1" onclick="saveChildClass()" data-original-title="Select">
+			<i class="icon tick"></i><br>
+			<span>Done</span>
+		</a>
+		<a class="tooltip-item user-roles sub_class_action_menu1 customPopUpClose" data-original-title="Cancel">
+			<i class="icon cancel"></i><br>
+			<span>Close</span>
+		</a>
+		<!-- end add child class right menu -->
+</div>
+
+<div class="user-action-wrap" id="new_course_action_menu" style="display:none;" >
+	<a class="user-roles" href="#" data-original-title="Cancel" onclick="saveCourse('P');" id="add-course-publish"><i class="icon publish"></i><br><span>Publish</span></a>
+	<a class="user-roles" href="#" data-original-title="Save" onclick="saveCourse('D');" id="add-course-draft"><i class="icon save-as-draft"></i><br><span> Save as draft</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Cancel" id="add-course-cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="calendar_action_menu" style="display:none;" >
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Save"><i class="icon save"></i><br><span>Save</span></a>
+	<a class="user-roles" href="javascript:void(0)" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="email_action_menu" style="display:none;" >
+        <a class="user-roles viewActorFrom" href="javascript:void(0)" data-original-title="Reply"><i class="icon publish"></i><br><span>Reply</span></a>
+		<a class="user-roles viewEmailFrom" href="javascript:void(0)" data-original-title="Forward"><i class="icon publish"></i><br><span>Forward</span></a>
+		<a class="user-roles viewEmailFrom" href="javascript:void(0)" data-original-title="Cancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="map_action_menu" style="display:none;">
+    <a class="user-roles closeMapFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div class="user-action-wrap" id="organization_action_menu" style="display:none;">
+	<a class="user-roles inactive" href="javascript:void(0)" data-original-title="Dialogue"  id="dialogue_role_group"><i class="icon dialogue-chat"></i><br><span>Dialogue</span></a>
+
+	<a class="user-roles hide" href="javascript:void(0)" data-original-title="Edit Organization" id="button-edit-organization" onclick="addOrganizationRolesAndGroupsFromUser('edit_organizations');"><i class="icon save"></i><br><span>Edit</span></a>
+	<a class="user-roles hide Save-icon" href="javascript:void(0)" data-original-title="Add Roles" id="button-add-roles" onclick="addOrganizationRolesAndGroupsFromUser('roles');"><i class="icon publish"></i><br><span>Add Roles</span></a>
+
+    <a class="user-roles hide" href="javascript:void(0)" data-original-title="Save Organization" id="button-save-organization" onclick="saveOrganizationRoleAndGroup('organizations');"><i class="icon save"></i><br><span>Save</span></a>
+
+    <a class="user-roles hide" href="javascript:void(0)" data-original-title="Save Roles" id="button-roles-organization" onclick="saveOrganizationRoleAndGroup('roles');"><i class="icon save"></i><br><span>Save Roles</span></a>
+
+    <a class="user-roles hide" href="javascript:void(0)" data-original-title="Save Role Groups" id="button-role-groups-organization" onclick="saveOrganizationRoleAndGroup('groups');"><i class="icon save"></i><br><span>Save Role Groups</span></a>
+
+    <a class="user-roles hide" href="javascript:void(0)" data-original-title="Save Users" id="button-save-users-with-group" onclick="saveOrganizationRoleAndGroup('users');"><i class="icon save"></i><br><span>Save User</span></a>
+
+    <a class="user-roles" href="javascript:void(0)" data-original-title="Cancel" id="button-cancel-groups-organization" onclick="cancelOrganization();"><i class="icon cancel"></i><br><span>Cancel</span></a>
+</div>
+
+<div>
+	<a id="helpNoderAnchor" href="javascript:void(0)" data-toggle="modal" data-target="#" data-direction="right" class="fixed-btm-icon strat_click1 helpnodeFlyout" strat-id="not_ajax" data-original-title="Help"><i class="icon help"></i><br><span>Help</span></a>
+</div>
+
+
+<?php /* ?>
+$('.user-action-wrap').hide();
+$('#blank_course_action_menu').show();
+<?php */ ?>

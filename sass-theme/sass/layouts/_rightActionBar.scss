@@ -1,0 +1,19 @@
+.sass-lang {
+	.right-action-bar{
+		max-width: 50px;
+		justify-content: $center;
+		position: relative;
+		ul{
+			width: $fullWidth;
+			li{
+				@include flex;
+				height: 50px;
+				width: $fullWidth;
+				&:hover{
+					@extend .pointer;
+					background: $bg-gray;
+				}	
+			}
+		}
+	}
+}

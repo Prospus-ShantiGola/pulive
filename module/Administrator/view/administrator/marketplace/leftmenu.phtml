@@ -1,0 +1,330 @@
+<?php
+    /*function compress_html($compress)
+    {
+        return str_replace(array("\n","\r","\t"),'',$compress);
+        //$i = array('/>[^S ]+/s','/[^S ]+</s','/(s)+/s');$ii = array('>','<','1');return preg_replace($i, $ii, $compress);
+    }
+    //  start output buffer
+    ob_start('compress_html');*/
+
+    $firstHit  = 0;
+    $menuIndex = 0;
+    // Amit Malakar - Code to restrict "Classes" to only selected users
+    if(!$this->show_class_menu) {
+        $menuArray = $this->menuArray; unset($menuArray[$this->classes_menu_id]); unset($menuArray[ORGANIZATION_MENU_ID]); $this->menuArray = $menuArray;
+    }
+    $leftMenuResult = array();
+
+    foreach ($this->menuArray as $key => $menuItem) {
+        $keyWithSpace = " " .(string)$key;
+        if ($menuItem['menu_id'] == $this->course_menu_id) {
+            continue;
+        }
+        $con = "";
+        if (strtolower($menuItem['menu']) == 'process') {
+            $con = 'grid';
+        } else {
+            $con = strtolower($menuItem['menu']);
+        }
+
+        if ($menuItem['menu_id'] == MENU_ID) {
+            $aIclass = ' inactive';
+        } elseif (empty($this->userLoggedIn) && ($menuItem['menu_id'] == INBOX_MENU_ID || $menuItem['menu_id'] == ACCOUNT_MENU_ID || $menuItem['menu_id'] == RESOURSE_MENU_ID || $menuItem['menu_id'] == CALANDER_MENU_ID)) {
+            $aIclass = ' inactive inactive_allow_click';
+        } else {
+            $aIclass = '';
+        }
+
+         if(empty($this->userLoggedIn) && ($menuItem['menu_id'] == PRODUCT_MENU_ID || $menuItem['menu_id'] == DATA_MENU_ID || $menuItem['menu_id'] == REPORT_MENU_ID)) {
+             $aIclass = ' inactive';
+         }
+
+        if(isset($_SESSION[PREFIX . 'user_info']['node_id']))
+        {
+            if ($menuItem['menu_id'] == MENU_ID || $menuItem['menu_id'] == PRODUCT_MENU_ID || $menuItem['menu_id'] == DATA_MENU_ID)
+            {
+                $aIclass = '';
+            }
+            if(intval($menuItem['is_disabled']))
+            {
+                $aIclass = ' inactive';
+            }
+
+            if (($menuItem['menu_id'] == MENU_ID || $menuItem['menu_id'] == PRODUCT_MENU_ID || $menuItem['menu_id'] == DATA_MENU_ID) && $_SESSION[PREFIX . 'user_info']['user_type'] == 'guest')
+            {
+                $aIclass = ' inactive';
+            }
+        }
+     ?>
+
+    <?php if($menuItem['menu_id'] == INBOX_MENU_ID || $menuItem['menu_id'] == STORE_MENU_ID || $menuItem['menu_id'] == ORGANIZATION_MENU_ID || $menuItem['menu_id'] == MENU_ID || $menuItem['menu_id'] == PRODUCT_MENU_ID || $menuItem['menu_id'] == DATA_MENU_ID) { ?>
+        <li >
+            <span class="dashboards">
+                <div class="icon-wrap">
+                    <a href="<?php echo BASE_URL.$menuItem['data_href']; ?>" >
+                        <i class="icon-sm <?php echo $menuItem['icon_class']; ?>"></i>
+                        <span><?php  echo $parentMenu = $menuItem['menu'];  ?></span>
+                    </a>
+                </div>
+            </span>
+    <?php } else { ?>
+        <li class="first-level-menu active <?php if((strtolower($menuItem['menu']) == strtolower($this->actionName)) || ($this->actionName == '' && strtolower($menuItem['menu']) == 'store')) {?>_active<?php }?><?php if($con == 'actors'){?>fixed-actor-icon<?php }?><?php if($con == 'calendar'){?>fixed-calender-icon<?php }?><?php if(strtolower($menuItem['menu'])=='resources'){?>fixed-search-icon<?php } echo $aIclass;?>" id="<?php echo $menuItem['menu_id']."_".$con; ?>" >
+            <span class="dashboards">
+                <div class="icon-wrap">
+                    <a href="javascript:void(0);" class="strat_click <?php echo $con."_top_cl"; ?>" data-href="<?php echo BASE_URL.$menuItem['data_href']; ?>" >
+                        <i class="icon-sm <?php echo $menuItem['icon_class']; ?>"></i>
+                        <span><?php  echo $parentMenu = $menuItem['menu'];  ?></span>
+                    </a>
+                </div>
+                <a class="inner-icon strat_click" href="#" ><span><?php echo $menuItem['menu']; ?></span></a>
+                <div class="menu-wrapper <?php if($menuItem['menu'] == "Inbox" || $menuItem['menu'] == "Store") { ?>fly-menu-wrapper<?php } ?>" <?php if($menuItem['menu'] == "Inbox") { ?> id="nav" <?php } ?> <?php if($menuItem['menu'] == "Store") { ?> id="marketplace-nav" <?php } ?> style="display:none;">
+                    <?php if($menuItem['menu'] == "Inbox" || $menuItem['menu'] == "Store") { ?><div class="fly-menu-detail"><?php } ?>
+                        <div class="nano">
+                            <div class="nano-content">
+                                <ul class="menu-items">
+                                    <!-- On hover text related heading  -->
+                                    <li class="selectlist">
+                                        <div class="search-item-wrap">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search" id="<?php echo strtolower($menuItem['menu']); ?>_search_id" name="<?php echo strtolower($menuItem['menu']); ?>_search_id">
+                                                <a href="#" class="input-group-addon leftbar-search-js"><i class="icon-sm search leftbar-search-js"></i></a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <?php if(count($menuItem['child']) > 0) { ?>
+                                    <li class="selectlist">
+                                        <div class="scroll-wrap">
+                                            <div class="panel-group accordion-wrap" role="tablist" aria-multiselectable="true" id="sidebar-accordion-<?php echo $menuItem['menu_id']; ?>">
+                                                <?php $slideIndex = 1; foreach($menuItem['child'] as $key1 => $menuItem1) {
+                                                    if($parentMenu=='Course' && strtolower($menuItem1['menu'])=='filter') { $menuItem1hide = " hide"; }
+                                                    else if($parentMenu=='Course' && strtolower($menuItem1['menu'])=='view') { $menuItem1hide = " hide"; }
+                                                    $leftMenuResult[$key]['child'][$key1]['menu_id']    = $menuItem1['menu_id'];
+                                                    $leftMenuResult[$key]['child'][$key1]['menu']       = $menuItem1['menu'];
+                                                    $leftMenuResult[$key]['child'][$key1]['is_display'] = $menuItem1['is_display'];
+                                                    $leftMenuResult[$key]['child'][$key1]['icon_class'] = $menuItem1['icon_class'];
+                                                    $leftMenuResult[$key]['child'][$key1]['menu_type']  = $menuItem1['menu_type'];
+                                                    $leftMenuResult[$key]['child'][$key1]['is_dual']    = $menuItem1['is_dual'];
+                                                    $leftMenuResult[$key]['child'][$key1]['hide']       = $menuItem1hide;
+                                                    ?>
+                                                <div class="panel panel-default<?php if($menuItem1hide) { echo $menuItem1hide.' course-filter-view ';}; if($menuItem1['menu'] == 'Action' || $menuItem1['menu'] == 'Actions') { ?> actionMenu<?php } ?>" <?php if(intval($menuItem1['is_display']) == 0) { ?>style="display:none;"<?php } ?>>
+                                                    <h4 class="item-title  collapse" data-toggle="collapse" data-parent="#sidebar-accordion-<?php echo $menuItem1['menu_id']; ?>" href="#sub_nav_<?php echo $menuItem1['menu_id']; ?>" aria-expanded="true" aria-controls="sub_nav_<?php echo $menuItem1['menu_id']; ?>">
+                                                    <span class="icon-sm left  <?php echo $menuItem1['icon_class']; ?>"></span><?php echo $menuItem1['menu']; ?><i class="fa fa-angle-down right"></i>
+                                                   </h4>
+                                                    <?php if(count($menuItem1['child']) > 0) { ?>
+                                                    <div id="sub_nav_<?php echo $menuItem1['menu_id']; ?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="">
+                                                        <div class="panel-body">
+                                                            <ul class="item-list filter-list-wrap">
+                                                                <?php foreach($menuItem1['child'] as $key2 => $menuItem2) {
+                                                                        if(count($menuItem2['child']) > 0) {
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['menu_id']    = $menuItem2['menu_id'];
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['menu']       = $menuItem2['menu'];
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['is_display'] = $menuItem2['is_display'];
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['icon_class'] = $menuItem2['icon_class'];
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['menu_type']  = $menuItem2['menu_type'];
+                                                                            $leftMenuResult[$key]['child'][$key1]['child'][$key2]['is_dual']    = $menuItem2['is_dual'];
+                                                                            ?>
+                                                                            <li class="my-profile <?php echo preg_replace('/\s+/', '', $menuItem2['menu']).'_li'; ?>" <?php if(intval($menuItem2['is_display']) == 0) { ?>style="display:none;"<?php } ?> >
+                                                                                <a>
+                                                                                    <b><?php echo $menuItem2['menu']; ?></b>
+                                                                                </a>
+                                                                                <ul class="item-list filter-list-wrap" style="padding-left:10px;" >
+                                                                                    <?php foreach($menuItem2['child'] as $indexKey => $menuVal) {
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['menu_id']    = $menuVal['menu_id'];
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['menu']       = $menuVal['menu'];
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['is_display'] = $menuVal['is_display'];
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['icon_class'] = $menuVal['icon_class'];
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['menu_type']  = $menuVal['menu_type'];
+                                                                                        $leftMenuResult[$key]['child'][$key1]['child'][$key2]['child'][$indexKey]['is_dual']    = $menuVal['is_dual'];
+                                                                                        ?>
+                                                                                        <li class="my-profile <?php echo preg_replace('/\s+/', '', $menuVal['menu']).'_li'; ?>" <?php if(intval($menuVal['is_display']) == 0) { ?>style="display:none;"<?php } ?> >
+                                                                                            <a style="cursor:pointer;" onclick="getCenterContent(this,<?php echo $menuVal['menu_id']; ?>,'<?php echo trim(preg_replace('/\s+/', '', $menuVal['menu'])); ?>')" data-id="<?php echo $menuVal['menu_id']."_".$menuVal['menu']; ?>" class="strat_click" >
+                                                                                                <?php echo $menuVal['menu']; ?>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    <?php } ?>
+                                                                                </ul>
+                                                                            </li>
+                                                                        <?php } else {
+                                                                            if($parentMenu=='Course' && strtolower($menuItem2['menu'])=='new course') { $menuItem2Id = "new-course-flyout"; }
+                                                                            else if($parentMenu=='Course' && strtolower($menuItem2['menu'])=='open course') { $menuItem2Id = "open-course-flyout"; }
+                                                                            else if($parentMenu=='Course' && strtolower($menuItem2['menu'])=='course path number') { $menuItem2Id = "course-path-number"; }
+                                                                            else if($parentMenu=='Resources' && strtolower($menuItem2['menu'])=='open document') { $menuItem2Id = "open-course-flyout"; }
+                                                                            else if(trim(strtolower($menuItem2['menu'])) == 'my courses' || trim(strtolower($menuItem2['menu'])) == 'store' || trim(strtolower($menuItem2['menu'])) == 'add group') { $menuItem2Id = "notCallFunction"; }
+                                                                        ?>
+                                                                            <li <?php if($menuItem2Id!='') echo 'id="'.$menuItem2Id.'"'; ?> class="my-profile <?php echo preg_replace('/\s+/', '', $menuItem2['menu']).'_li'; ?><?php if(intval($menuItem2['is_dual']) == 1) { ?> dual-link<?php } ?><?php if(intval($menuItem2['menu_id']) == 61 || intval($menuItem2['menu_id']) == 62) { ?> disabled<?php } ?><?php if($_SESSION[PREFIX . 'user_info']['node_id'] == "" && trim(strtolower($menuItem2['menu'])) == 'my courses') { ?> inactive<?php } ?><?php if(trim(strtolower($menuItem2['menu'])) == 'store') { ?> active<?php } ?>" <?php if(intval($menuItem2['is_display']) == 0) { ?>style="display:none;"<?php } ?> >
+
+                                                                                <a style="cursor:pointer;" <?php if($menuItem2Id!='course-path-number' &&  $menuItem2Id!='notCallFunction') {?>onclick="getCenterContent(this,<?php echo $menuItem2['menu_id']; ?>,'<?php echo trim(preg_replace('/\s+/', '', $menuItem2['menu'])); ?>')" <?php } ?><?php if(trim(strtolower($menuItem2['menu'])) == 'add group') { ?>onclick="addOrganizationRolesAndGroupsFromUser('organizations')"<?php } ?> data-id="<?php echo $menuItem2['menu_id']."_".$menuItem2['menu']; ?>" data-original-title="<?php echo $menuItem2['menu']; ?>" <?php if($menuItem2['menu'] == 'listing') { ?>class="first_hit strat_click"<?php } else { ?>class="strat_click"<?php } ?> >
+                                                                                    <?php echo $menuItem2['menu']; ?>
+                                                                                    <?php if($menuItem2Id=='course-path-number') { ?>
+                                                                                        <i class="icon-sm view right" data-original-title="" title=""></i>
+                                                                                    <?php } else if($menuItem2Id != '' && $menuItem2Id != 'notCallFunction') { ?>
+                                                                                        <i class="fa fa-angle-right right" data-original-title="" title=""></i>
+                                                                                    <?php } ?>
+                                                                                </a>
+                                                                                <?php $leftMenuResult[$key]['child'][$key1]['child'][$key2]['is_dual']       = $menuItem2['is_dual'];
+                                                                                    $leftMenuResult[$key]['child'][$key1]['child'][$key2]['dual_icon_class'] = $menuItem2['dual_icon_class'];
+                                                                                    if(intval($menuItem2['is_dual']) == 1) { ?>
+                                                                                <a class="dual-link-view<?php if($menuItem2['menu'] == 'New course') { ?> LeftFlyoutOpen<?php } ?>" <?php if($menuItem2['menu'] == 'New course') { ?>id="courseTemplateFlyout" onclick="getClassesOfCourseBuilder()"<?php } ?>><i class="icon-sm <?php echo $menuItem2['dual_icon_class']; ?>"></i></a>
+                                                                                <?php } ?>
+                                                                            </li>
+                                                                        <?php $firstHit = intval($firstHit)+1; $menuItem2Id=''; } ?>
+                                                                <?php } ?>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <?php } ?>
+                                                </div>
+                                                <?php $slideIndex = intval($slideIndex)+1; $menuItem1hide=''; } ?>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <?php } ?>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php if($menuItem['menu'] == "Inbox" || $menuItem['menu'] == "Store") { ?></div><?php } ?>
+                    <?php if($menuItem['menu'] == "Inbox") { ?>
+                        <div class="fly-menu-actionbar">
+                          <ul>
+                            <li class="menu-flyout-close" data-flyout="nav">
+                            <a href="javascript:void(0);">
+                                <i class="icon-sm close_icon"></i>
+                                <span>Close</span>
+                            </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="menu-flyout-overlay"></div>
+                    <?php } ?>
+                    <?php if($menuItem['menu'] == "Store") { ?>
+                        <div class="fly-menu-actionbar">
+                          <ul>
+                            <li class="menu-flyout-close" data-flyout="marketplace-nav">
+                            <a href="javascript:void(0);">
+                                <i class="icon-sm close_icon"></i>
+                                <span>Close</span>
+                            </a>
+                            </li>
+                          </ul>
+                        </div>
+                        <div class="menu-flyout-overlay"></div>
+                    <?php } ?>
+                </div>
+                <?php if($menuItem['menu'] == "Inbox" || $this->actionName == 'Inbox') { ?>
+                    <div class="shortcut-icon">
+                        <ul>
+                            <li class="menu-flyout-open" data-flyout="nav"><a href="javascript:void(0);"><i class="icon-sm list"></i></a></li>
+                            <li class="menu-flyout-open" data-flyout="nav"><a href="javascript:void(0);" onclick="focusSearchInput()"><i class="icon-sm search"></i></a></li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="getCenterContent(this,59,'Newcourse')" onkeyup=""class="Newcourse_li" data-id="59_New course" data-original-title="New course" class="strat_click">
+                                    <i class="icon-sm plus"></i>
+                                </a>
+                            </li>
+                            <li><a href="javascript:void(0);" onclick="openLeftFlyout()"><i class="icon-sm template"></i></a></li>
+                            <li class="active">
+                                <a href="javascript:void(0);" onclick="clickHandler(this,56,'Bycourse')" data-id="56_By course" data-original-title="By course"
+                                class="strat_click">
+                                    <i class="icon-sm course"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="clickHandler(this,57,'Bydialogue')" data-id="57_By dialogue" data-original-title="By dialogue" class="strat_click">
+                                    <i class="icon-sm dialogue"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" onclick="clickHandler(this,58,'Byactor')" data-id="58_By actor" data-original-title="By actor"
+                                class="strat_click">
+                                    <i class="icon-sm actor"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                <?php } ?>
+                <?php if($menuItem['menu'] == "Store") { ?>
+                    <div class="shortcut-icon">
+                        <ul>
+                            <li class="menu-flyout-open" data-flyout="marketplace-nav"><a href="javascript:void(0);"><i class="icon-sm list"></i></a></li>
+                            <li class="menu-flyout-open" data-flyout="marketplace-nav"><a href="javascript:void(0);" onclick="focusSearchInput()"><i class="icon-sm search"></i></a></li>
+                            <li class="<?php if($_SESSION[PREFIX . 'user_info']['node_id'] == "") { ?>inactive<?php } else {?> active<?php } ?>" data-flyout="" data-role="after_login"><a href="javascript:void(0);" onclick="toggleSubscribedApp(this, 0, {is_shortcut_menu: 1, originalTitle: 'Store'})" data-original-title="Store"><i class="icon-sm icon_marketplace"></i></a></li>
+                            <li class="<?php if($_SESSION[PREFIX . 'user_info']['node_id'] == "") { ?>inactive<?php } ?>" data-flyout="" data-role="after_login"><a href="javascript:void(0);" onclick="toggleSubscribedApp(this, 1, {is_shortcut_menu: 1, originalTitle: 'My Courses'})" data-original-title="My Courses"><i class="icon-sm course"></i></a></li>
+                        </ul>
+                    </div>
+                <?php } ?>
+            </span>
+    <?php } ?>
+ 
+
+	</li>
+<?php $menuIndex = intval($menuIndex) + 1; } ?>
+<?php echo $this->partial('partial/course-flyout.phtml'); ?>
+<?php
+    // end output buffer and echo the page content
+    //ob_end_flush(); ?>
+<script type="text/javascript">
+    leftMenuIconHover();
+    //setTimeout('$("#'+marketMenuId+'_'+marketMenuName.toLowerCase()+' .icon-wrap .strat_click").click();',1000);
+    function clickHandler(clicked_element, id, title) {
+        getCenterContent(clicked_element, id, title);
+    }
+    function highlightActionMenuAccordingly(dataOriginalTitle) {
+        var actionMenuWrapper = $('.shortcut-icon');//$('.first-level-menu.active');
+
+        var actionMenu = actionMenuWrapper.find('a[data-original-title="' +dataOriginalTitle+ '"]');
+        var activeMenuClass = 'active';
+        actionMenu.closest('ul').find('li').removeClass(activeMenuClass);
+        actionMenu.closest('li').addClass(activeMenuClass);
+
+    }
+    function isActionMenuFlyoutOpen(element) {
+        if(element) {
+            return (element.hasClass('in'));
+        }
+        return ($("#nav").hasClass('in'));
+    }
+    function toggleSubscribedApp(clicked_element, state, params) {
+
+        if(typeof setUserID == 'undefined' || setUserID == '') {
+            return false;
+        }
+        var anchor = $(clicked_element);
+        anchor.closest('ul').find('.active').removeClass('active');
+        anchor.parent().addClass('active');
+        if(!params.ignore_click) {
+            $("#show_subscribed_app").trigger('click', {state: state}); // when clicked, show only those apps that user has subscribed
+        }
+        var otherMenuContainer = $('#marketplace-nav');
+        var targetAnchor;
+        if(params.is_shortcut_menu) { // if called from short-cut menu then update menu selection in flyout section
+            targetAnchor = otherMenuContainer.find('a[data-original-title="' + params.originalTitle + '"]');
+        } else {
+            targetAnchor = otherMenuContainer.parent().find('a[data-original-title="' + params.originalTitle + '"]');
+        }
+        targetAnchor.closest('ul').find('.active').removeClass('active');
+        targetAnchor.closest('li').addClass('active');
+    }
+    function openLeftFlyout() {
+        $('.LeftFlyoutOpen').click();
+    }
+    function focusSearchInput() {
+        $('#inbox_search_id').focus();
+    }
+    function setPositionOfCourseTemplateFlyout() {
+
+    }
+    function adjustMenudashboardChildWidth() {
+        var menudashboard = $("#menudashboard");
+        var menudashboardWidth = menudashboard.outerWidth();
+        var listingWrapper = menudashboard.find('.listing-wrapper');
+        var displayWrapper = menudashboard.find('.display-wrapper');
+        // debugger;
+        if( (listingWrapper.outerWidth() + displayWrapper.outerWidth() ) == menudashboardWidth) {
+            return true;
+        }
+        listingWrapper.outerWidth(menudashboardWidth / 2);
+        displayWrapper.outerWidth(menudashboardWidth / 2);
+    }
+    if(typeof leftMenujs == 'function'){
+        leftMenujs();
+    }
+</script>

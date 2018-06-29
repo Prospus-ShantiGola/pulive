@@ -1,0 +1,55 @@
+<?php
+$apps_list = json_encode($this->apps_list_array);
+$load_time = json_encode($this->loadtime);
+?>
+
+<script type="text/javascript">
+    hasPageLoaded = false;
+    window.__PRELOADED_STATE__ = {
+        'chatType': '',
+        'chatItems': JSON.stringify([]),
+        'courseList': JSON.stringify({}),
+        'view_type': '',
+        'filter': JSON.stringify({}),
+        'page_name': 'marketplace',
+        'app_list': JSON.stringify(<?php echo $apps_list?>),
+        'header_notification' : JSON.stringify(<?php echo json_encode(array(), JSON_FORCE_OBJECT) ?>),
+        'header_notification_count': <?php echo $this->notificationCount ?>,
+        'loadMore': <?php echo ( ($this->notificationCount) > FLASH_NOTIFICATION_COUNT ) ? 1 : 0 ?>,
+        'notification_socket_count': 0,
+        'active_app': '',
+        'activeFilter': '',
+    };
+
+    $(document).ready(function () {
+        console.log(<?php echo $load_time; ?>);
+        $('.list-control .carousel-control.left').click(function () {
+            $('#review-carousel').carousel('prev');
+        });
+
+        $('.list-control .carousel-control.right').click(function () {
+            $('#review-carousel').carousel('next');
+        });
+    })
+</script>
+<?php
+    if(SOCKET_HOST_NAME === 'http://localhost/pu/') {// || SOCKET_HOST_NAME == 'http://www.prospus.com/dev/'
+        ?>
+            <script>
+            var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+            script.src = "<?php echo BASE_URL . 'public/js/bundle.js'; ?>";
+            head.appendChild(script);
+            </script>           
+        <?php
+    } else {
+        ?>
+            <script>
+            var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+            script.src = "<?php echo PU_CDN_URL . 'public/js/bundle.js'; ?>";
+            head.appendChild(script);
+            </script> 
+        <?php
+    }
+?>

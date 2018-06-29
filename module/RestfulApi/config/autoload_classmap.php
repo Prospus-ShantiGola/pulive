@@ -1,0 +1,20 @@
+<?php
+return array(
+    'RestfulApi\Module'                                     => __DIR__ . '/../Module.php',
+    'RestfulApi\MemorySharedManager'                        => __DIR__ . '/../src/RestfulApi/MemorySharedManager.php',
+    'RestfulApi\StoragePluginManager'                       => __DIR__ . '/../src/RestfulApi/StoragePluginManager.php',
+    'RestfulApi\Storage\Apc'                                => __DIR__ . '/../src/RestfulApi/Storage/Apc.php',
+    'RestfulApi\Storage\Db'                                 => __DIR__ . '/../src/RestfulApi/Storage/Db.php',
+    'RestfulApi\Storage\File'                               => __DIR__ . '/../src/RestfulApi/Storage/File.php',
+    'RestfulApi\Storage\Memcached'                          => __DIR__ . '/../src/RestfulApi/Storage/Memcached.php',
+    'RestfulApi\Storage\Memory'                             => __DIR__ . '/../src/RestfulApi/Storage/Memory.php',
+    'RestfulApi\Storage\Segment'                            => __DIR__ . '/../src/RestfulApi/Storage/Segment.php',
+    'RestfulApi\Storage\Session'                            => __DIR__ . '/../src/RestfulApi/Storage/Session.php',
+    'RestfulApi\Storage\ZendShmCache'                       => __DIR__ . '/../src/RestfulApi/Storage/ZendShmCache.php',
+    'RestfulApi\Storage\ZendDiskCache'                      => __DIR__ . '/../src/RestfulApi/Storage/ZendDiskCache.php',
+    'RestfulApi\Storage\StorageInterface'                   => __DIR__ . '/../src/RestfulApi/Storage/StorageInterface.php',
+    'RestfulApi\Storage\CapacityStorageInterface'           => __DIR__ . '/../src/RestfulApi/Storage/CapacityStorageInterface.php',
+    'RestfulApi\Storage\Exception\ExceptionInterface'       => __DIR__ . '/../src/RestfulApi/Storage/Exception/ExceptionInterface.php',
+    'RestfulApi\Storage\Exception\RuntimeException'         => __DIR__ . '/../src/RestfulApi/Storage/Exception/RuntimeException.php',
+    'RestfulApi\Controller\Plugin\SimpleMemoryShared'       => __DIR__ . '/../src/RestfulApi/Controller/Plugin/SimpleMemoryShared.php',
+);

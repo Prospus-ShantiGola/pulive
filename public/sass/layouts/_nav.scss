@@ -1,0 +1,247 @@
+    $leftActionBg           :     #334259;
+$leftActionDetailBg     :     #242f43;
+
+$navigationColor        :     #99cbcc;
+$navigationHoverBgColor :     #131c2d;
+
+
+.sass-lang {
+    .left-action-bar{
+      max-width: 91px;
+      position: $relative;
+        .input-group-btn .btn {
+            height: 34px;
+        }
+        .panel-body{
+            ul{
+                li{
+                    display: $block;
+                }
+            }
+        }
+    }
+}
+
+.sass-lang .left-action-bar > ul{
+    width: 50px;
+    background:$leftActionBg; 
+    position: relative;
+    z-index: 6;
+}
+.sass-lang .left-action-bar > ul > li{   
+    width: $fullWidth;
+    float: $left;
+}
+.sass-lang .left-action-bar > ul > li > a{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top:8px;
+    line-height: 12px;
+}
+.sass-lang .left-action-bar > ul > li > a:hover,
+.sass-lang .left-action-bar > ul > li.active > a{
+    background: #242f43
+}
+span.menu-title {
+    width: $fullWidth;
+    display: $block;
+    color:$navigationColor;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0 2px;
+    text-align: center;
+    width: 100%;
+    text-overflow: ellipsis;
+    font-size: 10px;
+    font-family: 'Open Sans',sans-serif;
+    text-transform: capitalize;
+}
+.sass-lang {
+    ul.left-action-detail-pane {
+        float: $left;
+        width: 205px;
+        height: $fullHeight;
+        overflow: auto;
+        background: $leftActionDetailBg;
+        li{
+            width: $fullWidth;
+
+            .panel-title{
+                color:$navigationColor; 
+                font-size: 12px;
+                text-transform: uppercase;
+                margin-bottom: 0px;
+            }
+            .panel-heading{
+                padding:5px 10px 0 10px;
+                border:0px !important;
+            }
+            .panel-body{
+                border:0px !important; 
+            }
+            .input-group{
+                padding:10px 10px 0 10px;
+            }
+            ul {
+                li{                
+                    a{
+                        padding:5px 10px 5px 41px;
+                        color:$navigationColor;
+                        width: $fullWidth;
+                        float: $left; 
+                        &:hover{
+                            color:$navigationColor;
+                        }
+                        &.active{
+                            color: $whiteColor;
+                            background:$navigationHoverBgColor;  
+                        } 
+                    }
+
+                &:hover,
+                &.active{                    
+                    a{                    
+                        color: $whiteColor;
+                        background:$navigationHoverBgColor;  
+                         
+                    }           
+                }
+                    
+                } 
+            }
+            a{
+                &:hover,
+                &:focus{
+                    color: $navigationColor;
+                }
+            }
+        }
+    }
+}
+
+.sass-lang {
+    .left-action-bar{
+        &.fixed-menu{
+                max-width: 300px;
+                .menu-flyout{
+                    box-shadow: none !important ;
+                }
+                .shortcut-icon-wrap{
+                    display: none
+                }
+                .pin{
+                    background-position: -359px -319px;
+                }
+        }
+        .main-menu-wrap{
+            position: $relative; 
+            .panel-group .panel{
+                width: 100%;
+                border: 0px;
+                box-shadow: none;
+                background: transparent;
+            }
+
+            .shortcut-icon-wrap{
+                width: 40px;
+                height: $fullHeight;
+                background: $leftActionDetailBg;
+                padding-top:10px;
+                li{
+                    width: $fullWidth;
+                    @include flex;
+                    padding:6px 0;
+                }
+
+            }
+            .menu-flyout{
+                position: $absolute;
+                top: $zero;
+                z-index: 5;
+                height: $fullHeight;
+                left: -300px;
+                width: 250px;
+                box-shadow: 10px 0 20px rgba(36, 47, 67, 0.45);
+                @include transition(.5s);
+                &.in{
+                    left:0px;
+                }
+            }
+            .menu-actionbar{
+                background: $leftActionDetailBg;
+                width: 45px;
+                text-align: center;
+                float: left;
+                height: 100%;
+                border-left: 1px solid rgba(238, 238, 238, 0.25);  
+                padding:0;
+                position: relative;
+                li{
+                    width: $fullWidth;
+                    @include flex;
+                    padding:5px 0;
+                    a {
+                        line-height: 12px;
+                    }
+                    span{
+                        color: #99cbcc;
+                        font-size: 10px;
+                    }
+                    &:hover{
+                        background: #131c2d;
+                    }
+                }      
+            }
+            .menu-flyout-overlay{
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background: #000;
+                opacity: 0.6;
+                top: 0;
+                z-index: 3;
+                display: none;
+            }
+
+        }
+    }
+
+}
+
+.menu-flyout.in + .menu-flyout-overlay{
+    display: block !important;
+}
+#courseTemplateFlyout{
+    z-index: 2;
+}
+#courseTemplateFlyout.in + .menu-flyout-overlay{
+    display: block !important;
+    z-index: 1 !important;
+}
+.shortcut-icon ul li{
+    position: relative;
+}
+
+li.separator:before {
+    position: absolute;
+    width: 30px;
+    content: "";
+    border-top: 1px solid #99cbcc;
+    left: 5px;
+    top:-2px;
+}
+
+.fixed-menu{
+    position: absolute;
+    left: 0;
+    &.resources-fixed{
+        bottom: 0;
+    }
+    &.calendar-fixed{
+      bottom: 50px;  
+    }
+    &.actor-fixed{
+        bottom: 100px;
+    }
+}

@@ -1,0 +1,225 @@
+#Ref-workflow #demo {
+	margin-top:5em;
+}
+
+#Ref-workflow #statemachine-demo{
+    background-color: #f8f8f8;
+}
+
+#Ref-workflow .w { 	
+	padding:0px;
+	position:absolute;
+	border: 1px solid black;
+	z-index: 4;
+	border: 1px solid #bfbfbf;
+	border-radius:0px;
+	cursor:move;
+	background-color: #fff;
+	font-size:11px;
+	-webkit-transition:background-color 0.25s ease-in;
+	-moz-transition:background-color 0.25s ease-in;
+	transition:background-color 0.25s ease-in;	
+	width: 175px;
+	top:auto !important;
+}
+
+#Ref-workflow .w:hover {
+	background-color: rgba(224, 224, 224, 0.66);
+	color:#000;
+
+}
+
+#Ref-workflow .kk{
+    color: #000;
+    position: relative;
+    background-color: #efefef;
+    border-top: 1px solid #999;
+    padding: 5px 4px;
+    height: auto;
+}
+#Ref-workflow .w.kk {
+    border-right: 0;
+    border-left: 0;
+    border-bottom: 0;
+    width: auto;
+}
+
+#Ref-workflow .w.kk .role_value{
+	cursor:text;
+}
+
+#Ref-workflow .aLabel {
+	-webkit-transition:background-color 0.25s ease-in;
+	-moz-transition:background-color 0.25s ease-in;
+	transition:background-color 0.25s ease-in;
+}
+
+#Ref-workflow .aLabel._jsPlumb_hover, ._jsPlumb_source_hover, ._jsPlumb_target_hover {
+	background-color: #FFDFCB;
+}
+
+#Ref-workflow .aLabel {
+	background-color:white;
+	opacity:0.8;
+	padding:0.3em;				
+	border-radius:0.5em;
+	border:1px solid #346789;
+	cursor:pointer;
+	display:none;
+}
+
+#Ref-workflow .ep {
+	position: absolute;
+bottom: 33%;
+right: -7px;
+width: 0.6em;
+height: 0.7em;
+background-color: white;
+cursor: pointer;
+border: 1px solid #000;
+-webkit-transition: -webkit-box-shadow 0.25s ease-in;
+-moz-transition: -moz-box-shadow 0.25s ease-in;
+transition: box-shadow 0.25s ease-in;
+border-radius: 50%;
+}
+
+#Ref-workflow .ep:hover {
+	box-shadow: 0px 0px 6px black;
+}
+
+#Ref-workflow .statemachine-demo ._jsPlumb_endpoint {
+	z-index:3;
+}
+
+#Ref-workflow #opened {
+	left:10em;
+	top:5em;
+}
+
+#Ref-workflow #phone1 {
+	left:35em;
+	top:12em;
+	width:7em;
+}
+#Ref-workflow #inperson {
+	left:12em;
+	top:23em;
+}
+#Ref-workflow #phone2 {
+	left:28em;
+	top:24em;
+}
+#Ref-workflow #rejected {
+	left:10em;
+	top:35em;
+}
+#Ref-workflow .dragHover { border:2px solid orange; }
+
+path { cursor:pointer; }
+
+#Ref-workflow .new{
+    position:static;
+    float:left;
+    width:100%;
+    min-height: 69px;
+border-bottom: 1px solid #ccc;
+padding: 10px 10px 10px 10px;
+background-color: #ffffff;
+}
+#Ref-workflow .workflow-action-block-relative{
+    background: url("../../img/workflow/add-item.svg") no-repeat -1000px center #fff;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    float: left;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    /*z-index: 1;*/
+}
+#Ref-workflow .dragging_workflow{
+    display:none;
+}
+#Ref-workflow .absLine{
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #ccc;
+    top:0;
+}
+#Ref-workflow .relPosition{
+    position: relative;
+    float: left;
+    width:100%;
+}
+
+#Ref-workflow .relPosition1{
+    position: relative;
+    float: left;
+    width:100%;
+}
+
+#Ref-workflow ._jsPlumb_endpoint{
+    display:none;
+}
+#Ref-workflow .workflow-submit-btn i, .workflow-cancel-btn i { 
+    left: 0;
+    margin: 0;
+    position: relative;
+    top: 0;
+    z-index: 0;
+}
+#Ref-workflow .workflow-cancel-btn .icon.small-close {
+    background-position: -124px -163px;
+}
+
+#Ref-workflow .add-role{
+	position:absolute;
+	padding-left:20px;
+	padding-right:20px;
+}
+
+#Ref-workflow .connection-change optgroup{
+	font-weight:bold;
+}
+
+#Ref-workflow .operation .propBtn, .wf-hover-area .propBtn{
+	position:absolute;
+	z-index:9;
+	background-image:url(../../img/workflow/img_prop-open.png);
+	background-repeat:no-repeat;
+	background-size:12px 12px;
+	width:18px;
+	height:18px;
+	left:2px;
+	top:2px;
+	cursor:pointer;
+	display:none !important;
+}
+
+#Ref-workflow .wf-hover-area .propBtn{
+	margin:-15px 0px 0px -11px;
+}
+
+#Ref-workflow .propBtn.hide, .operation:hover .propBtn.hide, .wf-hover-area .propBtn.hide{
+	display:none !important;
+}
+
+#Ref-workflow .operation:hover .propBtn, .wf-hover-area:hover .propBtn{
+	display:block !important;
+}
+#Ref-workflow .wf-wrap:hover .propBtn{
+	display:block !important;
+}
+
+#Ref-workflow .wf-arrow {
+    font-size: 20px;
+    height: 20px;
+}
+#Ref-workflow .dropdown-menu.wf-dropdown {
+    width: 100%;
+}
+#Ref-workflow .wf-hover-area {
+    width: calc(100% + 25px);
+    height: 54px;
+    margin: -15px -10px;
+}

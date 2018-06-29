@@ -1,0 +1,46 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+            for($row=0;$row<2;$row++) {
+                ?>
+               <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+                  <?php } ?>
+               </tr>
+            <?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column"  style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php           
+                $index = 0; 
+                if(in_array($row , $this->logicsN)){
+                        
+                            $index = 0;
+                      
+                     }
+for($row=0;$row<count($this->tableDataArray);$row++) {
+
+
+    ?>
+   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+      <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+            
+                        <?php  
+                         if(($row == $this->currentRowIndex) && ($col == intval($this->currentColumnIndex)+2)){ ?>
+                            <td class="ExcelTablerow operation-series role"><?php echo $this->eventStatusArray[0]['eventStatus']; ?></td>
+                          
+                         <?php } else { ?>
+                             <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                         <?php }
+                        ?>
+                   
+                    
+      <?php } ?>
+   </tr>
+<?php } ?>
+</tbody>
+</table>

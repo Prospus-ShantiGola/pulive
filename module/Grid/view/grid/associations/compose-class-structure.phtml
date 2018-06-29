@@ -1,0 +1,1680 @@
+<?php 
+if(count($this->main_array) > 0){ 
+	$row_1_array 						= array();
+	$i_count 							= 0;
+	$period 							= '';
+
+	$typecheck 							= $this->main_array[0]['parent'][0]['value']; 
+		if($typecheck =="Associations" || $typecheck =="Process" ){
+			$column_count 						= $this->main_array[0]['parent'][2]['value']; //$% 14	
+			$courseType = $this->main_array[0]['parent'][0]['value'];	
+		}else {
+			$column_count 						= $this->main_array[0]['parent'][3]['value']; //$% 14	
+			$courseType = $this->main_array[0]['parent'][1]['value'];	
+		}
+	
+		
+
+	foreach($this->main_array[0]['childs'] as $keys => $main_array_loop){
+		$row_1_array[$i_count]	= $main_array_loop['parent'][0]['value'];
+		$i_count++;
+	}
+}
+
+	
+    /*echo '<pre>'; 
+    print_r($courseType);
+    die('gggg');*/
+    //print_r(array($column_count,$courseType,$row_1_array,$i_count)); die();
+?>
+<input type="hidden" id="hidden-instance_id1" value="<?php echo $this->node_instance_id?>">
+<div class="fixed-top-header">
+    <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      	<tbody>
+			<tr class="row-0">
+				<td class="ExcelTableFormationRow blank fTHLC-left-col  col-0"><div class="left-col"></div></td>
+				<td class="ExcelTableFormationCol collapse blank fTHLC-left-col  col-1">1</td>
+				<td class="ExcelTableFormationCol collapse event blank cell_0_2 col-2"><span class="top-col">2</span></td>
+				<td class="ExcelTableFormationCol blank cell_0_3 col-3"><span class="top-col">3</span></td>
+				<td class="ExcelTableFormationCol collapse event blank cell_0_4 col-4"><span class="top-col">4</span></td>
+				<?php if($courseType == "Associations" ){?>
+
+						<td class="ExcelTableFormationCol col-5"><span class="top-col">5</span>
+							<i class="fa fa-plus add add-phase-segment"></i>
+							<div class="add-col-wrap add-colums">
+		                        <ul class="dropdown-menu show-5" style="left: 795.141px; top: 101px;">
+		                            <li class="no-bg"> <a class="add-left disabled">
+		                                <div class=" node-circle node-white-circle-expanded">N</div>
+		                                Add left </a>
+		                                <ul class="sub-item">
+		                                    <li class="no-bg disabled"> <a class="add-left-col">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Phase </a> 
+		                                    </li>
+		                                    <li class="no-bg disabled"> <a class="">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Actor </a> 
+		                                    </li>
+		                                </ul>
+		                            </li>
+		                            <li role="presentation" class=""> 
+		                                <a class="add-right">
+		                                    <div class="node-circle node-white-circle-expanded">N</div>
+		                                    Add right 
+		                                </a>
+		                                <ul class="sub-item">
+		                                    <li data-toggle="modal" data-target="#addSeriespoup"> <a class="addPopupPhaseClass">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Phase </a> 
+		                                    </li>
+		                                    <li class="add-role-series current"> <a class="addRoleSeries" href="#">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Actor </a> 
+		                                    </li>
+		                                </ul>
+		                            </li>
+		                        </ul>
+		                    </div>
+						</td>
+				<?php } else if($courseType == "Process"){?>
+						<td class="ExcelTableFormationCol col-5">
+				            <span class="top-col">5</span>
+				            <i class="fa fa-plus add add-phase-segment"></i>
+				            <div class="add-col-wrap add-colums">
+				               <ul class="dropdown-menu show-5">
+				                  <li class="no-bg ">
+				                     <a class="add-left disabled">
+				                        <div class=" node-circle node-white-circle-expanded">N</div>
+				                        Add left 
+				                     </a>
+				                     <ul class="sub-item">
+				                        <li class="no-bg disabled">
+				                           <a class=" add-left-col">
+				                              <div class="node-circle node-white-circle">N</div>
+				                              Phase 
+				                           </a>
+				                        </li>
+				                        <li class="no-bg disabled">
+				                           <a class="">
+				                              <div class="node-circle node-white-circle">N</div>
+				                              Operation 
+				                           </a>
+				                        </li>
+				                     </ul>
+				                  </li>
+				                  <li role="presentation">
+				                     <a class="add-right">
+				                        <div class="node-circle node-white-circle-expanded">N</div>
+				                        Add right 
+				                     </a>
+				                     <ul class="sub-item">
+				                        <li>
+				                           <a data-toggle="modal" data-target="#Seriespoup" class="popupPhaseClass">
+				                              <div class="node-circle node-white-circle">N</div>
+				                              Phase 
+				                           </a>
+				                        </li>
+				                        <li>
+				                           <a class="add-operation-series" href="#">
+				                              <div class="node-circle node-white-circle">N</div>
+				                              Operation 
+				                           </a>
+				                        </li>
+				                     </ul>
+				                  </li>
+				                   <li role="presentation" class="delete-series no-bg">
+				                       <a role="menuitem" tabindex="-1" class="" >
+				                           <div class=" node-circle node-white-circle">N</div>
+				                          Delete Series
+				                       </a> 
+				                   </li>
+				               </ul>
+				            </div>
+			         	</td>
+				<?php } ?>
+				<td class="ExcelTableFormationCol collapse  event col-6"><span class="top-col">6</span></td>
+				
+				<?php for($firstcolumn=7; $firstcolumn<=$column_count; $firstcolumn++){ ?>			
+					
+                    <?php if($row_1_array[$firstcolumn-1] == 'Phase' && $courseType=="Associations") { ?>
+	                    
+	                    <td class="ExcelTableFormationCol col-5"><span class="top-col"><?php echo $firstcolumn;?></span>
+							<i class="fa fa-plus add add-phase-segment"></i>
+							<div class="add-col-wrap add-colums">
+		                        <ul class="dropdown-menu show-5" style="left: 795.141px; top: 101px;">
+		                            <li class="no-bg"> <a class="add-left disabled">
+		                                <div class=" node-circle node-white-circle-expanded">N</div>
+		                                Add left </a>
+		                                <ul class="sub-item">
+		                                    <li class="no-bg disabled"> <a class="add-left-col">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Phase </a> 
+		                                    </li>
+		                                    <li class="no-bg disabled"> <a class="">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Actor </a> 
+		                                    </li>
+		                                </ul>
+		                            </li>
+		                            <li role="presentation" class=""> 
+		                                <a class="add-right">
+		                                    <div class="node-circle node-white-circle-expanded">N</div>
+		                                    Add right 
+		                                </a>
+		                                <ul class="sub-item">
+		                                    <li data-toggle="modal" data-target="#addSeriespoup"> <a class="addPopupPhaseClass">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Phase </a> 
+		                                    </li>
+		                                    <li class="add-role-series current"> <a class="addRoleSeries" href="#">
+		                                        <div class="node-circle node-white-circle">N</div>
+		                                        Actor </a> 
+		                                    </li>
+		                                </ul>
+		                            </li>
+		                        </ul>
+		                    </div>
+						</td>
+
+					<?php } else if($row_1_array[$firstcolumn-1] == 'Phase' && $courseType=="Process"){?>
+
+							<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+					            <span class="top-col"><?php echo $firstcolumn;?></span>
+					            <i class="fa fa-plus add add-phase-segment"></i>
+					            <div class="add-col-wrap add-colums">
+					               <ul class="dropdown-menu show-<?php echo $firstcolumn;?>">
+					                  <li class="no-bg ">
+					                     <a class="add-left disabled">
+					                        <div class=" node-circle node-white-circle-expanded">N</div>
+					                        Add left 
+					                     </a>
+					                     <ul class="sub-item">
+					                        <li class="no-bg disabled">
+					                           <a class=" add-left-col">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Phase 
+					                           </a>
+					                        </li>
+					                        <li class="no-bg disabled">
+					                           <a class="">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Operation 
+					                           </a>
+					                        </li>
+					                     </ul>
+					                  </li>
+					                  <li role="presentation">
+					                     <a class="add-right">
+					                        <div class="node-circle node-white-circle-expanded">N</div>
+					                        Add right 
+					                     </a>
+					                     <ul class="sub-item">
+					                        <li>
+					                           <a data-toggle="modal" data-target="#Seriespoup" class="popupPhaseClass">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Phase 
+					                           </a>
+					                        </li>
+					                        <li>
+					                           <a class="add-operation-series" href="#">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Operation 
+					                           </a>
+					                        </li>
+					                     </ul>
+					                  </li>
+					                   <li role="presentation" class="delete-series no-bg">
+					                       <a role="menuitem" tabindex="-1" class="" >
+					                           <div class=" node-circle node-white-circle">N</div>
+					                          Delete Series
+					                       </a> 
+					                   </li>
+					               </ul>
+					            </div>
+				         	</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Actor') { ?>
+
+						<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+							<span class="top-col"><?php echo $firstcolumn;?></span>
+							<i class="fa fa-plus add add-role-segment"></i>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == '.Event') { ?>
+
+						<td class="ExcelTableFormationCol collapse event col-<?php echo $firstcolumn;?>">
+							<span class="top-col"><?php echo $firstcolumn;?></span>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Operation') { ?>
+
+						<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+							<span class="top-col"><?php echo $firstcolumn;?></span>
+							<i class="fa fa-plus add add-operation"></i>
+							<div class="add-col-wrap add-colums">
+			                    <ul class="dropdown-menu show-<?php echo $firstcolumn;?>" >
+			                        <li role="presentation" class="no-bg disabled">
+			                            <a role="menuitem" tabindex="-1" class="">
+			                                <div class="node-circle node-white-circle-expanded">N</div>
+			                                Add left
+			                            </a>
+			                            <ul class="sub-item">
+			                                <li role="presentation" class="no-bg">
+			                                    <a role="menuitem" tabindex="-1" href="#" class=" add-left-col">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Phase 
+			                                    </a>
+			                                </li>
+			                                <li role="presentation" class="no-bg">
+			                                    <a role="menuitem" tabindex="-1" href="#" class=" add-operation-series">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Operation
+			                                    </a>
+			                                </li>
+			                            </ul>
+			                        </li>
+			                        <li role="presentation" class="no-bg disabled">
+			                            <a role="menuitem" tabindex="-1" class="" >
+			                                <div class="node-circle node-white-circle-expanded">N</div>
+			                                Add right
+			                            </a>
+			                            <ul class="sub-item">
+			                                <li role="presentation" class="addSegmentRole">
+			                                    <a role="menuitem" tabindex="-1" href="#" class="">
+			                                        <div class="node-circle node-white-circle-expanded">N</div>
+			                                        Role 
+			                                    </a>                                    
+			                                </li>                                            
+			                            </ul>
+			                        </li>
+			                         <li role="presentation" class="delete-series no-bg">
+			                                    <a role="menuitem" tabindex="-1" href="#" class="" >
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Delete Series 
+			                                    </a>
+			                        </li>
+			                    </ul>
+                			</div>
+						</td>
+
+					<?php } else{ ?>
+
+						<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+							<span class="top-col"><?php echo $firstcolumn;?></span>
+						</td>
+
+					<?php } ?>
+
+				<?php } ?>
+
+				<td class="ExcelTableFormationCol col-<?php echo $column_count+1;?>"></td>
+			</tr>
+
+			<tr class="row-1">
+				
+					<td class="ExcelTableFormationRow  fTHLC-left-col"><div class="left-col">1</div></td>
+                    <td class="ExcelTablerow col-1 collapse  fTHLC-left-col">
+                    	<div data-id="1" class="col-head">
+                    		<div class="node-circle node-white-circle node-white-circle">N</div>
+                    		<span class="icon time-icon"></span>
+                    			<span class="col-head-title">Timeline</span>
+                    			<i class="fa fa-caret-left arrow rotate"></i> 
+                    	</div>
+                    </td>
+
+                    <td class="ExcelTablerow col-2 collapse event border-right">
+	                    <div data-id="2" class="col-head">
+	                    <div class="node-circle node-white-circle node-white-circle">N</div>
+	                    <span class="icon event-icon"></span>
+	                    <span class="col-head-title">.Event</span>
+	                    <i class="fa fa-caret-left arrow rotate"></i> 
+	                	</div>
+	                </td>
+                    <td class="ExcelTablerow col-3"><div data-id="3" class="col-head">
+                    	<div class="node-circle node-white-circle node-white-circle">N</div>
+                    	<span class="icon process-icon"></span>
+                    	<span class="col-head-title">Process</span>
+                    	<i class="fa fa-caret-left arrow"></i> </div>
+                    </td>
+                    
+                    <td class="ExcelTablerow col-4 collapse border-right event">
+                    	<div data-id="4" class="col-head">
+	                    <div class="node-circle node-white-circle node-white-circle">N</div>
+		                    <span class="icon event-icon"></span>
+		                    <span class="col-head-title">.Event</span>
+		                		<i class="fa fa-caret-left arrow rotate"></i>
+	                	</div>
+                	</td>
+
+                    <td class="ExcelTablerow col-5">
+                    	<div data-id="5" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+		                    <span class="icon phase-icon"></span>
+		                    <span class="col-head-title">Phase</span>
+		                    <i class="fa fa-caret-left arrow"></i> 
+                		</div>
+                	</td>
+                    <td class="ExcelTablerow col-6 border-right collapse event">
+                        <div data-id="6" class="col-head">
+                            <div class="node-circle node-white-circle node-white-circle">N</div>
+                            <span class="icon event-icon"></span><span class="col-head-title">.Event</span>
+                            <i class="fa fa-caret-left arrow rotate"></i> 
+                        </div>
+                    </td>
+                    
+
+				<?php for($firstcolumn=7; $firstcolumn<=$column_count; $firstcolumn++){ ?>
+					
+					<?php if($row_1_array[$firstcolumn-1] == 'Actor') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> ActorFlyoutOpen border-top ExcelTablerow"><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+							<div class="node-circle node-white-circle node-white-circle">N</div>
+							<span class="icon phase-icon"></span>
+							<span class="col-head-title">Actor</span>
+							<i class="fa fa-caret-left arrow"></i> 
+							</div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == '.Event') { ?>
+
+						<td class="ExcelTablerow col-<?php echo $firstcolumn;?> collapse event ExcelTablerow">
+							<div data-id="<?php echo $firstcolumn;?>" class="col-head">
+							<div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> </div>
+						</td>
+
+					<?php }  elseif($row_1_array[$firstcolumn-1] == 'Role') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> border-top ExcelTablerow">
+							<div data-id="<?php echo $firstcolumn;?>" class="col-head">
+								<div class="node-circle node-white-circle node-white-circle">N</div>
+								<span class="icon role-icon"></span>
+								<span class="col-head-title">Role</span>
+								<i class="fa fa-caret-left"></i> 
+							</div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Phase') { ?>
+		                    
+	                    <td class="col-<?php echo $firstcolumn;?> ExcelTablerow"><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+							<div class="node-circle node-white-circle node-white-circle">N</div>
+							<span class="icon phase-icon"></span><span class="col-head-title">Phase</span><i class="fa fa-caret-left"></i> </div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Operation') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> ExcelTablerow" ><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+								<div class="node-circle node-white-circle node-white-circle">N</div>
+								<span class="icon operation-icon"></span><span class="col-head-title">Operation</span><i class="fa fa-caret-left"></i> </div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Universe') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> ExcelTablerow"><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+								<div class="node-circle node-white-circle node-white-circle">N</div>
+								<span class="icon sys-icon"></span><span class="col-head-title">Universe</span><i class="fa fa-caret-left"></i> </div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Domain') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> ExcelTablerow"><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+								<div class="node-circle node-white-circle node-white-circle">N</div>
+								<span class="icon sys-icon"></span><span class="col-head-title">Domain</span><i class="fa fa-caret-left"></i> </div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Process') { ?>
+
+						<td class="col-<?php echo $firstcolumn;?> Process ExcelTablerow"><div data-id="<?php echo $firstcolumn;?>" class="col-head">
+							<div class="node-circle node-white-circle node-white-circle">N</div>
+							<span class="icon operation-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left"></i> </div>
+						</td>
+
+					<?php } elseif($row_1_array[$firstcolumn-1] == 'Unstructured') { ?>
+
+						<td class="ExcelTablerow transparent  blank blankSeg_2_<?php echo $firstcolumn;?> unstructured col-<?php echo $firstcolumn;?>">
+							<div class="blank-div segment-node"></div>
+								<span class="icon-plus Add-unstructured-segment1"></span>
+						</td>
+						<?php } ?>
+
+	            <?php } ?>
+
+				<td class="ExcelTablerow col-<?php echo $column_count+1;?>"></td>
+			</tr>
+      </tbody>
+    </table>
+</div>
+
+<table class="fixed-left-column" border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+	<tbody>
+
+		<?php if(count($this->main_array) > 0){ 
+			$i 		= 0;
+			$period = '';
+			foreach($this->main_array[0] as $key => $main_array){
+				
+				if($i == 0){ 
+
+					if($main_array[0]['value'] == "Associations" || $main_array[0]['value'] =="Process"){
+
+						$column = $main_array[2]['value'];
+						$period = $main_array[1]['value'] + 1;
+					}
+					else {
+						
+						$column = $main_array[3]['value'];	
+						$period = $main_array[2]['value'] + 1;
+					}
+					
+					
+					?>
+					<tr class="row-0">
+						<td class="ExcelTableFormationRow fTHLC-left-col"><div class="left-col"></div></td>
+		                <td class="ExcelTableFormationCol fTHLC-left-col col-1 collapse"><span class="top-col">1</span></td>
+		                <td class="ExcelTableFormationCol collapse event col-2"><span class="top-col">2</span></td>
+		                <td class="ExcelTableFormationCol col-3"><span class="top-col">3</span></td>
+		                <td class="ExcelTableFormationCol collapse event col-4"><span class="top-col">4</span></td>
+						
+						<?php if($courseType == 'Associations') { ?>
+							<td class="ExcelTableFormationCol col-5">
+			                    <span class="top-col">5</span>
+			                    <i class="fa fa-plus add add-phase-segment"></i>
+			                    <div class="add-col-wrap add-colums"  >
+			                        <ul class="dropdown-menu show-5" >
+			                            <li class="no-bg"> <a class="add-left disabled">
+			                                <div class=" node-circle node-white-circle-expanded">N</div>
+			                                Add left </a>
+			                                <ul class="sub-item">
+			                                    <li class="no-bg disabled"> <a class="add-left-col">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Phase </a> 
+			                                    </li>
+			                                    <li class="no-bg disabled"> <a class="">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Actor </a> 
+			                                    </li>
+			                                </ul>
+			                            </li>
+			                            <li role="presentation"> 
+			                                <a class="add-right">
+			                                    <div class="node-circle node-white-circle-expanded">N</div>
+			                                    Add right 
+			                                </a>
+			                                <ul class="sub-item">
+			                                    <li data-toggle="modal" data-target="#addSeriespoup"> <a  class="addPopupPhaseClass">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Phase </a> 
+			                                    </li>
+			                                    <li class="add-role-series"> <a class="addRoleSeries" href="#">
+			                                        <div class="node-circle node-white-circle">N</div>
+			                                        Actor </a> 
+			                                    </li>
+			                                </ul>
+			                            </li>
+			                        </ul>
+			                    </div>
+			                </td>
+		                <?php } else if($courseType == 'Process'){?>
+				                <td class="ExcelTableFormationCol col-5">
+					            <span class="top-col">5</span>
+					            <i class="fa fa-plus add add-phase-segment"></i>
+					            <div class="add-col-wrap add-colums">
+					               <ul class="dropdown-menu show-5">
+					                  <li class="no-bg ">
+					                     <a class="add-left disabled">
+					                        <div class=" node-circle node-white-circle-expanded">N</div>
+					                        Add left 
+					                     </a>
+					                     <ul class="sub-item">
+					                        <li class="no-bg disabled">
+					                           <a class=" add-left-col">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Phase 
+					                           </a>
+					                        </li>
+					                        <li class="no-bg disabled">
+					                           <a class="">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Operation 
+					                           </a>
+					                        </li>
+					                     </ul>
+					                  </li>
+					                  <li role="presentation">
+					                     <a class="add-right">
+					                        <div class="node-circle node-white-circle-expanded">N</div>
+					                        Add right 
+					                     </a>
+					                     <ul class="sub-item">
+					                        <li>
+					                           <a data-toggle="modal" data-target="#Seriespoup" class="popupPhaseClass">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Phase 
+					                           </a>
+					                        </li>
+					                        <li>
+					                           <a class="add-operation-series" href="#">
+					                              <div class="node-circle node-white-circle">N</div>
+					                              Operation 
+					                           </a>
+					                        </li>
+					                     </ul>
+					                  </li>
+					                   <li role="presentation" class="delete-series no-bg">
+					                       <a role="menuitem" tabindex="-1" class="" >
+					                           <div class=" node-circle node-white-circle">N</div>
+					                          Delete Series
+					                       </a> 
+					                   </li>
+					               </ul>
+					            </div>
+					         </td>
+		                <?php } ?>
+
+
+						<td class="ExcelTableFormationCol collapse event col-6"><span class="top-col">6</span></td>
+
+						<?php for($firstcolumn=7; $firstcolumn<=$column; $firstcolumn++){ ?>
+							
+							<?php if($row_1_array[$firstcolumn-1] == 'Phase' && $courseType == 'Associations') { ?>
+	                    
+			                    <td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+				                    <span class="top-col"><?php echo $firstcolumn;?></span>
+				                    <i class="fa fa-plus add add-phase-segment"></i>
+				                    <div class="add-col-wrap add-colums"  >
+				                        <ul class="dropdown-menu show-<?php echo $firstcolumn;?>" >
+				                            <li class="no-bg"> <a class="add-left disabled">
+				                                <div class=" node-circle node-white-circle-expanded">N</div>
+				                                Add left </a>
+				                                <ul class="sub-item">
+				                                    <li class="no-bg disabled"> <a class="add-left-col">
+				                                        <div class="node-circle node-white-circle">N</div>
+				                                        Phase </a> 
+				                                    </li>
+				                                    <li class="no-bg disabled"> <a class="">
+				                                        <div class="node-circle node-white-circle">N</div>
+				                                        Actor </a> 
+				                                    </li>
+				                                </ul>
+				                            </li>
+				                            <li role="presentation"> 
+				                                <a class="add-right">
+				                                    <div class="node-circle node-white-circle-expanded">N</div>
+				                                    Add right 
+				                                </a>
+				                                <ul class="sub-item">
+				                                    <li data-toggle="modal" data-target="#addSeriespoup"> <a  class="addPopupPhaseClass">
+				                                        <div class="node-circle node-white-circle">N</div>
+				                                        Phase </a> 
+				                                    </li>
+				                                    <li class="add-role-series"> <a class="addRoleSeries" href="#">
+				                                        <div class="node-circle node-white-circle">N</div>
+				                                        Actor </a> 
+				                                    </li>
+				                                </ul>
+				                            </li>
+				                            <li role="presentation" class="delete-phase-actor-series no-bg">
+						                       <a role="menuitem" tabindex="-1" class="" >
+						                           <div class=" node-circle  node-white-circle">N</div>
+						                          Delete Series
+						                       </a> 
+						                   </li>
+				                        </ul>
+				                    </div>
+				                </td>
+				             <?php } else if($row_1_array[$firstcolumn-1] == 'Phase' && $courseType == 'Process') { ?> 
+				                <td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+						            <span class="top-col"><?php echo $firstcolumn;?></span>
+						            <i class="fa fa-plus add add-phase-segment"></i>
+						            <div class="add-col-wrap add-colums">
+						               <ul class="dropdown-menu show-5">
+						                  <li class="no-bg ">
+						                     <a class="add-left disabled">
+						                        <div class=" node-circle node-white-circle-expanded">N</div>
+						                        Add left 
+						                     </a>
+						                     <ul class="sub-item">
+						                        <li class="no-bg disabled">
+						                           <a class=" add-left-col">
+						                              <div class="node-circle node-white-circle">N</div>
+						                              Phase 
+						                           </a>
+						                        </li>
+						                        <li class="no-bg disabled">
+						                           <a class="">
+						                              <div class="node-circle node-white-circle">N</div>
+						                              Operation 
+						                           </a>
+						                        </li>
+						                     </ul>
+						                  </li>
+						                  <li role="presentation">
+						                     <a class="add-right">
+						                        <div class="node-circle node-white-circle-expanded">N</div>
+						                        Add right 
+						                     </a>
+						                     <ul class="sub-item">
+						                        <li>
+						                           <a data-toggle="modal" data-target="#Seriespoup" class="popupPhaseClass">
+						                              <div class="node-circle node-white-circle">N</div>
+						                              Phase 
+						                           </a>
+						                        </li>
+						                        <li>
+						                           <a class="add-operation-series" href="#">
+						                              <div class="node-circle node-white-circle">N</div>
+						                              Operation 
+						                           </a>
+						                        </li>
+						                     </ul>
+						                  </li>
+						                   <li role="presentation" class="delete-series no-bg">
+						                       <a role="menuitem" tabindex="-1" class="" >
+						                           <div class=" node-circle node-white-circle">N</div>
+						                          Delete Series
+						                       </a> 
+						                   </li>
+						               </ul>
+						            </div>
+			         			</td>
+
+							<?php } elseif($row_1_array[$firstcolumn-1] == 'Actor') { ?>
+
+								<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+									<span class="top-col"><?php echo $firstcolumn;?></span>
+									<i class="fa fa-plus add add-role-segment"></i>
+									<div class="add-col-wrap add-colums">
+										<ul class="dropdown-menu show-<?php echo $firstcolumn;?>">
+							             	<li class="no-bg">
+							                          <a class="add-left disabled"><div class="node-circle node-white-circle-expanded">N</div>Add left</a>
+							                        <ul class="sub-item">
+							                          <li class="no-bg disabled">
+							                                      <a class="add-left-col">
+							                                          <div class="node-circle node-white-circle">N</div>
+							                                Actor
+							                                        </a>
+							                                    </li>
+							                        </ul>
+							             	</li>
+							                <li role="presentation" class=""><a class="add-right">
+							                	<div class="node-circle node-white-circle-expanded">N</div>Add right</a>
+							                      <ul class="sub-item">
+							                        <li data-toggle="modal" class="addAssociationRole">
+							                                  <a class="addRoleSeries">
+							                              <div class="node-circle node-white-circle">N</div>Actor
+							                                    </a>
+							                        </li>
+							                        <!-- <li class="">
+							                           <a class="add-process-series" href="#">
+							                              <div class="node-circle node-white-circle">N</div>
+							                              Process 
+							                           </a>
+							                        </li> -->
+							                      </ul>
+							            	</li>
+							        		<li role="presentation" class="delete-phase-actor-series no-bg">
+						                		<a role="menuitem" tabindex="-1" class="">
+						                           <div class="node-circle node-white-circle">N</div>
+						                          Delete Series
+						                       	</a> 
+							            	</li>
+						                </ul>
+					                </div>
+								</td>
+
+							<?php } elseif($row_1_array[$firstcolumn-1] == '.Event') { ?>
+
+								<td class="ExcelTableFormationCol collapse event col-<?php echo $firstcolumn;?>">
+									<span class="top-col"><?php echo $firstcolumn;?></span>
+								</td>
+
+							<?php } else{ ?>
+
+								<td class="ExcelTableFormationCol col-<?php echo $firstcolumn;?>">
+									<span class="top-col"><?php echo $firstcolumn;?></span>
+								</td>
+
+							<?php } ?>
+
+						<?php } ?>
+
+						<td class="ExcelTableFormationCol col-<?php echo $column+1;?>"></td>
+					</tr>					
+			<?php 
+				}else{
+					for($row=1; $row<=$period; $row++){ ?>
+
+						<tr class="<?php if($row == 1 || $row == 2){ echo 'row-'.$row;} else if($row == $period){echo 'row-3';} ?>">
+							<td class="ExcelTableFormationRow"><div class="left-col"><?php echo $row; ?></div></td>
+					
+							<?php 
+							$count 		= 0;
+							$column_num = 1;
+							$childcount = 0;
+
+							foreach ($main_array as $key => $value) {
+
+								$value_data = array();
+								foreach ($value['childs'] as $key => $segment) {
+								 	$column1 							= $segment['parent'][4]['value'];
+								 	$value_data[$column_num][$column1] 	= $segment['parent'][1]['value'];
+								}
+
+								$module = ($count%2 == 0) ? 1 : 0; 
+
+								if($row == 1){
+
+									if(trim($value['parent'][0]['value']) == 'Timeline'){ ?>
+
+										<td class="ExcelTablerow col-<?php echo $column_num; ?> collapse">
+											<div data-id="<?php echo $column_num; ?>" class="col-head">
+						                    <div class="node-circle node-white-circle node-white-circle">N</div>
+						                    <span class="icon time-icon"></span>
+											<span class="col-head-title"><?php echo $value['parent'][0]['value'];?></span>
+											<i class="fa fa-caret-left arrow rotate"></i>
+											<input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>"></div>
+										</td>
+
+									<?php } else if(trim($value['parent'][0]['value']) == '.Event'){ ?>
+
+										<td class="ExcelTablerow col-<?php echo $column_num; ?> border-right collapse event">
+											<div data-id="<?php echo $column_num; ?>" class="col-head">
+											<div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+											<input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>"></div>
+						                </td>
+
+									<?php } else if(trim($value['parent'][0]['value']) == 'Phase'){ ?>
+
+										<td class="ExcelTablerow col-<?php echo $column_num; ?> ">
+											<div data-id="<?php echo $column_num; ?>" class="col-head">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<span class="icon phase-icon"></span><span class="col-head-title">Phase</span>
+											<i class="fa fa-caret-left arrow rotate"></i>
+											<input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>">
+										    </div>
+						                </td>
+
+									<?php } else if(trim($value['parent'][0]['value']) == 'Process'){ ?>
+
+										<?php if($column == $column_num){
+											$icon = 'icon operation-icon';
+										}else{
+											$icon = 'icon process-icon';
+										} ?>
+
+										<td class="ExcelTablerow col-<?php echo $column_num; ?>">
+											<div data-id="<?php echo $column_num; ?>" class="col-head">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+						                    <span class="<?php echo $icon;?>"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i>
+						                    <input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>"></div>
+						                </td>
+
+									<?php } else if(trim($value['parent'][0]['value']) == 'Actor'){ ?>
+
+										<td class="ExcelTablerow ActorFlyoutOpen border-top  col-<?php echo $column_num; ?>">
+					                     <div class="col-head" data-id="<?php echo $column_num; ?>">
+					                        <div class="node-circle node-white-circle node-white-circle">N</div>
+					                        <span class="icon phase-icon"></span><span class="col-head-title">Actor</span>
+					                        <i class="fa fa-caret-left arrow"></i> 
+					                        <input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>">
+					                     </div>
+					                  </td>
+
+									<?php } else if(trim($value['parent'][0]['value']) == 'Role'){ ?>
+
+										<td class="ExcelTablerow ActorFlyoutOpen border-top  col-<?php echo $column_num; ?>">
+					                     <div class="col-head" data-id="<?php echo $column_num; ?>">
+							                 <div class="node-circle node-white-circle node-white-circle">N</div>
+							                 <span class="icon phase-icon"></span><span class="col-head-title">Role</span>
+							                 <i class="fa fa-caret-left arrow"></i> 
+							                 <input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>">
+							              </div>
+					                  </td>
+					                  <?php } else if(trim($value['parent'][0]['value']) == 'Operation'){ ?>
+					                  <td class="ExcelTablerow border-top col-<?php echo $column_num; ?>">
+						                <div data-id="<?php echo $column_num; ?>" class="col-head col-wrap show">
+						                    <div class="node-circle node-white-circle node-white-circle">N</div>
+						                    <span class="icon operation-icon"></span><span class="col-head-title">Operation</span>
+						                    <i class="fa fa-caret-left arrow"></i>
+						                </div>
+						            </td>
+						            <?php } else if(trim($value['parent'][0]['value']) == 'Universe'){ ?>
+						            <td class="ExcelTablerow border-top   col-<?php echo $column_num; ?>">
+						                <div data-id="<?php echo $column_num; ?>" class="col-head col-wrap show">
+						                    <div class="node-circle node-white-circle node-white-circle">N</div>
+						                    <span class="icon sys-icon"></span><span class="col-head-title">Universe</span>
+						                    <i class="fa fa-caret-left arrow"></i>
+						                </div>
+						            </td>
+
+						            <?php }  else if($courseType == 'Process' && (trim($value['parent'][0]['value']) == 'Phase' || trim($value['parent'][0]['value']) == 'Actor' || trim($value['parent'][0]['value']) == 'Role')){ ?>
+
+										<td class="ExcelTablerow col-<?php echo $column_num; ?>">
+											<div data-id="<?php echo $column_num; ?>" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+						                    <span class="icon phase-icon"></span><span class="col-head-title"><?php echo trim($value['parent'][0]['value']);?></span><i class="fa fa-caret-left arrow"></i><input type="hidden" class="custom-node-hidden" value="<?php echo $value['parent'][0]['node_instance_id'];?>"></div>
+						                </td>
+
+									<?php }
+
+								} elseif($row == 2){ ?>
+
+									<?php if($column_num == 1){ ?>
+
+										<td class="ExcelTablerow col-1">
+											<div class=""><div class="time-col"><span class="doted-border"></span><div class="node-circle node-white-sm-circle">N</div><span class="col-text"><span class="col-node-text custom-node"></span></span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+										</td>
+
+									<?php }elseif($column_num == 2){ ?>
+
+										<td class="ExcelTablerow col-2 collapse event border-right">
+											<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><span class="col-text"><span class="creation"></span><span class="col-node-text custom-node">Creation</span></span><input type="hidden" class="custom-node-hidden" value=""></div>
+										</td>
+
+									<?php } elseif($column_num == 3){ ?>
+
+										<td class="ExcelTablerow col-3 transparent">
+											<div class="segment-node">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<div class="col-text segment-text operation-text"><span class="col-node-text"><span class="editable-field"><?php echo $value['childs'][0]['parent'][1]['value']; ?></span></span>
+											<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value['childs'][0]['parent'][0]['node_instance_id']);?>"></div></div>
+										</td>
+
+									<?php } elseif($column_num == 4){ ?>
+
+										<td class="ExcelTablerow col-4 collapse event border-right">
+											<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text"><span class="creation"></span><span class="col-node-text custom-node">Creation</span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+										</td>
+
+									<?php } elseif($column_num == 5){ ?>
+
+										<td class="ExcelTablerow col-5 transparent">
+											<div class="segment-node">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<div class="col-text segment-text operation-text">
+											<span class="col-node-text"><span class="editable-field"><?php echo $value['childs'][0]['parent'][1]['value']; ?></span></span>
+											<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value['childs'][0]['parent'][1]['node_instance_id']);?>">
+											</div></div>
+										</td>
+
+									<?php } elseif($column_num == 6){ ?>
+
+										<td class="ExcelTablerow col-6 collapse event border-right">
+											<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text"> <span class="creation"></span><span class="col-node-text custom-node">Creation</span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+										</td>
+
+									<?php } else{ ?>
+
+										<?php if(trim($value_data[$column_num][$row]) == 'Creation'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right">
+												<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><span class="col-text"><span class="creation"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span></span><input type="hidden" class="custom-node-hidden" value=""></div>
+											</td>
+
+										<?php } else if(trim($value_data[$column_num][$row]) == 'Destruction'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right border-light-top">
+												<div class="lastRow creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text"> <span class="destructure"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+											</td>
+
+										<?php } else{ ?>
+
+											<?php if(trim($value['parent'][0]['value']) == '.Event'){ ?>
+
+												<td class="ExcelTablerow blank creation-bg col-<?php echo $column_num;?>">
+													<div class="blank-div segment-node"></div>
+													<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+												</td>
+
+											<?php } else if(trim($value['parent'][0]['value']) == 'Process'){ ?>
+
+												<?php if($value_data[$column_num][$row] == '...'){ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'transparent';} ?> border-light-top border-light-bottom process-series">
+														<div class="segment-node">
+															<div class="node-circle node-white-circle node-white-circle">N</div>
+															<div class="col-text segment-text operation-text">
+																<span class="col-node-text">
+																	<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																		<?php echo $value_data[$column_num][$row]; ?>
+																	</span>
+																</span>
+																<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+															</div>
+														</div>
+													</td>
+
+												<?php }else{ ?>
+
+													<td class="ExcelTablerow blank Role-segment process-series creation-bg col-<?php echo $column_num;?>">
+														<div class="blank-div segment-node"></div>
+														<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+													</td>
+
+												<?php } ?>
+
+												<!-- <td class="ExcelTablerow blank col-<?php echo $column_num;?>">
+													<div class="blank-div segment-node"></div>
+													<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+												</td> -->
+
+											<?php // <<< CHECK ROLE WITH PROCESS ID AS ROLE IS IN ASSOCIATIONS AS WELL
+												}else if($courseType == 'Process' && (trim($value['parent'][0]['value']) == 'Role' || trim($value['parent'][0]['value']) == 'Universe' || trim($value['parent'][0]['value']) == 'Domain')){ ?>
+
+												<td class="ExcelTablerow blank creation-bg col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'transparent';} ?> ">
+													<div class="blank-div segment-node"></div>
+													<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+												</td>
+
+											<?php }else{ ?>
+
+												<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'transparent';} ?> ">
+													<?php if(trim($value['parent'][0]['value']) == 'Phase'){ ?>
+													<div class="segment-node">
+														<div class="node-circle node-white-circle node-white-circle">N</div>
+														<div class="col-text segment-text">
+															<span class="col-node-text">
+																<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																		<?php echo $value_data[$column_num][$row]; ?>
+																</span>
+															</span>
+															<i class="fa fa-bars phase-segment segment"></i>
+															<div class="add-col-wrap add-segment">
+																<ul aria-labelledby="dropdownMenu4" role="menu" class="dropdown-menu ">
+																  	<li role="presentation"> 
+																  		<a class="" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle-expanded">N</div>Add Segment</a>
+																		<ul class="sub-item">
+																			<li  role="presentation" class="add-association-above-segment"> 
+																		  		<a  href="#" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle">N</div>Above </a>
+																		  	</li>
+																			
+																		  	<li role="presentation" class="add-association-below-segment"> 
+																		  		<a href="#" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle">N</div>Below </a>
+																			</li>
+																		</ul>
+																  	</li>
+																  	<li class="" role="presentation"> <a  tabindex="-1" role="menuitem">
+																		<div class="node-circle node-white-circle-expanded">N</div>
+																		Move Segment </a>
+																		<ul class="sub-item">
+																		  	<li class=" add-asso-up-segment" role="presentation"> 
+																		  		<a  href="#" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle">N</div>Up </a> 
+																		  	</li>
+																		  	<li class=" add-asso-down-segment" role="presentation"> 
+																		  		<a  href="#" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle">N</div>Down </a> 
+																			</li>
+																		</ul>
+																  	</li>
+																  	<li data-target="#deleteSegment" class="association-del-segment" data-toggle="modal">
+																  		<a class="" tabindex="-1" role="menuitem"><div class="node-circle node-white-circle">N</div>Delete Segment</a>
+																  	</li>
+																</ul>
+															</div>
+														</div>
+														<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+													</div>
+													<?php } else {?>
+
+													<div class="segment-node">
+														<div class="node-circle node-white-circle node-white-circle">N</div>
+														<div class="col-text segment-text operation-text">
+															<span class="col-node-text">
+																<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																	<?php echo $value_data[$column_num][$row]; ?>
+																</span>
+															</span>
+															<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+														</div>
+													</div>
+													<?php if($value_data[$column_num][$row]!="Manifestation" && $courseType!="Associations"){?>
+
+													       <i class="fa fa-bars add-segment segment"></i>
+													        <div class="add-col-wrap add-segment ">
+													            <ul class="dropdown-menu show-<?php echo $column_num;?>" role="menu" aria-labelledby="dropdownMenu4">
+																	<li role="presentation" class=""> <a class="" tabindex="-1" role="menuitem">
+														                <div class="node-circle node-white-circle-expanded">N</div>
+														                Add Series </a>
+														                <ul class="sub-item">
+														                    <li role="presentation" class="add-suboperaton-segment"> <a href="#" tabindex="-1" role="menuitem">
+														                    <div class="node-circle node-white-circle node-white-circle">N</div>
+														                    Operation </a> </li>
+														                </ul>
+													        		</li>
+													                <li role="presentation" class="no-bg">
+													                    <a role="menuitem" tabindex="-1" class="">
+													                        <div class="node-circle node-white-circle-expanded">N</div>
+													                        Add Segment
+													                    </a>
+													                    <ul class="sub-item">
+													                        <li role="presentation">
+													                            <a role="menuitem" tabindex="-1" href="#" class="add-above-operation-segment">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Add Above 
+													                            </a>
+													                        </li>
+													                        <li role="presentation" >
+													                            <a role="menuitem" tabindex="-1" href="#" class="add-below-operation-segment">
+													                                <div class="node-circle node-white-circle-expanded">N</div>
+													                                Add Below
+													                            </a>
+																				<ul class="sub-item">
+																					<li role="presentation">
+																						<a role="menuitem" tabindex="-1" href="#" class=" WriteYourOwnClass">
+																							<div class="node-circle node-white-circle">N</div>
+																							Sequential 
+																						</a>
+													                                    <ul class="agent-drp">
+													                                        <li class="disabled"><a><div class="node-circle node-white-circle">N</div>Universe</a></li>
+													                                        <li><a href="#" class="add-logic-operation-segment"><div class="node-circle node-white-circle ">N</div>Logic</a></li>
+													                                        <li><a href="#" class="add-below-operation-segment"><div class="node-circle node-white-circle ">N</div>Human</a></li>
+													                                    </ul>
+																					</li>
+																					<li>
+																						<a role="menuitem" tabindex="-1" href="#" class="WriteYourOwnClass">
+																							<div class="node-circle node-white-circle">N</div>
+																							Non-Sequential 
+																						</a>
+													                                    <ul class="agent-drp">
+													                                        <li class="disabled"><a><div class="node-circle node-white-circle">N</div>Universe</a></li>
+													                                        <li><a href="#" class="add-below-logic-non-sequence-operation-segment"><div class="node-circle node-white-circle">N</div>Logic</a></li>
+													                                        <li><a href="#" class="add-below-non-sequence-operation-segment"><div class="node-circle node-white-circle ">N</div>Human</a></li>
+													                                    </ul>
+																					</li>
+																				</ul>
+													                        </li>
+													                    </ul>
+													                </li>
+													                <li role="presentation" class="no-bg ">
+													                    <a role="menuitem" tabindex="-1" class="disabled">
+													                        <div class="node-circle node-white-circle-expanded">N</div>
+													                        Move Segment
+													                    </a>
+													                    <ul class="sub-item">
+													                        <li role="presentation" class="no-bg disabled">
+													                            <a role="menuitem" tabindex="-1" href="#" class="">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Move Above 
+													                            </a>
+													                        </li>
+
+																			<li role="presentation" data-toggle="modal" data-target="#moveBelow" class="moveBelow disabled">
+													                            <a role="menuitem" tabindex="-1" href="#" class="">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Move Below 
+													                            </a>
+													                        </li>
+																			
+													                    </ul>
+													                </li>
+													                <li data-toggle="modal" data-target="#deleteOperationSegment" class="del-operation-segment">
+																		<a class="" tabindex="-1" role="menuitem">
+																			<div class="node-circle node-white-circle">N</div>
+																			Delete Segment
+																		</a>
+																	</li>
+													            </ul>
+													        </div>
+											                <?php } ?>
+													<?php } ?>
+
+												</td>
+
+											<?php } ?>
+
+										<?php } ?>
+
+									<?php } ?>
+
+								<?php } else if($row == $period){ ?>
+
+									<?php if($column_num == 1){ ?>
+
+										<td class="ExcelTablerow col-1">
+											<div class="lastRow">
+											<div class="time-col">
+											<div class="node-circle node-white-sm-circle">N</div>
+											<div class="borderDashed last-borderDashed"></div>
+											<span class="col-text"></span>
+											<input type="hidden" class="custom-node-hidden" value="">
+											</div>
+											</div>
+										</td>
+
+									<?php } elseif($column_num == 2){ ?>
+
+										<td class="ExcelTablerow col-2 collapse event border-right border-light-top">
+											<div class="lastRow creation-node">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<div class="col-text"> <span class="destructure"></span> 
+											<span class="col-node-text custom-node">Destruction</span>
+											<input type="hidden" class="custom-node-hidden" value=""> 
+											</div>
+											</div>
+										</td>
+
+									<?php } elseif($column_num == 3){ ?>
+
+										<td class="ExcelTablerow col-3">
+											<div class="blank-div segment-node"></div>
+											<input type="hidden" class="custom-node-hidden" value="">					
+										</td>
+
+									<?php } elseif($column_num == 4){ ?>
+
+										<td class="ExcelTablerow col-4 collapse event border-right border-light-top">
+											<div class="lastRow creation-node">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<div class="col-text"> <span class="destructure"></span> 
+											<span class="col-node-text custom-node">Destruction</span> 
+											<input type="hidden" class="custom-node-hidden" value=""> 
+											</div>
+											</div>
+										</td>
+
+									<?php } elseif($column_num == 5){ ?>										
+										<td class="ExcelTablerow col-5">
+											<div class="blank-div segment-node"></div>
+											<input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 6){ ?>
+
+										<td class="ExcelTablerow col-6 collapse event border-right border-light-top">
+											<div class="creation-node">
+											<div class="node-circle node-white-circle node-white-circle">N</div>
+											<div class="col-text"> <span class="destructure"></span>
+											<span class="col-node-text custom-node">Destruction</span> 
+											<input type="hidden" class="custom-node-hidden" value=""> 
+											</div>
+											</div>
+										</td>
+
+									<?php } else{ ?>
+
+										<?php if(trim($value_data[$column_num][$row]) == 'Creation'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right">
+												<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><span class="col-text"><span class="creation"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span></span>
+												<input type="hidden" class="custom-node-hidden" value=""></div>
+											</td>
+
+										<?php } else if(trim($value_data[$column_num][$row]) == 'Destruction'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right border-light-top">
+												<div class="lastRow creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text"> <span class="destructure"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span>
+												<input type="hidden" class="custom-node-hidden" value=""></div></div>
+											</td>
+
+										<?php } else{ ?>
+
+											<?php if(trim($value['parent'][0]['value']) == 'Phase') { ?>
+												
+												<?php if($value_data[$column_num][$row]){ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?>">
+														<div class="segment-node">
+															<div class="node-circle node-white-circle node-white-circle">N</div>
+															<div class="col-text segment-text operation-text">
+																<span class="col-node-text">
+																	<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>"><?php echo $value_data[$column_num][$row]; ?>
+																	</span>
+																</span>
+															<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+															</div>
+														</div>
+													</td>
+												<?php }else{ ?>
+													<td class="ExcelTablerow col-<?php echo $column_num;?>">
+														<div class="blank-div segment-node"></div>
+														<input type="hidden" class="custom-node-hidden" value=""></div>
+													</td>
+												<?php } ?>
+
+
+											<?php } elseif($courseType == 'Process' && (trim($value['parent'][0]['value']) == 'Role' || trim($value['parent'][0]['value']) == 'Universe' || trim($value['parent'][0]['value']) == 'Domain')) { ?>
+
+												<?php if($value_data[$column_num][$row]){ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?>">
+														<div class="segment-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text segment-text operation-text"><span class="col-node-text"><span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>"><?php echo $value_data[$column_num][$row]; ?></span></span><input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>"></div></div>
+													</td>
+												<?php }else{ ?>
+													<td class="ExcelTablerow operation-series <?php echo strtolower(trim($value['parent'][0]['value'])); ?> <?php if(isset($value_data[$column_num][$row])){echo 'border-light-top';}?> col-<?php echo $column_num;?> creation-bg" >
+														<div class="blank-div segment-node"></div>
+													</td>
+												<?php } ?>
+
+
+											<?php }elseif(trim($value['parent'][0]['value']) == 'Process'){ ?>
+												
+												<?php if($value_data[$column_num][$row] == '...'){ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'transparent';} ?> border-light-top border-light-bottom process-series">
+														<div class="segment-node">
+															<div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text segment-text operation-text">
+																<span class="col-node-text">
+																	<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																		<?php echo $value_data[$column_num][$row]; ?>
+																	</span>
+																</span>
+																<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+															</div>
+														</div>
+													</td>
+
+												<?php }else{ ?>
+
+													<td class="ExcelTablerow blank Role-segment process-series creation-bg col-<?php echo $column_num;?>">
+														<div class="blank-div segment-node"></div>
+														<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+													</td>
+
+												<?php } ?>
+
+											<?php }else{ ?>
+
+												<td class="ExcelTablerow col-<?php echo $column_num;?>">
+													
+													<?php if($value_data[$column_num][$row]){ ?>
+														<div class="segment-node">
+															<div class="node-circle node-white-circle node-white-circle">N</div>
+																<div class="col-text segment-text operation-text">
+																	<span class="col-node-text">
+																		<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>"><?php echo $value_data[$column_num][$row]; ?>
+																		</span>
+																	</span>
+																	<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+																</div>
+														</div>
+
+													
+													<?php } else{ ?>
+
+														<div class="blank-div segment-node"></div>
+														<input type="hidden" class="custom-node-hidden" value="">
+
+													<?php } ?>
+													
+												</td>
+
+											<?php } ?>											
+
+										<?php } ?>
+
+									<?php } ?>
+
+								<?php } else { ?>
+
+									<?php if($column_num == 1){ ?>
+
+										<td class="ExcelTablerow col-1">
+											<div class="blank-div segment-node borderDashed"></div>
+											<input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 2){ ?>
+
+										<td class="ExcelTablerow col-2 collapse event creation-bg border-right">
+											<div class="blank-div segment-node"></div><input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 3){ ?>
+
+										<td class="ExcelTablerow col-3 transparent">
+											<div class="blank-div segment-node"></div><input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 4){ ?>
+
+										<td class="ExcelTablerow col-4 collapse event creation-bg border-right">
+											<div class="blank-div segment-node"></div><input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 5){ ?>
+
+										<td class="ExcelTablerow col-5 transparent">
+											<div class="blank-div segment-node"></div><input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } elseif($column_num == 6){ ?>
+
+										<td class="ExcelTablerow col-6 collapse event creation-bg border-right">
+											<div class="blank-div segment-node"></div><input type="hidden" class="custom-node-hidden" value=""> 
+										</td>
+
+									<?php } else { ?>
+
+										<?php if(trim($value_data[$column_num][$row]) == 'Creation'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right">
+												<div class="creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><span class="col-text"><span class="creation"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span></span><input type="hidden" class="custom-node-hidden" value=""></div>
+											</td>
+
+										<?php }else if(trim($value_data[$column_num][$row]) == 'Destruction'){ ?>
+
+											<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event border-right border-light-top">
+												<div class="lastRow creation-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text"> <span class="destructure"></span><span class="col-node-text custom-node"><?php echo trim($value_data[$column_num][$row]);?></span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+											</td>
+
+										<?php } else{ ?>
+
+											<?php if($value_data[$column_num][2] == 'Creation'){ ?>
+
+												<?php if($value_data[$column_num][$row] == 'Creation' || $value_data[$column_num][$row] == 'Destruction'){ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'border-light-top';}?> transparent">
+														<div class="segment-node"><div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text segment-text operation-text"><span class="col-node-text"><span><?php echo $value_data[$column_num][$row]; ?></span></span><input type="hidden" class="custom-node-hidden" value=""></div></div>
+													</td>
+
+												<?php }else{ ?>
+
+													<td class="ExcelTablerow col-<?php echo $column_num;?> collapse event creation-bg border-right">
+														<div class="blank-div segment-node"></div>
+														<input type="hidden" class="custom-node-hidden" value="">
+													</td>
+												<?php } ?>
+
+											<?php }else{ ?>
+
+												<?php if(trim($value['parent'][0]['value']) == 'Phase') { ?>
+
+													<?php if ($value_data[$column_num][$row]) { ?>
+															<td class="ExcelTablerow transparent col-<?php echo $column_num; ?> border-light-top">
+																<div class="segment-node">
+																<div class="node-circle node-white-circle node-white-circle">N</div>
+																 <div class="col-text segment-text">
+																	<span class="col-node-text">
+																		<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																				<?php echo $value_data[$column_num][$row]; ?>
+																		</span>
+																	</span>
+																	<i class="fa fa-bars phase-segment segment"></i>
+																	  <div class="add-col-wrap add-segment">
+																		<ul aria-labelledby="dropdownMenu4" role="menu" class="dropdown-menu ">
+																		  <li role="presentation"> <a class="" tabindex="-1" role="menuitem">
+																			<div class="node-circle node-white-circle-expanded">N</div>
+																			Add Segment </a>
+																			<ul class="sub-item">
+																			  
+																			  <li  role="presentation" class="add-association-above-segment"> 
+																			  <a  href="#" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Above </a> </li>
+																				
+																			  <li role="presentation" class="add-association-below-segment"> 
+																			  <a href="#" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Below </a> </li>
+																			</ul>
+																		  </li>
+																		  <li class="" role="presentation"> <a  tabindex="-1" role="menuitem">
+																			<div class="node-circle node-white-circle-expanded">N</div>
+																			Move Segment </a>
+																			<ul class="sub-item">
+																			  <li class=" add-asso-up-segment" role="presentation"> <a  href="#" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Up </a> </li>
+																			  <li class=" add-asso-down-segment" role="presentation"> <a  href="#" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Down </a> </li>
+																			</ul>
+																		  </li>
+
+																		  <li data-toggle="modal" data-target="#deleteSegment" class="association-del-segment">
+																			  <a class="" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Delete Segment
+																			  </a>
+																		  </li>
+																		</ul>
+																	  </div>
+																</div>
+																<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+															  </div>
+														</td>
+
+													<?php } else { ?>
+
+														<td class="ExcelTablerow col-<?php echo $column_num; ?> transparent">
+															<div class="blank-div segment-node"></div>
+														</td>
+
+													<?php } ?>
+
+													<?php // <<< create condition for Role, Universe & Domain with Process Id check
+												} elseif($courseType == 'Process' && (trim($value['parent'][0]['value']) == 'Role' || trim($value['parent'][0]['value']) == 'Universe' || trim($value['parent'][0]['value']) == 'Domain')) { ?>
+													<?php if($value_data[$column_num][$row]) { ?>
+														<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'border-light-top';}?> transparent <?php echo strtolower($value['parent'][0]['value']); ?>">
+															<div class="creation-node">
+																<div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text operation-text"><span class="col-node-text"><span class="editable-field"><?php echo $value_data[$column_num][$row]; ?></span></span><input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>"></div>
+																<!--<i class="fa fa-bars  segment" style="display: none;"></i>-->
+															</div>
+														</td>
+													<?php } else { ?>
+														<td class="ExcelTablerow operation-series <?php echo strtolower(trim($value['parent'][0]['value'])); ?> col-<?php echo $column_num;?> <?php if(isset($value_data[$column_num][$row])){echo 'border-light-top';}?> creation-bg">
+															<div class="blank-div segment-node"></div>
+														</td>
+													<?php } ?>
+												<?php } elseif(trim($value['parent'][0]['value']) == 'Process'){ ?>
+
+													<?php if($value_data[$column_num][$row] == '...'){ ?>
+
+														<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'transparent';} ?> border-light-top border-light-bottom process-series">
+															<div class="segment-node">
+																<div class="node-circle node-white-circle node-white-circle">N</div><div class="col-text segment-text operation-text">
+																	<span class="col-node-text">
+																		<span class="<?php if($value_data[$column_num][$row] != '...'){ echo 'editable-field';} ?>">
+																			<?php echo $value_data[$column_num][$row]; ?>
+																		</span>
+																	</span>
+																	<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+																</div>
+															</div>
+														</td>
+
+													<?php }else{ ?>
+
+														<td class="ExcelTablerow blank Role-segment process-series creation-bg col-<?php echo $column_num;?>">
+															<div class="blank-div segment-node"></div>
+															<input type="hidden" class="custom-node-hidden" value="<?php echo $value_data[$column_num][$row];?>">
+														</td>
+
+													<?php } ?>
+
+
+												<?php }else{ ?>
+
+													<?php if($value_data[$column_num][$row]){ ?>
+
+														<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'border-light-top';}?> transparent">
+															<div class="segment-node">
+																<div class="node-circle node-white-circle node-white-circle">N</div>
+																<div class="col-text segment-text operation-text">
+																	<span class="col-node-text">
+																		<span class="editable-field">
+																			<?php echo $value_data[$column_num][$row]; ?>
+																		</span>
+																	</span>
+																	<input type="hidden" class="custom-node-hidden" value="<?php echo trim($value_data[$column_num][$row]);?>">
+																</div>
+															</div>
+
+															<?php if($value_data[$column_num][$row]!="Manifestation" && $value_data[$column_num][$row]!="Interaction" && $courseType!="Associations") {?>
+
+															<i class="fa fa-bars add-segment segment"></i>
+													        <div class="add-col-wrap add-segment ">
+													            <ul class="dropdown-menu show-<?php echo $column_num;?>" role="menu" aria-labelledby="dropdownMenu4">
+																<li role="presentation" class=""> <a class="" tabindex="-1" role="menuitem">
+													                <div class="node-circle node-white-circle-expanded">N</div>
+													                Add Series </a>
+													                <ul class="sub-item">
+													                    <li role="presentation" class="add-suboperaton-segment"> <a href="#" tabindex="-1" role="menuitem">
+													                    <div class="node-circle node-white-circle node-white-circle">N</div>
+													                    Operation </a> </li>
+													                </ul>
+													             </li>
+													                <li role="presentation" class="no-bg">
+													                    <a role="menuitem" tabindex="-1" class="">
+													                        <div class="node-circle node-white-circle-expanded">N</div>
+													                        Add Segment
+													                    </a>
+													                    <ul class="sub-item">
+													                        <li role="presentation">
+													                            <a role="menuitem" tabindex="-1" href="#" class="add-above-operation-segment">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Add Above 
+													                            </a>
+													                        </li>
+													                        <li role="presentation" >
+													                            <a role="menuitem" tabindex="-1" href="#" class="add-below-operation-segment">
+													                                <div class="node-circle node-white-circle-expanded">N</div>
+													                                Add Below
+													                            </a>
+																				<ul class="sub-item">
+																					<li role="presentation">
+																						<a role="menuitem" tabindex="-1" href="#" class=" WriteYourOwnClass">
+																							<div class="node-circle node-white-circle">N</div>
+																							Sequential 
+																						</a>
+													                                    <ul class="agent-drp">
+													                                        <li class="disabled"><a><div class="node-circle node-white-circle">N</div>Universe</a></li>
+													                                        <li><a href="#" class="add-logic-operation-segment"><div class="node-circle node-white-circle ">N</div>Logic</a></li>
+													                                        <li><a href="#" class="add-below-operation-segment"><div class="node-circle node-white-circle ">N</div>Human</a></li>
+													                                    </ul>
+																					</li>
+																					<li>
+																						<a role="menuitem" tabindex="-1" href="#" class="WriteYourOwnClass">
+																							<div class="node-circle node-white-circle">N</div>
+																							Non-Sequential 
+																						</a>
+													                                    <ul class="agent-drp">
+													                                        <li class="disabled"><a><div class="node-circle node-white-circle">N</div>Universe</a></li>
+													                                        <li><a href="#" class="add-below-logic-non-sequence-operation-segment"><div class="node-circle node-white-circle">N</div>Logic</a></li>
+													                                        <li><a href="#" class="add-below-non-sequence-operation-segment"><div class="node-circle node-white-circle ">N</div>Human</a></li>
+													                                    </ul>
+																					</li>
+																				</ul>
+													                        </li>
+													                    </ul>
+													                </li>
+													                <li role="presentation" class="no-bg ">
+													                    <a role="menuitem" tabindex="-1" class="disabled">
+													                        <div class="node-circle node-white-circle-expanded">N</div>
+													                        Move Segment
+													                    </a>
+													                    <ul class="sub-item">
+													                        <li role="presentation" class="no-bg disabled">
+													                            <a role="menuitem" tabindex="-1" href="#" class="">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Move Above 
+													                            </a>
+													                        </li>
+
+																			<li role="presentation" data-toggle="modal" data-target="#moveBelow" class="moveBelow disabled">
+													                            <a role="menuitem" tabindex="-1" href="#" class="">
+													                                <div class="node-circle node-white-circle">N</div>
+													                                Move Below 
+													                            </a>
+													                        </li>
+																			
+													                    </ul>
+													                </li>
+													                <li data-toggle="modal" data-target="#deleteOperationSegment" class="del-operation-segment">
+																			  <a class="" tabindex="-1" role="menuitem">
+																				<div class="node-circle node-white-circle">N</div>
+																				Delete Segment
+																			  </a>
+																		  </li>
+													            </ul>
+													        </div>
+															
+															<?php } else if($value_data[$column_num][$row]=="Interaction" && $courseType!="Associations"){?>
+																<i class="fa fa-bars  segment check-add-status"></i>
+														        <div class="add-col-wrap">
+														            <ul class="dropdown-menu show-<?php echo $column_num;?>" role="menu" aria-labelledby="dropdownMenu4">
+														                <li role="presentation" class="no-bg">
+														                    <a role="menuitem" tabindex="-1" class="">
+														                        <div class="node-circle node-white-circle-expanded">N</div>
+														                       Status capture point
+														                    </a>
+														                    <ul class="sub-item check-point ">
+														                        <li role="presentation" class="">
+														                            <a role="menuitem" tabindex="-1" href="#" class="add-before-the-event-has-started">
+														                                <span class="node-input">
+														                                    <div class="icheckbox_minimal" style="position: relative;">
+														                                    <input type="checkbox" class="pane_1" name="nodes_1[]" value="before" data-nodex-id="1" data-nodex-attrid="1" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+														                                </span><div class="node-circle node-white-circle">N</div>
+														                                Before the event has started 
+														                            </a>
+														                        </li>
+														                        <li role="presentation" class="">
+														                            <a role="menuitem" tabindex="-1" href="#" class="add-after-the-event-has-ended">
+														                                <span class="node-input">
+														                                    <div class="icheckbox_minimal" style="position: relative;">
+														                                    <input type="checkbox" class="pane_1" name="nodes_1[]" value="after" data-nodex-id="1" data-nodex-attrid="1" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+														                                </span><div class="node-circle node-white-circle">N</div>
+														                                After the event has ended
+														                            </a> 
+														                        </li>
+														                        <li role="presentation" class="">
+														                            <a role="menuitem" tabindex="-1" href="#" class="add-after-completion-of-role-operation">
+														                                <span class="node-input">
+														                                    <div class="icheckbox_minimal" style="position: relative;">
+														                                    <input type="checkbox" class="pane_1" name="nodes_1[]" value="completion" data-nodex-id="1" data-nodex-attrid="1" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+														                                </span><div class="node-circle node-white-circle">N</div>
+														                                After completion of Role-Operation
+														                            </a> 
+														                        </li>
+														                        <li role="presentation" class="">
+														                            <a role="menuitem" tabindex="-1" href="#" class="add-after-the-destruction-event">
+														                                <span class="node-input">
+														                                    <div class="icheckbox_minimal" style="position: relative;">
+														                                    <input type="checkbox" class="pane_1" name="nodes_1[]" value="destructor" data-nodex-id="1" data-nodex-attrid="1" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div>
+														                                </span><div class="node-circle node-white-circle">N</div>
+														                                After the destruction event
+														                            </a> 
+														                        </li>
+
+														                         
+														 
+														                    </ul>
+														                </li>
+														             </ul>
+														        </div>
+															<?php } ?>
+
+
+
+														</td>
+													
+													<?php } else{ ?>
+
+														<td class="ExcelTablerow col-<?php echo $column_num;?> <?php if($value_data[$column_num][$row]){echo 'border-light-top';}?> transparent">
+															<div class="blank-div segment-node"></div>
+														</td>
+
+													<?php } ?>
+
+												<?php } ?>
+
+											<?php } ?>
+
+										<?php } ?>
+
+									<?php } ?>
+
+								<?php } ?>
+								
+								<?php 
+								$count++;
+								$column_num++; ?>
+
+							<?php } ?>
+
+							<td class="ExcelTablerow col-<?php echo $column+1;?>"></td>
+						</tr>
+					<?php }
+				}
+				$i++;
+			}
+		} ?>
+
+	</tbody>
+</table>

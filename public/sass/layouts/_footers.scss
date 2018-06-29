@@ -1,0 +1,38 @@
+$footerHT		:	40px;
+$iconWT			: 	50px;
+
+
+.sass-lang {
+    .footer{
+        width: $fullWidth;
+        border-top:$border-size $border-style $border-gray;
+        height: $footerHT;
+        display: $flex;
+        align-items:$center;
+    }
+}
+.sass-lang {
+    ul.breadccrumb-section > li + li:before {
+        padding: 0 10px 0 5px;
+        content: "|";
+    }
+}
+.sass-lang {
+    ul.breadccrumb-section {
+        li{
+            a{
+                color: $brandColor;
+            }
+        }
+    }
+}
+.sass-lang {
+    .homeIcon {        
+        @include flex;
+        width:$iconWT;
+        height: $footerHT;
+        background: #5d6d87;
+        margin-top: -1px;
+        margin-right: 10px;
+    }
+}

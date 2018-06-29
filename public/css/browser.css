@@ -1,0 +1,13 @@
+.firefox .account-grid td:nth-child(2),
+.firefox .account-grid th:nth-child(2){border-right:5px solid #ccc !important;}
+.account-grid table tr td,
+.account-grid table tr th{margin-left:-2.5px;}
+table#account-table td.ExcelTableFormationCol.fTHLC-left-col.cell-1{left:26px !important;margin-left:-3px;}
+.firefox td.ExcelTableFormationCol.cell-2{left:1px;}
+.firefox .fTHLC-left-col .node-circle{height:23px;}
+.firefox .process-grid .fTHLC-inner-wrapper{margin-left:2px;}
+.firefox .association-grid .row-2 td.ExcelTableFormationRow{height:24px;}
+.firefox .association-grid .row-2 .ExcelTablerow.col-1.fTHLC-left-col{height:24px;}
+.firefox tr.row-3 td.ExcelTablerow.col-1.fTHLC-left-col.blank{border-top:0px solid #fff;}
+.firefox i.add{margin-top:-1px;}
+.firefox #dialogueFlyout .dialogue-tab{right:230px;transition:0.8s;}

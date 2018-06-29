@@ -1,0 +1,99 @@
+$header-bg		: 	#23282d;
+$hedaerHT		:	40px;
+$logoBG			:   #23282d;
+$logo-size		:   30px;
+
+.sass-lang {
+	.header{
+		width:$fullWidth;
+		height: $hedaerHT;
+		background:$header-bg;
+		color:$whiteColor;
+	}
+}
+
+.sass-lang {
+	.logo{
+		background:$logoBG;
+		padding:5px 10px;
+		height: $hedaerHT;
+		
+		img {
+		    width: $logo-size;
+		}
+	}
+}
+
+.sass-lang {
+	.top-header ul{
+		li{
+			padding-right:10px;
+		}
+
+		li:last-child{
+			padding-right:$zero;
+			line-height:$zero;
+		}
+
+		a{
+			color:$whiteColor;
+
+			&:hover,
+			&:focus,
+			&:active,
+			&:visited	
+			{
+				color:$whiteColor;
+			}
+		}	
+
+		img.user-icon{
+			width: 50px;
+			height: 40px;
+		}
+	}
+}
+.sass-lang {
+	.top-header-right {
+		ul{
+			display: $flex;
+	    	align-items: $center;
+	    	line-height: $zero;
+		}	    
+	}
+	ul.dropdown-menu {
+	    background: #23282d;
+	    margin: 0;
+	    li{
+		    padding: 0!important;
+		    border-radius: 4px;
+		    a {
+    			padding: 10px 10px 10px 20px;
+			}
+	    }
+	}
+}
+
+.sass-lang .toppy {
+    background-color: #d9d9d9;
+    overflow: visible;
+    width: 17%;
+    height: 39px;
+    position: fixed;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    left: 43%;
+  }
+.sass-lang .toppy .ct-text {
+     flex: 1;
+    display: flex;
+    padding: 24px;
+}
+.sass-lang .toppy .ct-text h5{
+	font-size: 14px;
+    color: black;
+    font-weight: 900;
+	text-align:center;
+}

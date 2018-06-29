@@ -1,0 +1,28 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+			for($row=0;$row<2;$row++) {
+				?>
+			   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+				  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+							<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+				  <?php } ?>
+			   </tr>
+			<?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column"  style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php 
+for($row=0;$row<count($this->tableDataArray);$row++) {
+	?>
+   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+      <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+				<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+	  <?php } ?>
+   </tr>
+<?php } ?>
+</tbody>
+</table>

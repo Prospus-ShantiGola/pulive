@@ -1,0 +1,362 @@
+<div class="total-width-pane slide-wrap active" id="folderSection">
+    <?php if($this->mode == "Normal"){?>
+    <div class="listing-wrapper dashSlider clearfix set-height active activeWrap" id="resizeFolderList">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Document folders : List</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="main-one-third" id="folder-first-instance-list-div">
+            <input type="hidden" id="filter_operator" name="filter_operator" value="equals" />
+            <input type="hidden" id="filter_type" name="filter_type" value="no-pagination" />
+            <input type="hidden" id="filter_field" name="filter_field" value="" />
+            <input type="hidden" id="is_instance" name="is_instance" value="N" />
+            <input type="hidden" id="is_loading_tag" name="is_loading_tag" value="N" />
+            <input type="hidden" id="action_type" name="action_type" value="" />
+            <div class="folder-heading filter-folder"> 
+                <span class="filterDrp">
+                    <span> <i class="icon folder"></i>Name<i class="fa fa-angle-down"></i></span>
+                   
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationFolderAjax('<?php echo $this->url('documents');?>','1','value','ASC','Ajax')" >Sort A - Z</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationFolderAjax('<?php echo $this->url('documents');?>','1','value','DESC','Ajax')">Sort Z - A</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Ends With</li>
+                                    <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-folder-text-box-value" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-folder-name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box-folder-value entr-folder-name" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                    </ul>
+                </span>
+                <div class="root-plus-icon"><i class="icon plus-class" onclick="createRootfolder()"></i></div>
+            </div>
+            
+        <div class="folder-listing  niceScrollDiv">
+           
+                <?php 
+                if(!empty($this->instanceArray)){ ?>
+                <div id="dragandrophandler">
+                    <?php 
+                    function getProperty($propertyArray) { ?>
+                            <ul>                
+                                <?php 
+
+                                foreach ($this->propertyArray as $key => $value) { ?>
+                                    <li id="<?php echo $value['node_id'];?>" class="drag-folder move-parent-folder" folder-sequence="<?php echo $value['sequence'];?>">
+                                        <div class="left-folder-action">
+                                            <?php 
+                                               if(count($value['child'])> 0) { ?>
+                                                <i class ="fa fa-angle-up"></i>
+                                            <?php } ?>
+                                        </div>
+                                        <a href="javascript:void(0);"><i class="icon folder"></i>
+                                            <?php if($value['value']!=""){
+                                                    $valueVal1=  $value['value'];
+                                                    } else {
+                                                        $valueVal1= '-'; 
+                                                    } ?>
+                                            <span class="value-count-<?php echo $value['node_id'];?>" data-value="<?php echo $valueVal1;?>" data-id="<?php echo $value['node_id'];?>"><?php echo $valueVal1;?></span>
+                                        </a>
+                                        <?php if(count($value['child'])> 0) { 
+                                                $classVal = 'hasChild';
+                                            } else {
+                                                $classVal = 'noChild';
+                                            } ?>
+                                        <div class="folder-action <?php echo $classVal?>">
+                                            <i class="icon plus-class"></i>
+                                          
+                                        </div>
+                                        <?php if(is_array($value['children'])) { ?>
+                                                <?php getProperty($value['children']); ?>
+                                        <?php }  ?>
+                                    </li>
+                                    <?php }?>
+                            </ul> 
+                    <?php } ?>
+                            <div class="nice-scroll-box">          
+                                <ul id="FolderList" class="fixedTableHig">
+                                    <?php   
+
+
+                                    foreach ($this->instanceArray as $key => $value) { ?>
+                                    <li id="<?php echo $value['node_id'];?>" class="drag-folder move-parent-folder" folder-sequence="<?php echo $value['sequence'];?>">
+                                        <div class="left-folder-action">
+                                            <?php 
+                                               if(count($value['child'])> 0) { ?>
+                                                <i class ="fa fa-angle-up"></i>
+                                            <?php } ?>
+                                        </div>
+                                        <ilayer class="oddEvenHack"></ilayer>
+                                        <a href="javascript:void(0);"><i class="icon folder"></i>
+                                            <?php if($value['value']!=""){
+                                                        $valueVal1=  $value['value'];
+                                                        } else {
+                                                        $valueVal1= '-'; 
+                                                        }?>
+                                            <span class="value-count-<?php echo $value['node_id'];?>" data-value="<?php echo $valueVal1;?>" data-id="<?php echo $value['node_id'];?>"><?php echo $valueVal1;?></span>
+                                        </a>
+                                        <?php if(count($value['child'])> 0) { 
+                                                $classVal = 'hasChild';
+                                            } else {
+                                                $classVal = 'noChild';
+                                            } ?>
+                                        <div class="folder-action <?php echo $classVal?>">
+                                            <i class="icon plus-class"></i>
+                                          
+                                        </div>
+                                        <div class="nested-list" id="childList_<?php echo $value['node_id'];?>"></div>
+                                        
+                                        <?php if(is_array($value['children'])) { ?>
+                                                <?php getProperty($value['children']); ?>
+                                        <?php }  ?>
+
+                                    </li>
+                                    <?php }?>
+                                </ul>
+                             </div>  
+                         </div>           
+                    <?php } else { ?>
+                                <table class="table table-style table-dashboard class-table intance-table">
+                                        <tbody>
+                                            <tr class="list-row lisat-instance-row0">
+                                                <td colspan="4" align="center"> No folder found</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                <?php } ?>
+             
+            </div>
+           
+        </div>
+    </div>
+      <!-- folder details div start here second pane -->
+    <div class="display-wrapper dashSlider clearfix set-height active" id="first-folder-details">
+    </div>
+  <!-- end folder details second pane here -->  
+    <?php } ?>
+    <?php  if($this->mode == "Ajax"){ ?>
+
+            <input type="hidden" id="filter_operator" name="filter_operator" value="equals" />
+            <input type="hidden" id="filter_type" name="filter_type" value="no-pagination" />
+            <input type="hidden" id="filter_field" name="filter_field" value="" />
+            
+            <div class="main-one-third" id="folder-first-instance-list-div">
+
+                <div class="folder-heading filter-folder"> 
+                    <span class="filterDrp">
+                        <span> <i class="icon folder"></i>Name<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationFolderAjax('<?php echo $this->url('documents');?>','1','value','ASC','Ajax')" >Sort A - Z</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationFolderAjax('<?php echo $this->url('documents');?>','1','value','DESC','Ajax')">Sort Z - A</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Ends With</li>
+                                    <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-folder-text-box-value" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-folder-name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box-folder-value entr-folder-name" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                        </ul>
+                    </span>
+                    <div class="root-plus-icon"><i class="icon plus-class" onclick="createRootfolder()"></i></div>
+                </div>
+            <div class="folder-listing niceScrollDiv">
+                
+                    <?php 
+                    if(!empty($this->instanceArray)){ ?>
+                        <div id="dragandrophandler">
+                        <?php 
+                        function getProperty($propertyArray) { ?>
+                                 <ul>                
+                                    <?php foreach ($this->propertyArray as $key => $value) {
+
+                                        
+
+                                     ?>
+                                        <li id="<?php echo $value['node_id'];?>" class="drag-folder move-parent-folder" folder-sequence="<?php echo $value['sequence'];?>">
+                                            <div class="left-folder-action">
+                                                <?php 
+                                                   if(count($value['child'])> 0) { ?>
+                                                    <i class ="fa fa-angle-up"></i>
+                                                <?php } ?>
+                                            </div>
+                                            <a href="javascript:void(0);"><i class="icon folder"></i>
+                                                <?php if($value['value']!=""){
+                                                        $valueVal1=  $value['value'];
+                                                        } else {
+                                                            $valueVal1= '-'; 
+                                                        } ?>
+                                                <span class="value-count-<?php echo $value['node_id'];?>" data-value="<?php echo $valueVal1;?>" data-id="<?php echo $value['node_id'];?>"><?php echo $valueVal1;?></span>
+                                            </a>
+                                            <?php if(count($value['child'])> 0) { 
+                                                $classVal = 'hasChild';
+                                            } else {
+                                                $classVal = 'noChild';
+                                            } ?>
+                                        <div class="folder-action <?php echo $classVal?>">
+                                            <i class="icon plus-class"></i>
+                                           
+
+                                        </div>
+                                            <?php if(is_array($value['children'])) { ?>
+                                                    <?php getProperty($value['children']); ?>
+                                            <?php }  ?>
+                                        </li>
+                                        <?php }?>
+                                </ul> 
+                        <?php } ?>
+                                <div class="nice-scroll-box">            
+                                    <ul id="FolderList" class="fixedTableHig">
+                                        <?php foreach ($this->instanceArray as $key => $value) { ?>
+                                        <li id="<?php echo $value['node_id'];?>" class="drag-folder move-parent-folder" folder-sequence="<?php echo $value['sequence'];?>">
+                                            <div class="left-folder-action">
+                                                <?php 
+                                                   if(count($value['child'])> 0) { ?>
+                                                    <i class ="fa fa-angle-up"></i>
+                                                <?php } ?>
+                                            </div>
+                                            <ilayer class="oddEvenHack"></ilayer>
+                                            <a href="javascript:void(0);"><i class="icon folder"></i>
+                                                <?php if($value['value']!=""){
+                                                            $valueVal1=  $value['value'];
+                                                            } else {
+                                                            $valueVal1= '-'; 
+                                                            }?>
+                                                <span class="value-count-<?php echo $value['node_id'];?>" data-value="<?php echo $valueVal1;?>" data-id="<?php echo $value['node_id'];?>"><?php echo $valueVal1;?></span>
+                                            </a>
+
+                                            <?php if(count($value['child'])> 0) { 
+                                                $classVal = 'hasChild';
+                                            } else {
+                                                $classVal = 'noChild';
+                                            } ?>
+
+                                            <div class="folder-action <?php echo $classVal?>">
+                                                <i class="icon plus-class"></i>
+                                            </div>
+                                            <div class="nested-list" id="childList_<?php echo $value['node_id'];?>"></div>
+                                            
+                                            <?php if(is_array($value['children'])) { ?>
+                                                    <?php getProperty($value['children']); ?>
+                                            <?php }  ?>
+
+                                        </li>
+                                        <?php }?>
+                                    </ul>
+                                </div>
+                              </div>           
+                        <?php } else { ?>
+                                    <table class="table table-style table-dashboard class-table intance-table">
+                                        <tbody>
+                                            <tr class="list-row lisat-instance-row0">
+                                                <td colspan="4" align="center"> No folder found </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                        <?php } ?>
+               
+                
+            </div>
+            </div>
+    <?php } ?>
+
+   
+</div>
+
+<div id="createNewFolder" class="modal fade classes-click-modal"  data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header classes-common-name">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close" data-original-title="" title=""></i></span></button>
+                 <h4 class="modal-title">Enter Folder details</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <p>Folder Name</p>
+                <div class="form-group classess-body-input">
+                    <input type="text" id="Folder_name" class="form-control" name="common_name_first" autofocus="" maxlength="50">
+                    <span class="char-limit"><span Class="charCount">0</span>/50 characters</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn hover-changes btn-default common_name_folder_first inactiveLink">OK</button>
+                <button type="button" class="btn hover-changes btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="createSubFolder" class="modal fade classes-click-modal"  data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header classes-common-name">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close" data-original-title="" title=""></i></span></button>
+                 <h4 class="modal-title">Enter Folder details</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <p>Folder Name</p>
+                <div class="form-group classess-body-input">
+                    <input type="text" id="Folder_sub_name" class="form-control" name="common_name_first" autofocus="" maxlength="50">
+                    <span class="char-limit"><span Class="charCount">0</span>-50 characters</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn hover-changes btn-default common_sub_folder_first inactiveLink">OK</button>
+                <button type="button" class="btn hover-changes btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="createRootFolder" class="modal fade classes-click-modal"  data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header classes-common-name">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close" data-original-title="" title=""></i></span></button>
+                 <h4 class="modal-title">Enter Folder details</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <p>Folder Name</p>
+                <div class="form-group classess-body-input">
+                    <input type="text" id="Folder_root_name" class="form-control" name="common_name_first" autofocus="" maxlength="50">
+                    <span class="char-limit"><span Class="charCount">0</span>-50 characters</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn hover-changes btn-default common_root_folder_first inactiveLink">OK</button>
+                <button type="button" class="btn hover-changes btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

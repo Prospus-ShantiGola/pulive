@@ -1,0 +1,74 @@
+<div>            
+    <div class="tab-content">
+        <div class="tab-pane active nano" role="tabpanel">
+            <ol class="class-wrapper table-list-view  course-inner-wrap nano-content"> 
+                <!-- <li>
+                    <div class="node-content clearfix">
+                    <div class="custom-checkbox">
+                        <input type="checkbox" class="child_class_ids" id="add_new_sub" value="add_new_sub" name="nodesVals[]" alt="" />
+                        <label></label>    
+                    </div> 
+                    <div class="">                                            
+                        <div class="node-circle node-white-circle">N</div> 
+                            <div class="node-head node-input"> 
+                                <span>Add New Subclass</span>
+                            </div>
+                        </div>
+                    </div>
+                </li> -->
+                <?php
+                $existArray                     = array();
+                $nonexistArray                  = array();
+                $childArray                     = array_values($this->childArray);
+
+                if(count($childArray) > 0){
+                    foreach($this->newClassArray as $key => $node) { 
+                        if(in_array($node['node_id'] , $childArray)){                        
+                            $key                = array_search($node['node_id'], $childArray);
+                            $existArray[$key]   = $node;
+                        }else{
+                            $nonexistArray[]    = $node;
+                        }
+                    }
+                    ksort($existArray);
+                    $finalarray                     = array_merge($existArray, $nonexistArray);
+                }else{
+                    $finalarray                     = $this->newClassArray;
+                }
+                
+                foreach($finalarray as $key => $node) {
+                    $tempSubClassName           = ($this->class_data[$key]['Plural']) ? ($this->class_data[$key]['Plural']) : ($this->class_data[$key]['Common Name']);
+
+                    if(intval($node['encrypt_status']) == 1)
+                    {
+                        $subClassName       =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$node['caption'],'key' =>ENCRYPTION_KEY));
+                        $pluralClassName    =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$tempSubClassName,'key' =>ENCRYPTION_KEY)); 
+                    } 
+                    else
+                    {
+                        $subClassName       = $node['caption'];
+                        $pluralClassName    = $tempSubClassName;
+                    }
+                    $pluralClassName        = $node['caption'];
+
+                ?>
+                    <li>
+                        <div class="node-content clearfix">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" class="child_class_ids" id="nodesVals<?php echo $node['node_id']; ?>" value="<?php echo $node['node_id']; ?>" name="nodesVals[]" alt="<?php echo $pluralClassName; ?>" <?php if(in_array($node['node_id'],$this->childArray)) { ?> checked="true" <?php } ?> />
+                            <label></label>    
+                        </div> 
+                        <div class="">                                            
+                            <div class="node-circle node-white-circle">N</div> 
+                                <div class="node-head node-input">                                
+                                    <span><?php echo $subClassName." (".$node['node_id'].")"; ?></span>
+                                    <input type="hidden" class="node_subclass" value="<?php echo $node['node_class_id'];?>">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php } ?>
+            </ol>
+        </div>
+    </div>
+</div>

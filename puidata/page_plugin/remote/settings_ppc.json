@@ -1,0 +1,59 @@
+all_settings =  {
+    
+   "performance": {
+        "class": "active",
+        "label": "Employee Review",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "805048"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Employee Review: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "839021",
+                    "columns":  ["TEAM MEMBER > ID", "TEAM MEMBER > Name", "TEAM MEMBER > Title", "REVIEW > Period", "REVIEW > Date"]
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "839721",
+                    "displayType": "add",
+                    "heading": "Employee Review"
+                }
+            }
+        }
+    }
+}

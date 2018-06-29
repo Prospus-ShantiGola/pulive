@@ -1,0 +1,292 @@
+<?php if($this->post['type'] == 'mainPage') { ?>
+
+    <div class="fixed-top-header">
+        <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+            <tbody>
+                <tr class="row-0">
+                    <td class="ExcelTableFormationRow"><div class="left-col"></div></td>
+                    <td class="ExcelTableFormationCol col-1 collapse"><span class="top-col">1</span></td>
+                    <td class="ExcelTableFormationCol collapse event col-2"><span class="top-col">2</span></td>
+                    <td class="ExcelTableFormationCol col-3"><span class="top-col">3</span></td>
+                    <td class="ExcelTableFormationCol collapse event col-4"><span class="top-col">4</span></td>
+                    <td class="ExcelTableFormationCol col-5"><span class="top-col">5</span><i class="fa fa-plus add add-phase-segment"></i></td>
+                    <td class="ExcelTableFormationCol collapse  event col-6"><span class="top-col">6</span></td>
+                    <td class="ExcelTableFormationCol col-7"></td>
+                </tr>
+                <tr class="row-1">
+                    <td class="ExcelTableFormationRow"><div class="left-col">1</div></td>
+                    <td class="ExcelTablerow col-1 collapse"><div data-id="1" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon time-icon"></span><span class="col-head-title">Timeline</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                    <td class="ExcelTablerow col-2 collapse event "><div data-id="2" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                    <td class="ExcelTablerow col-3"><div data-id="3" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon process-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i> </div></td>
+                    <td class="ExcelTablerow col-4 collapse event"><div data-id="4" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span></span><i class="fa fa-caret-left arrow rotate"></i> </div></td>
+                    <td class="ExcelTablerow col-5"><div data-id="5" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon phase-icon"></span><span class="col-head-title">Phase</span><i class="fa fa-caret-left arrow"></i> </div></td>
+                    <td class="ExcelTablerow col-6 collapse event">
+                        <div data-id="6" class="col-head">
+                            <div class="node-circle node-white-circle node-white-circle">N</div>
+                            <span class="icon event-icon"></span><span class="col-head-title">.Event</span>
+                            <i class="fa fa-caret-left arrow rotate"></i> 
+                        </div>
+                    </td>
+                    <td class="ExcelTablerow col-7"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="fixed-left-column" border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+        <tbody>
+            <tr class="row-0">
+                <td class="ExcelTableFormationRow"><div class="left-col"></div></td>
+                <td class="ExcelTableFormationCol col-1 collapse"><span class="top-col">1</span></td>
+                <td class="ExcelTableFormationCol collapse event col-2"><span class="top-col">2</span></td>
+                <td class="ExcelTableFormationCol col-3"><span class="top-col">3</span></td>
+                <td class="ExcelTableFormationCol collapse event col-4"><span class="top-col">4</span></td>
+                <td class="ExcelTableFormationCol col-5">
+                    <span class="top-col">5</span><i class="fa fa-plus add add-phase-segment"></i>
+                    <div class="add-col-wrap add-colums"  >
+                        <ul class="dropdown-menu show-5" >
+                            <li class="no-bg "> <a class="add-left disabled">
+                                <div class=" node-circle node-white-circle-expanded">N</div>
+                                Add left </a>
+                                <ul class="sub-item">
+                                    <li class="no-bg disabled"> <a class="add-left-col">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Phase </a> 
+                                    </li>
+                                    <li class="no-bg disabled"> <a class="">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Actor </a> 
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="presentation"> 
+                                <a class="add-right">
+                                    <div class="node-circle node-white-circle-expanded">N</div>
+                                    Add right 
+                                </a>
+                                <ul class="sub-item">
+                                    <li data-toggle="modal" data-target="#addSeriespoup"> <a  class="addPopupPhaseClass">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Phase </a> 
+                                    </li>
+                                    <li class="add-role-series"> <a class="addRoleSeries" href="#">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Actor </a> 
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td class="ExcelTableFormationCol collapse  event col-6"><span class="top-col">6</span></td>
+                <td class="ExcelTableFormationCol col-7"></td>
+            </tr>
+          
+            <tr class="row-1">
+                <td class="ExcelTableFormationRow"><div class="left-col">1</div></td>
+                <td class="ExcelTablerow col-1 collapse"><div data-id="1" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon time-icon"></span><span class="col-head-title">Timeline</span><i class="fa fa-caret-left arrow rotate"></i> </div>
+                </td>
+                <td class="ExcelTablerow col-2 collapse event "><div data-id="2" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i> </div>
+                </td>
+                <td class="ExcelTablerow col-3"><div data-id="3" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon process-icon"></span><span class="col-head-title">Process</span><i class="fa fa-caret-left arrow"></i> </div>
+                </td>
+                <td class="ExcelTablerow col-4 collapse event"><div data-id="4" class="col-head">
+                    <div class="node-circle node-white-circle node-white-circle">N</div><span class="icon event-icon"></span><span class="col-head-title">.Event</span></span><i class="fa fa-caret-left arrow rotate"></i> </div>
+                </td>
+                <td class="ExcelTablerow col-5"><div data-id="5" class="col-head"><div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon phase-icon"></span><span class="col-head-title">Phase</span><i class="fa fa-caret-left arrow"></i> </div>
+                </td>
+                <td class="ExcelTablerow col-6 collapse event">
+                    <div data-id="6" class="col-head">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon event-icon"></span>
+                        <span class="col-head-title">.Event</span>
+                        <i class="fa fa-caret-left arrow rotate"></i> 
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-7"></td>
+            </tr>
+          
+            <tr class="row-2">
+                <td class="ExcelTableFormationRow"><div class="left-col">2</div></td>
+                <td class="ExcelTablerow col-1"><div class="">
+                    <div class="time-col"> <span class="doted-border"></span>
+                      <div class="node-circle node-white-sm-circle">N</div>
+                      <span class="col-text"> 
+                      <span class="col-node-text custom-node"></span>
+                    </span> </div>
+                  </div></td>
+                <td class="ExcelTablerow col-2 collapse event">
+                  <div class="creation-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="col-text"> <span class="creation"></span> 
+                    <span class="col-node-text custom-node">Creation</span>
+                   </span>
+                  </div>
+                </td>
+                <td class="ExcelTablerow col-3"><div class="segment-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text segment-text operation-text">
+                     <span class="col-node-text"><input type="text" class="custom-node undefined" placeholder="Undefined"><!-- <span class="icons"><i class="saveIcon" data-toggle="tooltip" data-placement="bottom" data-original-title="Save"></i><i class="closeIcon" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancel"></i></span> --></span>
+                    </div>
+                  </div></td>
+                <td class="ExcelTablerow col-4 collapse event"><div class="creation-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text"> <span class="creation"></span> 
+                    <span class="col-node-text custom-node">Creation</span>
+                   </div>
+                  </div></td>
+                <td class="ExcelTablerow col-5">
+                <div class="segment-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text segment-text operation-text"> 
+                      <span class="col-node-text "><input type="text" class="custom-node undefined" placeholder="Undefined"><!-- <span class="icons"><i class="saveIcon" data-toggle="tooltip" data-placement="bottom" data-original-title="Save"></i><i class="closeIcon" data-toggle="tooltip" data-placement="bottom" data-original-title="Cancel"></i></span> --></span>
+                    <!--<i class="fa fa-bars segment"></i>-->
+                      <div class="add-col-wrap add-segment">
+                        <ul aria-labelledby="dropdownMenu4" role="menu" class="dropdown-menu show-5">
+                          <li role="presentation"> <a class="" tabindex="-1" role="menuitem">
+                            <div class="node-circle node-white-circle-expanded">N</div>
+                            Add Segment </a>
+                            
+                            <ul class="sub-item">
+                              <li class="no-bg add-above-segment" role="presentation">
+                               <a class="disabled add-above-segment" href="#" tabindex="-1" role="menuitem">
+                                <div class="node-circle node-white-circle">N</div>
+                                Above </a> </li>
+                              <li role="presentation" class="add-below-segment"> <a  href="#" tabindex="-1" role="menuitem">
+                                <div class="node-circle node-white-circle">N</div>
+                                Below </a> </li>
+                            </ul>
+                          </li>
+                          <li class="no-bg" role="presentation"> <a class="disabled" tabindex="-1" role="menuitem">
+                            <div class="node-circle node-white-circle-expanded">N</div>
+                            Move Segment </a>
+                            <ul class="sub-item">
+                              <li class="no-bg" role="presentation"> <a class="disabled" href="#" tabindex="-1" role="menuitem">
+                                <div class="node-circle node-white-circle">N</div>
+                                Up </a> </li>
+                              <li class="no-bg" role="presentation"> <a class="disabled" href="#" tabindex="-1" role="menuitem">
+                                <div class="node-circle node-white-circle">N</div>
+                                Down </a> </li>
+                            </ul>
+                          </li>
+                          <li  data-toggle="modal" data-target="#deleteSegment" class="association-del-segment">
+                              <a class="">
+                                <div class="node-circle node-white-circle node-white-circle">N</div>
+                                Delete Segment
+                              </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  </td>
+                <td class="ExcelTablerow col-6 collapse event">
+                  <div class="creation-node">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <div class="col-text"> <span class="creation"></span> 
+                      <span class="col-node-text custom-node">Creation</span> 
+                       </div>
+                  </div></td>
+                <td class="ExcelTablerow col-7"></td>
+            </tr>
+      
+            <tr class="row-3">
+                <td class="ExcelTableFormationRow"><div class="left-col">3</div></td>
+                <td class="ExcelTablerow col-1">
+                    <div class="lastRow">
+                        <div class="time-col">
+                            <div class="node-circle node-white-sm-circle">N</div>
+                            <div class="borderDashed last-borderDashed"></div>
+                            <span class="col-text"> </span> 
+                        </div>
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-2 collapse event">
+                    <div class="lastRow creation-node">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <div class="col-text"> <span class="destructure"></span> 
+                            <span class="col-node-text custom-node">Destruction</span> 
+                        </div>
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-3"><div class="blank-div segment-node"></div></td>
+                <td class="ExcelTablerow col-4 collapse event">
+                    <div class="lastRow creation-node">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <div class="col-text"> 
+                            <span class="destructure"></span> 
+                            <span class="col-node-text custom-node">Destruction</span> 
+                        </div>
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-5"><div class="blank-div segment-node"></div></td>
+                <td class="ExcelTablerow col-6 collapse event">
+                    <div class="creation-node">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <div class="col-text"> <span class="destructure"></span>
+                           <span class="col-node-text custom-node">Destruction</span> 
+                        </div>
+                    </div>
+                </td>
+                <td class="ExcelTablerow col-7"></td>
+            </tr>  
+        </tbody>
+    </table>
+
+<?php } ?>
+
+<?php  if($this->post['type'] == 'phase') { ?>
+    <?php if($this->post['confirm'] == 'YES') { ?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                    <h4 class="modal-title" id="myModalLabel">Heads Up!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="series-content">Are you sure you want to add new phase then removed previous actor series.</div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-black" data-dismiss="modal" onclick="openAddPhase('<?php echo $this->post['columnNumber']; ?>','<?php echo $this->post['preNoSegment']; ?>');" >Yes</button>
+                    <button type="button" class="btn btn-black" data-dismiss="modal" >No</button>
+                </div>
+            </div>
+        </div>
+    <?php } else {?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create Phase Series</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="series-content">Define the number of segment for the new series</div>
+                    <div class="select-box">
+                        <input type="hidden" id="columnNumber" name="columnNumber" value="<?php echo $this->post['columnNumber1']; ?>"  />
+                        <input type="hidden" id="preNoSegment_association" name="preNoSegment" value="<?php echo $this->post['preNoSegment1']; ?>"  />
+                        <select id="noOfSegment_association" name="noOfSegment" >
+                            <?php for($index=2;$index<11;$index++) { ?>
+                                <option value="<?php echo $index; ?>" ><?php echo $index; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div> 
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-black" data-dismiss="modal" onclick="addPhase('<?php echo $this->post['columnNumber1']; ?>','<?php echo $this->post['preNoSegment1']; ?>');" >OK</button>
+                    <button type="button" class="btn btn-black" data-dismiss="modal" >Cancel</button>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+<?php } ?>
+

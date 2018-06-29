@@ -1,0 +1,13 @@
+<?php  
+echo $this->header;
+$html = '<tr>'
+                        . '<td style="font:13px Arial, Helvetica, sans-serif; color:#333333">'
+                        . 'You have been appointed as the on Deal ' . $this->dealId . '. Please <a style="color:#004E83; text-decoration:underline;" href="' . SOCKET_HOST_NAME . '">login</a> to view the details of the Deal.'
+                        . '</td>'
+                        . '</tr>'
+                        . '<tr>';
+              
+    
+echo $html;
+echo $this->footer;
+?>

@@ -1,0 +1,29 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin flex {
+  display:$flex;
+	align-items: $center;
+	justify-content: $center;
+}
+
+@mixin appearance($none) {
+	-webkit-appearance: $none;
+     -moz-appearance: $none;
+       -o-appearance: $none;
+      -ms-appearance: $none;
+          appearance: $none;
+}
+
+
+@mixin transition(speed) {
+  -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+}
+

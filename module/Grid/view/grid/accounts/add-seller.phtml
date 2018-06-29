@@ -1,0 +1,316 @@
+<?php
+    $rnd    =   time();
+    if($nodeType == 'Seller'){
+        $nodeClass = 'seller-only';
+        $dataSection = 'sellerSection-'.$rnd;
+        $nodeSection = 'undefinedSellerSection-'.$rnd;
+        $nodeTitle = 'sellerSection';
+    }elseif ($nodeType == 'Buyer') {
+        $nodeClass = 'buyer-only';
+        $dataSection = 'buyerSection-'.$rnd;
+        $nodeSection = 'undefinedBuyerSection-'.$rnd;
+        $nodeTitle = 'buyerSection';
+    }elseif ($nodeType == 'Authority') {
+        $nodeClass = 'authority';
+        $dataSection = 'authoritySection-'.$rnd;
+        $nodeSection = 'undefinedAuthoritySection-'.$rnd;
+        $nodeTitle = 'authoritySection';
+    }else{
+        $nodeClass = '';
+        $nodeType  = 'Undefined';
+        $dataSection = 'undefinedSection-'.$rnd;
+        $nodeSection = 'undefinedUndefinedSection-'.$rnd;
+        $nodeTitle = 'undefinedSection';
+        
+         $undefinedInputField  = '<div class="segment-node">';
+         $undefinedInputField .= '<div class="col-text segment-text operation-text">';
+         $undefinedInputField .= '<span class="col-node-text"><input type="text" placeholder="Undefined" class="custom-node undefined"><span class="icons"><i data-original-title="Save" data-placement="bottom" data-toggle="tooltip" class="saveIcon"></i><i data-original-title="Cancel" data-placement="bottom" data-toggle="tooltip" class="closeIcon"></i></span></span>';
+         $undefinedInputField .= '</div>';
+    }
+
+?>
+<table id="account-table" border="" style="border-collapse: collapse;" cellpadding="0" cellspacing="0">
+  <thead>
+    <?php 
+    for($row = 0; $row < count($tableArrayhead); $row++) { //Tr loop for head section ?>
+     <tr class="<?php echo $this->tableArrayhead[$row][0]['trClass'];?>" >
+            <?php for($col=0;$col<count($this->tableArrayhead[$row]);$col++) {//Th (Column) loop for each Tr ?>
+                       <!--Add Th(Columns) in every row according to row number-->
+                            <?php if($myCol == $col){?>
+                            <th class="<?php echo $this->tableArrayhead[$row][$col]['tdClass'];?>" data-section="<?php echo $this->tableArrayhead[$row][$col]['data-section'];?>"><?php  echo $this->tableArrayhead[$row][$col]['data']; ?></th>
+                            <?php } ?>
+                           <?php if($myCol == $col && $row == 0){ ?>
+                            <th class="ExcelTableFormationCol acntSecCol <?php echo $nodeClass;?>"><span class="top-col"></span></th>
+                            <th class="ExcelTableFormationCol HideSection <?php echo $nodeClass;?>" style="height:22px"><span class="top-col"></span></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><span class="top-col"></span></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><span class="top-col"></span></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><span class="top-col"></span></th>
+                     <?php } elseif($myCol == $col && $row == 1){ ?>
+                            <th class="ExcelTableFormationCol acntSecCol <?php echo $nodeClass;?>" data-section="<?php echo $nodeSection;?>"> <div class="col-head">
+                                <div class="node-circle node-white-circle">N</div>
+                                <span class="account-head-title">Undefined</span> </div>
+                            </th>
+                            <th class="ExcelTableFormationCol HideSection <?php echo $nodeClass;?>" data-section="<?php echo $nodeSection;?>" style="height:22px"> <div class="col-head">
+                                <div class="node-circle node-white-circle">N</div>
+                                <span class="account-head-title">Undefined</span> </div>
+                            </th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $nodeSection;?>"><div class="col-head "></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $nodeSection;?>"><div class="col-head "></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $nodeSection;?>"> 
+                                <div class="col-head "> <i class="fa fa-plus add"></i>
+                                <div class="add-col-wrap add-colums">
+                                  <ul class="dropdown-menu ">
+                                    <li role="presentation" class="disabled"> <a class="add-right">
+                                      <div class="node-circle node-white-circle-expanded">N</div>
+                                      Add Left </a>
+                                      <ul class="sub-item">
+                                        <li data-toggle="modal" data-target=""> <a class="">
+                                          <div class="node-circle node-white-circle">N</div>
+                                          Domain </a> </li>
+                                      </ul>
+                                    </li>
+                                    <li role="presentation"> <a class="add-right">
+                                      <div class="node-circle node-white-circle-expanded">N</div>
+                                      Add Right </a>
+                                      <ul class="sub-item">
+                                        <li data-toggle="modal" data-target=""> <a class="">
+                                          <div class="node-circle node-white-circle">N</div>
+                                          Domain </a>
+                                          <ul class="sub-item">
+                                            <li data-toggle="modal" data-target=""> <a class="add-domain-node" data-node="Seller">
+                                              <div class="node-circle node-white-circle">N</div>
+                                              Seller Only </a></li>
+                                            <li data-toggle="modal" data-target=""> <a class="add-domain-node" data-node="Buyer">
+                                              <div class="node-circle node-white-circle">N</div>
+                                              Buyer Only </a></li>
+                                            <li data-toggle="modal" data-target=""> <a class="add-domain-node"  data-node="Seller-Buyer">
+                                              <div class="node-circle node-white-circle">N</div>
+                                              Seller-Buyer</a></li>
+                                            <li data-toggle="modal" data-target=""> <a class="add-domain-node"  data-node="Empty">
+                                              <div class="node-circle node-white-circle">N</div>
+                                              Empty</a></li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li role="presentation" class="delete-li delete-domain"> <a class="add-right">
+                                        <div class="node-circle node-white-circle-expanded">N</div>
+                                        Delete</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </th>
+                     <?php } elseif($myCol == $col && $row == 2){?>
+                            <th class="ExcelTableFormationCol acntSecCol <?php echo $nodeClass;?>" data-section="<?php echo $dataSection;?>"> <div class="col-head altColHead">
+                                <div class="node-circle node-white-circle">N</div>
+                                <span class="account-head-title"><?php echo $nodeType;?></span> </div>
+                            </th>
+                            <th class="ExcelTableFormationCol <?php if($nodeType == 'Undefined'){ echo 'editText';}?> HideSection <?php echo $nodeClass;?>" data-section="<?php echo $dataSection;?>" style="height:22px"> <div class="col-head altColHead">
+                            <div class="node-circle node-white-circle">N</div>
+                            <span class="account-head-title <?php echo $nodeSection;?> <?php echo $nodeTitle;?>-node">
+                                <?php if($nodeType == 'Undefined'){ echo $undefinedInputField;}else{ echo $nodeType;}?>
+                            </span> </div>
+                            </th>
+                            <th class="ExcelTableFormationCol <?php if($nodeType == 'Undefined'){ echo 'editTextDisabled';}?> HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $dataSection;?>"><div class="col-head altColHead"></div></th>
+                            <th class="ExcelTableFormationCol <?php if($nodeType == 'Undefined'){ echo 'editTextDisabled';}?> HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $dataSection;?>"><div class="col-head altColHead"></div></th>
+                            <th class="ExcelTableFormationCol <?php if($nodeType == 'Undefined'){ echo 'editTextDisabledLast';}?> HideSection collapse  <?php echo $nodeClass;?>" data-section="<?php echo $dataSection;?>"> 
+                                <div class="col-head altColHead"> <i class="fa fa-plus add"></i>
+                                <div class="add-col-wrap add-colums">
+                                  <ul class="dropdown-menu ">
+                                    <li role="presentation"> <a class="add-right">
+                                      <div class="node-circle node-white-circle-expanded">N</div>
+                                      Add right </a>
+                                      <ul class="sub-item">
+                                        <li data-toggle="modal" data-target=""> <a class="add-node" data-node="<?php echo $nodeType;?>">
+                                          <div class="node-circle node-white-circle">N</div>
+                                          Add <?php echo $nodeType;?> </a> </li>
+                                      </ul>
+                                    </li>
+                                    <li role="presentation" class="delete-li delete-node"> <a class="add-right">
+                                      <div class="node-circle node-white-circle-expanded">N</div>
+                                      Delete</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </th>
+                     <?php }elseif($myCol == $col && $row == 3){?>
+                            <th class="ExcelTableFormationCol acntSecCol <?php echo $nodeClass;?>" data-section="sub<?php echo $dataSection;?>">
+                                <div class="account-col-head account-panel">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <span class="account-head-title">Undefined</span>
+                                </div>
+                            </th>
+                            <th class="ExcelTableFormationCol HideSection <?php echo $nodeClass;?>" data-section="sub<?php echo $dataSection;?>" style="height:22px">
+                                <div class="account-col-head account-panel">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <span class="account-head-title">Undefined</span>
+                                </div>
+                            </th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="sub<?php echo $dataSection;?>"><div class="account-col-head account-panel"></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="sub<?php echo $dataSection;?>"><div class="account-col-head  account-panel"></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>" data-section="sub<?php echo $dataSection;?>"><div class="account-col-head  account-panel"></div></th>
+                     <?php }elseif($myCol == $col && $row == 4){?>
+                            <th class="ExcelTableFormationCol blankRowTd acntSecCol <?php echo $nodeClass;?>"></th>
+                            <th class="ExcelTableFormationCol HideSection <?php echo $nodeClass;?>" style="height:22px"><div class="account-col-head col-highlight">
+                            <div class="node-circle node-white-circle">N</div>
+                            <span class="account-head-title">Amount</span></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><div class="account-col-head col-highlight">
+                            <div class="node-circle node-white-circle">N</div>
+                            <span class="account-head-title">Debit</span></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><div class="account-col-head col-highlight">
+                            <div class="node-circle node-white-circle">N</div>
+                            <span class="account-head-title acntSecCol">Credit</span></div></th>
+                            <th class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>"><div class="account-col-head col-highlight">
+                            <div class="node-circle node-white-circle">N</div>
+                            <span class="account-head-title">Balance</span></div></th>
+                     <?php }else{?>
+                         <th class="<?php echo $this->tableArrayhead[$row][$col]['tdClass'];?>" data-section="<?php echo $this->tableArrayhead[$row][$col]['data-section'];?>"><?php  echo $this->tableArrayhead[$row][$col]['data']; ?></th>
+                         <?php }?>
+            <?php } ?>
+     </tr>
+    <?php } ?>
+  </thead>
+  <tbody>
+  <?php 
+  
+    $splitBodyArray  =   array_chunk($this->tableArraybody,5);//Split body tbody array into chunk of 5 row
+ 
+    foreach($splitBodyArray as $bodyArray){//Start loop for all chunk except Last chunk (Universal Fee) 
+        for($row = 0; $row < count($bodyArray[$row]); $row++) {//Tr loop for body section ?>   
+            <tr class="<?php echo $bodyArray[$row][0]['trClass'];?>" >
+            <?php for($col=0;$col<count($bodyArray[$row]);$col++) {//Td (Column) loop for each Tr ?>
+                      <!--Add Td(Columns) in every row according to row number-->
+                       <?php if($myCol == $col){?>
+                       <td class="<?php echo $bodyArray[$row][$col]['tdClass'];?>"><?php  echo $bodyArray[$row][$col]['data']; ?></td>
+                       <?php } ?>
+                          <?php if($myCol == $col && $row == 0){ ?>
+                            <td class="ExcelTableFormationCol creation-bg acntSecCol <?php echo $nodeClass;?>"></td>
+                            <td class="ExcelTableFormationCol HideSection creation-bg <?php echo $nodeClass;?>" style="height:22px">
+                                <div class="account-node universe" style="display:none">
+                                    <select name="" class="hide calculate-option">
+                                        <option value="Fixed">Fixed</option>
+                                        <option value="Percentage">Percentage</option>
+                                        <option value="Calculation" disabled>Calculation</option>
+                                    </select>
+                                <input type="text" class="hide calculate-amount" placeholder="0" />
+                                <i class="fa fa-plus add" style="display:block;"></i>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>">
+                                <div class="account-node">
+                                    <input type="checkbox" value="debit" name="chkDebit" <?php if($bodyArray[$row][$col]['chkDebit'] != 0){ echo 'disabled="disabled"';} ?>>
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse  <?php echo $nodeClass;?>">
+                                <div class="account-node">
+                                    <input type="checkbox" value="credit" name="chkCredit">
+                                    <label></label>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>"></td>
+                     <?php }elseif ($myCol == $col && $row == 1) { ?>
+                            <td class="ExcelTableFormationCol creation-bg acntSecCol <?php echo $nodeClass;?>"></td>
+                            <td class="ExcelTableFormationCol HideSection  creation-bg <?php echo $nodeClass;?>" style="height:22px"></td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  custom-border <?php echo $nodeClass;?>">
+                                <div class="account-node" style="display:none">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                      <span>%</span>
+                                      <input type="text" class="hide share-percentage-debit" placeholder="100" value="100"/>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  custom-border <?php echo $nodeClass;?>">
+                                <div class="account-node" style="display:none">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>%</span>
+                                        <input type="text" class="hide share-percentage-credit" placeholder="0" />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>"></td>
+                     <?php } elseif ($myCol == $col && $row == 2) { ?>
+                            <td class="ExcelTableFormationCol creation-bg acntSecCol <?php echo $nodeClass;?>"></td>
+                            <td class="ExcelTableFormationCol HideSection creation-bg  <?php echo $nodeClass;?>" style="height:22px"></td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>">
+                                <div class="account-node" style="display:none">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="hide share-debit" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>">
+                                <div class="account-node" style="display:none">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="hide share-credit" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>"></td>
+                     <?php } elseif ($myCol == $col && $row == 3) { ?>
+                            <td class="ExcelTableFormationCol creation-bg acntSecCol <?php echo $nodeClass;?>"></td>
+                            <td class="ExcelTableFormationCol HideSection creation-bg  <?php echo $nodeClass;?>" style="height:22px"></td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>">
+                                <div class="account-node" style="display:none">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="hide distribution-debit" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>">
+                            <div class="account-node" style="display:none">
+                                <div class="node-circle node-white-circle">N</div>
+                                <div class="account-txt">
+                                    <span>$</span>
+                                    <input type="text" class="hide distribution-credit" placeholder="0.00" readonly />
+                                </div>
+                            </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse creation-bg  <?php echo $nodeClass;?>"></td>
+                     <?php } elseif ($myCol == $col && $row == 4) { ?>
+                            <td class="ExcelTableFormationCol creation-bg acntSecCol <?php echo $nodeClass;?>"></td>
+                            <td class="ExcelTableFormationCol HideSection creation-bg  <?php echo $nodeClass;?>" style="height:22px"></td>
+                            <td class="ExcelTableFormationCol HideSection collapse custom-bg-border  <?php echo $nodeClass;?>">
+                                <div class="account-node total">
+                                <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="total-debit" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse custom-bg-border  <?php echo $nodeClass;?>">
+                                <div class="account-node total">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="total-credit" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="ExcelTableFormationCol HideSection collapse custom-bg-border  <?php echo $nodeClass;?>">
+                                <div class="account-node total">
+                                    <div class="node-circle node-white-circle">N</div>
+                                    <div class="account-txt">
+                                        <span>$</span>
+                                        <input type="text" class="total-balance" placeholder="0.00" readonly />
+                                    </div>
+                                </div>
+                            </td>
+                     <?php } else{ ?>
+                            <td class="<?php echo $bodyArray[$row][$col]['tdClass'];?>"><?php  echo $bodyArray[$row][$col]['data']; ?></td>
+                     <?php }  ?>         
+            <?php } ?>
+     </tr><?php  } }unset($bodyArray); ?>
+  </tbody>
+</table>

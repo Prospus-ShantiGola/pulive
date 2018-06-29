@@ -1,0 +1,245 @@
+html, body{
+    height: 100%;
+}
+.prs-left-action-pane {
+    width: 60px;
+    float: left;
+    height: 10px;
+    text-align: center;
+    font-size: 10px;
+    color: #000;
+    /*margin-top: 40px;*/
+    position: relative;
+    z-index: 12;
+    background: #fff;
+    border-right: 1px solid #dbdbdb;
+    margin-top:-1px;
+}
+.prs-left-action-pane a.active {
+    background: #f4f4f4;
+    width: 60px;
+    position: relative;
+    /*z-index: 100;*/
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+}
+.prs-left-action-pane a {
+    float: left;
+    width: 100%;
+    padding: 6px 0;
+    color: #000;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+.prs-left-action-pane a:hover,
+.prs-left-action-pane a:focus,
+.prs-left-action-pane a:active {
+    background: #f4f4f4;
+    color: #000;
+}
+.leftPane-icon {
+    background: url("../img/deals-sprite.svg");
+    background-position: 0px 1px;
+    height: 20px;
+    margin: 0px;
+    width: 20px;
+    display: inline-block;
+}
+.leftPane-icon.role {
+    background-position: -7px -4px;
+}
+.leftPane-icon.operation {
+    background-position: -7px -42px;
+}
+.leftPane-icon.requirement {
+    background-position: -7px -101px;
+}
+.leftPane-icon.assesment{
+    background-position: -41px -7px;
+}
+.leftPane-icon.performance{
+    background-position: -41px -42px;
+}
+.leftPane-icon.Control{
+    background-position: -42px -73px;
+}
+
+.leftPane-icon.store{
+    background-position: -42px -102px;
+}
+
+.deal {
+    background: url(../img/deal_icon.png);
+    width: 20px;
+    height: 17px;
+    display: inline-block;
+}
+.leftMenuBarHide{
+    display: none;
+}
+.leftMenuBarShow{
+    display: block;
+}
+.logo-centered {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -190px;
+    margin-top: -80px;
+    transition: all 0.5 linear;
+}
+.grey-bg-for-marinemax {    
+    background-size: cover;
+     background-position: top right center;
+    width: calc(100%);
+    position: relative;
+    z-index: 8;
+}
+.version-txt {
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    font-size: 11px;
+    padding: 10px;
+    opacity: 0.4;
+}
+.version-txt a {
+    color: #fff;
+    text-decoration: underline;
+}
+.version-txt a:hover,
+.version-txt a:active,
+.version-txt a:focus {
+    color: #fff !important;
+    text-decoration: underline !important;
+}
+.loader-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 52, 52, 0.99);
+    overflow: hidden;
+
+    z-index: 8;
+}
+div#full_page_loader {
+    z-index: 99999;
+}
+.loader {
+    margin: auto;
+    margin-top: -30px;
+    top: 50%;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 0.2em solid rgb(0, 0, 0);
+    border-right: 0.2em solid rgb(0, 0, 0);
+    border-bottom: 0.2em solid rgb(0, 0, 0);
+    border-left: 0.2em solid #fff;
+    -webkit-animation: pageLoader 1.1s infinite linear;
+    animation: pageLoader 1.1s infinite linear;
+}
+.loader-bg-mm {
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    height: 100px;
+    background-size: 35%;
+}
+.loader-bg {
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    background: url(http://sta.pu.prospus.com/puidata/page_plugin/component/img/loader-logo.png) no-repeat 32px 33px;
+    height: 100px;
+    background-size: 35%;
+}
+.loader, .loader:after {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.disabled-icon {
+    cursor: no-drop;
+    opacity: 0.5;
+}
+/*.prs-left-action-pane span{
+    white-space: inherit !important;
+}*/
+/*//code for add animation effect for loader*/
+/*.loader-wrapper{
+    opacity: 0;
+    -webkit-transition: visibility 0s, opacity 1s linear;
+    -moz-transition: visibility 0s, opacity 1s linear;
+    -o-transition: visibility 0s, opacity 1s linear;
+    -ms-transition: visibility 0s, opacity 1s linear;
+    transition: visibility 0s, opacity 1s linear;
+
+}*/
+/*.loader-wrapper.loader-fade-in{
+  opacity: 1;
+
+
+}*/
+
+
+.menu-icon.team-member.leftPane-icon {
+    background-position: -6px -128px;
+}
+
+
+
+@-webkit-keyframes pageLoader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pageLoader {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/**********************This code for PPC****************************
+/*======canvas view===============*/
+.prs-plugin #id_detail_content #edtCanvasView .innerCanvasContainer{
+    padding: 15px 15px 15px 10px;
+}
+/*======canvas view===============*/
+
+.logo-flexible{
+    height: calc(100% - 40px);
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.prs-plugin .user-action-wrap a.tooltip-item.editJs.action-accept-invitation {
+    border-bottom: 0;
+}
+
+.screenMode .ui-resizable-handle {
+    display: none;
+}

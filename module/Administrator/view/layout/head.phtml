@@ -1,0 +1,274 @@
+<?php echo $this->doctype(); ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" dir="ltr">
+<head>
+
+  <title>Prospus</title>
+  <link rel="shortcut icon" href="public/img/favicon.png">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--<base href="http://dev.pu.prospus.com/">-->
+    <?php echo $this->headMeta()
+        ->appendHttpEquiv('Content-Style-Type', 'text/css')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ->appendName('viewport', 'content="width=device-width, maximum-scale=1.0, user-scalable=no"')
+        // ->appendName('viewport', 'content="width=device-width, height=device-height, maximum-scale=1.0, user-scalable=no"')
+        // ->appendName('viewport', 'user-scalable=no')
+        // ->appendName('viewport', 'initial-scale=1')
+        ->appendName('robots', 'noindex')
+
+
+    ?>
+    <script type="text/javascript">
+
+        var PU_CDN_URL                          =   "<?php echo PU_CDN_URL; ?>";
+        var domainUrl                           =   "<?php echo BASE_URL; ?>";
+        var checkboxSep                         =   "<?php echo CHECKBOX_SEPERATOR; ?>";
+        var nodeCounter                         =   0;
+	    //var domainChatUrl                     =   "<?php echo BASE_URL_CHAT; ?>";
+        var editor_js                           =   "<?php echo EDITOR; ?>";
+
+        var inboxMenuId                         =   <?php echo INBOX_MENU_ID; ?>; // inbox id
+        var inboxMenuName                       =   'Inbox'; // inbox id
+
+        var dashboardMenuId                     =   <?php echo MENU_ID; ?>; // Dashboard id
+        var dashboardMenuName                   =   'Dashboard'; // Dashboard id
+
+        var marketMenuId                        =   140; // Marketplace id
+        var marketMenuName                      =   'Store'; // Marketplace Name
+
+        var classMenuId                         =   <?php echo CLASSES_MENU_ID; ?>;; // Classes id
+        var classMenuName                       =   'Classes'; // Classes Name
+
+        var organizationMenuName                =   'Group';
+        var organizationMenuId                  =   <?php echo ORGANIZATION_MENU_ID; ?>;
+        var class_nodez_ids                     =   "<?php echo TAXONOMY_Z.','.DATATYPE_Z.','.FORM_SELECTOR_Z.','.VALIDATION_Z.','.NODE_RIGHTS_Z.','.DATA_SOURCE_Z.','.COLLAPSE_Z; ?>";
+        var puJsFileLoadCounter                 = 0;
+    </script>
+
+    <!--==============================fonts================================-->
+    <?php /* ?><script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script><?php */ ?>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300italic' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!--==============================css files================================-->
+    <?php
+        // loading assets from CDN or filesystem based on server
+        if(SOCKET_HOST_NAME === 'http://localhost/pu/' || SOCKET_HOST_NAME === 'http://www.prospus.com/dev/') {
+            echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                    ->prependStylesheet($this->basePath('css/responsive.css'))
+                    ->prependStylesheet($this->basePath('css/new-style.css'))
+                    ->prependStylesheet($this->basePath('css/style.css'))
+                    ->prependStylesheet($this->basePath('css/splash.css'))
+                    ->prependStylesheet($this->basePath('css/browser.css'))
+                    ->prependStylesheet($this->basePath('css/editor.css'))
+                    ->prependStylesheet($this->basePath('css/table.css'))
+                    ->prependStylesheet($this->basePath('css/poms-custom.css'))
+                    ->prependStylesheet($this->basePath('css/dialog.css'))
+                    ->prependStylesheet($this->basePath('css/nanoscroller.css'))
+                    ->prependStylesheet($this->basePath('css/jquery.Jcrop.min.css'))
+                    ->prependStylesheet($this->basePath('css/jquery-ui.css'))
+                    ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+                    ->prependStylesheet($this->basePath('css/nprogress.css'));
+            ?>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/table-print.css" media="print"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/editor-print.css" media="print"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>puidata/css/dropzone.css"/>
+            <?php
+        } else {
+            ?>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/mj5.css" />
+
+                <?php /* ?><link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/nprogress.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/bootstrap.min.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/jquery-ui.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/jquery.Jcrop.min.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/nanoscroller.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/dialog.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/poms-custom.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/table.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/editor.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/browser.css" />
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/splash.css" />
+                <?php if(SOCKET_HOST_NAME === 'http://www.prospus.com/dev.pu/') { ?>
+                    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/css/style.css" />
+                    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/css/new-style.css" />
+                    <link rel="stylesheet" type="text/css" href="<?php echo $this->basePath(); ?>/css/responsive.css" />
+                <?php } else { ?>
+                    <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/style.css" />
+                    <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>/css/new-style.css" />
+                    <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/responsive.css" />
+                <?php } ?>
+                <link href="<?php echo PU_CDN_URL; ?>public/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">-->
+
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/table-print.css" media="print"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>public/css/editor-print.css" media="print"/>
+                <link rel="stylesheet" type="text/css" href="<?php echo PU_CDN_URL; ?>puidata/css/dropzone.css"/><?php */ ?>
+            <?php
+        }
+
+
+    ?>
+
+
+    <?php //$version = strtotime(date('Ymdhis')); define('version', $version); ?>
+    <!-- Scripts -->
+    <?php
+        if(SOCKET_HOST_NAME === 'http://localhost/pu/' || SOCKET_HOST_NAME === 'http://www.prospus.com/dev/') {
+            echo $this->headScript()
+                    // For class builder sortable and tabing
+                    ->prependFile($this->basePath('js/course-dialogue.js'))
+                    ->prependFile($this->basePath('js/course-dialogue-chat.js'))
+                    ->prependFile($this->basePath('js/jquery.mjs.nestedSortable.js'))
+                    ->prependFile($this->basePath('js/package.js'))
+                    //script used in accounting
+                    ->prependFile($this->basePath('js/account.js'))
+
+                    //script used in process, association
+                    ->prependFile($this->basePath('js/custom-script.js'))
+                    ->prependFile($this->basePath('js/algorithm.js'))
+                    ->prependFile($this->basePath('js/grid.js'))
+                    ->prependFile($this->basePath('js/classes.js'))
+
+                    //script used in document Ediotr
+                    ->prependFile($this->basePath('js/editor.js'))
+                    ->prependFile($this->basePath('js/table.js'))
+                    ->prependFile($this->basePath('js/get-table-data.js'))
+                    ->prependFile($this->basePath('js/elementqueries.js'))
+                    ->prependFile($this->basePath('js/jquery.highlight.js'))
+                    ->prependFile($this->basePath('js/resizesensor.js'))
+                    ->prependFile($this->basePath('js/rangy-cssclassapplier.js'))
+                    ->prependFile($this->basePath('js/rangy-core.js'))
+
+                    //script used in resources
+                    ->prependFile($this->basePath('js/jquery-event-drag.js'))
+
+                    //script used in fixed top and left section
+                    ->prependFile($this->basePath('js/jquery.fixedTblHdrLftCol.js'))
+                    //script used in timeline for phase section
+                    ->prependFile($this->basePath('js/timeline.js'))
+                    //script used to show bootbox modal
+                    ->prependFile($this->basePath('js/bootbox.min.js'))
+                    //script used in universal progress bar
+                    ->prependFile($this->basePath('js/nprogress.js'))
+
+                    //script used to add class on browser
+                    ->prependFile($this->basePath('js/browser.js'))
+                    ->prependFile($this->basePath('js/footer.js'))
+
+                    //script used to add nano scroll
+                    ->prependFile($this->basePath('js/jquery.nicescroll.min.js'))
+                    ->prependFile($this->basePath('js/jquery.nanoscroller.js'))
+
+                    //script used to add file ulpad button
+                    ->prependFile($this->basePath('js/bootstrap-filestyle.min.js'))
+
+                    //script used to add file ulpad button
+                    ->prependFile($this->basePath('js/jquery.timeentry.js'))
+
+                    //script used to increase the height of textarea
+                    ->prependFile($this->basePath('js/autosize.js'))
+
+                    ->prependFile($this->basePath('js/bootstrap.min.js'))
+                    ->prependFile($this->basePath('js/jquery.Jcrop.min.js'))
+                    ->prependFile($this->basePath('js/jquery-ui.js'))
+                    ->prependFile($this->basePath('js/jquery-1.9.1.js'))
+                    ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+                    ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+
+                    //Add below script handle user's session for idle state.
+                    ->appendFile($this->basePath('js/store.min.js'))
+                    ->appendFile($this->basePath('js/jquery-idleTimeout.js'))
+                    ->appendFile($this->basePath('js/socket.js'));
+            //->appendFile($this->basePath('js/bundle.js'));//comment as per discussion with prem, must be uncommented once comment from menudashboard/index.phtml
+            ?>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/script_all.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/calendar-script.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.autocomplete.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/moment.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/dropzone.js"></script>
+            <?php
+        } else {
+            ?>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/mj5.js" /></script>
+                <?php /*?><script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery-1.9.1.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery-ui.js"></script>
+
+                <!--[if lt IE 9]><script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/html5shiv.min.js"></script><![endif]-->
+                <!--[if lt IE 9]><script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/respond.min.js"></script><![endif]-->
+
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/socket.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery-idleTimeout.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/store.min.js" /></script>
+
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.Jcrop.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/bootstrap.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/autosize.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.timeentry.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/bootstrap-filestyle.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.nanoscroller.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.nicescroll.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/browser.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/nprogress.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/bootbox.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/timeline.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.fixedTblHdrLftCol.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery-event-drag.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/rangy-core.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/rangy-cssclassapplier.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/resizesensor.js"></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.highlight.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/elementqueries.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/get-table-data.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/table.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/editor.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/classes.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/grid.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/algorithm.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/custom-script.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/account.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/package.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.mjs.nestedSortable.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/course-dialogue-chat.js" /></script>
+                <?php
+                    if(SOCKET_HOST_NAME === 'http://www.prospus.com/dev.pu/') {
+                        ?>
+                            <script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/course-dialogue.js" /></script>
+                            <script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/script_all.js"></script>
+                        <?php
+                    } else {
+                        ?>
+                            <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/course-dialogue.js" /></script>
+                            <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/script_all.js"></script>
+                        <?php
+                    }
+                ?>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/calendar-script.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery.autocomplete.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/moment.min.js" /></script>
+                <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/dropzone.js"></script>
+            <?php */
+        }
+    ?>
+    <script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/group.js"></script>
+    <!-- Code Add By Arvind Soni ON 27/07/2017 From PU Plugin -->
+    <script type="text/javascript">
+        var domain_course_class_id      = "<?php echo COURSE_CLASS_ID;?>";
+        var domain_production_class_id  = "<?php echo PRODUCTION_CLASS_ID;?>"
+        var domain_series_class_id      = "<?php echo SERIES_CLASS_ID;?>";
+        var domain_segment_class_id     = "<?php echo SEGMENT_CLASS_ID;?>";
+        var socketChatUrl               = '<?php echo SOCKET_CHAT_URL; ?>';
+        var idle_timeout                = '<?php echo IDLE_TIMEOUT; ?>';
+        var domainUrlApi                = "<?php echo BASE_URL.'puidata/'; ?>";
+    </script>
+
+    <?php
+        $user_info                      = $_SESSION[PREFIX.'user_info'];
+        $session_file_name              = $_SESSION[PREFIX.'session_file'];
+        $uniqueId1                      = $_SESSION[PREFIX.'uniqueId1'];
+    ?>
+    <script>
+        var session_file_name           = '<?php echo $session_file_name; ?>';
+    </script>
+</head>
+

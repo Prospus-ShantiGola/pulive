@@ -1,0 +1,959 @@
+<?php 
+	/* Change Texonomy class on 15 jan 2016 */
+	/*$textAreaArray		=	array('lineage','common_name','validation','version');
+	$radioArray			=	array('hypernym','generic','instance','component','enumeration','children','instantiation','data_type','form_selector','status');
+	$spacialArray		=	array('view','create','edit','destroy','share');   */  
+	$textAreaArray		=	array('validation','version','plural','singular','common_name','class_property_details','parent_class');
+	$radioArray			=	array('data_type','form_selector','status','descendant','data_source_type','showcollapsed','node_rights_type');
+	$spacialArray		=	array('view','create','edit','destroy','share');
+	$texonomyArray		=	array('type');     
+//        echo "<pre>";
+//        print_r($this->instanceArray['instances']['property']);die("-----"); 
+?>
+
+<?php function getProperty($propertyArray,$obj,$textAreaArray,$radioArray,$spacialArray,$texonomyArray) { ?>
+	<?php 
+
+
+	foreach($propertyArray as $key => $value) { ?>
+	<?php 
+		$caption1 = '';
+		if(intval($value['encrypt_status']) == 1)
+		{
+			$caption1 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+		} 
+		else
+		{
+			$caption1 = $value['caption'];
+		}
+ 	?>
+
+	<li <?php if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'class_property_details') { ?>id="class_property_details_li" style="display:none;"<?php } ?> >
+		<div class="node-content clearfix">
+			<span class="number_print"></span>
+	        <div class="node-left">
+	            <div class="node-circle node-white-circle-expanded">N</div>
+	            <div class="node-head node-input"> 
+	            	
+	            	<span><?php echo $caption1; ?> </span>
+	            </div>
+	        </div>
+	    </div>
+		<ol>
+			<?php if(is_array($value['child'])) { ?>
+				<?php getProperty($value['child'],$obj,$textAreaArray,$radioArray,$spacialArray,$texonomyArray); ?>
+			<?php } else { 
+				if(in_array(strtolower(preg_replace('/\s+/', '_', $caption1)),$textAreaArray)) 
+				{ 
+					?>
+					<li>
+						<div class="node-content clearfix">
+							<span class="number_print"></span>
+					        <div class="node-left">
+					            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+					            <div class="node-head node-input" > 
+					            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+					            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+					            	
+		                            <?php 
+		            					  $caption2 = '';
+										if(intval($value['encrypt_status']) == 1)
+										{
+											$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+										} 
+										else
+										{
+											$caption2 = $value['value'];
+										}
+								 	?>
+								 	<?php if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'common_name') { ?>
+								 	<textarea cols="30" rows="1" class="instanceRunTab checkFillInstanceValue" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder="" onchange="changeCommonName(this)" ><?php echo $caption2; ?></textarea>
+								 	<?php } else { ?>
+									 	<?php if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'class_property_details') { ?>
+									 	<textarea cols="30" rows="1" class="instanceRunTab  checkFillInstanceValue<?php if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'class_property_details') { ?> class_property_details_class<?php } ?>" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder=""><?php echo $caption2; ?></textarea>
+									 	<?php } else { ?>
+                                                                                    <?php 
+                                                                                    $_readOnly = '';
+                                                                                    if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'parent_class'){
+                                                                                        $_readOnly = 'readonly';
+                                                                                    }?>
+                                                                                    <textarea <?php echo $_readOnly; ?> cols="30" rows="1" class="instanceRunTab  checkFillInstanceValue" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" placeholder=""><?php echo $caption2; ?></textarea>
+			                             <?php } ?>
+		                            <?php } ?>
+					            </div>
+					        </div>
+					        
+					    </div>
+						<ol></ol>
+					</li> <?php
+				} 
+				else if(in_array(strtolower(preg_replace('/\s+/', '_', $caption1)),$radioArray))
+				{ 
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'descendant')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="descendant" id="descendant1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                               
+	                                               <option value="Instance" <?php if($caption2 == 'Instance') { ?> selected="selected" <?php } ?> >Instance</option>
+	                                               <option value="Instance Class" <?php if($caption2 == 'Instance Class') { ?> selected="selected" <?php } ?> >Instance Class</option>
+	                                               <option value="Both" <?php if($caption2 == 'Both') { ?> selected="selected" <?php } ?> >Both</option>
+											</select>
+											<script type="text/javascript">
+									     		/* Start Code By Arvind Soni */
+												if($(".thirdPaneActive").find('.node-input').attr("data-name") == 'CLASS') 
+												{
+													var tempIds 		= 	$('#class_structure_form').find('div.node-selected #node_type_id').val();
+
+													if(parseInt(tempIds) == 1)
+													{
+														$("#descendant1").addClass('inactive');
+														$("#descendant1").css("pointer-events","none");
+													}
+												}
+												/* End Code By Arvind Soni */
+									     	</script>
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'hypernym')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="hypernym" id="hypernym1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+		                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+		                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+											</select>
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'generic')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+									<div class="node-head node-input"> 
+						            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+						            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+						            	
+			                            <?php 
+			            					  $caption2 = '';
+											if(intval($value['encrypt_status']) == 1)
+											{
+												$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+											} 
+											else
+											{
+												$caption2 = $value['value'];
+											}
+									 	?>
+						            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+						            	<select class="form-control select-field nodeselection-dropdown" name="generic" id="generic1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+	                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+	                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+	                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+										</select>
+						            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'instance')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+									<div class="node-head node-input"> 
+						            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+						            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+						            	
+			                            <?php 
+			            					  $caption2 = '';
+											if(intval($value['encrypt_status']) == 1)
+											{
+												$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+											} 
+											else
+											{
+												$caption2 = $value['value'];
+											}
+									 	?>
+						            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+						            	<select class="form-control select-field nodeselection-dropdown" name="instance" id="instance1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+	                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+	                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+	                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+										</select>
+						            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'component')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+									<div class="node-head node-input"> 
+						            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+						            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+						            	
+			                            <?php 
+			            					  $caption2 = '';
+											if(intval($value['encrypt_status']) == 1)
+											{
+												$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+											} 
+											else
+											{
+												$caption2 = $value['value'];
+											}
+									 	?>
+						            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+						            	<select class="form-control select-field nodeselection-dropdown" name="component" id="component1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+	                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+	                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+	                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+										</select>
+						            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						<?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'enumeration')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+									<div class="node-head node-input"> 
+						            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+						            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+						            	
+			                            <?php 
+			            					  $caption2 = '';
+											if(intval($value['encrypt_status']) == 1)
+											{
+												$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+											} 
+											else
+											{
+												$caption2 = $value['value'];
+											}
+									 	?>
+						            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+										<select class="form-control select-field nodeselection-dropdown" name="enumeration" id="enumeration1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+	                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+	                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+	                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+										</select>
+						            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'children')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+							            	
+							            	<select class="form-control select-field nodeselection-dropdown" name="children" id="children1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                               <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+		                                               <option value="True" <?php if(strtolower($caption2) == 'true') { ?> selected=selected <?php } ?>>True</option>
+		                                               <option value="False" <?php if(strtolower($caption2) == 'false') { ?> selected=selected <?php } ?>>False</option>
+											</select>
+							            </div>
+						       		</div>
+						    </div>
+							<ol></ol>
+						</li> 
+						<?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'instantiation')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="instantiation" id="instantiation1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                            <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+		                                            <option value="Type 1" <?php if(strtolower($caption2) == 'type 1') { ?> selected=selected <?php } ?>>Type 1</option>
+		                                            <option value="Type 2" <?php if(strtolower($caption2) == 'type 2') { ?> selected=selected <?php } ?>>Type 2</option>
+											</select>
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'data_source_type')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="data_source_type" id="data_source_type" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                            <option value="" <?php if(strtolower($caption2) == '') { ?> selected=selected <?php } ?>>Select</option>
+		                                            <option value="User Input" <?php if(strtolower($caption2) == 'user input') { ?> selected=selected <?php } ?>>User Input</option>
+		                                            <option value="Class Property" <?php if(strtolower($caption2) == 'class property') { ?> selected=selected <?php } ?>>Class Property</option>
+											</select>
+											<script type="text/javascript">
+									     		/* Start Code By Arvind Soni */
+									     		<?php if(strtolower($caption2) == 'class property') { ?>
+									     			$("#class_property_details_li").show();
+									     		<?php } ?>
+												/* End Code By Arvind Soni */
+									     	</script>  
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+                                       
+                    if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'showcollapsed')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					  $caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+                                                                                                
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="show_collapse" id="show_collapse" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+		                                            <option value="" <?php if($caption2 == '') { ?> selected=selected <?php } ?>>Select</option>
+		                                            <option value="No" <?php if($caption2 == 'No') { ?> selected=selected <?php } ?>>No </option>
+		                                            <option value="Yes" <?php if($caption2 == 'Yes') { ?> selected=selected <?php } ?>>Yes</option>
+											</select>
+											<script type="text/javascript">
+									     		/* Start Code By Arvind Soni */
+									     		<?php if(strtolower($caption2) == 'class property') { ?>
+									     			$("#class_property_details_li").show();
+									     		<?php } ?>
+												/* End Code By Arvind Soni */
+									     	</script>  
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+
+					if(strtolower(preg_replace('/\s+/', '_', $caption1)) == 'node_rights_type')
+					{ ?>
+						<li>
+							<div class="node-content clearfix">
+								<span class="number_print"></span>
+									<div class="node-left">
+										 <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										<div class="node-head node-input"> 
+							            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+							            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+							            	
+				                            <?php 
+				            					$caption2 = '';
+												if(intval($value['encrypt_status']) == 1)
+												{
+													$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+												} 
+												else
+												{
+													$caption2 = $value['value'];
+												}
+										 	?>
+							            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="nodeRightsTypeForSelection" />
+
+							            	<select class="form-control select-field nodeselection-dropdown" name="node_rights_type" id="node_rights_type" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)" > 
+                                            <option value="Actor" <?php if(strtolower($caption2) == 'actor'){ ?> selected=selected <?php } ?> >Actor Wise</option>
+                                        	<option value="Role" <?php if(strtolower($caption2) == 'role'){ ?> selected=selected <?php } ?>>Role Wise</option>
+											</select>
+							            </div>
+						        </div>
+						    </div>
+							<ol></ol>
+						</li> 
+						 <?php 
+					}
+				}
+				else if(in_array(strtolower(preg_replace('/\s+/', '_', $caption1)),$spacialArray))
+				{?> 
+					<li>
+						<div class="node-content clearfix">
+							<span class="number_print"></span>
+					        <div class="node-left">
+					            <div class="node-circle node-white-circle">N</div>
+					            <div class="node-head node-input"> 
+					            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+					            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+					            	
+		                            <?php 
+		            					  $caption2 = '';
+										if(intval($value['encrypt_status']) == 1)
+										{
+											$caption2 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+										} 
+										else
+										{
+											$caption2 = $value['value'];
+										}
+								 	?>
+					            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption2; ?>" class="checkFillInstanceValue" />
+					            	<span>...</span>
+					            </div>
+					        </div>
+					        <div class="node-right-panel" >
+					            <i class="icon sm-edit node_rights_open_class" id="<?php echo $value['node_class_property_id']; ?>" name="<?php echo strtolower(preg_replace('/\s+/', '_', $caption1)); ?>" data-original-title="" title=""></i>
+					        </div>
+					    </div>
+						<ol></ol>
+					</li><?php
+				}
+				else if(in_array(strtolower(preg_replace('/\s+/', '_', $caption1)),$texonomyArray)) 
+				{ 
+					?>
+					<li>
+						<div class="node-content clearfix">
+							<span class="number_print"></span>
+					        <div class="node-left">
+					            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+					            <div class="node-head node-input" > 
+		                            <span id="instance_span<?php echo $value['node_class_property_id']; ?>" ><?php echo $caption2; ?></span>
+					            </div>
+					            <script type="text/javascript">
+						     		/* Start Code By Arvind Soni */
+									if($(".thirdPaneActive").find('.node-input').attr("data-name") == 'TAXONOMY') 
+									{
+										var tempIds 		= $('#class_structure_form').find('div.node-selected input').val();
+
+										if(tempIds != undefined)
+										{
+											tempArray 			= tempIds.split(',');
+
+											if(parseInt(tempArray.length) == 1)
+											{
+												$("#instance_span<?php echo $value['node_class_property_id']; ?>").html('Class');
+												//$("#instance_property_caption<?php echo $value['node_class_property_id']; ?>").val('Class');
+											}
+											else
+											{
+												if($.trim($('#second-class-div').find('div.node-selected .node-input span').html()) == 'Properties')
+												{
+													$("#instance_span<?php echo $value['node_class_property_id']; ?>").html('Grouping.Properties');
+													//$("#instance_property_caption<?php echo $value['node_class_property_id']; ?>").val('Grouping.Properties');
+												}
+												else
+												{
+													if($.trim($('#second-class-div').find('div.node-selected').siblings('ol').html()) == "")
+													{	
+														$("#instance_span<?php echo $value['node_class_property_id']; ?>").html('Grouping.Label');
+														//$("#instance_property_caption<?php echo $value['node_class_property_id']; ?>").val('Grouping.Label');
+													}
+													else
+													{
+														$("#instance_span<?php echo $value['node_class_property_id']; ?>").html('Grouping.Properties');
+														//$("#instance_property_caption<?php echo $value['node_class_property_id']; ?>").val('Grouping.Properties');
+													}
+												}
+											}
+										}
+									}
+									/* End Code By Arvind Soni */
+						     	</script>  
+					        </div>
+					        
+					    </div>
+						<ol></ol>
+					</li> <?php
+				} 
+
+			} ?>
+		</ol>
+	</li>
+	<?php } ?>
+<?php } ?>
+
+<form id="instance_structure_form" name="instance_structure_form" class="form_active1" method="post" action="" >
+	<div class="nano1">
+		<div class="paper-line dual-pane-height nano-content1 niceScrollDiv" id="node-wrapper">		
+			<div class="nice-scroll-box">
+				<input type="hidden" id="node_class_id" name="node_class_id" value="<?php echo $this->instanceArray['node_class_id']; ?>" />
+				<input type="hidden" id="node_instance_id" name="node_instance_id" value="<?php echo $this->instanceArray['node_instance_id']; ?>" />
+				
+				<ol class="class-wrapper sortable">
+			        <li>
+			            
+                                    
+                                    
+                                    <div class="node-content clearfix">
+							<span class="number_print"></span>
+			                <div class="node-left">
+			                    <div class="node-circle node-white-circle-expanded">N</div>                                
+			                    <div class="node-head node-input"> <span><?php echo $this->instanceArray['node_id']; ?></span><input type="hidden" id="instance_caption" name="instance_caption" value="<?php echo $this->instanceArray['node_id']; ?>" placeholder="Instance" /></div>
+			                </div>
+			            </div>
+			            
+			            <ol class="sortable" >
+				            		<?php foreach($this->instanceArray['instances']['property'] as $key => $value) { ?> 
+				            		<li>
+										<div class="node-content clearfix">
+											<span class="number_print"></span>
+									        <div class="node-left">
+									            <div class="node-circle node-white-circle-expanded">N</div>
+									            <div class="node-head node-input"> 
+
+									            	<?php 
+					            					  $caption3 = '';
+													if(intval($value['encrypt_status']) == 1)
+													{
+														$caption3 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+													} 
+													else
+													{
+														$caption3 = $value['caption'];
+													}
+						 							?>
+
+									            	<span><?php echo $caption3; ?>   </span>
+									            </div>
+									        </div>
+									    </div>
+										<ol>
+											<?php 
+
+											
+											
+											if(is_array($value['child'])) { ?>
+													<?php getProperty($value['child'],$this,$textAreaArray,$radioArray,$spacialArray,$texonomyArray); ?>
+											<?php } else { 
+
+												if(in_array(strtolower(preg_replace('/\s+/', '_', $caption3)),$textAreaArray)) 
+												{
+
+														if($caption3=="Version"){
+															$versionR = 'readonly';
+														}
+														else {
+															$versionR = "";
+														}
+												 ?>
+													<li>
+														<div class="node-content clearfix">
+															<span class="number_print"></span>
+													        <div class="node-left">
+													            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+													            <div class="node-head node-input"> 
+													            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+													            	<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+													            	
+	                                                                <?php 
+										            					$caption1 = '';
+																		if(intval($value['encrypt_status']) == 1)
+																		{
+																			$caption1 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+																		} 
+																		else
+																		{
+																			$caption1 = $value['value'];
+																		}
+							 										?>
+
+	                                                 <textarea cols="30" rows="1" class="instanceRunTab checkFillInstanceValue " id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" <?php echo $versionR;?> placeholder="" ><?php if($versionR!=""){echo trim($caption1);}else {echo trim($caption1);}
+	                                                           	 ?></textarea>
+	                                                                
+													            </div>
+													        </div>
+													    </div>
+														<ol></ol>
+													</li> <?php
+												}
+												else if(in_array(strtolower(preg_replace('/\s+/', '_', $caption3)),$radioArray))
+												{
+													if(strtolower(preg_replace('/\s+/', '_', $caption3)) == 'data_type')
+													{ ?>
+														
+														<li>
+															<div class="node-content clearfix">
+																<span class="number_print"></span>
+																<div class="node-left">
+										 							<div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+																	<div class="node-head node-input flyNodeRadioBox"> 
+																		<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+													            		<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+												            		<?php 
+										            					$caption1 = '';
+																		if(intval($value['encrypt_status']) == 1)
+																		{
+																			$caption1 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+																		} 
+																		else
+																		{
+																			$caption1 = $value['value'];
+																		}
+							 										?>
+													            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption1; ?>" class="checkFillInstanceValue" />
+
+
+																
+													            	<select class="form-control select-field nodeselection-dropdown class_radio_class radio_class_check_plus" name="data_type" id="data_type1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"  > 
+						                                                 <option value="" <?php if(strtolower($caption1) == '') { ?> selected=selected <?php } ?>>Select</option>
+						                                                 <option value="String" <?php if(strtolower($caption1) == 'string') { ?> selected=selected <?php } ?>>String</option>
+						                                                 <option value="Numeric" <?php if(strtolower($caption1) == 'numeric') { ?> selected=selected <?php } ?>>Numeric</option>
+						                                                 <option value="Boolen" <?php if(strtolower($caption1) == 'boolen') { ?> selected=selected <?php } ?>>Boolen</option>
+						                                                 <option value="Class" <?php if(strtolower($caption1) == 'class') { ?> selected=selected <?php } ?>>Class</option>
+						                                                 <option value="Code" <?php if(strtolower($caption1) == 'code') { ?> selected=selected <?php } ?>>Code</option>
+                                                                                                 <option value="Url" <?php if(strtolower($caption1) == 'url') { ?> selected=selected <?php } ?>>URL</option>
+                                                                                                 <option value="Instruction" <?php if(strtolower($caption1) == 'instruction') { ?> selected=selected <?php } ?>>Instruction</option>
+																	</select>
+													            </div>
+														      </div>
+											                      	<div class="node-right node-custom-show-icons add-fly-radio-checked show-edit-node-cust show">
+											                           <a class="action-move"><span><i class="icon plus-small fly-radio-btn" style="visibility: visible;" ></i></span></a>
+											                       </div>
+											                   </div>
+							                				  
+														   </div>
+															 <?php //if(strtolower($caption1) == 'class') { ?>
+															 
+														</li> 
+														<?php if(strtolower($caption1) == 'class') { ?>
+															<script type="text/javascript">
+																//$(".class_radio_class").trigger('click');
+															</script>
+														<?php } ?>
+														<?php 
+													}
+
+													if(strtolower(preg_replace('/\s+/', '_', $caption3)) == 'form_selector')
+													{ ?>
+														<li>
+															<div class="node-content clearfix">
+																<span class="number_print"></span>
+																<div class="node-left">
+										 							<div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+																	<div class="node-head node-input"> 
+														            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+													            		<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+													            		<?php 
+											            					$caption1 = '';
+																			if(intval($value['encrypt_status']) == 1)
+																			{
+																				$caption1 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+																			} 
+																			else
+																			{
+																				$caption1 = $value['value'];
+																			}
+								 										?>
+														            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption1; ?>" class="checkFillInstanceValue" />
+
+														            	<select class="form-control select-field nodeselection-dropdown class_radio_class radio_class_check_plus" name="form_selector" id="form_selector1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"  > 
+							                                                 <option value="" <?php if(strtolower($caption1) == '') { ?> selected=selected <?php } ?>>Select</option>
+							                                                 <option value="Input" <?php if(strtolower($caption1) == 'input') { ?> selected=selected <?php } ?>>Input</option>
+							                                                 <option value="Text Area" <?php if(strtolower($caption1) == 'text area') { ?> selected=selected <?php } ?>>Text Area</option>
+							                                                 <option value="Radio" <?php if(strtolower($caption1) == 'radio') { ?> selected=selected <?php } ?>>Radio</option>
+							                                                 
+							                                                 <option value="Check Box" <?php if(strtolower($caption1) == 'check box') { ?> selected=selected <?php } ?>>Check Box</option>
+							                                                 
+							                                                 <option value="Drop Down" <?php if(strtolower($caption1) == 'drop down') { ?> selected=selected <?php } ?>>Drop Down</option>
+							                                                 
+							                                                 <option value="File" <?php if(strtolower($caption1) == 'file') { ?> selected=selected <?php } ?>>File</option>
+							                                                 <option value="Calendar" <?php if(strtolower($caption1) == 'calendar') { ?> selected=selected <?php } ?>>Calendar</option>
+                                                                                                          <option value="Instruction" <?php if(strtolower($caption1) == 'instruction') { ?> selected=selected <?php } ?>>Instruction</option>
+							                                                 
+																		</select>
+														            </div>
+														    	</div>    
+														    </div>
+															<ol></ol>
+														</li> 
+														
+														<?php 
+													}
+
+													if(strtolower(preg_replace('/\s+/', '_', $caption3)) == 'status')
+													{ ?>
+														<li>
+															<div class="node-content clearfix">
+																<span class="number_print"></span>
+																<div class="node-left">
+										 							<div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>	
+																	<div class="node-head node-input"> 
+														            	<input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+													            		<input id="class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+													            		<?php 
+											            					$caption1 = '';
+																			if(intval($value['encrypt_status']) == 1)
+																			{
+																				$caption1 =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$value['value'],'key' =>ENCRYPTION_KEY)); 
+																			} 
+																			else
+																			{
+																				$caption1 = $value['value'];
+																			}
+								 										?>
+														            	<input id="instance_property_caption<?php echo $value['node_class_property_id']; ?>"  name="instance_property_caption[]" type="hidden" value="<?php echo $caption1; ?>" class="checkFillInstanceValue" />
+														            	<span class="version-status11">
+														            	<?php 
+													            		if($this->versiontype == 0){
+													            			echo 'DRAFT';
+													            		}else {
+													            			echo 'PUBLISHED';
+													            		}
+													            		?>
+														            	</span>
+
+														            	<!-- <select class="form-control select-field nodeselection-dropdown" name="status" id="status1" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)"> 
+														            		<option value="" <?php if(strtolower($caption1) == '') { ?> selected=selected <?php } ?>>Select</option>
+															            	 <option value="Draft" <?php if(strtolower($caption1) == 'draft') { ?> selected=selected <?php } ?>>Draft</option>
+							                                                 <option value="Published" <?php if(strtolower($caption1) == 'published') { ?> selected=selected <?php } ?>>Published</option>
+							                                            </select> -->
+														            </div>
+														        </div>
+														    </div>
+															<ol></ol>
+														</li> 
+														 <?php 
+													}
+												}
+											 } ?> 
+										</ol>
+										<ol class="sub_class_list_view1">
+																<!--added-select-class-radio-string-show-->
+																<li class="sub_class_list_view">
+																	<ol class="sortable-list" id="sortable">
+																        <li class="parent-sub-class-list">
+																        	<div class="node-content clearfix">
+																				<span class="number_print"></span>
+																        		<div class="node-left">
+																        			<div class="node-circle node-white-circle">N</div>
+																        			<div class="node-head node-input">
+																        				<input type="hidden" class="temp-sub-class nodeZClassNameY" value="">
+																        				<span class="nodeZClassName"></span>
+																        			</div>
+																        		</div>
+																        		<!--new-chevron-add-->
+																				
+																                    <div class="node-right-sub node-right clearfix add-fly-select show">
+																                     <a class="action-move"><span><i class="icon close-class-select"></i></span></a>
+																                     <a class="action-move"><span><i class="fly-radio-btn"></i></span></a>
+																                    </div>
+																                
+																					<!--new-chvron-add-->
+																				
+																        	</div>
+																        </li>
+																	</ol>
+																	<?php //}?>
+																</li>
+																 
+
+																<!--added-select-class-radio-string-show-->
+										</ol>
+									</li>
+									<?php } ?> 
+				        </ol>
+					        
+			        </li>
+			    </ol>
+			</div>
+		</div>
+	</div>
+</form>
+
+<script type="text/javascript">
+	var vs = '';
+	dualPaneHeight();
+	$('.nano').nanoScroller();
+	rightPaneicon();
+	$("#second-instance-div-heading").html("<?php echo $this->instanceArray['node_id']; ?> : Properties");
+	textareaIncreaseHeight('instanceRunTab');
+	$(".instanceRunTab").each(function(){
+		$(this).trigger("keypress");
+	});
+
+	$("#ins_status<?php echo $this->instanceArray['node_instance_id']; ?>").html("<?php if(intval($this->instanceArray['status']) == 1) { echo 'Published'; } else { echo 'Draft'; } ?>");
+
+	$(".thirdPaneActive i").removeClass('exclamation');
+	$(".thirdPaneActive i").addClass('circle-tick');
+	
+	vs = $(".list-row.current").find('td:last').html()
+	$(".version-status").html(vs);
+
+	<?php if($this->versiontype == 1){ ?>
+		$(".Version-icon").show();
+        $(".Edit-icon").addClass('inactiveLink');
+        $(".Edit-icon").css("pointer-events","none");
+        $('.saveDraft').hide();
+	<?php } else {?>
+			if($(".list-row.current").find('td:last').html()=="Published")
+	            {
+	                $(".Version-icon").show();
+	                $(".Edit-icon").addClass('inactiveLink');
+	                $(".Edit-icon").css("pointer-events","none");
+	                $('.saveDraft').hide();
+	            }
+	            else 
+	            {
+	                $(".Version-icon").hide();
+	                $(".Edit-icon").removeClass('inactiveLink');
+	                $(".Edit-icon").css("pointer-events","all");
+	               // $('.saveDraft').show();
+	            }
+	<?php  } ?>	
+
+	$("#icon165").removeClass('exclamation');
+    $("#icon165").addClass('circle-tick');
+</script>

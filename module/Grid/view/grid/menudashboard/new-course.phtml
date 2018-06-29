@@ -1,0 +1,638 @@
+<?php $prefixTitle                            = PREFIX.'user_info';?>
+<div class="total-width-pane active" >
+    <div class="listing-wrapper dashSlider clearfix set-height active activeWrap">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading" >Course: List</span>
+                        </span>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-one-third" id="course-instance-list-div">
+            <input type="hidden" id="course_filter_operator" name="course_filter_operator" value="equals" />
+            <input type="hidden" id="course_filter_field" name="course_filter_field" value="" />
+            <input type="hidden" id="course_filter_type" name="course_filter_type" value="no-pagination" />
+            <table class="table table-style table-responsive table-head courseboard-table">                
+                <thead>
+                        <th></th>
+                        <th class="filterDrp">
+                                <span>Course<i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','ASC','2')" >Sort A - Z</li>
+                                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','DESC','2')">Sort Z - A</li>
+
+                                    <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                        <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Equals To</li>
+                                        <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Not Equals To</li></li>
+                                        <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Begins With</li>
+                                        <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Ends With</li>
+                                        <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Contains</li>
+                                        <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Does Not Contain</li>
+                                    </ul>
+                                    </li>
+                                    <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" id="search-button-box-course" class="form-control" placeholder="Search" name="search-value-course-text" value="" data-value="entr-new-course-name">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box-course entr-new-course-name" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    <!-- /input-group -->
+                                    </div>
+                                   
+                                </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span>Domain<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li>Sort by ascending</li>
+                                <li>Sort by descending</li>
+                               
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Date</span><i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','ASC','2')" >Sort by ascending</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','DESC','2')">Sort by descending</li>
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                                <span><span class='truncate-text'>Status</span>
+                                    <?php if ($order_by == 'status') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                    <li data-id="all" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">All</li>
+                                    <li data-id="d"   data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Draft</li>
+                                    <li data-id="p"   data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Published</li>
+                                </ul>
+                        </th>
+                       
+                </thead>
+           </table>
+            <div class="setListWrapHeight nano mainAccordianHig">
+                <div class="nano-content">
+                    <div class="course-list-panel mainAccordianDiv" id="" role="tablist" aria-multiselectable="true">
+                        <div class="course-list">
+                            <table class="table table-style table-responsive courseboard-table ActiveRow ref-inline">             
+                               <tr class="current">
+                                    <td><i class="fa fa-angle-down"></i></td> 
+                                    <td class="ref-td">Untitled</td>
+                                    <td class="ref-td"></td>
+                                    <td class="ref-td"></td>
+                                    <td class="ref-td"></td>
+                                    <!-- <td><i class="fa fa-angle-down"></i></td>  -->
+                                </tr>
+                            </table>  
+                            <div class="ref-show-inline-wrap">
+                                <div class="inline-course-wrap ref-inline-course-wrap">
+                                    <ul>
+                                        <li class="newDefaultCourseListActor newDefaultCourseList">
+                                            <div class="toggleCourseWrapper">
+                                                  <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                   <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon actor"></i>
+                                                            <h6>Actors</h6>
+                                                        </div>
+                                                    </a>
+                                                   
+                                            </div>
+                                            <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class rollover"></i></div>
+                                                <div class="collapsedCourseBox clearfix">
+                                                    <ul>
+                                                        <li class="actors_user_list" data-id=""> 
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">You</h2>
+                                                                    <p class="actors-profile-title">Service Administrator</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>    
+                                                            </div>
+                                                        </li>
+                                                        <li class="actors_user_list" data-id="">
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">Daniel Bryan</h2>
+                                                                    <p class="actors-profile-title">Customer</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>   
+                                                            </div>
+                                                        </li>
+                                                        <li class="actors_user_list" data-id=""> 
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">Darren Cries</h2>
+                                                                    <p class="actors-profile-title">Customer</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>   
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                        </li>
+                                        <li class="courseDialogueDefaultWrap newDefaultCourseList">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                   <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon dialogue"></i>
+                                                            <h6>Dialogue</h6>
+                                                        </div>
+                                                    </a>
+                                                   
+                                                </div>
+                                                <div class="add-courses active"><i class="icon plus-class rollover"></i></div>
+                                                <div class="collapsedCourseBox clearfix">
+                                                    <ul>
+                                                        <li class="existingDialogueSelCourseList">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="existingDialogueSelCourseList">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                        </li>
+                                        <li class="newDefaultCourseList newDefaultCourseListEvents">
+                                            <div class="toggleCourseWrapper">
+                                              <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                               <a class="ref-course-list">
+                                                    <div class="left inline-left-pane">
+                                                        <i class="icon event"></i>
+                                                        <h6>Events</h6>
+                                                    </div>
+                                                </a>
+                                               
+                                            </div>
+                                            <div class="RightFlyoutOpen add-courses" id="EventFlyout"><i class="icon plus-class inactive"></i></div>
+                                             <div class="collapsedCourseBox clearfix">
+                                                <ul>
+                                                    <li class="existingDialogueSelCourseList">
+                                                        <div class="subCollapsedCourseBox">
+                                                            <div class="courseTitle">Lorem ipsum course title</div>
+                                                            <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="existingDialogueSelCourseList">
+                                                        <div class="subCollapsedCourseBox">
+                                                            <div class="courseTitle">Lorem ipsum course title</div>
+                                                            <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li class="newDefaultCourseList newDefaultCourseListResources">
+                                           <div class="toggleCourseWrapper">
+                                              <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                               <a class="ref-course-list">
+                                                    <div class="left inline-left-pane">
+                                                        <i class="icon resources"></i>
+                                                        <h6>Resources</h6>
+                                                    </div>
+                                                </a>
+                                               
+                                            </div>                                           
+                                            <div class="add-courses inactive"><i class="icon plus-class inactive"></i></div>
+                                             <div class="collapsedCourseBox clearfix">
+                                                <ul>
+                                                    <li class="existingDialogueSelCourseList">
+                                                        <div class="subCollapsedCourseBox">
+                                                            <div class="courseTitle">Lorem ipsum course title</div>
+                                                            <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                        </div>
+                                                    </li>
+                                                    <li class="existingDialogueSelCourseList">
+                                                        <div class="subCollapsedCourseBox">
+                                                            <div class="courseTitle">Lorem ipsum course title</div>
+                                                            <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <?php  $prefixTitle                            = PREFIX.'user_info';
+                        if(!empty($this->instanceArray)){ 
+                            foreach ($this->instanceArray as $key => $value) { 
+
+                                if($key == 0){
+                                    $openDefault = 'openup';
+                                    $ActiveRow = 'ActiveRow';
+                                    $current = 'current';
+                                    $style = 'style="margin-top:0px;"';
+                                }else {
+                                    $openDefault = '';
+                                    $ActiveRow = '';
+                                    $current = '';
+                                    $style = '';
+                                }
+                                ?>
+                             <?php if(($value['status'] == '1') || ($value['status'] == '0' && $value['value'][2] == $_SESSION[$prefixTitle]['node_id'])) { ?>    
+                            <div class="course-list">
+                                    <table class="table table-style table-responsive courseboard-table <?php echo $ActiveRow; ?>  ref-inline <?php echo $openDefault;?>">
+                                       <tr class="<?php echo $current;?>" data-id="<?php echo $value['node_instance_id'];?>" course-ins-id="<?php echo $value['course_instance_node_id'];?>">
+                                            <td><i class="fa fa-angle-down"></i></td> 
+                                            <td class="ref-td">
+                                                <?php 
+                                                    if($this->order=="ASC"){
+                                                        if(count($value['value'])>1){
+                                                            $title      = $value['value'][1];
+                                                            $tmeStamp   = $value['value'][0];
+                                                        }else {
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = '';
+                                                        }
+                                                    }else {
+                                                        if(count($value['value'])>1){
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = $value['value'][1];    
+                                                        }else {
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = '';    
+                                                        }
+                                                        
+                                                    }
+                                                    ?>
+
+                                                <?php echo $title;?>
+                                            </td>
+                                            <td class="ref-td">Prospus</td>
+                                            <td class="ref-td">
+                                                <?php 
+
+                                                    if($tmeStamp!=""){
+                                                            echo date("Y M d H:i:s",strtotime($tmeStamp));
+                                                        }else {
+                                                            echo '-';
+                                                        }?>
+                                            </td>
+                                            <td class="ref-td"><?php echo $value['status']=='1'? 'Published' : 'Draft'; ?></td>
+                                            
+                                       </tr>
+                                    </table>               
+                                    <div class="ref-show-inline-wrap" <?php echo $style;?>>
+                                        <div class="inline-course-wrap ref-inline-course-wrap">
+                                            <ul>
+                                                <li class="newDefaultCourseListActor newDefaultCourseList">
+                                                   <div class="toggleCourseWrapper">
+                                                      <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                       <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon actor"></i>
+                                                                <h6>Actors</h6>
+                                                            </div>
+                                                        </a>
+                                                       
+                                                    </div>
+                                                    <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class rollover"></i></div>
+                                                    <div class="collapsedCourseBox clearfix">
+                                                        <ul>
+                                                            <li class="actors_user_list" data-id=""> 
+                                                                <div class="actors_box clearfix">
+                                                                    <div class="actors-user-img-sm">
+                                                                        <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                    </div>
+                                                                    <div class="actors-user-info">
+                                                                        <h2 class="actors-title">You</h2>
+                                                                        <p class="actors-profile-title">Service Administrator</p>
+                                                                    </div>
+                                                                    <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                        <i class="icon open-mini-chat"></i>
+                                                                    </div>    
+                                                                </div>
+                                                            </li>
+                                                            <li class="actors_user_list" data-id="">
+                                                                <div class="actors_box clearfix">
+                                                                    <div class="actors-user-img-sm">
+                                                                        <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                    </div>
+                                                                    <div class="actors-user-info">
+                                                                        <h2 class="actors-title">Daniel Bryan</h2>
+                                                                        <p class="actors-profile-title">Customer</p>
+                                                                    </div>
+                                                                    <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                        <i class="icon open-mini-chat"></i>
+                                                                    </div>   
+                                                                </div>
+                                                            </li>
+                                                            <li class="actors_user_list" data-id=""> 
+                                                                <div class="actors_box clearfix">
+                                                                    <div class="actors-user-img-sm">
+                                                                        <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                    </div>
+                                                                    <div class="actors-user-info">
+                                                                        <h2 class="actors-title">Darren Cries</h2>
+                                                                        <p class="actors-profile-title">Customer</p>
+                                                                    </div>
+                                                                    <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                        <i class="icon open-mini-chat"></i>
+                                                                    </div>   
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="courseDialogueDefaultWrap newDefaultCourseList" course-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                    <div class="toggleCourseWrapper">
+                                                        <div class="toggle-courses active" ><i class="fa fa-angle-up collapse-up"></i></div>
+                                                       <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon dialogue"></i>
+                                                                <h6>Dialogue</h6>
+                                                            </div>
+                                                        </a>
+                                                       
+                                                    </div>
+                                                    <div class="add-courses active dropdown dialogue-drp "  co-instance-id="<?php echo $value ['node_instance_id'];?>" course-title="<?php echo $title;?>"><i class="icon plus-class rollover"></i>
+                                                            <ul class="dropdown-menu StatementType ft rightDrpShow" aria-labelledby="dropLetterExists">
+                                                                <li><a href="javascript:void(0)"><span>Select</span><i class="icon plus dialogue-drp-close"></i></a></li>
+                                                                <li id="create-new-dialogue"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Chat</span></a></li>
+                                                                <li><a href="javascript:void(0)"><i class="icon letterIcon"></i><span>Letter</span></a></li>
+                                                                <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Email</span></a></li>
+                                                                <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Forum</span></a></li>
+                                                                <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Q&A</span></a></li>
+                                                                <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Video Call</span></a></li>
+                                                                <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Voice Call</span></a></li>
+                                                            </ul>
+                                                        </div> 
+                                                    <div class="collapsedCourseBox clearfix" id="course-dialogue-instance-id-<?php echo $value['node_instance_id'];?>" course-dialogue-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                        
+                                                    </div>
+                                                </li>
+                                                <li class="newDefaultCourseListEvents newDefaultCourseList">
+                                                    <div class="toggleCourseWrapper">
+                                                      <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                       <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon event"></i>
+                                                                <h6>Events</h6>
+                                                            </div>
+                                                        </a>
+                                                       
+                                                    </div>
+                                                    <div class="RightFlyoutOpen add-courses" id="EventFlyout"><i class="icon plus-class inactive"></i></div>
+                                                     <div class="collapsedCourseBox clearfix">
+                                                        <ul>
+                                                            <li class="existingDialogueSelCourseList">
+                                                                <div class="subCollapsedCourseBox">
+                                                                    <div class="courseTitle">Lorem ipsum course title</div>
+                                                                    <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="existingDialogueSelCourseList">
+                                                                <div class="subCollapsedCourseBox">
+                                                                    <div class="courseTitle">Lorem ipsum course title</div>
+                                                                    <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                                <li class="newDefaultCourseListResources newDefaultCourseList">
+                                                   <div class="toggleCourseWrapper">
+                                                      <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                       <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon resources"></i>
+                                                                <h6>Resources</h6>
+                                                            </div>
+                                                        </a>
+                                                       
+                                                    </div>                                           
+                                                    <div class="add-courses inactive"><i class="icon plus-class"></i></div>
+                                                     <div class="collapsedCourseBox clearfix">
+                                                        <ul>
+                                                            <li class="existingDialogueSelCourseList">
+                                                                <div class="subCollapsedCourseBox">
+                                                                    <div class="courseTitle">Lorem ipsum course title</div>
+                                                                    <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                                </div>
+                                                            </li>
+                                                            <li class="existingDialogueSelCourseList">
+                                                                <div class="subCollapsedCourseBox">
+                                                                    <div class="courseTitle">Lorem ipsum course title</div>
+                                                                    <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </li>                                           
+                                            </ul>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="display-wrapper dashSlider clearfix set-height active courseViewData">
+        
+       <div class="HalfPaneHeight mainAccordianHig hide" id="courseDetailWrap">
+            <div class="">
+                <div class="mainAccordianDiv">
+                     <table class="table table-style table-responsive table-head courseboard-table">                
+                <thead>
+                        <th></th>
+                        <th class="filterDrp">
+                            <span>Course<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','ASC','1')" >Sort A - Z</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','DESC','1')">Sort Z - A</li>
+
+                                <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                    <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Not Equals To</li></li>
+                                    <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Ends With</li>
+                                    <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Does Not Contain</li>
+                                </ul>
+                                </li>
+                                <div class="search-item-wrap">
+                                    <div class="input-group">
+                                        <input type="text" id="search-button-box-course" class="form-control" placeholder="Search" name="search-value-course-text" value="" >
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default search-button-box-course" type="button"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                <!-- /input-group -->
+                                </div>
+                               
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span>Domain<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li >Sort by ascending</li>
+                                <li>Sort by descending</li>
+                               
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Date</span><i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseDetailsAjax('<?php echo $this->url('menudashboard');?>','1','node_instance_id','ASC','Ajax')" >Sort by ascending</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseDetailsAjax('<?php echo $this->url('menudashboard');?>','1','node_instance_id','DESC','Ajax')">Sort by descending</li>
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Status</span>
+                                <?php if ($order_by == 'status') { ?>
+                                    <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                <?php } else { ?>
+                                    <i class="fa fa-angle-down"></i>
+                                <?php } ?>
+                            </span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                <li data-id="all" data-filter-by="no-pagination" data-filter-field="status" class="course-filter-status">All</li>
+                                <li data-id="d"   data-filter-by="no-pagination" data-filter-field="status" class="course-filter-status">Draft</li>
+                                <li data-id="p"   data-filter-by="no-pagination" data-filter-field="status" class="course-filter-status">Published</li>
+                            </ul>
+                        </th>
+                       
+                </thead>
+           </table>
+                    <div class="nano fixedTableHig">
+                        <div class="nano-content">
+                            <table class="table table-style fixedTableHig table-responsive course-detail-table ActiveRow"> 
+                                <tbody>  
+                                <?php
+                                for ($i = 1; $i <= 10; $i++) {  ?>     
+                                    <tr>
+                                        <td>Doc</td>
+                                        <td>Lorem ipsum</td>
+                                        <td>11/27/2015</td>
+                                        <td>Draft</td> 
+                                    </tr>
+                                    <tr>
+                                        <td>Doc</td>
+                                        <td>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</td>
+                                        <td>11/27/2015</td>
+                                        <td>Draft</td> 
+                                    </tr>
+                              <?php  } 
+                                ?>
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+    </div>
+</div>
+
+<div class="right-popup rightFlyout" id="courseBoardFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Course Template</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano">
+                <div class="nano-content course-inner-wrap">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++) 
+                        {?> 
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>Standard</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>Lorem</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>Ipsum</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                       
+                        <?php
+                        }
+                        ?>
+                    </ol>
+                </div>            
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    undefinedEntry();
+</script>

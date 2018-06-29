@@ -1,0 +1,443 @@
+<?php echo $this->partial('partial/delete-instance.phtml'); ?>
+<?php if($this->display == 'Normal') { ?>
+<div class="listing-wrapper dashSlider clearfix set-height ins">
+    <div class="control-bar">
+        <div class="row">
+            <div class="col-md-12 left-head">
+                <div class="block-head">
+                    <span class="main-title-wrap">
+                        <span class="main-title left-side-heading">Instance: List</span>
+                    </span>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mask-black mask-left" style="display: none;"></div>
+    <div class="lodding-half loading-left1" style="display: none;"> 
+        <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+    </div>
+    <input type="hidden" id="filter_operator_instance" name="filter_operator_instance" value="equals" />
+    <input type="hidden" id="filter_type_instance" name="filter_type_instance" value="pagination" />
+    <input type="hidden" id="filter_field_instance" name="filter_field_instance" value="" />
+
+    <input type="hidden" id="instance_action_type" name="instance_action_type" value="" />
+    <input type="hidden" id="temp_item_per_page_instance" name="temp_item_per_page_instance" value="<?php echo $this->itemsPerPage; ?>" />
+    <div class="main-one-third intance-column" id="first_instance_div" >
+        <?php
+            $url_order = 'ASC';  // the following lines
+            $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+        ?>
+        <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head intance-table">
+            <thead>
+                <tr>
+                    <th><input value="all_instance" id="all_instance" name="all_instance" class="all_i_check" type="checkbox" ><label></label></th>
+                    <th style="display:none;" > <span>ID </span> </th>
+                    <th class="filterDrp" > 
+                        <span class="strat_click" strat-id="n_ajax">     
+                            NID
+                            <?php if ($order_by == 'node_id') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationInstanceAjax('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationInstanceAjax('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Ends With</li>
+                                    <li data-id="contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Does Not Contain</li>
+                                </ul>
+                            </li>                            
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-caption-instance-text-box" class="form-control" placeholder="Search" name="search-caption-instance-text-box" value="" data-value="entr-nid">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-instance-box entr-nid" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                        </ul>
+                    </th>
+                    <th class="filterDrp" > 
+                        <span>Status
+                            <?php if ($order_by == 'status') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span> 
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li data-id="all" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">All</li>
+                            <li data-id="d" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">Draft</li>
+                            <li data-id="p" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">Published</li>
+                            
+                        </ul>
+                        
+                    </th>
+                </tr>
+            </thead>
+        </table>
+
+        <div class="nano">
+            <div class="nano-content set-content-height">
+                <table class="table table-style table-dashboard class-table intance-table">
+
+                    <tbody>
+                        <?php if(count($this->instanceArray) > 0) { $i= 0; foreach($this->instanceArray as $key => $instance) { ?>
+                            <tr class="lisat-instance-row<?php echo $i; ?> list-row-instance-class" id="list-row-instance-id_<?php echo $instance->node_instance_id; ?>" >
+                                <td><input value="<?php echo $instance->node_instance_id; ?>" id="ri_check<?php echo $instance->node_instance_id; ?>" name="ri_check<?php echo $instance->node_instance_id; ?>" class="single_i_check" type="checkbox"><label></label></td>
+                                
+                                <td style="display:none;" onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="<?php if($i==0) { ?>first_instance_structure strat_click<?php } else { ?>strat_click<?php } ?>" ><?php echo $instance->node_instance_id; ?></td>
+                                <td onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance->node_id; ?></td>
+                                <td id="ins_status<?php echo $instance->node_instance_id; ?>" onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance->status; ?></td>
+                            </tr>
+                        <?php $i = intval($i) + 1; } } else { ?>
+                            <tr class="list-row lisat-instance-row0" >
+                                <td colspan="4" align="center" > No Instance Found</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="list-bottom Ajaxpage-getUserWithPagination">
+            <div class="paginationBottom pagination_row"><div class="toggle-btn-box pagination_col">
+                <div class="btn-group btn-toggle">
+                    <!-- <button onclick="listPageInstance('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                    <button onclick="listPageInstance('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button> -->
+                    <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+                </div>
+            </div>
+
+            <?php
+                 // add at the end of the file after the table
+                 echo $this->paginationControl(
+                     // the paginator object
+                     $this->instanceArray,
+                     // the scrolling style
+                     'sliding',
+                     // the partial to use to render the control
+                     'paginator-ajax',
+                     // the route to link to when a user clicks a control link
+                     array(
+                         'route' => 'classes','action' => 'getClassInstance','order_by' => $this->order_by, 'order' => $this->order, 'itemPerPage' => $this->itemsPerPage,
+                     )
+                 );
+            ?>
+            <div class="pagination-right-col">
+            <div class="detail-value1 pagination_col">
+                <div class="relative">
+                    <label class="custom-select">
+                        <div class="styled-select">
+                            <select class="form-control strat_click" strat-id="n_ajax" id="paginateChunk" name="paginateChunk" required="required" onchange="setPageInstance(this.value)" >
+                            <option <?php if(intval($this->itemsPerPage) == 25) { ?> selected="selected" <?php } ?> value="25">25 per page</option>
+                            <option <?php if(intval($this->itemsPerPage) == 50) { ?> selected="selected" <?php } ?> value="50">50 per page</option>
+                            <option <?php if(intval($this->itemsPerPage) == 75) { ?> selected="selected" <?php } ?> value="75">75 per page</option>
+                            <option <?php if(intval($this->itemsPerPage) == 100) { ?> selected="selected" <?php } ?> value="100">100 per page</option>
+                        </select>
+                        </div>    
+                    </label>
+                </div>
+            </div>
+
+            <span class="oftotal pagination_col">
+                <?php  $f = (intval($this->itemsPerPage)*intval($this->page)) - (intval($this->itemsPerPage)-1); if(intval($this->page) == 1) { echo '1'; } else { echo $f; } ?>-
+                    <?php $s = intval($this->itemsPerPage)*intval($this->page); if( intval($s) < intval($this->totalRecord)) { echo $s; } else { echo $this->totalRecord; }?>
+                     of <span id="search-total"><?php echo $this->totalRecord; ?></span>
+                
+            </span></div></div>
+        </div>
+    </div>
+</div>
+
+<div class="display-wrapper dashSlider clearfix set-height ins">
+    <div class="control-bar">
+        <div class="row">
+            <div class="col-md-12 left-head">
+                <div class="block-head">
+                    <span class="main-title-wrap">
+                            <span class="main-title left-side-heading" id="second-instance-div-heading" >Instance Properties</span>
+                    </span>
+                    <!-- <div class="control-btn-wrap right">
+                        <a href="#" class="active" >
+                                <i class="icon structure"></i><span>Structure</span>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mask-black mask-left" style="display: none;"></div>
+    <div class="lodding-half lodding-half2" style="display: none;"> 
+        <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+    </div>
+    <div class="main-one-third" id="second_instance_div">
+        
+    </div>
+</div>
+
+<script class="ins" type="text/javascript">
+    setWidth();
+   // filterDropDown();
+    $(".first_instance_structure").click();
+</script>
+<?php } ?>
+
+<?php if($this->display == 'Ajax') { ?>
+    <?php
+            $url_order = 'ASC';  // the following lines
+            $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+    ?>
+    <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head intance-table">
+            <thead>
+                <tr>
+                    <th><input value="all_instance" id="all_instance" name="all_instance" class="all_i_check" type="checkbox" ><label></label></th>
+                    <th style="display:none;" > <span>ID </span> </th>
+                    <th class="filterDrp" > 
+                        <span class="strat_click" strat-id="n_ajax">     
+                            NID 
+                            <?php if ($order_by == 'node_id') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationInstanceAjax('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationInstanceAjax('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Ends With</li>
+                                    <li data-id="contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter-instance">Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-caption-instance-text-box" class="form-control" placeholder="Search" name="search-caption-instance-text-box" value="" data-value="entr-nid">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-instance-box entr-nid" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                        </ul>
+                    </th>
+                    <th class="filterDrp" > 
+                        <span>Status
+                            <?php if ($order_by == 'status') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span> 
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li data-id="all" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">All</li>
+                            <li data-id="d" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">Draft</li>
+                            <li data-id="p" data-filter-by="pagination" data-filter-field="status" class="sub-filter-instance-status">Published</li>
+                            
+                        </ul>
+                    </th>
+                </tr>
+            </thead>
+    </table>
+    <div class="nano1">
+        <div class="set-content-height nano-content1 niceScrollDiv">
+            <div class="">
+                <table class="table table-style table-dashboard class-table intance-table">
+                    <tbody>
+                        <?php if(count($this->instanceArray) > 0) { $i= 0; foreach($this->instanceArray as $key => $instance) { ?>
+                            <tr class="lisat-instance-row<?php echo $i; ?> list-row-instance-class" id="list-row-instance-id_<?php echo $instance->node_instance_id; ?>" >
+                                <td><input value="<?php echo $instance->node_instance_id; ?>" id="ri_check<?php echo $instance->node_instance_id; ?>" name="ri_check<?php echo $instance->node_instance_id; ?>" class="single_i_check" type="checkbox"><label></label></td>
+                                
+                                <td style="display:none;" onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="<?php if($i==0) { ?>first_instance_structure strat_click<?php } else { ?>strat_click<?php } ?>" ><?php echo $instance->node_instance_id; ?></td>
+                                <td onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance->node_id; ?></td>
+                                <td id="ins_status<?php echo $instance->node_instance_id; ?>" onclick="getInstanceStructure(<?php echo $instance->node_instance_id; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance->status; ?></td>
+                            </tr>
+                        <?php $i = intval($i) + 1; } } else { ?>
+                            <tr class="list-row lisat-instance-row0" >
+                                <td colspan="4" align="center" > No Instance Found</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-bottom Ajaxpage-getUserWithPagination">
+       <div class="paginationBottom pagination_row"> <div class="toggle-btn-box pagination_col">
+            <div class="btn-group btn-toggle">
+              <!--   <button onclick="listPageInstance('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                <button onclick="listPageInstance('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button> -->
+                <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+            </div>
+        </div>
+
+        <?php
+             // add at the end of the file after the table
+             echo $this->paginationControl(
+                 // the paginator object
+                 $this->instanceArray,
+                 // the scrolling style
+                 'sliding',
+                 // the partial to use to render the control
+                 'paginator-ajax',
+                 // the route to link to when a user clicks a control link
+                 array(
+                     'route' => 'classes','action' => 'getClassInstance','order_by' => $this->order_by, 'order' => $this->order, 'itemPerPage' => $this->itemsPerPage,
+                 )
+             );
+        ?>
+        <div class="pagination-right-col">
+        <div class="detail-value1 pagination_col">
+            <div class="relative">
+                <label class="custom-select">
+                   <div class="styled-select">
+                         <select class="form-control strat_click" strat-id="n_ajax" id="paginateChunk" name="paginateChunk" required="required" onchange="setPageInstance(this.value)" >
+                        <option <?php if(intval($this->itemsPerPage) == 25) { ?> selected="selected" <?php } ?> value="25">25 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 50) { ?> selected="selected" <?php } ?> value="50">50 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 75) { ?> selected="selected" <?php } ?> value="75">75 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 100) { ?> selected="selected" <?php } ?> value="100">100 per page</option>
+                    </select>
+                   </div>
+              </label>
+            </div>
+        </div>
+
+        <span class="oftotal pagination_col">
+            <?php  $f = (intval($this->itemsPerPage)*intval($this->page)) - (intval($this->itemsPerPage)-1); if(intval($this->page) == 1) { echo '1'; } else { echo $f; } ?>-
+                <?php $s = intval($this->itemsPerPage)*intval($this->page); if( intval($s) < intval($this->totalRecord)) { echo $s; } else { echo $this->totalRecord; }?>
+                 of <span id="search-total"><?php echo $this->totalRecord; ?></span>
+            
+        </span></div></div>
+    </div>
+    <script type="text/javascript">
+        if(hitByIns == false)
+        {
+            $(".first_instance_structure").click();
+            if($('body').hasClass('first_instance_structure') == false)
+            {
+              $("#second_instance_div").html("");
+            }
+        }
+    </script>
+<?php } ?>
+
+<?php if($this->display == 'no-pagination') { ?>
+    <?php
+            $url_order = 'ASC';  // the following lines
+            $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+    ?>
+    <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head intance-table">
+        <thead>
+            <tr>
+                <th><input value="all_instance" id="all_instance" name="all_instance" class="all_i_check" type="checkbox" ><label></label></th>
+                <th style="display:none;" > <span>ID </span> </th>
+                <th class="filterDrp" > 
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        NID 
+                        <?php if ($order_by == 'node_id') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationInstanceAjaxList('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','ASC')" >Sort A - Z</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationInstanceAjaxList('<?php echo $this->url('classes').'/getClassInstance';?>','<?php echo $page; ?>','node_id','DESC')">Sort Z - A</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Ends With</li>
+                                <li data-id="contains" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Contains</li>
+                                <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="node_id" class="sub-filter-instance">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-instance-text-box" class="form-control" placeholder="Search" name="search-caption-instance-text-box" value="" data-value="entr-nid">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-instance-box entr-nid" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp" > 
+                    <span class="strat_click" strat-id="n_ajax" >Status
+                     <?php if ($order_by == 'status') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li data-id="all" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-instance-status">All</li>
+                        <li data-id="d" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-instance-status">Draft</li>
+                        <li data-id="p" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-instance-status">Published</li>
+                      
+                    </ul>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="nano1">
+        <div class="set-content-height nano-content1 niceScrollDiv">
+            <div class="">
+                <table class="table table-style table-dashboard class-table intance-table">
+                    <tbody>
+                        <?php if(count($this->instanceArray) > 0) { $i= 0; foreach($this->instanceArray as $key => $instance) { ?>
+                            <tr class="lisat-instance-row<?php echo $i; ?> list-row-instance-class" id="list-row-instance-id_<?php echo $instance['node_instance_id']; ?>" >
+                                <td><input value="<?php echo $instance['node_instance_id']; ?>" id="ri_check<?php echo $instance['node_instance_id']; ?>" name="ri_check<?php echo $instance['node_instance_id']; ?>" class="single_i_check" type="checkbox"><label></label></td>
+                                <td style="display:none;" onclick="getInstanceStructure(<?php echo $instance['node_instance_id']; ?>)" class="<?php if($i==0) { ?> first_instance_structure strat_click<?php } else { ?> strat_click<?php } ?>"><?php echo $instance['node_instance_id']; ?></td>
+                                <td onclick="getInstanceStructure(<?php echo $instance['node_instance_id']; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance['node_id']; ?></td>
+                                <td id="ins_status<?php echo $instance['node_instance_id']; ?>" onclick="getInstanceStructure(<?php echo $instance['node_instance_id']; ?>)" class="strat_click" style="cursor:pointer;" ><?php echo $instance['status']; ?></td>
+                            </tr>
+                        <?php $i = intval($i) + 1; } } else { ?>
+                            <tr class="list-row lisat-instance-row0" >
+                                <td colspan="4" align="center" > No Instance Found</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-bottom Ajaxpage-getUserWithPagination">
+        <div class="paginationBottom pagination_row"><div class="toggle-btn-box pagination_col">
+            <div class="btn-group btn-toggle">
+               <!--  <button onclick="listPageInstance('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                <button onclick="listPageInstance('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button> -->
+                <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+            </div>
+        </div>
+        <div class="pagination-right-col">
+        <span class="oftotal pagination_col">
+            1 - <span><?php echo $this->totalRecord; ?></span>
+        </span></div></div>
+    </div>
+    <script type="text/javascript">
+        $(".first_instance_structure").click();
+		/* manageNiceScroll() */
+    </script>
+<?php } ?>
+

@@ -1,0 +1,59 @@
+.sass-lang {
+	.right-action-bar{
+		max-width: 50px;
+		justify-content: $center;
+		border-right: 0px;
+		ul{
+			width: $fullWidth;
+			li{
+				@include flex;
+			    padding: 6px 0;
+				a {
+				    width: 100%;
+				    text-align: center;
+				    font-size: 10px;
+				    color: #000;
+				    span{
+					    width: 100%;
+					    float: left;
+					    font-size: 9px;
+					    line-height: 10px;
+				    }
+				}
+				&:hover{
+					@extend .pointer;
+					background: $bg-gray;
+				}	
+			}
+		}
+		.bootomFixed{
+			bottom:40px;
+		}
+	}
+
+.sass-lang ul.breadccrumb-section li a{
+	color: $brandColor;
+	cursor: default;
+}
+
+  
+
+li.multiple-child {
+    width: 50px;
+    float: left;
+    display: block !important;
+    padding: 0 !important;
+    &:hover {
+    	background: transparent !important;
+	}
+		a{
+		float: left;
+	    width: 100%;
+	    padding: 5px 2px;
+		    &:hover {
+	    		background: #f4f4f4;
+			}
+	
+	
+	}	}
+}

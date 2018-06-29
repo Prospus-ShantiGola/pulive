@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="280px" height="25px" viewBox="0 0 280 25" enable-background="new 0 0 280 25" xml:space="preserve">
+<g display="none">
+	<rect x="0.5" y="0.5" display="inline" fill="#FFFFFF" width="279" height="24.001"/>
+	<path display="inline" d="M279,1V24H1V1H279 M280,0H0V25h280V0L280,0z"/>
+</g>
+<g>
+	<g>
+		<path d="M91.699,0h-3v1h3V0L91.699,0z M85.699,0h-3v1h3V0L85.699,0z M79.699,0h-3v1h3V0L79.699,0z M73.699,0h-3v1h3V0L73.699,0z
+			 M67.699,0h-1v1l0,0c0,0.5,0,1,0,1h1V0L67.699,0z M67.699,5h-1v3h1V5L67.699,5z M67.699,11h-1v3h1V11L67.699,11z M67.699,17h-1v3
+			h1V17L67.699,17z M67.699,23h-1V25h1l0,0l0,0l0,0V23L67.699,23z M73.698,24h-3v1h3V24L73.698,24z M79.698,24h-3v1h3V24L79.698,24z
+			 M85.698,24h-3v1h3V24L85.698,24z M91.698,24h-3v1h3V24L91.698,24z M91.699,19.001h-1v3h1V19.001L91.699,19.001z M91.699,13.001
+			h-1v3h1V13.001L91.699,13.001z M91.699,7.001h-1v3h1V7.001L91.699,7.001z M91.699,1.001h-1v3h1V1.001L91.699,1.001z"/>
+	</g>
+	<g>
+		<rect x="78.699" y="6" width="1" height="13"/>
+		<rect x="72.699" y="12" width="13" height="1"/>
+	</g>
+	<text transform="matrix(1 0 0 1 102.6992 17.0161)" font-family="'OpenSans'" font-size="12">Add Role-Operation</text>
+</g>
+</svg>

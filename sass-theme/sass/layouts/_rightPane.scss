@@ -1,0 +1,341 @@
+$collapse-HT		: 	100px;
+$top-bar			: 	30px;
+
+.sass-lang{
+	.messageList{
+		overflow: auto;
+		border-bottom: $border-size $border-style $border-gray;
+		@extend .full-content;
+		.flex-row {
+		    margin-bottom: 15px;		    
+			padding:10px;		
+		}
+		h4{
+			font-size: $font-size-h4;
+		}
+	}
+}
+
+.sass-lang{
+	.chat-collapse{
+		@extend .full-content;
+		height: $collapse-HT;
+	}
+	.letter-collapse{
+		@extend .full-content;
+		height: $collapse-HT;
+	}
+}
+// chat screen
+.sass-lang{
+	.chat-list{
+		@extend .messageList;
+		height: calc(100% - 100px);
+	}
+	.message-txt-area{
+		.chat-top{
+			border-bottom: $border-size $border-style $border-gray;
+			height: $top-bar;
+			padding:5px 10px;
+			.chat-right-pane{
+				li{
+					padding-left: 10px;
+				}
+			}
+		}
+		.textarea-wrap{
+			height: calc(100% - 30px);
+			textarea{
+				height: 100%;
+				border-bottom:$zero;
+			}
+		}
+
+		.dropdown-menu{
+	    	border-top:$zero;
+		}
+		.dropup{
+	    	.dropdown-menu{
+		    	top: auto;
+			}
+		}
+	}
+	.chatPane {
+	    padding: 0 15px;
+	}
+	.login-user{
+		h4{
+			color:$brandColor;
+		}
+	}
+}
+// letter screen
+.sass-lang{
+	.letter-top-bar{
+		height: 145px;
+	}
+	.add-participant-pane{
+		padding:$padding-small-horizontal;
+		border-bottom: $border-size $border-style $border-gray;
+		@extend .full-content;
+		overflow: auto;
+		.Icon{
+			margin-right: 10px;
+		}
+		.flex-row{
+			margin-bottom:$padding-small-horizontal;
+			&:last-child{
+				margin-bottom: $zero;
+			}
+			.flex-col.col-md{
+				margin-right:$padding-large-horizontal;
+			}
+			span{
+				padding:3px 0;		
+				float: left;
+			}
+			.user-list {
+				@include border-radius(3px);
+			    @include flex;
+			    border:  $border-size $border-style $border-gray;
+			    padding: 0px;		     
+			    margin-right: 5px;
+			    .Icon{
+			    	margin-right: 3px;
+			    }
+			    .user-name{
+			    	padding: 0 5px 0 0;
+			    	height: 20px;
+    				line-height: 20px;
+			    }
+			}
+		}
+		
+	}
+	.participant-list {
+	    @extend .full-content;
+	    margin-bottom: -10px;
+	    padding-top: 5px;
+	    .user-list{
+	    	margin-bottom: 5px;
+	    	i:last-child{
+	    		border-left: $border-size $border-style $border-gray;
+	    	
+	    	}
+	    }
+	}
+	.letter-list{
+		@extend .messageList;
+		height: calc(100% - 100px - 145px);
+	}
+	.total-width-pane{
+		@extend .full-content;
+		height: calc(100% - 145px);
+		position: static !important;
+	}
+	.edtContainer{
+		width:$fullWidth;
+		border:$zero;
+		.edtBody {
+			.edt{
+				min-height: 0px !important;
+				
+				margin-left:0px;
+				position: static !important;
+			}
+			.HT{
+				height: 65px;				
+				overflow: auto;
+			}
+		}
+		.alignment-section {
+			@extend .full-content;		
+		}
+		.edtHeader{
+			height: $top-bar;
+			width:$fullWidth;
+			padding:5px 10px;
+			.alignment-section {
+				.left-pane {
+				    > span{
+						float: $left; 
+						margin-right: 5px;
+						height: 20px;
+					}
+					> div{
+						float: $left; 
+						margin-right: 5px;
+					}	
+					select{
+						height: 20px;
+						padding:0 20px 0 0;
+					}
+					.more-icons {
+					    position: $absolute;
+					    right: $zero;
+					    top: 29px;
+					    border: $border-size $border-style $border-gray;
+					    padding:0 10px;
+					    display: none;
+					    z-index: 1;
+					    background:#fff;
+					}
+				}
+				
+			}
+		}
+		
+	}
+}
+
+// course detail
+.sass-lang{
+	.couse-detail-pane{
+		width: 100%;
+		display: $block;
+		.panel-group{
+			margin:$zero;
+		}
+		.panel-group .panel + .panel{
+			margin-top:0px;
+		}
+		.title{
+			background:$heading-bg;					
+			color: $whiteColor;
+			padding:10px;
+			text-transform: inherit;
+			border-bottom: 1px solid $leftActionBg;
+			a:after{
+	    	    width: 20px;
+	    	    content:"";
+			    height: 20px;
+			    background: url(../img/sprite_icons.svg);
+			    background-position: -201px -819px;
+			    line-height: 0px;
+			    float: left;
+			    position: absolute;
+			    right: 10px;
+			    margin-top:-3px;
+			}
+			a.collapsed:after{
+				line-height: 13px;
+				content: "";
+			}
+		}
+		.detail{
+			@extend .full-content;
+			padding:10px 10px 10px 20px;
+		}
+		.list-item{
+			ul{
+				li{					
+					color: $brandColor;
+					display: $block;
+					&:before {
+					    content: "\f111";
+					    font-family: FontAwesome;
+					    display: inline-block;
+					    margin-left: 0;
+					    width: 20px;
+				    	font-size: 7px;		
+				    	vertical-align: middle;		
+					}
+					a{
+						color: $brandColor;
+						width: calc(100% - 20px);
+						vertical-align: top;
+					}
+				}
+			}
+		}
+		.responsive-circle-list{
+			@extend .full-content;
+			margin:10px 0;
+			.responsive-circle {
+			    height: 2px;
+			    background-color: #000;
+			    overflow: visible;
+			    position: relative;
+			    float: left;
+			    width: 31%;
+			    z-index: 2;
+			}
+			.responsive-circle +  .responsive-circle{
+				margin-left: -16px;
+			}
+			.responsive-circle:before,
+			.responsive-circle:after,
+			.responsive-circle > i {
+			    background: #000;
+			    width: 15px;
+			    height: 15px;
+			    border-radius: 50%;
+			    border:1px solid #000;
+			    position: absolute;
+			    content: "";
+			    top: -7px;
+			}
+
+			.responsive-circle:after {
+			    right: 0;
+			}
+
+			.responsive-circle > i {
+			    left: 50%;
+			    left: calc(50% - 9px);
+			}
+			.responsive-circle.last{
+				z-index: 1;
+			}
+			.responsive-circle.last:before,
+			.responsive-circle.last:after,
+			.responsive-circle.last > i{
+				background: #fff;
+			}
+		}
+		.activity-title {
+			margin-bottom:10px;
+			li{
+		    	width: 13.8%;
+			}
+		}
+		.dialogue-list{
+			> .flex-row{
+				margin-bottom: 10px;
+				&:last-child{
+					margin-bottom: 0px;
+				}
+			}
+			.arrow_up{
+				&:before,
+				&:after{
+					top: -20px;
+					left: 22px;
+				}
+			}
+			.reply-actionbar{
+				margin-top: 10px;
+			}
+		}
+	}
+	.new-course{
+		padding:10px;   
+	}
+}
+.sass-lang{
+	.panel-heading{
+		&.arrow:before{
+			border-width: 10px;
+    		margin-left: 10px;
+		}
+		&.arrow:after{
+			border-width: 8px;
+    		margin-left: 12px;
+		}
+	}
+}
+
+
+
+
+

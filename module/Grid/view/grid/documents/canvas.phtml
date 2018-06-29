@@ -1,0 +1,462 @@
+
+<?php 
+if(isset($this->statements)) {
+       $statementsHtml = '';
+        foreach($this->statements as $stmt) {
+          $html = current($stmt);
+          $statementsHtml .= $html;
+       }
+    }?>
+
+<style type="text/css">    
+    .main-wrapper{
+        position: static;
+    }
+    .content-wrapper-new{
+        position: static;
+    }
+</style>
+<!-- <div style="position: relative;">
+    <select id="selClassDropdown"></select>
+    <div id="canvasNodeList">
+        <ul></ul>
+    </div>
+</div>     -->
+<div class="total-width-pane set-height">
+    <div id="edtHyperlinkPopupCanvas">
+           <div class="dialog-content"><p>Link : </p><input type="text" id="edtHyperlinkTextCanvas"/></div>
+           <div class="dialog-footer"><button id="saveedtHyperlinkTextCanvas" class="btn btn-default btn-sm">Ok</button> <button id="canceledtHyperlinkTextCanvas" class="btn btn-default btn-sm">Cancel</button></div>
+        </div>
+
+         <div id="edtCalculationPopup">
+           <div class="dialog-content"><p>Mapping :</p><textarea id="edtCalculationCanvas" rows="4" cols="50"></textarea></div>
+           <div class="dialog-footer"><button id="saveedtCalculationCanvas" class="btn btn-default btn-sm">Ok</button> <button id="canceledtCalculationCanvas" class="btn btn-default btn-sm">Cancel</button></div>
+        </div>
+
+        <div id="edtHyperlinkPreviewCanvas">
+            <div class="dialog-content"><p>Visit :</p><a href="#" id="edtHyperlinkPreviewTextCanvas" target="_blank"></a></div>
+            <div class="dialog-footer"><button id="removeedtHyperlinkPreviewTextCanvas" class="btn btn-default btn-sm">Remove Link</button></div>
+        </div>
+        
+        <div id="removeMappedNode">
+        <ul>
+            <li><a href="javascript:void(0)" data-action="removeMappedNode">Remove this Field</a></li>            
+        </ul>
+        </div>
+      <div id="canvastableContextMenu">
+        <ul>
+            <li><a href="javascript:void(0)" data-action="addTable">Add Table</a></li>
+            <li><a href="javascript:void(0)" data-action="emptyColumn">Delete Content</a></li>
+            <li><a href="javascript:void(0)" data-action="rowAbove">Insert Row Above</a></li>
+            <li><a href="javascript:void(0)" data-action="rowBelow">Insert Row Below</a></li>
+            <li><a href="javascript:void(0)" data-action="columnLeft">Insert Column Left</a></li>
+            <li><a href="javascript:void(0)" data-action="columnRight">Insert Column Right</a></li>
+            <li><a href="javascript:void(0)" data-action="deleteRow">Delete Row</a></li>
+            <li><a href="javascript:void(0)" data-action="deleteColumn">Delete Column</a></li>
+            <li><a href="javascript:void(0)" data-action="deleteTable">Delete Table</a></li>  
+            <li><a href="javascript:void(0)" data-action="columnProperties">Column Properties</a></li>
+            <li><a href="javascript:void(0)" data-action="rowProperties">Row Properties</a></li>
+        </ul>
+        </div>
+    <div class="color-plates-wrap unselectable" id="ColorPlatesSectionCanvas">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="background:#000000"></td>
+                <td style="background:#434343" ></td>
+                <td style="background:#666666"></td>
+                <td style="background:#999999"></td>
+                <td style="background:#B7B7B7"></td>
+                <td style="background:#CCCCCC"></td>
+                <td style="background:#D9D9D9"></td>
+                <td style="background:#EFEFEF"></td>
+                <td style="background:#F3F3F3"></td>
+                <td style="background:#FFFFFF"></td>
+            </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="background:#980000"></td>
+                <td style="background:#FF0000"></td>
+                <td style="background:#FF9900"></td>
+                <td style="background:#FFFF00"></td>
+                <td style="background:#00FF00"></td>
+                <td style="background:#00FFFF"></td>
+                <td style="background:#4A86E8"></td>
+                <td style="background:#0000FF"></td>
+                <td style="background:#9900FF"></td>
+                <td style="background:#FF00FF"></td>
+            </tr>
+        </table>
+        <table cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                    <td style="background:#E6B8AF"></td>
+                    <td style="background:#F4CCCC"></td>
+                    <td style="background:#FCE5CD"></td>
+                    <td style="background:#FFF2CC"></td>
+                    <td style="background:#D9EAD3"></td>
+                    <td style="background:#D0E0E3"></td>
+                    <td style="background:#C9DAF8"></td>
+                    <td style="background:#CFE2F3"></td>
+                    <td style="background:#D9D2E9"></td>
+                    <td style="background:#EAD1DC"></td>
+                </tr>
+                <tr>
+                    <td style="background:#DD7E6B"></td>
+                    <td style="background:#EA9999"></td>
+                    <td style="background:#F9CB9C"></td>
+                    <td style="background:#FFE599"></td>
+                    <td style="background:#B6D7A8"></td>
+                    <td style="background:#A2C4C9"></td>
+                    <td style="background:#A4C2F4"></td>
+                    <td style="background:#9FC5E8"></td>
+                    <td style="background:#B4A7D6"></td>
+                    <td style="background:#D5A6BD"></td>
+                </tr>
+                <tr>
+                    <td style="background:#CC4125"></td>
+                    <td style="background:#E06666"></td>
+                    <td style="background:#F6B26B"></td>
+                    <td style="background:#FFD966"></td>
+                    <td style="background:#93C47D"></td>
+                    <td style="background:#76A5AF"></td>
+                    <td style="background:#6D9EEB"></td>
+                    <td style="background:#6FA8DC"></td>
+                    <td style="background:#8E7CC3"></td>
+                    <td style="background:#C27BA0"></td>
+                </tr>
+                <tr>
+                    <td style="background:#A61C00"></td>
+                    <td style="background:#CC0000"></td>
+                    <td style="background:#E69138"></td>
+                    <td style="background:#F1C232"></td>
+                    <td style="background:#6AA84F"></td>
+                    <td style="background:#45818E"></td>
+                    <td style="background:#3C78D8"></td>
+                    <td style="background:#3D85C6"></td>
+                    <td style="background:#674EA7"></td>
+                    <td style="background:#A64D79"></td>
+                </tr>
+                <tr>
+                    <td style="background:#85200C"></td>
+                    <td style="background:#990000"></td>
+                    <td style="background:#B45F06"></td>
+                    <td style="background:#BF9000"></td>
+                    <td style="background:#38761D"></td>
+                    <td style="background:#134F5C"></td>
+                    <td style="background:#1155CC"></td>
+                    <td style="background:#0B5394"></td>
+                    <td style="background:#351C75"></td>
+                    <td style="background:#741B47"></td>
+                </tr>
+                <tr>
+                    <td style="background:#5B0F00"></td>
+                    <td style="background:#660000"></td>
+                    <td style="background:#783F04"></td>
+                    <td style="background:#7F6000"></td>
+                    <td style="background:#274E13"></td>
+                    <td style="background:#0C343D"></td>
+                    <td style="background:#1C4587"></td>
+                    <td style="background:#073763"></td>
+                    <td style="background:#20124D"></td>
+                    <td style="background:#4C1130"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="edtHeader doc-wrap">
+        <div class="tollbar-panel">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs doc-tollbar" role="tablist">
+                <li><a href="#File" aria-controls="File" role="tab" class="open-file1 inactiveTab" data-toggle="tab">File</a></li>
+                <li><a href="#Edit" aria-controls="Edit" role="Edit" data-toggle="tab" class="inactiveTab">Page</a></li>
+                <li><a href="#View" aria-controls="View" role="Edit" data-toggle="tab" class="inactiveTab">Options</a></li>
+                <li><a href="#Insert" aria-controls="messages" role="Insert" data-toggle="tab" class="inactiveTab">Insert</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content doc-tollbar-wrap">
+                <!-- div used inside the document panel -->
+                <div role="tabpanel" class="tab-pane file1" id="File"></div>
+                <div role="tabpanel" class="tab-pane " id="Edit">
+                    <div class="doc-edit-pane">
+                        <div>
+                            <h2>Page Setup</h2>
+                            <div class="doc-edit-inner-pane">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <span class="col-sm-12 print-mode inactivePrintMode" id="printMode">
+                                        <i class="icon tick"></i>
+                                        Print Layout View
+                                        </span> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 label-field">Page Size</label>
+                                        <div class="col-sm-8">
+                                            <div class="select-wrap">
+                                                <span class="viewOptions">
+                                                    <select id="viewOpts" class="select-field">
+                                                        <option value="responsive" data-width="100">Responsive</option>
+                                                        <option value="letter" data-width="8.5" data-landscape-width="11">Letter</option>
+                                                        <option value="legal" data-width="8.5" data-landscape-width="14">Legal</option>
+                                                        <option value="tabloid" data-width="11" data-landscape-width="17">Tabloid</option>
+                                                        <option value="a3" data-width="11.69" data-landscape-width="16.54">A3</option>
+                                                        <option value="a4" data-width="8.27" data-landscape-width="11.69">A4</option>
+                                                        <option value="a5" data-width="5.83" data-landscape-width="8.27">A5</option>
+                                                    </select>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 label-field">Orentation</label>
+                                        <div class="col-sm-8 radio-section">
+                                            <span class="unselectable printLandscape" style="display:none">
+                                            <input type="checkbox" id="printLandscape"/>Landscape
+                                            </span>  
+                                            <select class="select-field" id="changeDocMode">
+                                                <option data-value="potrait">Potrait</option>
+                                                <option data-value="landscape">Landscape</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                            <h2>Margins</h2>
+                            <div class="doc-edit-inner-pane">
+                                <form class="form-horizontal">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group disabledField">
+                                                <label class="col-sm-4 label-field">Top</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field" placeholder="0.25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group disabledField">
+                                                <label class="col-sm-4 label-field">Bottom</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field" placeholder="0.25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group disabledField">
+                                                <label class="col-sm-4 label-field">Left</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field" placeholder="0.25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group disabledField">
+                                                <label class="col-sm-4 label-field">Right</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field" placeholder="0.25">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-action-wrap">
+                        <a class="user-roles ref-hideTollbar">
+                        <i class="icon save" data-original-title="" title=""></i>
+                        <br><span>Save</span>
+                        </a>
+                        <a class="user-roles ref-hideTollbar">
+                        <i class="icon cancel" data-original-title="" title=""></i>
+                        <br><span>Close</span>
+                        </a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane " id="View">
+                    <div class="doc-edit-pane">
+                        <h2>Page Option</h2>
+                        <div class="toggle-outlines">
+                            <table class="table">
+                                <tr>
+                                    <td>Table of Content </td>
+                                    <td>
+                                        <div>
+                                            <label>
+                                            <input type="checkbox" id="do_Toc">
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Toggle Tag</td>
+                                    <td>
+                                        <div>
+                                            <label>
+                                            <input type="checkbox" id="do_toggle_tags" checked>
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="user-action-wrap">
+                        <a class="user-roles ref-hideTollbar">
+                        <i class="icon cancel" data-original-title="" title=""></i>
+                        <br><span>Close</span>
+                        </a>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="Insert">Insert</div>
+            </div>
+        </div>
+        <div class="alignment-type">
+            <ul class="switch-on-off" id="OnOffMode">
+                <li data-value="structured" class="inactiveTab">Structured</li>
+                <li data-value="unstructured" class="inactiveTab">Styled</li>
+                <li class="active" id="getCanvasMode">Canvas</li>
+            </ul>
+        </div>
+        <div class="alignment-section">
+            <div id="canvasToolbar">
+                <span class="unselectable" data-toggle="tooltip" data-placement="bottom" title="Font">
+                    <select id="fontStyleCanvas" class="unselectable select-field">
+                        <option value="select">Font Family</option>
+                        <option value="open sans">Open Sans</option>
+                        <option value="arial">Arial</option>
+                        <option value="verdana">Verdana</option>
+                        <option value="times new roman">Times New Roman</option>
+                    </select>
+                </span>
+                <span class="unselectable unstructuredIcon" data-toggle="tooltip" data-placement="bottom" title="Font Size">
+                    <select id="fontSizeCanvas" class="select-field" style="width:50px;">
+                        <option value="select">Size</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="14">14</option>
+                        <option value="18">18</option>
+                        <option value="24">24</option>
+                        <option value="48">48</option>
+                    </select>
+                </span>
+                <span class="unselectable unstructuredIcon"  data-toggle="tooltip" data-placement="bottom" title="Line Height">
+                    <select id="lineHeightCanvas" class="select-field">
+                        <option value="select">Line Height</option>
+                        <option value="0.1">0.1</option>
+                        <option value="0.2">0.2</option>
+                        <option value="0.5">0.5</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                        <option value="7">7</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="15">15</option>
+                        <option value="18">18</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                    </select>
+                </span>
+                <span class="icon canvasColor" data-toggle="tooltip" data-placement="bottom" title="Text Color"></span>
+                <span class="icon bold" data-toggle="tooltip" data-placement="bottom" title="Bold"></span>
+                <span class="icon italic" data-toggle="tooltip" data-placement="bottom" title="Italic"></span>
+                <span class="icon underline" data-toggle="tooltip" data-placement="bottom" title="Underline"></span>
+                <span class="icon leftAlign" data-align="canvasLeftALign" data-toggle="tooltip" data-placement="bottom" title="Left Align"></span>
+                <span class="icon centerAlign" data-align="canvasCenter" data-toggle="tooltip" data-placement="bottom" title="Center"></span>                
+                <span class="icon rightAlign" data-align="canvasRightAlign" data-toggle="tooltip" data-placement="bottom" title="Right Align"></span>
+                <span class="icon doDynamicField" data-align="DynamicField" data-toggle="tooltip" data-placement="bottom" title="Dynamic Field"></span>    
+                 <span class="icon doChkBoxField" data-align="checkbox" data-toggle="tooltip" data-placement="bottom" title="Checkbox"></span>  
+                <span class="icon doRadioBtnField" data-align="radio" data-toggle="tooltip" data-placement="bottom" title="Radio"></span>  
+                <span class="icon doUndoCanvas" data-toggle="tooltip" data-placement="bottom" title="Undo"></span>                
+                <span class="icon doRedoCanvas" data-toggle="tooltip" data-placement="bottom" title="Redo"></span>
+                <span class="doHyperLinkCanvas icon" data-toggle="tooltip" data-placement="bottom" title="Hyper Link"></span>
+                <span class="icon doCanvasImageUpload" data-toggle="tooltip" data-placement="bottom" title="Upload Image"><input id="uploadCanvasImage" type="file"></span>
+                <span class="icon doCalculationField" data-toggle="tooltip" data-placement="bottom" title="Calculation Field"></span> 
+                
+                <span class="icon doCanvasPDFUpload" data-toggle="tooltip" data-placement="bottom" title="Upload PDF"><input id="uploadCanvasPDF" type="file"></span>
+                <!--
+                    <span>
+                        <select id="selOrientation">
+                            <option value="select">-Select Orientation-</option>
+                            <option value="a1">A1</option>
+                            <option value="a2">A2</option>
+                            <option value="a3">A3</option>
+                            <option value="a4">A4</option>
+                        </select>
+                    </span>
+                    -->
+                <span class="unselectable">
+                    <select id="changeCanvasMode" class="unselectable select-field"  data-toggle="tooltip" data-placement="bottom" title="Canvas Mode">
+                        <option value="editor">Canvas Editor</option>
+                        <option value="drag">Canvas Drag</option>
+                    </select>
+                </span>
+                <span>
+                    <select id="selPrintPreview" class="select-field" data-toggle="tooltip" data-placement="bottom" title="Mode">
+                        <option value="screen">Screen Mode</option>
+                        <option value="print">Print Mode</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="canvasMidPane">
+        <div class="canvasLeftPane">
+            <div id="edtCanvasView" class="niceScrollDiv DocInsideHig">
+                <input type="hidden" id="hidden_dialog_document_instance_id" value="<?php echo isset($this->post['node_instance_id']) ? $this->post['node_instance_id'] : ''; ?>" />
+                      <input type="hidden" id="hidden_dialog_document_node_id" value="<?php echo isset($this->post['node_id']) ? $this->post['node_id'] : ''; ?>" />
+                      <input type="hidden" id="hidden_dialog_type" value="<?php echo isset($this->templateVal['value']) ? $this->templateVal['value'] : ''; ?>" />
+                      <input type="hidden" id="hidden_dialog_title" value="" />
+                <div id="edtInnerCanvasView" class="screenMode">
+                    
+                    <?php if(!empty($statementsHtml) && strtolower($this->templateVal['value'])=="canvas") { 
+                        $url                                                        = ABS_API_URL;
+                        $statementsHtml                                             = preg_replace('/(?<=src=")([^"]*)(?=files\/)/', $url, $statementsHtml);
+                        echo $statementsHtml;
+                    } else {?>
+                    <!-- <div class="innerCanvasContainer">
+                        <table cellpadding="0" cellspacing="0" class="canvasEDTTable" style="height:auto" width="756">
+                            <tr>
+                                <td contenteditable="true" style="width:746px; min-width:746px;"><br/></td>
+                            </tr>
+                        </table>
+                    </div> -->
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <div class="canvasRightPane">
+            <div id="mapContentWrap">
+                <div class="canvasContentPane DocInsideHig">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"><label>Class:</label></div>
+                            <div class="col-md-8"><select id="selClassDropdown" class=" select-field form-control"></select></div>
+                        </div>
+                                       
+                       
+                    </div>
+                    <h2>Class Structure:</h2>
+                    <div id="canvasNodeList" class="niceScrollDiv">
+                        <ul></ul>
+                    </div>
+                </div>                
+            </div>
+        </div>
+
+    </div>
+    
+</div>

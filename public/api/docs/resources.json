@@ -1,0 +1,27 @@
+{
+    "apiVersion": "1.0",
+    "apis": [
+        {
+            "description": "",
+            "path": "/wordList.{format}"
+        },
+        {
+            "description": "",
+            "path": "/wordLists.{format}"
+        },
+        {
+            "description": "",
+            "path": "/account.{format}"
+        },
+        {
+            "description": "",
+            "path": "/word.{format}"
+        },
+        {
+            "description": "",
+            "path": "/words.{format}"
+        }
+    ],
+    "basePath": "http://localhost/pu/api",
+    "swaggerVersion": "1.0"
+}

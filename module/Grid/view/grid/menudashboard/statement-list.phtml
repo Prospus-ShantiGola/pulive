@@ -1,0 +1,59 @@
+<?php
+    $newArray = $this->statementList['statement'];
+    if(empty($newArray)) {
+        $newArray = array();
+    } else {
+        $newArray = $newArray;
+    }
+?>
+
+<?php
+    /*Added By: Arvind Soni ON Date: 04 April 2017 For Showing Notification Count */
+    if(intval($this->totalUnreadCount) > 0)
+    $totalUnread = intval($this->totalUnreadCount) - intval($this->unreadChatCount);
+    else
+    $totalUnread = 0;
+    // bundle js path
+    $bundleJsPath = BASE_URL . '/public/js/bundle.js';
+    if(SOCKET_HOST_NAME === 'http://localhost/pu/') {// || SOCKET_HOST_NAME == 'http://www.prospus.com/dev/'
+        ?>
+            <script>
+            var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+            script.src = "<?php echo BASE_URL . 'public/js/bundle.js'; ?>";
+            head.appendChild(script);
+            </script>           
+        <?php
+    } else {
+        ?>
+            <script>
+            var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+            script.src = "<?php echo PU_CDN_URL . 'public/js/bundle.js'; ?>";
+            head.appendChild(script);
+            </script> 
+        <?php
+    }
+?>
+<div id="chat_app"></div>
+<script>
+    var dialogue_node_id       = "<?php echo $this->dialogue_node_id; ?>";
+    var totalUnread                     = "<?php echo $totalUnread; ?>";
+    <?php if(intval($this->unreadChatCount) > 0) { ?>
+    var unreadChat                      = "<?php echo $this->unreadChatCount; ?>";
+    <?php } else { ?>
+    var unreadChat                      = 0;
+    <?php } ?>
+
+    $(".unread-msg-box").find('span.letter-count').text('0 unread messages');
+    if(parseInt(totalUnread) > 0)
+    $("#chat_notification_"+dialogue_node_id).removeClass('fadeOut').addClass('fadeIn').html("<span>"+totalUnread+"</span>");
+    else
+    $("#chat_notification_"+dialogue_node_id).removeClass('fadeIn').addClass('fadeOut').html("<span>"+totalUnread+"</span>");
+    $("#custom_editor_wrapper").remove();
+    window.__PRELOADED_STATE__ = {
+        'chatType': 'Chat',
+        'chatItems': JSON.stringify(<?php echo json_encode($newArray) ?>),
+    };
+</script>
+

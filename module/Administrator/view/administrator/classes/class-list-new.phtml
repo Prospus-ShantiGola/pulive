@@ -1,0 +1,294 @@
+
+<?php if($this->mode == 'Normal') { ?>
+
+<div class="block-head search-block-head">
+    <span class="main-title-wrap">
+        <span class="main-title left-side-heading">Node Y(Class): List</span>
+    </span>
+    <div class="control-btn-wrap right searchFlyout">
+        <form>
+            <input type="text" class="form-control node-z-searching-in-class-list-top-text-field" placeholder="Search">
+            <a href="#" class="searchFlyoutOpen search-classes-wrap node-z-searching-in-class-list-top-button"><i class="icon search-change"></i></a>
+        </form>
+    </div>
+</div>
+
+<input type="hidden" id="filter_operator_node_z" name="filter_operator_node_z" value="" />
+<input type="hidden" id="filter_field_node_z" name="filter_field_node_z" value="" />
+<div class="mainTableFlyBox" id="node_z_class_list_final_div" >
+    <?php
+        $url_order = 'ASC';  // the following lines
+        $url_order = $this->order == 'ASC' ? 'DESC' : 'ASC';
+    ?>
+    <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head table-radio-box">
+        <thead>
+            <tr>
+                <th class=""></th>
+                <th class="filterDrp"> 
+                    <span class="">     
+                        NID 
+                        <?php if ($order_by == 'node_id') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                     
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','node_id','ASC')" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','node_id','DESC')">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-field="node_id" class="sub-filter-node-z">Equals To</li>
+                                <li data-id="not_equal" data-filter-field="node_id" class="sub-filter-node-z">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-field="node_id" class="sub-filter-node-z">Begins With</li>
+                                <li data-id="ends_with" data-filter-field="node_id" class="sub-filter-node-z">Ends With</li>
+                                <li data-id="contains" data-filter-field="node_id" class="sub-filter-node-z">Contains</li>
+                                <li data-id="not_contains" data-filter-field="node_id" class="sub-filter-node-z">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-node-z" class="form-control" placeholder="Search" name="search-caption-text-box-node-z" value="" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-node-z" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp">
+                    <span class="">LineAge
+                            <i class="fa fa-angle-down"></i>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by">Sort A - Z</li>
+                        <li class="sort-by">Sort Z - A</li>
+                        <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li class="sub-filter">Equals To</li>
+                                <li class="sub-filter">Not Equals To</li>
+                                <li class="sub-filter">Begins With</li>
+                                <li class="sub-filter">Ends With</li>
+                                <li class="sub-filter">Contains</li>
+                                <li class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-caption" class="form-control" placeholder="Search" name="search-caption-text-box" value="">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-caption" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                       
+                    </ul>
+                </th> 
+                <th class="filterDrp">
+                    <span class="">     
+                        Common Name 
+                        <?php if ($order_by == 'caption') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                     
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','caption','ASC')" >Sort A - Z</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','caption','DESC')">Sort Z - A</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-field="caption" class="sub-filter-node-z">Equals To</li>
+                                <li data-id="not_equal" data-filter-field="caption" class="sub-filter-node-z">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-field="caption" class="sub-filter-node-z">Begins With</li>
+                                <li data-id="ends_with" data-filter-field="caption" class="sub-filter-node-z">Ends With</li>
+                                <li data-id="contains" data-filter-field="caption" class="sub-filter-node-z">Contains</li>
+                                <li data-id="not_contains" data-filter-field="caption" class="sub-filter-node-z">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-node-z-caption" class="form-control" placeholder="Search" name="search-caption-text-box-node-z-caption" value="" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-node-z-caption" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+        </thead>
+    </table>
+    <div class="nano has-scrollbar cal-nano-scroll">
+        <div class="set-content-height-new nano-content">
+            <div class="table-radio-out-box">
+                <table class="table table-style table-dashboard class-table table-radio-str">
+                    <tbody>
+                        <?php foreach($this->classArray as $key => $value) { ?>
+                        <tr class="list-row">
+                            <td><input id="node_z_class_list_<?php echo $value['node_class_id']; ?>" name="node_z_class_list" value="<?php echo $value['node_id']; ?>" class="single_radio_check" onclick="getAllInstance(<?php echo $value['node_class_id']; ?>);" type="radio"><label></label></td>
+                            <td class="td_new_no"><?php echo $value['node_id']; ?></td>
+                            <td class="td_new_no">...Universe Prospus</td>
+                            <td class="td_new_name"><?php echo $value['caption']; ?></td>
+                        </tr> 
+                        <?php } ?> 
+                    </tbody>
+                </table>
+
+            </div>    
+        </div>    
+    </div> 
+</div>
+
+<script type="text/javascript">
+    var nodeY = $("#second-class-div").find(".node-selected .hidden-node-y").val();
+    if(nodeY != '')
+    {
+        var hitOfInstance = 0;
+        $('.single_radio_check').each(function(){
+          if(parseInt(this.value) == parseInt(nodeY))
+          {
+                this.checked        = true;
+                $("#"+this.id).trigger('click');
+                return false;
+          }
+        });
+    }
+    else
+    {
+        $("#node_z_instance_list_final_div").html("");
+    }
+</script>
+<?php } ?>
+
+<?php if($this->mode == 'Ajax') { ?>
+<?php
+    $url_order = 'ASC';  // the following lines
+    $url_order = $this->order == 'ASC' ? 'DESC' : 'ASC';
+?>
+<table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head table-radio-box">
+    <thead>
+        <tr>
+            <th class=""></th>
+            <th class="filterDrp"> 
+                <span class="">     
+                    NID 
+                    <?php if ($order_by == 'node_id') { ?>
+                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                    <?php } else { ?>
+                        <i class="fa fa-angle-down"></i>
+                    <?php } ?>
+                </span>
+                 
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','node_id','ASC')" >Sort by ascending</li>
+                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','node_id','DESC')">Sort by descending</li>
+                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                        <ul class="multi-sub-menu dropdown-menu">
+                            <li data-id="equals" data-filter-field="node_id" class="sub-filter-node-z">Equals To</li>
+                            <li data-id="not_equal" data-filter-field="node_id" class="sub-filter-node-z">Not Equals To</li>
+                            <li data-id="begins_with" data-filter-field="node_id" class="sub-filter-node-z">Begins With</li>
+                            <li data-id="ends_with" data-filter-field="node_id" class="sub-filter-node-z">Ends With</li>
+                            <li data-id="contains" data-filter-field="node_id" class="sub-filter-node-z">Contains</li>
+                            <li data-id="not_contains" data-filter-field="node_id" class="sub-filter-node-z">Does Not Contain</li>
+                        </ul>
+                    </li>                    
+                    <div class="search-item-wrap">
+                        <div class="input-group">
+                            <input type="text" id="search-caption-text-box-node-z" class="form-control" placeholder="Search" name="search-caption-text-box-node-z" value="" >
+                            <span class="input-group-btn">
+                                <button class="btn btn-default search-button-box-node-z" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    <!-- /input-group -->
+                    </div>
+                </ul>
+            </th>
+            <th class="filterDrp">
+                <span class="">LineAge
+                        <i class="fa fa-angle-down"></i>
+                </span>
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                      <li class="sort-by">Sort A - Z</li>
+                      <li class="sort-by">Sort Z - A</li>
+                    <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                        <ul class="multi-sub-menu dropdown-menu">
+                            <li class="sub-filter">Equals To</li>
+                            <li class="sub-filter">Not Equals To</li>
+                            <li class="sub-filter">Begins With</li>
+                            <li class="sub-filter">Ends With</li>
+                            <li class="sub-filter">Contains</li>
+                            <li class="sub-filter">Does Not Contain</li>
+                        </ul>                        
+                    </li>
+                    <div class="search-item-wrap">
+                        <div class="input-group">
+                            <input type="text" id="search-caption-text-box-caption" class="form-control" placeholder="Search" name="search-caption-text-box" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default search-button-box-caption" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                    <!-- /input-group -->
+                    </div>
+                </ul>
+            </th> 
+            <th class="filterDrp">
+                <span class="">     
+                    Common Name 
+                    <?php if ($order_by == 'caption') { ?>
+                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                    <?php } else { ?>
+                        <i class="fa fa-angle-down"></i>
+                    <?php } ?>
+                </span>
+                 
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','caption','ASC')" >Sort A - Z</li>
+                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="classListNewAjax('classListNew','caption','DESC')">Sort Z - A</li>
+                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                        <ul class="multi-sub-menu dropdown-menu">
+                            <li data-id="equals" data-filter-field="caption" class="sub-filter-node-z">Equals To</li>
+                            <li data-id="not_equal" data-filter-field="caption" class="sub-filter-node-z">Not Equals To</li>
+                            <li data-id="begins_with" data-filter-field="caption" class="sub-filter-node-z">Begins With</li>
+                            <li data-id="ends_with" data-filter-field="caption" class="sub-filter-node-z">Ends With</li>
+                            <li data-id="contains" data-filter-field="caption" class="sub-filter-node-z">Contains</li>
+                            <li data-id="not_contains" data-filter-field="caption" class="sub-filter-node-z">Does Not Contain</li>
+                        </ul>
+                    </li>                    
+                    <div class="search-item-wrap">
+                        <div class="input-group">
+                            <input type="text" id="search-caption-text-box-node-z-caption" class="form-control" placeholder="Search" name="search-caption-text-box-node-z-caption" value="" >
+                            <span class="input-group-btn">
+                                <button class="btn btn-default search-button-box-node-z-caption" type="button"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+                </ul>
+            </th>
+    </thead>
+</table>
+<div class="nano has-scrollbar cal-nano-scroll">
+    <div class="set-content-height-new nano-content">
+        <div class="table-radio-out-box">
+            <table class="table table-style table-dashboard class-table table-radio-str">
+                <tbody>
+                    <?php foreach($this->classArray as $key => $value) { ?>
+                    <tr class="list-row">
+                        <td><input id="node_z_class_list_<?php echo $value['node_class_id']; ?>" name="node_z_class_list" value="<?php echo $value['node_id']; ?>" class="single_radio_check" type="radio"><label></label></td>
+                        <td class="td_new_no"><?php echo $value['node_id']; ?></td>
+                        <td class="td_new_no">...Universe Prospus</td>
+                        <td class=""><?php echo $value['caption']; ?></td>
+                    </tr> 
+                    <?php } ?> 
+                </tbody>
+            </table>
+
+        </div>    
+    </div>    
+</div>
+<?php } ?>

@@ -1,0 +1,321 @@
+<input type="hidden" id="temp-instance-id" name="temp-instance-number" value="<?php echo $this->newNodeId; ?>">
+<?php 
+    function generateRandomString($length = 10) {
+
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    function getProperty($propertyArray,$flag,$obj,$tempNo,$filedName,$fieldId){
+        foreach($propertyArray as $key => $value)
+        {
+            $caption1 = "";
+            if(intval($value['encrypt_status']) == 1)
+            {
+                $caption1 = $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY));
+            }
+            else
+            {
+                $caption1 = $value['caption'];
+            }
+            ?>  
+            <li data-class="<?php echo $value['node_class_property_id']; ?>" class="calculate-position">
+                <div class="node-content clearfix">
+                    <span class="number_print1 si-<?php echo $value['node_id'].$value['node_class_property_id'].$tempNo; ?>"></span>        
+                    <script type="text/javascript">
+                        temp = parseInt($("#edit_hidden_line_number_temp").val())+1;
+                        $(".si-<?php echo $value['node_id'].$value['node_class_property_id'].$tempNo; ?>").html(temp);
+                        $("#edit_hidden_line_number_temp").val(temp);
+                    </script> 
+
+                    <div class="node-left">
+                        <div class="node-circle node-white-circle-expanded">N</div>
+                        <div class="node-head node-input">
+                            <span class="sub-class-style"><?php echo $caption1; ?></span>
+                        </div>
+                        
+                    </div>
+                </div>
+                <?php if(count($value['child']) > 0) { ?>
+                    <ol>
+                        <?php getProperty($value['child'],$flag,$obj,$tempNo,$filedName,$fieldId); ?>
+                    </ol>
+                <?php }else { ?>
+                    <?php if(trim(strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']))== "input"){  ?>
+                        <ol>
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print1 si-<?php echo $value['node_class_property_id'].$tempNo.'999'; ?>"></span>
+                            
+                                    <script type="text/javascript">
+                                        temp = parseInt($("#edit_hidden_line_number_temp").val())+1;
+                                        
+                                        $(".si-<?php echo $value['node_class_property_id'].$tempNo.'999'; ?>").html(temp);
+                                        $("#edit_hidden_line_number_temp").val(temp);
+                                    </script>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                        <div class="node-head node-input"> 
+                                            <input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id1[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />
+                                            <input id="si_node_class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+                                            
+                                            <!-- below hidden fileld are mandatory -->
+                                            <input type="hidden" class="si_node_class_property_id" value="<?php echo $value['node_class_property_id']; ?>" />
+                                            <input type="hidden" class="si_node_class_id" value="<?php echo $value['node_class_id'];?>" />
+                                            <input type="hidden" class="si_node_id" value="">
+                                            <!-- End Here -->
+                                            <?php 
+                                            $randData   = generateRandomString($length=10); 
+                                            $string1    = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string1, $matches);
+                                        
+                                            if(count($matches)>0 && isset($matches[1])){
+                                                $newString2 = '';           
+                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                    $newString2.= 'check'.$randData.''.$val."('this.value');";
+                                                    $replaceStr = 'check'.$randData.''.$val;
+                                                    $string1 = str_replace($val, $replaceStr, $string1);
+                                                }           
+                                                $newString2 = substr($newString2, 0, -1);
+                                            }
+
+                                            $fieldValue = '';
+                                            $readOnly   = '';
+
+                                            if($value['node_class_property_id'] == TARGET_PROPERTY_ID)
+                                            {
+                                                $fieldValue = $fieldId;
+                                                $readOnly   = 'readOnly="true"';
+                                            }
+
+                                            if($value['node_class_property_id'] == TARGET_PROPERTY_NAME)
+                                            {
+                                                $fieldValue = $filedName;
+                                                $readOnly   = 'readOnly="true"';
+                                            }
+                                                
+                                            ?>
+                                                                        
+                                            <input type="text" class="si_node_instance instanceRunTab validationCheck sub-class-style" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="" placeholder="" <?php echo $readOnly; ?> value="<?php echo $fieldValue; ?>" validate-data="<?php echo $newString2; ?>"> 
+                                            
+                                            <?php if(!empty($matches[1]) && $string1!=""){ ?>
+                                                <script type="text/javascript">
+                                                    <?php echo $string1;?>
+                                                </script>
+                                            <?php } ?>  
+                                        </div>
+                                    </div>
+                                </div>
+                                <ol></ol>
+                            </li>
+                        </ol>
+                    <?php } else if(trim(strtolower($value['nodeZStructure']['FORM SELECTOR'][0]['value']))== "drop down"){ ?>
+                        <ol>
+                            <li>
+                                <div class="node-content clearfix">
+                                    <span class="number_print1 si-<?php echo $value['node_class_property_id'].$tempNo.'999'; ?>"></span>
+                            
+                                    <script type="text/javascript">
+                                        temp = parseInt($("#edit_hidden_line_number_temp").val())+1;
+                                        
+                                        $(".si-<?php echo $value['node_class_property_id'].$tempNo.'999'; ?>").html(temp);
+                                        $("#edit_hidden_line_number_temp").val(temp);
+                                    </script>
+                                    <div class="node-left">
+                                        <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                        <div class="node-head node-input"> 
+                                            <input id="instance_property_id<?php echo $value['node_instance_property_id']; ?>" name="instance_property_id1[]" type="hidden" value="<?php echo $value['node_instance_property_id']; ?>" />                                           
+                                            <input id="si_node_class_property_id<?php echo $value['node_class_property_id']; ?>" name="class_property_id[]" type="hidden" value="<?php echo $value['node_class_property_id']; ?>" />
+
+
+                                            <input type="hidden" class="si_node_class_property_id" value="<?php echo $value['node_class_property_id']; ?>" />
+                                            <input type="hidden" class="si_node_class_id" value="<?php echo $value['node_class_id'];?>" />
+                                            <input type="hidden" class="si_node_id" value="">
+                                            <?php 
+                                            $fieldValue = $node_sub_class_ids[$value['node_class_property_id']];
+                                            $randData   = generateRandomString($length=10); 
+                                            $string4    = $value['nodeZStructure']['VALIDATION'][0]['value'];
+                                            preg_match_all('/function[\s\n]+(\S+)[\s\n]*\(/', $string4, $matches);
+                                                
+                                            if(count($matches)>0 && isset($matches[1])){
+                                                $newString4 = '';           
+                                                foreach (array_reverse($matches[1]) as $key => $val) {
+                                                $newString4.= 'check'.$randData.''.$val."('this.value');";
+                                                    $replaceStr = 'check'.$randData.''.$val;
+                                                    $string4 = str_replace($val, $replaceStr, $string4);
+                                                }           
+                                                $newString4 = substr($newString4, 0, -1);
+                                            }
+
+                                            $dpVal = 'No';
+                                            ?>
+                                                    
+                                            <select class="form-control select-field nodeZselect nodeselection-dropdown si_node_instance validationCheck sub-class-style" name="instance_property_caption1[]" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" validate-data="<?php echo $newString4;?>" onchange="<?php echo $newString4;?>" style="pointer-events:none;" > 
+                                                <?php for($k=0; $k<count($value['nodeClassYInstanceValue']); $k++){
+                                                    $sel = (isset($dpVal) && $value['nodeClassYInstanceValue'][$k] == $dpVal) ? ' selected="selected"' : '';
+                                                ?>
+                                                    <option value="<?php echo $value['nodeClassYInstanceValue'][$k]?>" class="sub-class-style" <?php echo $sel?>><?php echo $value['nodeClassYInstanceValue'][$k]?></option>
+                                                <?php } ?>
+                                            </select>
+
+                                            <?php if(!empty($matches[1]) && $string4!=""){ ?>
+                                                <script type="text/javascript">
+                                                    <?php echo $string4;?>
+                                                </script>
+                                            <?php } ?>
+                                    
+                                        
+                                        </div>
+                                        <ol></ol>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    <?php }
+                } ?>
+            </li>
+        <?php } ?>
+        <script type="text/javascript">
+            if( $("div.node-selected").find('span.action-plus').attr('onclick') ){
+                var param           = $("div.node-selected").find('span.action-plus').attr('onclick').split(",");
+                var param_length    = param.length;     
+                var tempParam       = [];
+
+                for(i=0; i<parseInt(param_length)-1; i++){
+                    tempParam[i]    = param[parseInt(i)];
+                }
+                tempParam[parseInt(param_length)-1] = temp+')';
+                $("div.node-selected").find('span.action-plus').attr("onclick",tempParam);
+            }                                   
+        </script>
+    <?php } ?>
+
+<ol class="instance-sortable-list" >
+	<?php $temp_instance_id = $this->temp_instance_id; ?>
+    <li class="parent-sub-class-list sub-class-list1">
+        <?php
+        $tempCaption = $this->classArray['caption'];
+
+        if (intval($this->classArray['encrypt_status']) == 1) {
+            $caption2 = $this->encryption_decryption('mc_decrypt', array('decrypt' => $tempCaption, 'key' => ENCRYPTION_KEY));
+        } else {
+            $caption2 = $tempCaption;
+        }
+        
+        $subClassLabel = $caption2;
+
+        $subClassLabelNew = strtoupper($caption2) . '(s) ('.$this->classArray['node_id'].')';
+        $rootClassLabel   = strtoupper($caption2);
+
+        //$number_diff = intval($val['newNum']) - intval($val['currNum']);
+        ?>
+        <div class="node-content clearfix" >
+            <span class="number_print1"><?php echo $this->current_num; ?></span>
+            <div class="node-left">
+                <div class="node-circle node-white-circle-expanded">N</div>
+                <div class="node-head node-input">
+                    <span class="sub-class-style"><input type="hidden" class="temp-sub-class-ins-<?php echo $val['child_node_id']; ?>"><?php echo $subClassLabelNew; ?></span>
+                </div>
+            </div>      
+
+            <div class="node-right-sub clearfix">
+                <a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+                <input type="hidden" class="hidden_number_print" value="<?php echo $number_diff; ?>">
+            </div>
+            <ol>
+            
+            </ol>
+        </div>
+        
+        <?php $count_print = intval($this->current_num); $count = 1; $temp_node_instance_ids = intval($this->newNodeId) +1; ?>
+        <input type="hidden" id="edit_hidden_line_number_temp" value="<?php echo $count_print; ?>" />
+        <?php foreach($this->classPropArray as $fieldId => $filedName) { ?>
+        <ol class="ins-subcls"> 
+            <li class="sub-class-list sub-class-list-new add-custom-hr-scroll-sub-class" id="" parent="">
+                <div class="node-content clearfix root-class-label" onclick="showHideSubClassStructure(this)">
+                    <span class="number_print1 si-<?php echo $fieldId.$count_print; ?>" ><?php echo $count_print;?></span>
+
+                    <script type="text/javascript">
+                        temp = parseInt($("#edit_hidden_line_number_temp").val())+1;
+                        $(".si-<?php echo $fieldId.$count_print; ?>").html(temp);
+                        $("#edit_hidden_line_number_temp").val(temp);
+                    </script>
+
+                    <div class="node-left">
+                        <div class="node-circle node-white-circle-expanded">N</div>
+                        <div class="node-head node-input">
+                            <span class="sub-class-style"><?php echo $rootClassLabel.' ';?>
+                                <a class="count-class sub-class-style"><?php echo $count;?></a>
+                                <a class="instance-class sub-class-style"><?php echo ' ( '.$temp_node_instance_ids.' )';?></a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="node-right-sub">
+                        <a class="action-move act-mov-sub"><span><i class="fa fa-angle-down"></i></span></a>
+                    </div>
+
+                </div>
+
+                <ol>
+                    <?php if(count($this->classArray['instances'][0]['property']) > 0) { $flag = 'Y'; ?>
+                        <?php getProperty($this->classArray['instances'][0]['property'], $flag, $this, $count_print,$filedName,$fieldId);
+                        ?>
+                    <?php } ?>
+                </ol>
+            </li>
+        </ol>
+        <?php $temp_node_instance_ids++; $count_print = intval($count_print) + 10; $count++; } ?>
+    </li>
+</ol>
+<script type="text/javascript">
+    addTempInstance();
+</script>
+
+<!-- Array
+(
+    [6315] =>  General > CustomerNo
+    [6316] =>  General > FirstName
+    [6317] =>  General > LastName
+    [6318] =>  General > MiddleInitial
+    [6319] =>  General > Greeting
+    [6320] =>  General > PhoneHome
+    [6321] =>  General > PhoneBusiness
+    [6322] =>  General > PhoneMobile
+    [6323] =>  General > EmailPrimary
+    [6324] =>  General > EmailSecondary
+    [6325] =>  General > TaxCode
+    [6326] =>  General > TaxExemptNo
+    [6328] =>  General > Addresses > AddressLine1
+    [6329] =>  General > Addresses > AddressLine2
+    [6330] =>  General > Addresses > City
+    [6331] =>  General > Addresses > State
+    [6332] =>  General > Addresses > ZipCode
+    [6333] =>  General > Addresses > Country
+    [6334] =>  General > BirthDate
+    [6335] =>  General > Age
+    [6336] =>  General > PrimaryLocn
+    [6337] =>  General > Code
+    [6338] =>  General > SpouseFirstName
+    [6339] =>  General > SpouseLastName
+    [6340] =>  General > SpousePhone
+    [6341] =>  General > SpouseAddressLine1
+    [6342] =>  General > SpouseAddressLine2
+    [6343] =>  General > SpouseCity
+    [6344] =>  General > SpouseState
+    [6345] =>  General > SpouseZipCode
+    [6346] =>  General > SpouseBirthDate
+    [6347] =>  General > SpouseAge
+    [6349] =>  General > SalesReps > SalesRepCode
+    [6350] =>  General > SalesReps > SalesRepName
+    [6351] =>  General > SalesReps > SalesRepPct
+)
+ -->
+
+
+

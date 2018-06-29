@@ -1,0 +1,1986 @@
+<?php if(isset($this->is_direct_request) && $this->is_direct_request == 'Y'){ ?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //setTimeout('$("#'+inboxMenuId+'_'+inboxMenuName.toLowerCase()+' .icon-wrap .strat_click").click();',2000);
+            var timer = setInterval(function(){ 
+                var clckElem = $('#'+inboxMenuId+'_'+inboxMenuName.toLowerCase()+' .icon-wrap .strat_click');
+                if(clckElem.length){
+                    clckElem.click();
+                    clearInterval(timer);
+                }
+            }, 500);
+            
+        });
+    </script>
+<?php }else { ?> 
+    <div class="total-width-pane slide-wrap active">
+    <?php if($this->mode == 0 || $this->mode == ''){ ?>
+    <!-- <div class="listing-wrapper dashSlider clearfix set-height active activeWrap">
+        <?php if($this->search_text == "" ){ ?>
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Course: List</span>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+
+        <input type="hidden" id="course_filter_operator" name="course_filter_operator" value="equals" />
+        <input type="hidden" id="course_filter_field" name="course_filter_field" value="" />
+        <input type="hidden" id="course_filter_type" name="course_filter_type" value="no-pagination" />
+        <?php
+                $url_order = 'ASC';  // the following lines
+                $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+            ?>
+            <div class="main-one-third" id="course-instance-list-div">
+                <table class="table table-style table-responsive table-head courseboard-table">
+                    <thead>
+                        <th></th>
+                        <th class="filterDrp">
+                            <span>Course<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','ASC','2')">Sort A - Z</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','DESC','2')">Sort Z - A</li>
+
+                                <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                    <ul class="multi-sub-menu dropdown-menu">
+                                        <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Equals To</li>
+                                        <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Not Equals To</li>
+                                        <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Begins With</li>
+                                        <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Ends With</li>
+                                        <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Contains</li>
+                                        <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Does Not Contain</li>
+                                    </ul>
+                                </li>
+                                <div class="search-item-wrap">
+                                    <div class="input-group">
+                                        <input type="text" id="search-button-box-course" class="form-control" placeholder="Search" name="search-value-course-text" value="" data-value="entr-search-course">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default search-button-box-course entr-search-course" type="button"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                    /input-group
+                                </div>
+
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span>Domain<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li>Sort by ascending</li>
+                                <li>Sort by descending</li>
+
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Date</span><i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','ASC','2')">Sort by ascending</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','DESC','2')">Sort by descending</li>
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Status</span>
+                            <?php if ($order_by == 'status') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                            </span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                <li data-id="all" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">All</li>
+                                <li data-id="d" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Draft</li>
+                                <li data-id="p" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Published</li>
+                            </ul>
+                        </th>
+
+                    </thead>
+                </table>
+                <div class="setListWrapHeight nano mainAccordianHig">
+                    <div class="nano-content">
+                        <div class="course-list-panel mainAccordianDiv" id="" role="tablist" aria-multiselectable="true">
+                            <?php $prefixTitle                            = PREFIX.'user_info';
+                        if(!empty($this->instanceArray)){
+                            $i=0;
+                            foreach ($this->instanceArray as $key => $value) {
+                                if($i == 0){
+                                    $openDefault = 'openup';
+                                    $ActiveRow = 'ActiveRow';
+                                    $current = 'current';
+                                    $style = 'style="margin-top:0px;"';
+                                }else {
+                                    $openDefault = '';
+                                    $ActiveRow = '';
+                                    $current = '';
+                                    $style = '';
+                                }
+                                ?>
+                            <?php if(($value['status'] == '1') || ($value['status'] == '0' && $value['value'][2]==$_SESSION[$prefixTitle]['node_id'])) { ?>
+                            <div class="course-list">
+                                <table class="table table-style table-responsive courseboard-table <?php echo $ActiveRow; ?>  ref-inline <?php echo $openDefault;?>">
+                                    <tr class="<?php echo $current;?>" data-id="<?php echo $value['node_instance_id'];?>" course-ins-id="<?php echo $value['course_instance_node_id'];?>">
+                                        <td><i class="fa fa-angle-down"></i></td>
+                                        <td class="ref-td">
+                                            <?php
+                                                        if($this->order == "ASC"){
+                                                            if(count($value['value'])>1){
+                                                                $title      = $value['value'][1];
+                                                                $tmeStamp   = $value['value'][0];
+                                                            }else {
+                                                                $title      = $value['value'][0];
+                                                                $tmeStamp   = '';
+                                                            }
+                                                        }else {
+                                                            if(count($value['value'])>1){
+                                                                $title      = $value['value'][0];
+                                                                $tmeStamp   = $value['value'][1];
+                                                            }else {
+                                                                $title      = $value['value'][0];
+                                                                $tmeStamp   = '';
+                                                            }
+                                                        }
+                                                        ?>
+
+                                                <?php echo $title;?>
+                                        </td>
+                                        <td class="ref-td">Prospus</td>
+                                        <td class="ref-td">
+                                            <?php
+                                                        if($tmeStamp!=""){
+                                                                echo date("Y M d H:i:s",strtotime($tmeStamp));
+                                                            }else {
+                                                                echo '-';
+                                                            }?>
+                                        </td>
+                                        <td class="ref-td">
+                                            <?php echo $value['status']=='1'? 'Published' : 'Draft'; ?>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <div class="ref-show-inline-wrap" <?php echo $style;?>>
+                                    <div class="inline-course-wrap ref-inline-course-wrap">
+                                        <ul>
+                                            <li class="newDefaultCourseListActor newDefaultCourseList" course-instance-node-id="<?php echo $value['course_instance_node_id'];?>">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon actor"></i>
+                                                            <h6>Actors</h6>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class rollover"></i></div>
+                                                <div class="collapsedCourseBox clearfix" id='showActorList<?php echo $value[' course_instance_node_id '];?>'>
+                                                    <ul class="clearfix">
+                                                        <li class="actors_user_list" data-id="">
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">You</h2>
+                                                                    <p class="actors-profile-title">Service Administrator</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="actors_user_list" data-id="">
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">Daniel Bryan</h2>
+                                                                    <p class="actors-profile-title">Customer</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="actors_user_list" data-id="">
+                                                            <div class="actors_box clearfix">
+                                                                <div class="actors-user-img-sm">
+                                                                    <img src="<?php echo BASE_URL; ?>public/img/user.png" class="img-responsive">
+                                                                </div>
+                                                                <div class="actors-user-info">
+                                                                    <h2 class="actors-title">Darren Cries</h2>
+                                                                    <p class="actors-profile-title">Customer</p>
+                                                                </div>
+                                                                <div class="actors-chat-box" id="miniDialogue" onclick="getAllDialogue();">
+                                                                    <i class="icon open-mini-chat"></i>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                ul class="subcourses">
+                                                    <li class="">
+                                                        <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon actor"></i>
+                                                                <h6>Individuals</h6>
+                                                            </div>
+                                                            <div class="right inline-right-pane">
+                                                                <span class="cours-badge">4</span>
+                                                            </div>
+                                                        </a>
+                                                        <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class"></i></div>
+                                                    </li>
+                                                    <li>
+    =======
+                                                        <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class rollover"></i></div>
+                                                        <div class="collapsedCourseBox clearfix">
+                                                            <ul>
+                                                                <li class="existingDialogueSelCourseList">
+                                                                    <div class="subCollapsedCourseBox">
+                                                                        <div class="courseTitle">Lorem ipsum course title</div>
+                                                                        <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="existingDialogueSelCourseList">
+                                                                    <div class="subCollapsedCourseBox">
+                                                                        <div class="courseTitle">Lorem ipsum is the longer title assigned to a single dialogue</div>
+                                                                        <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                       ul class="subcourses">
+                                                            <li class="">
+                                                                <a class="ref-course-list">
+                                                                    <div class="left inline-left-pane">
+                                                                        <i class="icon actor"></i>
+                                                                        <h6>Individuals</h6>
+                                                                    </div>
+                                                                    <div class="right inline-right-pane">
+                                                                        <span class="cours-badge">4</span>
+                                                                    </div>
+                                                                </a>
+                                                                <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class"></i></div>
+                                                            </li>
+                                                            <li>
+    >>>>>>> .r7484
+                                                                <a class="ref-course-list">
+                                                                    <div class="left inline-left-pane">
+                                                                        <i class="icon actor"></i>
+                                                                        <h6>Groups</h6>
+                                                                    </div>
+                                                                    <div class="right inline-right-pane">
+                                                                        <span class="cours-badge">4</span>
+                                                                    </div>
+                                                                </a>
+                                                                <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class"></i></div>
+                                                            </li>
+                                                        </ul
+                                            </li>
+                                            <li class="courseDialogueDefaultWrap newDefaultCourseList" course-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon dialogue"></i>
+                                                            <h6>Dialogue</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="add-courses active dropdown dialogue-drp" co-instance-id="<?php echo $value ['node_instance_id'];?>" course-title="<?php echo $title;?>"><i class="icon plus-class rollover"></i>
+                                                    <ul class="dropdown-menu StatementType ft rightDrpShow" aria-labelledby="dropLetterExists">
+                                                        <li><a href="javascript:void(0)"><span>Select</span><i class="icon plus dialogue-drp-close"></i></a></li>
+                                                        <li id="create-new-dialogue"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Chat</span></a></li>
+                                                        <li><a href="javascript:void(0)"><i class="icon letterIcon"></i><span>Letter</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Forum</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Q&A</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Video Call</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Voice Call</span></a></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div class="collapsedCourseBox clearfix" id="course-dialogue-instance-id-<?php echo $value['node_instance_id'];?>" course-dialogue-instance-id="<?php echo $value['node_instance_id'];?>">
+
+                                                </div>
+                                            </li>
+                                            <li class="newDefaultCourseList newDefaultCourseListEvents">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon event"></i>
+                                                            <h6>Events</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="RightFlyoutOpen add-courses" id="EventFlyout"><i class="icon plus-class inactive"></i></div>
+                                                <div class="collapsedCourseBox clearfix">
+                                                    <ul>
+                                                        <li class="existingDialogueSelCourseList">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="existingDialogueSelCourseList">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum is the longer title assigned to a single dialogue</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            li class="newDefaultCourseList">
+                                                        <div class="toggleCourseWrapper">
+                                                          <div class="toggle-courses active"><i class="icon  collapse-up"></i></div>
+                                                           <a class="ref-course-list">
+                                                                <div class="left inline-left-pane">
+                                                                    <i class="icon schedule"></i>
+                                                                    <h6>Schedule</h6>
+                                                                </div>
+                                                            </a>
+                                                        </div>
+                                                    </li
+                                            li>
+                                                        <a class="ref-course-list">
+                                                            <div class="left inline-left-pane">
+                                                                <i class="icon workflow"></i>
+                                                                <h6>Workflow</h6>
+                                                            </div>
+                                                        </a>
+                                                    </li
+                                            <li class="newDefaultCourseList newDefaultCourseListResources" course-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon resources"></i>
+                                                            <h6>Resources</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="add-courses inactive"><i class="icon plus-class inactive"></i></div>
+                                                <div class="collapsedCourseBox clearfix" id="course-dialogue-resource-instance-id-<?php echo $value['node_instance_id'];?>">
+
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+
+                            <?php $i++; } ?>
+
+                            <?php } else { ?>
+
+                            <table class="table table-style table-dashboard class-table intance-table">
+                                <tbody>
+                                    <tr class="list-row lisat-instance-row0">
+                                        <td colspan="4" align="center"> No record found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <?php } ?>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+    </div> -->
+    <?php }
+    else
+    { ?>
+    <div class="listing-wrapper dashSlider clearfix set-height active activeWrap">
+        <?php if($this->mode == 1 && $this->search_text!="" )
+            { ?>
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                                <span class="main-title left-side-heading">Course: List</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } else if($this->mode == 2 && $this->search_text==""){ ?>
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                                    <span class="main-title left-side-heading">Course: List</span>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php } ?>
+        <input type="hidden" id="course_filter_operator" name="course_filter_operator" value="equals" />
+        <input type="hidden" id="course_filter_field" name="course_filter_field" value="" />
+        <input type="hidden" id="course_filter_type" name="course_filter_type" value="no-pagination" />
+        <?php
+                    $url_order = 'ASC';  // the following lines
+                    $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+                ?>
+            <div class="main-one-third" id="course-instance-list-div">
+                <table class="table table-style table-responsive table-head courseboard-table">
+                    <thead>
+                        <th></th>
+                        <th class="filterDrp">
+                            <span>Course<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','ASC','2')">Sort A - Z</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','value','DESC','2')">Sort Z - A</li>
+
+                                <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                    <ul class="multi-sub-menu dropdown-menu">
+                                        <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Equals</li>
+                                        <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Doest not Equal</li>
+                                        <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Begins With</li>
+                                        <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Ends With</li>
+                                        <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Contains</li>
+                                        <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="course-sub-filter">Does Not Contains</li>
+                                    </ul>
+                                </li>
+                                <div class="search-item-wrap">
+                                    <div class="input-group">
+                                        <input type="text" id="search-button-box-course" class="form-control" placeholder="Search" name="search-value-course-text" value="">
+                                        <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box-course" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                    </div>
+                                    /input-group
+                                </div>
+
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span>Domain<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li>Sort by ascending</li>
+                                <li>Sort by descending</li>
+
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Date</span><i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','ASC','2')">Sort by ascending</li>
+                                <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="courseAjax('<?php echo $this->url('menudashboard');?>','node_instance_id','DESC','2')">Sort by descending</li>
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span><span class='truncate-text'>Status</span>
+                            <?php if ($order_by == 'status') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                            </span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                <li data-id="all" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">All</li>
+                                <li data-id="d" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Draft</li>
+                                <li data-id="p" data-filter-by="no-pagination" course-data-filter-field="status" class="sub-course-filter-status">Published</li>
+                            </ul>
+                        </th>
+
+                    </thead>
+                </table>
+                <div class="setListWrapHeight nano mainAccordianHig">
+                    <div class="nano-content">
+                        <div class="course-list-panel mainAccordianDiv" id="" role="tablist" aria-multiselectable="true">
+                            <?php  $prefixTitle                            = PREFIX.'user_info';
+                            if(!empty($this->instanceArray)){
+                                $i=0;
+                                foreach ($this->instanceArray as $key => $value) {
+                                    if($i == 0){
+                                        $openDefault = 'openup';
+                                        $ActiveRow = 'ActiveRow';
+                                        $current = 'current';
+                                        $style = 'style="margin-top:0px;"';
+                                    }else {
+                                        $openDefault = '';
+                                        $ActiveRow = '';
+                                        $current = '';
+                                        $style = '';
+                                    }
+                                    ?>
+                            <?php if(($value['status'] == '1') || ($value['status'] == '0' && $value['value'][2]==$_SESSION[$prefixTitle]['node_id'])) { ?>
+                            <div class="course-list">
+                                <table class="table table-style table-responsive courseboard-table <?php echo $ActiveRow; ?>  ref-inline <?php echo $openDefault;?>">
+                                    <tr class="<?php echo $current;?>" data-id="<?php echo $value['node_instance_id'];?>" course-ins-id="<?php echo $value['course_instance_node_id'];?>">
+                                        <td><i class="fa fa-angle-down"></i></td>
+                                        <td class="ref-td">
+                                            <?php
+                                                    if($this->order=="ASC"){
+                                                        if(count($value['value'])>1){
+                                                            $title      = $value['value'][1];
+                                                            $tmeStamp   = $value['value'][0];
+                                                        }else {
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = '';
+                                                        }
+                                                    }else {
+                                                        if(count($value['value'])>1){
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = $value['value'][1];
+                                                        }else {
+                                                            $title      = $value['value'][0];
+                                                            $tmeStamp   = '';
+                                                        }
+                                                    }
+                                                    ?>
+
+                                                <?php echo $title;?>
+                                        </td>
+                                        <td class="ref-td">Prospus</td>
+                                        <td class="ref-td">
+                                            <?php
+                                                    if($tmeStamp!=""){
+                                                            echo date("Y M d H:i:s",strtotime($tmeStamp));
+                                                        }else {
+                                                            echo '-';
+                                                        }?>
+                                        </td>
+                                        <td class="ref-td">
+                                            <?php echo $value['status']=='1'? 'Published' : 'Draft'; ?>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <div class="ref-show-inline-wrap" <?php echo $style;?>>
+                                    <div class="inline-course-wrap ref-inline-course-wrap">
+                                        <ul>
+                                            <li class="newDefaultCourseListActor newDefaultCourseList">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon actor"></i>
+                                                            <h6>Actors</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="RightFlyoutOpen add-courses" id="GroupFlyout"><i class="icon plus-class rollover"></i></div>
+                                                <div class="collapsedCourseBox clearfix">
+                                                    <ul class="clearfix">
+                                                        <li class="">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                            <li class="courseDialogueDefaultWrap newDefaultCourseList" course-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon dialogue"></i>
+                                                            <h6>Dialogue</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="add-courses active dropdown dialogue-drp" co-instance-id="<?php echo $value ['node_instance_id'];?>" course-title="<?php echo $title;?>"><i class="icon plus-class rollover"></i>
+                                                    <ul class="dropdown-menu StatementType ft rightDrpShow" aria-labelledby="dropLetterExists">
+                                                        <li><a href="javascript:void(0)"><span>Select</span><i class="icon plus dialogue-drp-close"></i></a></li>
+                                                        <li id="create-new-dialogue"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Chat</span></a></li>
+                                                        <li><a href="javascript:void(0)"><i class="icon letterIcon"></i><span>Letter</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Email</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Forum</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Q&A</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Video Call</span></a></li>
+                                                        <li class="disabled"><a href="javascript:void(0)"><i class="icon chatIcon"></i><span>Voice Call</span></a></li>
+                                                    </ul>
+                                                </div>
+
+
+                                                <div class="collapsedCourseBox clearfix" id="course-dialogue-instance-id-<?php echo $value['node_instance_id'];?>" course-dialogue-instance-id="<?php echo $value['node_instance_id'];?>">
+
+                                                </div>
+                                            </li>
+                                            <li class="newDefaultCourseListEvents newDefaultCourseList">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon event"></i>
+                                                            <h6>Events</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="RightFlyoutOpen add-courses" id="EventFlyout"><i class="icon plus-class inactive"></i></div>
+                                                <div class="collapsedCourseBox clearfix" id="course-dialogue-resource-instance-id-<?php echo $value['node_instance_id'];?>">
+
+                                                </div>
+                                            </li>
+                                            <li class="newDefaultCourseListResources newDefaultCourseList" course-instance-id="<?php echo $value['node_instance_id'];?>">
+                                                <div class="toggleCourseWrapper">
+                                                    <div class="toggle-courses active"><i class="fa fa-angle-up collapse-up"></i></div>
+                                                    <a class="ref-course-list">
+                                                        <div class="left inline-left-pane">
+                                                            <i class="icon resources"></i>
+                                                            <h6>Resources</h6>
+                                                        </div>
+                                                    </a>
+
+                                                </div>
+                                                <div class="add-courses inactive"><i class="icon plus-class inactive"></i></div>
+                                                <div class="collapsedCourseBox clearfix">
+                                                    <ul>
+                                                        <li class="">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title</span></div>
+                                                            </div>
+                                                        </li>
+                                                        <li class="">
+                                                            <div class="subCollapsedCourseBox">
+                                                                <div class="courseTitle">Lorem ipsum course title</div>
+                                                                <div class="updateCourseTitle"><i class="icon user-update"></i><span>Sanchaita Dey, Lorem Ipsum, Lorem Title, Lorem Dialogue + 1 more</span></div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+                            <?php $i++;} ?>
+                            <?php } else { ?>
+                            <table class="table table-style table-dashboard class-table intance-table">
+                                <tbody>
+                                    <tr class="list-row lisat-instance-row0">
+                                        <td colspan="4" align="center"> No record found</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <?php } ?>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <?php
+    } ?>
+        <!-- course view data display from here  -->
+        <div class="display-wrapper dashSlider clearfix set-height active courseViewData">
+        </div>
+        <!-- end course view data -->
+
+        <!-- <div class="display-wrapper dashSlider clearfix set-height dialogue-view">
+        <div class="dialogue-section tabing-section" style="width:100%; margin-right:0px;">
+                <div class="right-bar-tab clearfix">
+                    <div class="tab-head left dialogue-head-title">
+                        <div class="rename-title">
+                            <span class="title-id">121</span>
+                            <span class="dialogue-Title">General</span>
+                            <i class="icon sm-edit edit-title" data-toggle="tooltip" data-placement="bottom" title="Edit"></i>
+                        </div>
+                        <div class="edit-rename-title hide">
+                            <span class="title-id">121</span>
+                            <span><input type="text" value="General" class="form-control" ></span>
+                            <i class="icon tick" data-toggle="tooltip" data-placement="bottom" title="Save"></i>
+                            <i class="icon close" data-toggle="tooltip" data-placement="bottom" title="Cancel"></i>
+                        </div>
+
+                    </div>
+                    <div class="right icons-right-panel">
+
+
+                        <div class="searchbar-section">
+                            <div class="searchbar-icon"><i class="searchbar-icon icon"></i></div>
+                            <div class="searchbar-text hide">
+                                <div class="searchbar-item-wrap">
+                                    <div class="input-group">
+                                        <i class="searchbar-light-icon icon"></i>
+                                        <input type="text" class="form-control" placeholder="" name="search-text-box">
+                                        <i class="icon close searchbar-cancel" data-original-title="" title=""></i>
+                                        <i class="input-group-addon icon arrow-icon"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active">
+                        <div class="nano set-height-dialogue" id="view-courses">
+                            <div class="nano-content">
+                                <div class="dialogue-area ">
+                                    <div class="dialogue-listing">
+
+                                        <ul>
+
+                                            <?php for ($i = 0; $i < 2; $i++) { ?>
+                                                <div class="weekly"> <span>Monday</span> </div>
+                                                <li>
+                                                    <div class="dialogue-heading-wrap">
+                                                        <div class="dialogue-detail">
+                                                            <div class="dialogue-left-pane">
+                                                                <input type="checkbox" checked="checked">
+                                                            </div>
+                                                            <div class="dialogue-right-pane">
+                                                                <span class="dialogue-title"> Investible, Support</span>  <span class="dialogue-date right"><ul><li>165897</li><li>|</li><li>Mon</li></ul></span>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p></div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="dialogue-heading-wrap">
+                                                        <div class="dialogue-detail">
+                                                            <div class="dialogue-left-pane">
+                                                                <input type="checkbox">
+                                                            </div>
+                                                            <div class="dialogue-right-pane">
+                                                                <span class="dialogue-title">Matilda Taylor</span>  <span class="dialogue-date right"><ul><li>165897</li><li>|</li><li>Mon</li></ul></span>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </li>
+                                                <div class="weekly"> <span>Today</span> </div>
+                                                <li>
+                                                    <div class="dialogue-detail">
+                                                        <div class="dialogue-left-pane">
+                                                            <input type="checkbox">
+                                                        </div>
+                                                        <div class="dialogue-right-pane">
+                                                            <span class="dialogue-title"> Investible, Support</span>  <span class="dialogue-date right"><ul><li>165897</li><li>|</li><li>3 PM</li></ul></span>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="dialogue-detail">
+                                                        <div class="dialogue-left-pane">
+                                                            <input type="checkbox">
+                                                        </div>
+                                                        <div class="dialogue-right-pane">
+                                                            <span class="dialogue-title">Matilda Taylor</span>  <span class="dialogue-date right"><ul><li>165897</li><li>|</li><li>3 PM</li></ul></span>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="dialogue-detail">
+                                                        <div class="dialogue-left-pane">
+                                                            <input type="checkbox">
+                                                        </div>
+                                                        <div class="dialogue-right-pane">
+                                                            <span class="dialogue-title"> Investible, Support</span>  <span class="dialogue-date right"><ul><li>165897</li><li>|</li><li>3 PM</li></ul></span>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+                                                        </div>
+                                                    </div>
+
+                                                </li>
+
+
+                                                <?php
+                                            }
+                                            ?>
+                                        </ul>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nano set-height-dialogue hide" id="add-courses">
+                            <div class="nano-content">
+                            </div>
+                        </div>
+                        <div class="dialogue-txt-comment" style="height: 86px;">
+                            <form class="clearfix">
+
+                                <div class="animate-div resizable">
+                                    <div class="expanded-box right expand-collapse-box icon"></div>
+                                    <div class="textarea clearfix ">
+                                        <textarea class="form-control expended-height" rows="3" placeholder="Type here" style="height: 100px; background: rgb(255, 255, 255);"></textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="clearfix action-wrap">
+                            <div class="checkbox left">
+                                <label>
+                                    <input type="checkbox" value=""> Press enter to send
+                                </label>
+                            </div>
+                            <div class="action-btn right">
+                                <button type="button" class="btn btn-style">Submit</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+    </div> -->
+</div>
+
+<!-- courseBoardFlyout flyout  -->
+<div class="right-popup rightFlyout" id="courseBoardFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Course Template</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++)
+                        {?>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>Standard</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>Lorem</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>Ipsum</span>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <?php
+                        }
+                        ?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- participant flyout  -->
+<div class="right-popup rightFlyout" id="participantFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Dialogue (General): Participants (10)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div class="actor-listing">
+                        <ol class="table-list-style">
+                            <?php
+                            for ($i = 1; $i <= 3; $i++)
+                            {?>
+                                <li class="">
+                                    <div class="user-pic-sm"><img src="<?php echo PU_CDN_URL; ?>public/img/user.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2>Lorem ipsum</h2>
+                                    </div>
+                                    <div class="right-icon inactive">
+                                        <i class="icon close rollover"></i>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="user-pic-sm"><img src="<?php echo PU_CDN_URL; ?>public/img/user.png" alt="">
+                                        <div class="icon red-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name">
+                                        <h2>Lorem ipsum</h2>
+                                    </div>
+                                    <div class="right-icon inactive">
+                                        <i class="icon close rollover"></i>
+                                    </div>
+                                </li>
+
+                                <?php
+                            }
+                            ?>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actor-listing add-usersli fixed-participant">
+                <ul>
+                    <li class="">
+                        <div class="Add-more-actor">
+                            <div class="option-wrap">
+                                <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon add-actor-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                    <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                    <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                    <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control input-field" required="required">
+                            <div class="right-icon">
+                                <span class="inactive"><i class="icon magnify rollover"></i></span>
+                                <i class="icon tick ref-add-partcipant"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="participantFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="participantFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- AddUser flyout  -->
+<div class="right-popup rightFlyout" id="AddUserFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Dialogue (General): Participants (0)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div class="actor-listing">
+                        <ol class="table-list-style">
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actor-listing add-usersli fixed-participant">
+                <ul>
+                    <li class="">
+                        <div class="Add-more-actor">
+                            <div class="option-wrap">
+                                <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon add-actor-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                    <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                    <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                    <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                </ul>
+                            </div>
+                            <input type="text" class="form-control input-field" required="required">
+                            <div class="right-icon">
+                                <span class='inactive'><i class="icon magnify rollover"></i></span>
+                                <i class="icon tick ref-add-partcipant"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="AddUserFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="AddUserFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- Event flyout  -->
+<div class="right-popup rightFlyout" id="EventFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">New Event</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div class="event-form-section">
+                        <div class="form-horizontal top-head">
+                            <div class="form-group">
+                                <label class="col-sm-4 label-field">Title</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control textarea-field resizeTextarea" rows="1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Actor-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#actorPanel" aria-expanded="true" aria-controls="actorPanel">
+                                <div class="left">
+                                    <h6>Actor</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div id="actorPanel" class="collapse in" role="tabpanel" aria-labelledby="actorPanel">
+                                <div class="Actor-panel">
+                                    <div class="actor-wrap">
+                                        <div class="actor-listing">
+                                            <ul class="">
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                        <div class="icon green-icon shape"></div>
+                                                    </div>
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                                    </div>
+                                                    <div class="right-icon"><span class='inactive'><i class="icon close rollover"></i></span></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                        <div class="icon green-icon shape"></div>
+                                                    </div>
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                                    </div>
+                                                    <div class="right-icon"><span class='inactive'><i class="icon close rollover"></i></span></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                        <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                        <div class="icon green-icon shape"></div>
+                                                    </div>
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                                    </div>
+                                                    <div class="right-icon"><span class='inactive'><i class="icon close rollover"></i></span></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="Add-more-actor">
+                                                        <div class="option-wrap">
+                                                            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="icon add-actor-icon"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                                                <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                                                <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                                                <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <input type="text" class="form-control input-field" required="required">
+                                                        <div class="right-icon">
+                                                            <span class='inactive'><i class="icon magnify rollover"></i></span>
+                                                            <i class="icon tick add-more-Users"></i>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <div class="general-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#generalPanel" aria-expanded="true" aria-controls="generalPanel">
+                                <div class="left">
+                                    <h6>General</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div id="generalPanel" class="collapse in" role="tabpanel" aria-labelledby="generalPanel">
+                                <div class="general-panel">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Description</label>
+                                            <div class="col-sm-8">
+                                                <textarea class="form-control textarea-field resizeTextarea" rows="1"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Type</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <select class="select-field">
+                                                        <option>Meeting</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Duration</label>
+                                            <div class="col-sm-8">
+                                                <ul class="switch-on-off on-off">
+                                                    <li class="active all-day">All Day</li>
+                                                    <li>Specific Time</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="ref-all-day">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field"></label>
+                                                <div class="col-sm-8">
+                                                    <div class="select-wrap no-of-day">
+                                                        <input type="text" class="form-control input-field" placeholder=""> day(s)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ref-specific-time specificTimePanel hide">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field"></label>
+                                                <div class="col-sm-8">
+                                                    <div class="select-wrap no-of-hour">
+                                                        <input type="text" class="form-control input-field" placeholder="">
+                                                        <span>Hours</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                    <input type="text" class="form-control input-field defaultEntry" size="10" placeholder="HH:MM">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                    <input type="text" class="form-control input-field defaultEntry" size="10" placeholder="HH:MM">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Time Zone</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <input type="text" class="zone-field RightFlyoutOpen" id="TimeZoneFlyout" placeholder="" value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Reminder</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <input type="text" class="zone-field RightFlyoutOpen" id="ReminderFlyout" placeholder="" value="15 minute before">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Advanced-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#advancedPanel" aria-expanded="true" aria-controls="advancedPanel">
+                                <div class="left">
+                                    <h6>Advanced options</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div id="advancedPanel" class="collapse in" role="tabpanel" aria-labelledby="advancedPanel">
+                                <div class="Advanced-section">
+                                    <form class="form-horizontal">
+                                        <div class="checkbox">
+                                            <label class="ref-show-recurrence">
+                                              <input type="checkbox"> Add recurrence to this event
+                                            </label>
+                                        </div>
+                                        <div class="hide recurrence-wrap">
+                                            <div class="form-group recusive-panel">
+                                                <label class="col-sm-12 label-field">Recurrence Patterns</label>
+                                                <div class="col-sm-12">
+                                                    <ul id="ref-toggle-drp">
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Daily
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Every
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="3" pattern="\d{3}">day(s)
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Every weekday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Weekly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                        Recur every
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">Week(s) on
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Monday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Tuesday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Wednesday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Thursday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Friday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Saturday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Sunday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Monthly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Day
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">of every
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">month(s)
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> The
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>First</option>
+                                                                            <option>Second</option>
+                                                                            <option>Third</option>
+                                                                            <option>Fourth</option>
+                                                                            <option>Last</option>
+                                                                        </select>
+                                                                        <select class="select-field">
+                                                                            <option>Monday</option>
+                                                                            <option>Tuesday</option>
+                                                                            <option>Wednesday</option>
+                                                                            <option>Thursday</option>
+                                                                            <option>Friday</option>
+                                                                            <option>Saturday</option>
+                                                                            <option>Sunday</option>
+                                                                        </select>of every
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">month(s)
+
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="year-panel">
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Yearly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    Recur every <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">year(s)
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> On:
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>January</option>
+                                                                            <option>February</option>
+                                                                            <option>March</option>
+                                                                            <option>April</option>
+                                                                            <option>May</option>
+                                                                            <option>June</option>
+                                                                            <option>July</option>
+                                                                            <option>August</option>
+                                                                            <option>September</option>
+                                                                            <option>October</option>
+                                                                            <option>November</option>
+                                                                            <option>December</option>
+                                                                        </select>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> On the:
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>First</option>
+                                                                            <option>Second</option>
+                                                                            <option>Third</option>
+                                                                            <option>Fourth</option>
+                                                                            <option>Last</option>
+                                                                        </select>
+                                                                        <select class="select-field">
+                                                                            <option>Monday</option>
+                                                                            <option>Tuesday</option>
+                                                                            <option>Wednesday</option>
+                                                                            <option>Thursday</option>
+                                                                            <option>Friday</option>
+                                                                            <option>Saturday</option>
+                                                                            <option>Sunday</option>
+                                                                        </select> of
+                                                                        <select class="select-field">
+                                                                            <option>January</option>
+                                                                            <option>February</option>
+                                                                            <option>March</option>
+                                                                            <option>April</option>
+                                                                            <option>May</option>
+                                                                            <option>June</option>
+                                                                            <option>July</option>
+                                                                            <option>August</option>
+                                                                            <option>September</option>
+                                                                            <option>October</option>
+                                                                            <option>November</option>
+                                                                            <option>December</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start occurrence on</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End occurrence on</label>
+                                                <div class="col-sm-8">
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> No end date
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> End after
+                                                        </label>
+                                                        <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY"> occurrence(s)
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> By
+                                                        </label>
+                                                        <input type="text" class="form-control input-field datepicker" placeholder="MM/DD/YYYY">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="EventFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="EventFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- TimeZone flyout  -->
+<div class="right-popup rightFlyout" id="TimeZoneFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Time Zone</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++)
+                        {?>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>(UTC+05:45) Kathmandu</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>(UTC+07:00) Bangkok, Hanoi, Jakarta</span>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <?php
+                        }
+                        ?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="TimeZoneFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="TimeZoneFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- Reminder flyout  -->
+<div class="right-popup rightFlyout" id="ReminderFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Reminder</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 20; $i++)
+                        {?>
+                            <li>
+                                <div class="left">
+                                    <div class="node-content">
+                                        <span>15 minute before</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="ReminderFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="ReminderFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+<!-- Node Z Rights Div -->
+<div class="right-popup rightFlyout" id="userRightFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title ">Node Rights (View): Users 0</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                    <a href="#" class=""><i class="icon lg-filter rollover"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-inner-wrap">
+                <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" class="">
+                                    </div>
+                                    <div class="filterDrp">
+                                        <span><i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li>Selected</li>
+                                    <li>Unselected</li>
+                                </ul>
+            </div>
+            </span>
+            </th>
+
+            <th class="filterDrp">
+                <span>Name<i class="fa fa-angle-down"></i></span>
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li>Sort A - Z</li>
+                    <li>Sort Z - A</li>
+                </ul>
+            </th>
+            <th class="filterDrp">
+                <span>Email Id<i class="fa fa-angle-down"></i></span>
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li>Sort A - Z</li>
+                    <li>Sort Z - A</li>
+                </ul>
+            </th>
+            <th class="filterDrp">
+                <span>Role</span>
+            </th>
+            </tr>
+            </thead>
+            </table>
+            <div class="nano fixedTableHig">
+                <div class="nano-content">
+                    <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                        <tbody>
+                            <?php
+                                for ($i = 1; $i <= 20; $i++)
+                                {?>
+                                <tr>
+                                    <td>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" class="">
+                                        </div>
+                                    </td>
+                                    <td>Lorem ipsum</td>
+                                    <td>Loremipsum@prospus.com</td>
+                                    <td>Lorem ipsum</td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="actor-listing add-usersli node-participant fixed-participant">
+            <ul>
+                <li class="">
+                    <div class="Add-more-actor">
+                        <div class="option-wrap">
+                            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon add-actor-icon"></i>
+                            </a>
+                            <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control input-field" required="required">
+                        <div class="right-icon">
+                            <i class="icon tick"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="user-action-wrap">
+        <a id="userRightFlyout" class="RightFlyoutClose"><i class="icon save"></i><br><span>Save</span></a>
+        <a id="userRightFlyout" class="RightFlyoutClose"><i class="icon delete"></i><br><span>Delete</span></a>
+        <a id="userRightFlyout" class="RightFlyoutClose"><i class="icon cancel"></i><br><span>Close</span></a>
+    </div>
+</div>
+</div>
+<!-- Group flyout  -->
+<div class="right-popup rightFlyout" id="GroupFlyout">
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title ">Group</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                    <a href="#" class="" style="cursor:default"><i class="icon lg-filter"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-inner-wrap">
+                <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <span>
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" class="">
+                                    </div>
+                                    <div class="filterDrp">
+                                        <span><i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li>Selected</li>
+                                    <li>Unselected</li>
+                                </ul>
+            </div>
+            </span>
+            </th>
+
+            <th class="filterDrp">
+                <span>Name<i class="fa fa-angle-down"></i></span>
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li>Sort A - Z</li>
+                    <li>Sort Z - A</li>
+                </ul>
+            </th>
+            <th class="filterDrp">
+                <span>Email Id<i class="fa fa-angle-down"></i></span>
+                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                    <li>Sort A - Z</li>
+                    <li>Sort Z - A</li>
+                </ul>
+            </th>
+            <th class="filterDrp">
+                <span>Role</span>
+            </th>
+            </tr>
+            </thead>
+            </table>
+            <div class="nano fixedTableHig">
+                <div class="nano-content">
+                    <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                        <tbody>
+                            <?php
+                                for ($i = 1; $i <= 20; $i++)
+                                {?>
+                                <tr>
+                                    <td>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" class="">
+                                        </div>
+                                    </td>
+                                    <td>Lorem ipsum</td>
+                                    <td>Loremipsum@prospus.com</td>
+                                    <td>Lorem ipsum</td>
+                                </tr>
+                                <?php
+                                }
+                                ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="actor-listing add-usersli node-participant fixed-participant">
+            <ul>
+                <li class="">
+                    <div class="Add-more-actor">
+                        <div class="option-wrap">
+                            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="icon add-actor-icon"></i>
+                            </a>
+                            <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                            </ul>
+                        </div>
+                        <input type="text" class="form-control input-field" required="required">
+                        <div class="right-icon">
+                            <i class="icon tick"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="user-action-wrap">
+        <a id="GroupFlyout" class="RightFlyoutClose"><i class="icon save"></i><br><span>Save</span></a>
+        <a id="GroupFlyout" class="RightFlyoutClose"><i class="icon delete"></i><br><span>Delete</span></a>
+        <a id="GroupFlyout" class="RightFlyoutClose"><i class="icon cancel"></i><br><span>Close</span></a>
+    </div>
+</div>
+</div>
+
+
+
+<div class="modal fade confirmCoursePopup courseViewModal" id="confirmCoursePopup" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title">Are you sure you want to remove this message?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default-pop confirm-course-delete" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default-pop" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade courseViewModal" id="letterRemoveModal" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title">Are you sure you want to remove this message?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default-pop confirm-remove-btn" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default-pop" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade confirmImgPopup courseViewModal" id="confirmImgPopup" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title">Are you sure you want to remove this message?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default-pop confirm-img-statement" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default-pop" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade confirmLetterImgPopup courseViewModal" id="confirmLetterImgPopup" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title">Are you sure you want to remove this message?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default-pop confirm-letter-img-statement" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-default-pop" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- remove-statment-popup -->
+<?php
+    $viewType = 'bycourse';
+    if(!empty($_POST['view_type'])) {
+        $viewType = $_POST['view_type'];
+    }
+?>
+    <script type="text/javascript">
+        if(typeof undefinedEntry == 'function') {
+            undefinedEntry();
+        }
+        // dashboardInitalLoad();
+        window.__PRELOADED_STATE__ = {
+            'chatType': 'Chat',
+            'chatItems': JSON.stringify(<?php echo json_encode([]) ?>),
+            'courseList': JSON.stringify(<?php echo json_encode($this->courseList) ?>),
+            'view_type': '<?php echo $viewType;?>',
+            'filter': JSON.stringify(<?php echo json_encode($this->filter) ?>),
+            'header_notification' : JSON.stringify(<?php echo json_encode(array(), JSON_FORCE_OBJECT) ?>),
+            'header_notification_count': <?php echo $this->notificationCount ?>,
+            'loadMore': <?php echo ( ($this->notificationCount) > FLASH_NOTIFICATION_COUNT ) ? 1 : 0 ?>,
+            'notification_socket_count': 0,
+            'activeFilter': '',
+        };
+    </script>
+    <script>
+        var head = document.getElementsByTagName('head')[0],
+            script = document.createElement('script');
+        script.src = "<?php echo PU_CDN_URL . 'public/js/bundle.js'; ?>";
+        head.appendChild(script);
+    </script>
+<?php } ?>

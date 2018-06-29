@@ -1,0 +1,66 @@
+<?php if(!empty($this->versionArray)){?>
+<?php 
+function getProperty($propertyArray) { ?>
+    <ol>
+        <?php  foreach($propertyArray as $key => $val) { ?>
+            <li>
+                <span class="node-content">
+
+                            <?php  if($val['version']!=""){
+                                $versionVal =  $val['version'];
+                                } else {
+                                   $versionVal = '-'; 
+                                }
+                                ?>
+                    <span class="version-count" data-version="<?php echo $versionVal;?>">
+                            <?php echo $versionVal;?>
+                    </span>
+                    <span><?php 
+                        if($val['created']!="0000-00-00 00:00:00"){
+                            echo date("Y M d H:i:s",strtotime($val['created']));
+                            }else {
+                                echo '-';
+                            }   ?> {Author}</span>
+                </span>
+               
+                <?php if(is_array($val['children'])) { ?>
+                    <?php getProperty($val['children']); ?>    
+                <?php } ?>
+                
+            </li>
+        <?php } ?>
+    </ol>
+<?php } ?>
+        <div class="nano1">
+            <div class="paper-line dual-pane-height nano-content1 niceScrollDiv" id="node-wrapper">
+                <div class="nice-scroll-box version-tree-structure">               
+                    <ol class="class-wrapper sortable">
+                        <?php foreach ($this->versionArray as $key => $value) { ?>
+                        <li>
+                            <div class="node-content">
+                                <?php if($value['version']!=""){
+                                            $versionVal1=  $value['version'];
+                                            } else {
+                                            $versionVal1= '-'; 
+                                            }?>
+                                <span class="version-count" data-version="<?php echo $versionVal1;?>">
+                                        <?php echo $versionVal1;?>
+                                 </span>
+                                <span>
+                                    <?php 
+                                        if($value['created']!="0000-00-00 00:00:00"){
+                                        echo date("Y M d H:i:s",strtotime($value['created']));
+                                        }else {
+                                            echo '-';
+                                        }   ?> {Author}</span>
+                            </div>
+                            <?php if(is_array($value['children'])) { ?>
+                                    <?php getProperty($value['children']); ?>
+                            <?php }  ?>
+                        </li>
+                        <?php }?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+            <?php }  ?>

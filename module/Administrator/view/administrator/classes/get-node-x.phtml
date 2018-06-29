@@ -1,0 +1,238 @@
+<?php if($this->mode == 'Edit') { ?>
+<div id="node-tab">             
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active nano" id="NodeX-tab">
+
+        <?php if(!empty($this->nodeClassX)){?>
+        <ol class="class-wrapper table-list-view  dual-pane-height nano-content">
+            
+                <?php 
+                    $NewArray               = explode(",", $this->node_id);
+                    $existArray                 = array();
+                    $nonexistArray              = array();
+                    foreach($this->nodeClassX as $key => $node) { 
+                        
+                        if(in_array($node['node_id'],$NewArray)){
+                         
+                            $existArray[]          = $node;
+                        }
+                        else
+                        {
+                            $nonexistArray[]        = $node;
+                        }
+                    }
+
+                    $finalarray1                 = array_merge($existArray, $nonexistArray);
+                    // $$& existArray - for properties, non - for class, property
+                    //echo '<pre>';print_r($finalarray1); print_r($NewArray); die();
+                    if(!empty($this->node_id)) {    // show blank for Properties
+                            foreach ($finalarray1 as $key => $nodeX) {
+
+                                if (count(array_filter(explode(",", $this->node_id))) > 1) {
+                                    // Node Z OR X for properties
+                                    if($this->nodeName != 'Properties' && $this->nodeIsChild=='true') {
+                                        // FOR GROUPING.LABEL ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID,ACTION_ROLE_CLASS_NID
+                                        if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,COLLAPSE_Z)))
+                                            continue;
+                                    } else {
+                                        if($this->nodeName == 'Properties' && $this->nodeIsChild=='false')
+                                        {
+                                            // FOR CLASS ONLY ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID,ACTION_ROLE_CLASS_NID
+                                            if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,DATA_SOURCE_Z)))
+                                                continue;
+                                        }
+                                        else
+                                        {
+                                            // FOR CLASS ONLY ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID
+                                            if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,DATA_SOURCE_Z)))
+                                                continue;
+                                        }
+                                    }
+                                } else {
+                                    // FOR GROUPING.PROPERTY ONLY ,ACTION_ROLE_CLASS_NID
+                                    if (in_array($nodeX['node_id'], array(DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,NODE_RIGHTS_Z,DATA_SOURCE_Z,COLLAPSE_Z)))
+                                        continue;
+                                }
+                                
+                                $caption2 = '';
+                                if (intval($nodeX['encrypt_status']) == 1) {
+                                    $caption2 = $this->encryption_decryption('mc_decrypt', array('decrypt' => $nodeX['caption'], 'key' => ENCRYPTION_KEY));
+                                } else {
+                                    $caption2 = $nodeX['caption'];
+                                }
+                                ?>
+                                <li <?php if(strtolower($this->nodeType) == 'node z'){ ?>class="node-z-manage-icon"<?php } ?>>
+                                    <div class="node-content clearfix">
+                                        <div class="custom-checkbox nodeClass-Y">
+                                            <input type="checkbox" id="<?php echo $nodeX['node_class_id']; ?>" <?php if (intval($nodeX['node_type_id']) == 3) { ?>disabled="true"<?php } ?> value="<?php echo $nodeX['node_id']; ?>" name="nodeX[]">
+                                            <label></label>
+                                        </div>
+                                        <div class="node-left">
+                                            <div class="node-circle node-white-circle<?php if (count($nodeX['node_id']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                            <div class="node-head node-input" data-class="Edit_<?php echo $nodeX['node_class_id']; ?>" data-name="<?php echo $nodeX['caption']; ?>">
+                                                <span><?php echo $caption2; ?> (<?php echo $nodeX['node_id']; ?>)</span> 
+                                            </div>
+                                            <?php if(strtolower($this->nodeType) == 'node z'){ ?>
+                                            <div class="icon-right">
+                                                <i id="icon<?php echo $nodeX['node_class_id']; ?>" class="icon circle-tick"></i>
+                                            </div>
+                                            <?php } ?>
+                                        </div>
+                                    </div>
+                            <?php }
+                        } else { ?>
+                            <span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property. </span>
+                <?php } ?>
+            
+        </ol>
+        <?php } else {?>
+        <span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property. Please edit to assign NODE <?php echo $this->nodeType;?> to your property.</span>
+        <?php } ?>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="render-tab">render</div>
+    <div role="tabpanel" class="tab-pane" id="node-modal-tab">node</div>
+    <div role="tabpanel" class="tab-pane" id="prespective-tab">prespective</div>
+  </div>
+
+</div>
+<?php } else { ?>
+<div id="node-tab">             
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active nodexdisplay nano" id="NodeX-tab">
+        <?php 
+
+        if(isset($this->node_id) && !empty($this->node_id)){ ?>
+        <ol class="class-wrapper table-list-view dual-pane-height nano-content">
+            
+                <?php 
+                        $NewNodeArray               = explode(",", $this->node_id);
+                        $existArray                 = array();
+                        $nonexistArray              = array();
+                        foreach($this->nodeClassX as $key => $node) { 
+                            
+                            if(in_array($node['node_id'],$NewNodeArray)){
+                             
+                                $existArray[]          = $node;
+                            } else {
+                                $nonexistArray[]        = $node;
+                            }
+                            
+                        }
+                    $finalarray1                 = array_merge($existArray, $nonexistArray);
+                    if(!empty($finalarray1)){
+
+                    foreach($finalarray1 as $key => $nodeX) { ?>
+                        <?php
+                            if (count(array_filter(explode(",", $this->node_id))) > 1) {
+                                    // Node Z OR X for properties
+                                    if($this->nodeName != 'Properties' && $this->nodeIsChild=='true') {
+                                        // FOR GROUPING.LABEL ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID,ACTION_ROLE_CLASS_NID
+                                        if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,COLLAPSE_Z)))
+                                            continue;
+                                    } else {
+                                        if($this->nodeName == 'Properties' && $this->nodeIsChild=='false')
+                                        {
+                                            // FOR CLASS ONLY ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID,ACTION_ROLE_CLASS_NID
+                                            if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,DATA_SOURCE_Z)))
+                                                continue;
+                                        }
+                                        else
+                                        {
+                                            // FOR CLASS ONLY ,PRODUCTION_CB_CLASS_NID,PRODUCTION_JSON_CLASS_NID
+                                            if (in_array($nodeX['node_id'], array(VERSION_Z,CLASS_Z,DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,DATA_SOURCE_Z)))
+                                                continue;
+                                        }
+                                    }
+                                } else {
+                                    // FOR GROUPING.PROPERTY ONLY ,ACTION_ROLE_CLASS_NID
+                                    if (in_array($nodeX['node_id'], array(DATATYPE_Z,FORM_SELECTOR_Z,VALIDATION_Z,NODE_RIGHTS_Z,DATA_SOURCE_Z,COLLAPSE_Z)))
+                                        continue;
+                                }
+
+                            $caption3 = '';
+                            if(intval($nodeX['encrypt_status']) == 1) {
+                                $caption3 =  $this->encryption_decryption('mc_decrypt',array('decrypt' => $nodeX['caption'],'key' => ENCRYPTION_KEY)); 
+                            } else {
+                                $caption3 = $nodeX['caption'];
+                            }
+                        ?>
+                        <li <?php if(strtolower($this->nodeType) == 'node z'){ ?>class="node-z-manage-icon"<?php } ?>>
+                            <div class="node-content clearfix">
+                                <span class="sprite-icon tick-icon" id="<?php echo $nodeX['node_id']; ?>"></span>
+                                <div class="node-left">
+                                    <div class="node-circle node-white-circle<?php if(count($nodeX['node_id']) > 0) { ?>-expanded<?php } ?>">N</div>
+                                    <div class="node-head node-input" data-class="Display_<?php echo $nodeX['node_class_id']; ?>" data-name="<?php echo $nodeX['caption']; ?>">
+                                        <span><?php echo $caption3; ?> (<?php echo $nodeX['node_id']; ?>) </span>
+                                    </div>
+                                    <?php if(strtolower($this->nodeType) == 'node z'){ ?>
+                                        <div class="icon-right">
+                                            <i id="icon<?php echo $nodeX['node_class_id']; ?>" class="icon circle-tick"></i>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                        </li>
+                <?php } ?>
+                <?php } else {?>
+                        <span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property. Please edit to assign NODE <?php echo $this->nodeType;?> to your property.</span>
+                <?php } ?>
+            
+        </ol>
+        <?php } else if(empty($this->nodeClassX)){ ?>
+        <span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property. Please edit to assign NODE <?php echo $this->nodeType;?> to your property.</span>
+        <?php }
+        else {
+            if($this->node_id) {
+                ?><span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property. Please edit to assign NODE <?php echo $this->nodeType;?> to your property.</span><?php
+            } else {
+                ?><span class="no-dataAvilable" >No <?php echo $this->nodeType;?> classes have been assigned to the selected Property.</span><?php
+            }
+        } ?>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="render-tab">render</div>
+    <div role="tabpanel" class="tab-pane" id="node-modal-tab">node</div>
+    <div role="tabpanel" class="tab-pane" id="prespective-tab">prespective</div>
+  </div>
+
+</div>
+<?php } ?>
+
+<script type="text/javascript">
+    var ids = $("#second-class-div").find(".node-selected .hidden-node-z-main").val();
+    if($.trim(ids) != "")
+    {
+        var data = ids.split(",");
+        for(i=0;i<data.length;i++)
+        {
+          if(data[i] != '')
+          {
+            $("#icon"+data[i]).removeClass('exclamation');
+            $("#icon"+data[i]).addClass('circle-tick');
+          }
+        }
+    }
+
+    $("#icon165").removeClass('exclamation');
+    $("#icon165").addClass('circle-tick');
+
+    /* Start Code By Arvind Soni For Instance Class Saving */
+    <?php if($this->mode != 'Edit') { ?>
+        if($('#class_structure_form #viewTypeClass').val() == '111')
+        {
+            if($("#node-x-li a").html()=="Node Z")
+            {
+                var text = $("#67905").siblings().find('div.node-input').attr('data-class');
+                if(text == 'Display_364')
+                {
+                    $("#67905").siblings().find('div.node-input').attr('data-class','Edit_364');
+                }
+
+                $("#67905").parent().find('span').first().replaceWith('<div id="67905" class="custom-checkbox nodeClass-Y"><input type="checkbox" checked="true" name="nodeX[]" value="67905" disabled="true" id="364"><label></label></div>');
+            }
+        }
+    <?php } ?>
+    /* End Code By Arvind Soni For Instance Class Saving */
+</script>

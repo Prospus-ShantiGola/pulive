@@ -1,0 +1,249 @@
+$iconWT		:			20px;
+$iconHT		:			20px;
+
+.icon-sm {
+  width: $iconWT;
+  height: $iconHT;
+  display: $inlne-block;
+  background: url(../img/sprite_icons.png);
+  background-position: 0px -38px;
+  line-height:$zero;  
+}
+
+.icon-sm.icon_dashBoard{
+  background-position: 0px -38px;
+}
+.icon-sm.icon_inbox{
+  background-position:0px -242px;
+}
+.icon-sm.icon_classes{
+  background-position:0px -366px;
+}
+.icon-sm.icon_marketplace {
+  background-position: -120px -361px;
+}
+.icon-sm.calender{
+  background-position:0px -122px
+}
+.icon-sm.icon_setting{
+  background-position: 0px -202px;
+}
+.icon-sm.icon_actor {
+    background-position: -204px -323px;
+}
+.icon-sm.icon_product {
+    background-position: -202px -202px;
+}
+.icon-sm.icon_data {
+    background-position: -201px -242px;
+}
+.icon-sm.icon_report {
+    background-position: -203px -283px;
+}
+.icon-sm.resources {
+    background-position: -205px -362px;
+}
+.icon-sm.icon_organization {
+  background-position: -79px -408px;
+}
+
+
+.left-action-bar > ul > li{
+    a:hover{
+
+      span.menu-title {
+        color: #fff;
+      }
+      .icon_dashBoard{
+        background-position: 0px 0px;
+      }
+      .icon_inbox{
+        background-position: 0px -281px;
+      }
+      .icon_classes{
+        background-position: 0px -324px;
+      }
+      .icon_marketplace {
+        background-position: -154px -361px;
+      }
+      .calender{
+        background-position: 0px -81px;
+      }
+      .icon_setting{
+        background-position: 0px -161px;
+      }
+      .icon_actor{
+        background-position: -254px -323px;
+      }
+      .icon_product{
+        background-position: -250px -203px;
+      }
+      .icon_data{
+        background-position: -250px -242px;
+      }
+      .icon_report{
+        background-position: -252px -283px;
+      }
+      .resources{
+        background-position: -256px -362px;
+      }
+      .icon_organization {
+        background-position: -79px -458px;
+      }
+    }
+}
+.icon-sm.production-white {
+    background-position: -120px -411px;
+}
+.icon-sm.group {
+    background-position: -81px -495px;
+}
+.icon-sm.course-add {
+    background-position: -2px -410px;
+}
+.icon-sm.course-view {
+    background-position:-2px -460px;
+}
+.icon-sm.dialogue-add {
+    background-position: -4px -500px;
+}
+.icon-sm.dialogue-view {
+    background-position: -5px -545px;
+}
+.icon-sm.actor-add {
+  background-position:-43px -496px;
+}
+.icon-sm.actor-white {
+  background-position: -254px -323px;
+}
+
+.icon-sm.actor-view {
+  background-position:-45px -544px;
+}
+.icon-sm.email-add {
+    background-position: -40px -410px;
+}
+
+i.icon-sm.roles-white {
+    background-position: -259px -444px;
+}
+i.icon-sm.deafult-icon {
+    background-position: -257px -405px;
+}
+.sidebar_wrap .icon-wrap:hover span {
+  color: #fff;
+}
+.icon-sm.list{
+  background-position: -43px -121px;
+}
+.icon-sm.search{
+  background-position: -40px -81px
+}
+.icon-sm.search-white{
+  background-position: -200px -41px;
+}
+.icon-sm.plus{
+  background-position: -41px -161px;
+}
+.icon-sm.template{
+  background-position:-82px -205px;
+}
+.icon-sm.course{
+  background-position:-41px -244px;
+}
+.icon-sm.course-black {
+  background-position: -82px -364px;
+}
+.icon-sm.course-white {
+  background-position: -41px -364px;
+}
+.icon-sm.dialogue{
+  background-position:-83px -121px;
+}
+.icon-sm.dialogue-white{
+  background-position:-122px -122px;
+}
+.icon-sm.actor{
+  background-position:-43px -203px;
+}
+
+.icon-sm.close,
+.icon-sm.close_icon{
+  background-position: -40px 0px;
+  opacity: 1;
+}
+.icon-sm.tick{
+    background-position: -40px -41px;
+}
+.icon-sm.workflow {
+  background-position: -81px -81px;
+}
+.icon-sm.notification {  
+  background-position: -81px -41px;
+}
+.icon-sm.notification-white {  
+  background-position: -81px -41px;
+}
+.icon-sm.home{
+  background-position: -81px -162px;
+}
+.icon-sm.dot-md {
+    background-position: -40px -322px;
+}
+.icon-sm.dot-white {
+    background-position: -34px -283px;
+}
+.icon-sm.chat {
+  background-position: -82px -2px;
+}
+.icon-sm.filter-green {
+  background-position:-122px -241px;
+}
+.icon-sm.action-green{
+  background-position: -122px -281px ;
+}
+.icon-sm.view-green {
+  background-position: -122px -323px;
+}
+.icon-sm.nodetype {
+  background-position: -120px -41px;
+}
+.icon-sm.status {
+  background-position: -80px -245px;
+}
+a#helpNoderAnchor .help {
+  margin: 0;
+}
+.icon-sm.help{
+  background-position: -122px -1px;
+}
+.icon-sm.user-dp {
+  background-position: -159px -165px;
+}
+.icon-sm.workflow-black {
+    background-position: -159px -202px;
+}
+.icon-sm.highlight {
+    background-position: -159px -242px;
+}
+.icon-sm.close-black {
+    background-position: -155px -281px;
+}
+.icon-sm.reviews {
+    background-position: -154px -322px;
+}
+.icon-sm.reply{
+  background-position: -257px -480px;
+}
+.icon-sm.download-icon{
+  background-position: -260px -515px;
+}
+.icon-sm.favourite{
+  background-position: -206px -478px;
+}
+.icon-sm.tridot{
+  background-position: -206px -508px;
+}
+.icon-sm.tri-dot{
+  background-position: -206px -508px;
+}

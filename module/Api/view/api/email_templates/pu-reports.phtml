@@ -1,0 +1,36 @@
+<?php 
+ 
+echo $this->header;
+
+$html = '<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333;">Hello.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333;">Below is the PU usage data on ' . $this->date .'.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="height:20px;">
+                <table style="width:100%" border="1">
+                      <tr style="font:11px Arial, Helvetica, sans-serif; color:#333333;">
+                        <th>Total Registered Users</th>
+                        <th>Total Default Dialogue Courses</th>
+                        <th>Total Production Courses</th>
+                        <th>Total Dialogues in Production Courses</th>
+                        <th>Total Dialogues</th>
+                        <th>Total Statements</th>
+                      </tr>
+                      <tr style="font:11px Arial, Helvetica, sans-serif; color:#333333;">
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_reg_users']].'</td>
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_def_dia_crs']].'</td>
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_prod_crs']].'</td>
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_prd_dia_crs']].'</td>
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_dia']].'</td>
+                        <td style="text-align:center;">'.$this->formData[PU_REPORTS_FORM_FIELDS['t_stat']].'</td>
+                      </tr>
+                </table>
+           </td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333;">View consolidated data <a style="color:#004E83; text-decoration:underline;" href="' .$this->sheetUrl. '">here</a>.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+         .'<tr>';
+    
+echo $html;
+echo $this->footer;
+?>

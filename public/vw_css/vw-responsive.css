@@ -1,0 +1,85 @@
+@media screen and (max-width:767px){
+	.bg-color{
+		background: #fff;
+	}
+	.form-content{
+		top:0px;
+		margin-top:0px;
+		left:0px;
+		margin-left: 0px;
+		width: 100%;
+		position: static;
+	}
+	.form-content#forgot-password{
+	    top:0;
+	    margin-top: 0;
+	}
+	.copy-right {
+	    position: fixed;
+	    bottom: 0px;
+	    background: #2A292F;
+	    margin: 0px;
+	    padding: 15px;
+	    width: 100%;
+	    margin-top: 50px;
+	    z-index: 1;
+	}
+	.copy-right img{
+	    width: 150px;
+	    text-align: center;
+	    margin: 0 auto;
+	}	
+	.bg-color .lg-white-btn{
+		margin-bottom: 60px;
+	}
+	#subscription-form {
+		width: 100%;
+	}
+	#subscription-form select.form-select{
+		width: 100%;
+	}
+	#subscription-form .loa-wrap input.form-control,
+	#subscription-form .loa-wrap select.form-control{
+		width: 50%
+	}
+
+}
+@media screen and (max-width:640px){
+}
+
+
+@media screen and (max-width:480px){		
+	h3{
+		font-size: 1.4em;
+	}
+	.btn.sm-white-btn{
+		min-width: 46%;
+	}
+	.custom-popup .modal-dialog{
+		width: inherit;		
+    	margin: 5px 20px;
+	}
+	#subscription-form{
+		padding:0px;
+	}
+	.select-user-role {
+	    width: 160px;
+	    White-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width:360px){	
+	h3{
+		font-size: 1.3em;
+	}
+	.btn.sm-white-btn{
+		min-width: 100px;
+	}
+	.select-user-role {
+	    width: 140px;
+	    White-space: nowrap;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	}
+}

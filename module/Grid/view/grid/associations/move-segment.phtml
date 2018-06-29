@@ -1,0 +1,54 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+			for($row=0;$row<2;$row++) {
+				?>
+			   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+				  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+							<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+				  <?php } ?>
+			   </tr>
+			<?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column"  style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php 
+
+	
+
+for($row=0;$row<count($this->tableDataArray);$row++) {
+	?>
+   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+      <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+				<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>">
+					<?php 
+					if($this->currentRowIndex==2 && $this->NoOfProcess > 0){
+						
+						$currentRow = $this->currentRowIndex+3;
+					}
+					else if($this->currentRowIndex==2 && $this->NoOfProcess < 1){
+						
+						$currentRow = $this->currentRowIndex+2;
+					}
+					else {
+
+						$currentRow	 = $this->currentRowIndex;
+					}
+
+					if(in_array($col,$this->pushactorCol) && $row == 2){?>
+					<?php  echo $this->roleArray[0]['group']; ?>
+					<?php } else if((in_array($col,$this->pushactorCol) && $row == $currentRow)) {?>
+					<?php  echo $this->blankArray[0]['blank']; ?>
+					<?php } else {?>
+						<?php  echo $this->tableDataArray[$row][$col]['data']; ?>
+					<?php } ?>
+
+				</td>
+	  <?php } ?>
+   </tr>
+<?php } ?>
+</tbody>
+</table>

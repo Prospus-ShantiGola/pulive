@@ -1,0 +1,40 @@
+<!--=========================radio-btn-flyout=============================-->
+<!-- Modal -->
+<div id="commonPopupFirst" class="modal fade classes-click-modal" data-backdrop="static" role="dialog">
+    <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header classes-common-name">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                <h4 class="modal-title">Enter Class Details</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <p> Common Name</p>
+                <div class="form-group classess-body-input">
+                    <input type="text" id="common_name_first" class="form-control" name="common_name_first" autofocus>
+                </div>
+                <p>Node Type</p>
+                <div class="form-group classess-body-input">
+                    <select class="form-control select-classes-small" id="node_type_first">
+                        <option value="2" >Y</option>
+                        <option value="1" >X</option>
+                        <option value="3" >Z</option>
+                    </select>
+                </div>
+                <p>Versioning Type</p>
+                <div class="form-group classess-body-input">
+                    <select class="form-control select-classes-small" id="version_type_first">
+                        <option value="1" >Strict</option>
+                        <option value="2" >Dynamic</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="setGlobalVariableFirst()" class="btn hover-changes btn-default classes-btn-changes inactiveLink" data-dismiss="modal">OK</button>
+                <button type="button" class="btn hover-changes btn-default classes-btn-changes" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display:none;" data-backdrop="static" data-toggle="modal" data-target="#commonPopupFirst" id="commonPopupFirstDiv" ></div>

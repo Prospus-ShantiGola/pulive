@@ -1,0 +1,39 @@
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php 
+for($row=0;$row<count($this->tableDataArray);$row++) {?>
+  <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+      <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+
+      <?php 
+        if(($col == $this->currentColumnIndex+2) && ($row == $this->currentRowIndex) ){ 
+          ?>
+        <td class="ExcelTablerow border-light-top operation-series sub-operation merge-td"><?php echo $this->subOperationArray[0]['sub_operation1']; ?></td>
+
+        <?php } else if(($col == $this->currentColumnIndex+3) && ($row == $this->currentRowIndex) ){ ?>
+
+        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?> "><?php echo $this->subOperationArray[0]['sub_event_operation']; ?></td>
+
+        <?php } else if(($col == $this->currentColumnIndex+3) && ($row == $this->currentRowIndex+5) ){ ?>
+
+        <td class=""><?php echo $this->subOperationArray[5]['sub_event_operation']; ?></td>
+
+        <?php } else {
+                  if( ($row >= $this->currentRowIndex && $col == $this->currentColumnIndex+2) && ($row <= intval($this->currentRowIndex)+5 )){ ?>
+                  <td class="ExcelTablerow operation-series sub-operation merge-td"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                  <?php }else { ?>
+
+                  <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?> "><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+
+                 <?php  } ?>
+        
+      <?php } ?>
+
+
+      <?php } ?>
+      
+      
+    </tr>
+<?php } ?>
+</tbody>
+</table>

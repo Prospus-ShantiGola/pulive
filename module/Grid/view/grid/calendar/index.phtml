@@ -1,0 +1,1140 @@
+
+<script type="text/javascript" src="<?php echo $this->basePath(); ?>/js/calendar.js?version=<?php echo $version; ?>" /></script>
+<div class="total-width-pane active" >
+    <div class="listing-wrapper dashSlider clearfix set-height active" id="calenderWrap">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Calendar</span>
+                        </span>
+                        <div class="control-btn-wrap calendar-right right">
+                            <?php /* ?><a href="#" class="" data-original-title="List">
+                                <i class="icon survey"></i><span>List</span>
+                            </a><?php */ ?>
+                            <a href="#" class="active" data-original-title="Grid">
+                                <i class="icon icon_grid"></i><span>Grid</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-one-third"><button class="selectableBtn">Selectable</button>
+            <div class="cal-top-section">
+                <button class="dragBtn">Draggable</button>
+                <button class="extendBtn">Extend Event Data</button>
+                <button id="calendar_today" class="calendar-today calender-btn">Today</button>
+                <button id="calendar_prev" class="calendar-prev calender-btn"><i class="fa fa-angle-left"></i></button>
+                <button id="calendar_next" class="calendar-next calender-btn"><i class="fa fa-angle-right"></i></button>
+                <div id="calendar_desc"></div>
+            </div>
+            <div id="pui_calendar_headings">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+            <div id="pui_calendar"> </div>
+
+           <!-- <div id='pui_calendar' class="fullCalendar"></div> -->
+<!-- integrate  calendar list  -->
+<?php /* ?><div class="list-calendar-details">
+        
+
+        <div class="calendar-table-body">
+            <div class="nano ref-cal-list-set-ht">
+                <div class="nano-content ">
+                    <div class="">
+                       
+                    </div>
+                 </div>
+            </div>     
+        </div> 
+    </div> <?php */ ?>
+<!-- closed integrate calendar list  -->
+
+
+        </div>
+    </div>
+
+
+
+<!-- calendar list panel -->
+    <div class="display-wrapper dashSlider clearfix set-height active calendar-list">
+      
+      <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">1st Sep 17: Details</span>
+                        </span>
+                        <div class="control-btn-wrap calendar-right right">
+                            <a href="#" class="active" data-original-title="Grid">
+                                <i class="icon survey"></i><span>Details</span>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       <div class="calendar-table-head"> 
+            <table class="table table-style table-responsive table-striped table-head cal-text-view" >
+                <thead>
+                  <tr class="">
+                    <th class="filterDrp">
+                        <span>Course<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li >Sort by ascending</li>
+                            <li>Sort by descending</li>
+                            <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li>Equals To</li>
+                                    <li>Not Equals To</li>
+                                    <li>Begins With</li>
+                                    <li>Ends With</li>
+                                    <li>Contains</li>
+                                    <li>Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" data-value="entr-cal-list-name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box entr-cal-list-name" type="button"></button>
+                                    </span>
+                                </div>
+                            </div>
+                           
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>Items<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li >Sort by ascending</li>
+                            <li>Sort by descending</li>
+                           
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>Actors<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li >Sort by ascending</li>
+                            <li>Sort by descending</li>
+                            
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>Schedule<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                            <li>Draft</li>
+                            <li>Published</li>                                
+                        </ul>
+                    </th>
+              </tr>
+                </thead>
+            </table>
+        </div>
+
+
+        <div class="HalfPaneHeight nano mainAccordianHig">
+            <div class="nano-content">
+                <table class="table table-style table-responsive  cal-text-view ActiveRow" >
+                
+                    <tbody>
+                        <tr>
+                            <td>Daily Stand Up</td>
+                            <td></td>
+                            <td>
+                            <ul>
+                                <li>Prashant Singh, Animesh Sharma, Anjali Sharma, Amit M</li>
+                            </ul>
+                            </td>
+                            <td>
+                            <ul>
+                                <li>Weekdays</li>
+                            </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Weekly Status Meeting</td>
+                            <td></td>
+                            <td>
+                            <ul>
+                                <li>Prashant Singh, Marc Ragsdale</li>
+                            </ul>
+                            </td>
+                            <td>
+                            <ul>
+                                <li>Monday 10:00 AM</li>
+                            </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Prospus Townhall</td>
+                            <td></td>
+                            <td>
+                            <ul>
+                                <li>Prospus</li>
+                            </ul>
+                            </td>
+                            <td>
+                            <ul>
+                                <li>Sep 15  13:00</li>
+                            </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Marketing Strategy Meet</td>
+                            <td></td>
+                            <td>
+                            <ul>
+                                <li>Marc Ragsdale, Justin Owsley</li>
+                            </ul>
+                            </td>
+                            <td>
+                            <ul>
+                                <li>Sep 4 16:00 PM</li>
+                            </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Meeting with Josh</td>
+                            <td>Project Plan.ppt</td>
+                            <td>
+                            <ul>
+                                <li>Marc Ragsdale, Josh Asher</li>
+                            </ul>
+                            </td>
+                            <td>
+                            <ul>
+                                <li>Tonight 10:00 PM</li>
+                            </ul>
+                            </td>
+                        </tr>
+                                             
+                    </tbody>
+                </table>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="HalfPaneHeight mainAccordianHig hide" id="courseDetailWrap">
+            <div class="">
+                <div class="mainAccordianDiv">
+                    <table class="table table-style table-responsive table-head ActiveRow course-detail-table">
+                        <thead>
+                            <th class="filterDrp">
+                                <span>Type<i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li >Sort by ascending</li>
+                                    <li>Sort by descending</li>
+                                    <li>Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                            <li>Equals To</li>
+                                            <li>Not Equals To</li>
+                                            <li>Begins With</li>
+                                            <li>Ends With</li>
+                                            <li>Contains</li>
+                                            <li>Does Not Contain</li>
+                                        </ul>
+                                    </li>                                    
+                                     <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box" type="button"></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </th>
+                            <th class="filterDrp">
+                                <span>File Name<i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li >Sort by ascending</li>
+                                    <li>Sort by descending</li>
+                                   
+                                </ul>
+                            </th>
+                            <th class="filterDrp">
+                                <span>Date<i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li >Sort by ascending</li>
+                                    <li>Sort by descending</li>
+                                   
+                                </ul>
+                            </th>
+                            <th class="filterDrp">
+                                <span>Status<i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                    <li >Sort by ascending</li>
+                                    <li>Sort by descending</li>
+                                   
+                                </ul>
+                            </th>
+                        </thead>
+                    </table>
+                    <div class="nano fixedTableHig">
+                        <div class="nano-content">
+                            <table class="table table-style fixedTableHig table-responsive course-detail-table ActiveRow"> 
+                                <tbody>  
+                                <?php
+                                for ($i = 1; $i <= 10; $i++) {  ?>     
+                                    <tr>
+                                        <td>Doc</td>
+                                        <td>Lorem ipsum</td>
+                                        <td>11/27/2015</td>
+                                        <td>Draft</td> 
+                                    </tr>
+                                    <tr>
+                                        <td>Doc</td>
+                                        <td>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</td>
+                                        <td>11/27/2015</td>
+                                        <td>Draft</td> 
+                                    </tr>
+                              <?php  } 
+                                ?>
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- closed calendar list panel   -->
+</div>
+
+
+
+
+<div class="right-popup rightFlyout" id="courseBoardFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Course Template</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++) 
+                        {?> 
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>Standard</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>Lorem</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>Ipsum</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                       
+                        <?php
+                        }
+                        ?>
+                    </ol>
+                </div>            
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="courseBoardFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<div class="right-popup rightFlyout" id="participantFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Dialogue (General): Participants (10)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div  class="actor-listing">
+                        <ol class="table-list-style">
+                            <?php
+                            for ($i = 1; $i <= 3; $i++) 
+                            {?> 
+                                <li class="">
+                                    <div class="user-pic-sm"><img src="<?php echo PU_CDN_URL; ?>public/img/user.png" alt="">
+                                        <div class="icon green-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name"><h2>Lorem ipsum</h2></div>
+                                    <div class="right-icon">
+                                        <i class="icon close"></i>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <div class="user-pic-sm"><img src="<?php echo PU_CDN_URL; ?>public/img/user.png" alt="">
+                                        <div class="icon red-icon shape"></div>
+                                    </div>
+                                    <div class="chat-user-name"><h2>Lorem ipsum</h2></div>
+                                    <div class="right-icon">
+                                        <i class="icon close"></i>
+                                    </div>
+                                </li>
+
+                            <?php
+                            }
+                            ?>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+                <div class="actor-listing add-usersli fixed-participant">
+                    <ul>
+                        <li class="">
+                            <div class="Add-more-actor">
+                                <div class="option-wrap">
+                                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="icon add-actor-icon"></i>
+                                    </a>
+                                    <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                        <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                        <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                        <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control input-field" required="required">
+                                <div class="right-icon">
+                                    <i class="icon magnify"></i>
+                                    <i class="icon tick ref-add-partcipant"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="participantFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="participantFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<div class="right-popup rightFlyout" id="AddUserFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Dialogue (General): Participants (0)</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div  class="actor-listing">
+                        <ol class="table-list-style">
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+                <div class="actor-listing add-usersli fixed-participant">
+                    <ul>
+                        <li class="">
+                            <div class="Add-more-actor">
+                                <div class="option-wrap">
+                                    <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="icon add-actor-icon"></i>
+                                    </a>
+                                    <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                        <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                        <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                        <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control input-field" required="required">
+                                <div class="right-icon">
+                                    <i class="icon magnify"></i>
+                                    <i class="icon tick ref-add-partcipant"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="AddUserFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="AddUserFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<div class="right-popup rightFlyout" id="NewEventFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">New Event</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <div class="event-form-section">
+                        <div class="form-horizontal top-head">
+                            <div class="form-group">
+                                <label class="col-sm-4 label-field">Title</label>
+                                <div class="col-sm-8">
+                                   <textarea class="form-control textarea-field resizeTextarea" rows="1"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Actor-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#newactorPanel" aria-expanded="true" aria-controls="actorPanel">
+                                <div class="left">
+                                    <h6>Actor</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div id="newactorPanel" class="collapse in" role="tabpanel" aria-labelledby="newactorPanel">
+                                <div class="Actor-panel">
+                                    <div class="actor-wrap">
+                                        <div class="actor-listing">
+                                            <ul class="">
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                       <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                       <div class="icon green-icon shape"></div>
+                                                    </div>
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                                    </div>
+                                                    <div class="right-icon"><i class="icon close" data-original-title="" title=""></i></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                       <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                       <div class="icon green-icon shape"></div>
+                                                    </div>
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>
+                                                    </div>
+                                                    <div class="right-icon"><i class="icon close" data-original-title="" title=""></i></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="user-pic-sm">
+                                                       <img src="<?php echo PU_CDN_URL; ?>public/img/hat.png" alt="">
+                                                       <div class="icon green-icon shape"></div>
+                                                    </div>                                                
+                                                    <div class="chat-user-name">
+                                                        <h2><i class="expand-heading  icon tri-dot" data-original-title="" title=""></i><span class="expanded-content">Prospus .Technical Lead</span></h2>                                                     
+                                                    </div>
+                                                    <div class="right-icon"><i class="icon close" data-original-title="" title=""></i></div>
+                                                </li>
+                                                <li class="">
+                                                    <div class="Add-more-actor">
+                                                        <div class="option-wrap">
+                                                            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="icon add-actor-icon"></i>
+                                                            </a>                     
+                                                            <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                                                <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                                                <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                                                <li><a><i class="icon actor"></i><span>By Group</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <input type="text" class="form-control input-field" required="required">
+                                                        <div class="right-icon">
+                                                            <i class="icon magnify"></i>
+                                                            <i class="icon tick add-more-Users"></i>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div> 
+
+                        </div>
+                        <div class="general-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#newgeneralPanel" aria-expanded="true" aria-controls="newgeneralPanel"> 
+                                <div class="left">
+                                    <h6>General</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a>
+                            <div id="newgeneralPanel" class="collapse in" role="tabpanel" aria-labelledby="newgeneralPanel">
+                                <div class="general-panel">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Description</label>
+                                            <div class="col-sm-8">
+                                               <textarea class="form-control textarea-field resizeTextarea" rows="1"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Type</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <select class="select-field">
+                                                        <option>Meeting</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Duration</label>
+                                            <div class="col-sm-8">
+                                                <ul class="switch-on-off on-off">   
+                                                    <li class="active all-day">All Day</li>
+                                                    <li>Specific Time</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="ref-all-day">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field"></label>
+                                                <div class="col-sm-8">
+                                                    <div class="select-wrap no-of-day">
+                                                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="daysNumber form-control input-field" placeholder="" maxlength="3" onkeyup="calculateAllDayEndDate(true)">
+                                                        day(s)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker newevent-startdate" placeholder="MM/DD/YYYY" onchange="calculateAllDayEndDate(true)">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker newevent-enddate"  onchange="setDays(true)"  placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ref-specific-time specificTimePanel hide">
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field"></label>
+                                                <div class="col-sm-8">
+                                                    <div class="select-wrap no-of-hour">
+                                                        <input type="text" class="specific-hour form-control input-field" placeholder="" maxlength="3" onkeypress='return event.charCode >= 48 && event.charCode <= 57' onkeyup="calculateSpecificTimeEndDate(true)">
+                                                        <span>Hours</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker specific-startdate" placeholder="MM/DD/YYYY" onchange="calculateSpecificTimeEndDate(true);">
+                                                    <input type="text" class="specific-starttime form-control input-field defaultEntry" size="10" placeholder="HH:MM" onkeyup="calculateSpecificTimeEndDate(true)">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker specific-enddate" placeholder="MM/DD/YYYY" onchange="setHours(true)">
+                                                    <input type="text" class="specific-endtime form-control input-field defaultEntry" size="10" placeholder="HH:MM" onkeyup="setHours(true)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Time Zone</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">                          
+                                                    <input type="text" class="zone-field RightFlyoutOpen" id="TimeZoneFlyout" placeholder="" value="(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 label-field">Reminder</label>
+                                            <div class="col-sm-8">
+                                                <div class="select-wrap">
+                                                    <input type="text" class="zone-field RightFlyoutOpen" id="ReminderFlyout" placeholder="" value="15 minute before">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="Advanced-section">
+                            <a class="clearfix" role="button" data-toggle="collapse" data-parent="#accordion2" href="#newadvancedPanel" aria-expanded="true" aria-controls="newadvancedPanel"> 
+                                <div class="left">
+                                    <h6>Advanced options</h6>
+                                </div>
+                                <div class="right right-arrow">
+                                    <i class="fa fa-angle-down"></i>
+                                </div>
+                            </a> 
+                            <div id="newadvancedPanel" class="collapse in" role="tabpanel" aria-labelledby="newadvancedPanel">
+                                <div class="Advanced-section">
+                                    <form class="form-horizontal">   
+                                        <div class="checkbox">
+                                            <label class="ref-show-recurrence">
+                                              <input type="checkbox"> Add recurrence to this event
+                                            </label>
+                                        </div> 
+                                        <div class="hide recurrence-wrap">
+                                            <div class="form-group recusive-panel">
+                                                <label class="col-sm-12 label-field">Recurrence Patterns</label>
+                                                <div class="col-sm-12">
+                                                    <ul id="ref-toggle-drp">
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Daily
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Every 
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" 
+                                                                        maxlength="3" pattern="\d{3}" >day(s)
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Every weekday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Weekly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                        Recur every 
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">Week(s) on
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Monday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Tuesday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Wednesday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Thursday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Friday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Saturday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="checkbox">
+                                                                        <label>
+                                                                          <input type="checkbox" name="subradio"> Sunday
+                                                                        </label>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Monthly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> Day 
+                                                                        </label>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">of every
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">month(s)
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> The 
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>First</option>
+                                                                            <option>Second</option>
+                                                                            <option>Third</option>
+                                                                            <option>Fourth</option>
+                                                                            <option>Last</option>
+                                                                        </select>
+                                                                        <select class="select-field">
+                                                                            <option>Monday</option>
+                                                                            <option>Tuesday</option>
+                                                                            <option>Wednesday</option>
+                                                                            <option>Thursday</option>
+                                                                            <option>Friday</option>
+                                                                            <option>Saturday</option>
+                                                                            <option>Sunday</option>
+                                                                        </select>of every
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">month(s)
+
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                        <li class="year-panel">
+                                                            <div class="radio">
+                                                                <label>
+                                                                  <input type="radio" name='recursive'> Yearly
+                                                                </label>
+                                                            </div>
+                                                            <ul>
+                                                                <li>
+                                                                    Recur every <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">year(s)
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> On: 
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>January</option>
+                                                                            <option>February</option>
+                                                                            <option>March</option>
+                                                                            <option>April</option>
+                                                                            <option>May</option>
+                                                                            <option>June</option>
+                                                                            <option>July</option>
+                                                                            <option>August</option>
+                                                                            <option>September</option>
+                                                                            <option>October</option>
+                                                                            <option>November</option>
+                                                                            <option>December</option>    
+                                                                        </select>
+                                                                        <input type="text" class="input-field" placeholder="" maxlength="2" pattern="\d{2}">
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="radio">
+                                                                        <label>
+                                                                          <input type="radio" name="subradio"> On the: 
+                                                                        </label>
+                                                                        <select class="select-field">
+                                                                            <option>First</option>
+                                                                            <option>Second</option>
+                                                                            <option>Third</option>
+                                                                            <option>Fourth</option>
+                                                                            <option>Last</option>
+                                                                        </select>
+                                                                        <select class="select-field">
+                                                                            <option>Monday</option>
+                                                                            <option>Tuesday</option>
+                                                                            <option>Wednesday</option>
+                                                                            <option>Thursday</option>
+                                                                            <option>Friday</option>
+                                                                            <option>Saturday</option>
+                                                                            <option>Sunday</option>
+                                                                        </select> of 
+                                                                        <select class="select-field">
+                                                                            <option>January</option>
+                                                                            <option>February</option>
+                                                                            <option>March</option>
+                                                                            <option>April</option>
+                                                                            <option>May</option>
+                                                                            <option>June</option>
+                                                                            <option>July</option>
+                                                                            <option>August</option>
+                                                                            <option>September</option>
+                                                                            <option>October</option>
+                                                                            <option>November</option>
+                                                                            <option>December</option>
+                                                                        </select>
+
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>        
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">Start occurrence on</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control input-field datepicker"  placeholder="MM/DD/YYYY">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 label-field">End occurrence on</label>
+                                                <div class="col-sm-8">
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> No end date
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> End after 
+                                                        </label>
+                                                        <input type="text" class="form-control input-field datepicker"  placeholder="MM/DD/YYYY"> occurrence(s)
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                          <input type="radio" name="occurrence"> By
+                                                        </label>
+                                                        <input type="text" class="form-control input-field datepicker"  placeholder="MM/DD/YYYY">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="user-roles RightFlyoutClose" data-original-title="NewEventSave"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="user-roles RightFlyoutClose" data-original-title="NewEventCancel"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<div class="right-popup rightFlyout" id="TimeZoneFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Time Zone</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++) 
+                        {?> 
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>(UTC+05:45) Kathmandu</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>(UTC+07:00) Bangkok, Hanoi, Jakarta</span>
+                                    </div>
+                                </div>
+                            </li>
+
+                       
+                        <?php
+                        }
+                        ?>
+                    </ol>
+                </div>            
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="TimeZoneFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="TimeZoneFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<div class="right-popup rightFlyout" id="ReminderFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Reminder</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 20; $i++) 
+                        {?> 
+                            <li>
+                                <div class="left">
+                                     <div class="node-content"> 
+                                        <span>15 minute before</span>
+                                    </div>
+                                </div>
+                            </li>                       
+                        <?php
+                        }
+                        ?>
+                    </ol>
+                </div>            
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="RightFlyoutClose" id="ReminderFlyout"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="RightFlyoutClose" id="ReminderFlyout"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $('.table-style td').each(function(){
+        var getText = $(this).text();
+        if(getText == 'Untitled'){
+            $(this).addClass('text-italic');
+        }
+    });
+
+ //  var inlineHIg   =   $('.ref-show-inline-wrap').outerHeight();
+   //$('.ref-show-inline-wrap').animate({marginTop:-inlineHIg+"px"});
+</script>
+
+ <!-- ====================right context menubar start=====================-->
+<div id="right_aContextMenubar"  class="dropdown clearfix" >
+    <ul class="dropdown-menu right-new-event" role="menu" aria-labelledby="dropdownMenu" style="display:block; position: relative; margin-bottom: 5px;">
+        <li><a href="#" class="view-user-profile ref-open-cal-event-details" id="NewEventFlyout">New Events</a></li>
+        <li><a href="#">Views Settings</a></li>
+    </ul>
+</div>
+ <!-- ====================right context menubar end=====================-->
+
+<script type="text/javascript">
+// fullCalendar();
+puicalendar();
+setDynamicallyEvents();
+</script>
+

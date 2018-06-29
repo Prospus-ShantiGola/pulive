@@ -1,0 +1,1174 @@
+<?php if($this->is_main_layout == 'N') { ?>
+
+<?php if($this->display == 'Normal') { ?>
+    <div class="total-width-pane slide-wrap active" id="class-wrapper">
+
+        <div class="listing-wrapper dashSlider clearfix set-height active">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head">
+                            <span class="main-title-wrap">
+                                <span class="main-title left-side-heading main-head">Classes: List</span>
+                            </span>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mask-black mask-left" style="display: none;"></div>
+            <div class="lodding-half loading-left1" style="display: none;"> 
+                <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+            </div>
+            <input type="hidden" id="filter_operator" name="filter_operator" value="equals" />
+            <input type="hidden" id="filter_type" name="filter_type" value="pagination" />
+            <input type="hidden" id="filter_field" name="filter_field" value="" />
+
+            <input type="hidden" id="is_instance" name="is_instance" value="N" />
+            <input type="hidden" id="is_loading_tag" name="is_loading_tag" value="N" />
+            <input type="hidden" id="action_type" name="action_type" value="" />
+            <input type="hidden" id="temp_item_per_page" name="temp_item_per_page" value="<?php echo $this->itemsPerPage; ?>" />
+            <div class="main-one-third add-column-table" id="first-class-div" >
+                <?php
+                    $url_order = 'ASC';  // the following lines
+                    $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+                ?>
+                <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head">
+                    <thead>
+                        <tr>
+                            <th><input value="all_class" id="all_class" name="all_class" class="all_check" type="checkbox" ><label></label></th>
+                            <th style="display:none;"> <span>ID</span> </th>
+                            <?php /* ?><th class="filterDrp strat_click" strat-id="n_ajax" >
+                                <span class="">     
+                                    NID 
+                                    <?php if ($order_by == 'node_id') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','node_id','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','node_id','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                            <li data-id="equals" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Equals To</li>
+                                            <li data-id="not_equal" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Not Equals To</li>
+                                            <li data-id="begins_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Begins With</li>
+                                            <li data-id="ends_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Ends With</li>
+                                            <li data-id="contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Contains</li>
+                                            <li data-id="not_contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Does Not Contain</li>
+                                        </ul>
+                                    </li>                                
+                                    <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" id="search-caption-text-box" class="form-control" placeholder="Search" name="search-caption-text-box" value="" >
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                
+                                    </div>
+                                </ul>
+                            </th>
+                            <?php */ ?>
+                            <th class="filterDrp strat_click" strat-id="n_ajax" >
+                                <span class="">Common Name
+                                    <?php if ($order_by == 'caption') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort A - Z</li>
+                                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','DESC',<?php echo $this->itemsPerPage; ?>)">Sort Z - A</li>
+                                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                            <li data-id="equals" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Equals To</li>
+                                            <li data-id="not_equal" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Not Equals To</li>
+                                            <li data-id="begins_with" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Begins With</li>
+                                            <li data-id="ends_with" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Ends With</li>
+                                            <li data-id="contains" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Contains</li>
+                                            <li data-id="not_contains" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Does Not Contain</li>
+                                        </ul>
+                                    </li>                                
+                                    <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" id="search-caption-text-box-caption" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-common-name">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box-caption entr-common-name" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    <!-- /input-group -->
+                                    </div>
+                                </ul>
+                            </th>
+                            <th class="filterDrp strat_click" strat-id="n_ajax">
+                                <span>Type
+                                    <?php if ($order_by == 'node_type_id') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li data-id="all" data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">All</li>
+                                    <li data-id="y"   data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Y</li>
+                                    <li data-id="x"   data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node X</li>
+                                    <li data-id="z"   data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Z</li>
+                                  
+                                </ul>
+                            </th>
+                            <th class="filterDrp strat_click" strat-id="n_ajax" > 
+                                <span class="">     
+                                    VERSION 
+                                    <?php if ($order_by == 'version') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                            <li data-id="equals" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Equals To</li>
+                                            <li data-id="not_equal" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Not Equals To</li>
+                                            <li data-id="begins_with" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Begins With</li>
+                                            <li data-id="ends_with" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Ends With</li>
+                                            <li data-id="contains" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Contains</li>
+                                            <li data-id="not_contains" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Does Not Contain</li>
+                                        </ul>
+                                    </li>                                
+                                    <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" id="search-caption-text-box" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-version">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box entr-version" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    <!-- /input-group -->
+                                    </div>
+                                </ul>
+                            </th>
+                            <th class="filterDrp strat_click" strat-id="n_ajax" >
+                                <span>Inst.
+                                    <?php if ($order_by == 'instance_total') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?> 
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                                    <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                                    <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                        <ul class="multi-sub-menu dropdown-menu">
+                                            <li data-id="equals" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Equals To</li>
+                                            <li data-id="not_equal" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Not Equals To</li>
+                                            <li data-id="begins_with" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Begins With</li>
+                                            <li data-id="ends_with" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Ends With</li>
+                                            <li data-id="contains" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Contains</li>
+                                            <li data-id="not_contains" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Does Not Contain</li>
+                                        </ul>
+                                    </li>                                
+                                    <div class="search-item-wrap">
+                                        <div class="input-group">
+                                            <input type="text" id="search-caption-text-box-instance_total" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-instance">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default search-button-box-instance_total entr-instance" type="button"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    <!-- /input-group -->
+                                    </div>
+                                </ul>
+                            </th>
+                            <th class="filterDrp strat_click" strat-id="n_ajax" >
+                                <span>Status
+                                    <?php if ($order_by == 'status') { ?>
+                                        <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                                    <?php } else { ?>
+                                        <i class="fa fa-angle-down"></i>
+                                    <?php } ?>
+                                </span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li data-id="all" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">All</li>
+                                    <li data-id="d" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">Draft</li>
+                                    <li data-id="p" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">Published</li>
+                                
+                                </ul>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+                <div class="nano set-content-height">
+                    <div class="nano-content">
+                        <div class="">
+                            <table class="table table-style table-dashboard class-table get-version">
+                                <tbody>
+                                    <?php
+
+                                     if(count($this->classArray) > 0) { $i= 0; foreach($this->classArray as $key => $className) { 
+                                        
+                                        ?>
+                                        <tr class="lisat-class-row<?php echo $i; ?> list-row" id="list-row_<?php echo $className->node_class_id; ?>" data-versiontype ="<?php echo $className->type; ?>" >
+                                            <td><input value="<?php echo $className->node_class_id; ?>" id="r_check<?php echo $className->node_class_id; ?>" name="r_check<?php echo $className->node_class_id; ?>" class="single_check" type="checkbox"><label></label></td>
+                                            <td id="node_class_id_label_<?php echo $className->node_class_id; ?>" style="display:none;" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="<?php if($i==0) { ?>first_class_structure strat_click<?php } else { ?>strat_click<?php } ?>"  ><?php echo $className->node_class_id; ?></td>
+                                            <!-- <td onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" ><?php echo $className->node_id; ?></td> -->
+                                            <td id="common_name_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                                <?php 
+                                                    if(trim($className->caption) != "") 
+                                                    { 
+                                                        if(intval($className->encrypt_status) == 1)
+                                                        {
+                                                            echo $this->encryption_decryption('mc_decrypt',array('decrypt' =>$className->caption,'key' =>ENCRYPTION_KEY)); 
+
+                                                        } 
+                                                        else
+                                                        {
+                                                            echo $className->caption;
+                                                        } 
+                                                    } 
+                                                    else 
+                                                    { 
+                                                        echo $className->node_id; 
+                                                    } 
+                                                ?>
+                                            </td>
+                                            <td id="node_type_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                                <?php echo $className->node_type_id; ?>
+                                            </td>
+                                            <td id="version_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" ><?php if($className->version==""){
+                                                        echo '-';
+                                                    }else {
+                                                        echo $className->version;
+                                                    } ?>
+                                            </td>
+
+                                            <td id="instance_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                                <?php echo $className->instance_total; ?>
+                                            </td>
+                                            <td id="status_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                                <?php echo $className->status; ?>
+                                            </td>
+                                        </tr>
+                                    <?php $i = intval($i) + 1; } } else { ?>
+                                        <tr class="list-row lisat-class-row0" >
+                                            <td colspan="7" align="center" >No Class Found</td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="list-bottom Ajaxpage-getUserWithPagination">
+                    <div class="paginationBottom pagination_row"><div class="toggle-btn-box pagination_col">
+                        <div class="btn-group btn-toggle">
+                            <!-- <button onclick="listPage('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                            <button onclick="listPage('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button> -->
+                            <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+                        </div>
+                    </div>
+
+                    <?php
+                             // add at the end of the file after the table
+                             echo $this->paginationControl(
+                                 // the paginator object
+                                 $this->classArray,
+                                 // the scrolling style
+                                 'sliding',
+                                 // the partial to use to render the control
+                                 'paginator-ajax',
+                                 // the route to link to when a user clicks a control link
+                                 array(
+                                     'route' => 'classes','order_by' => $this->order_by, 'order' => $this->order, 'itemPerPage' => $this->itemsPerPage,
+                                 )
+                             );
+                    ?>
+                    <div class="pagination-right-col">
+                    <div class="detail-value1 pagination_col">
+                        <div class="relative">
+                            <label class="custom-select">
+                                <div class="styled-select">
+                                    <select class="form-control strat_click" strat-id="n_ajax" id="paginateChunk" name="paginateChunk" required="required" onchange="setPage(this.value)" >
+                                    <option <?php if(intval($this->itemsPerPage) == 25) { ?> selected="selected" <?php } ?> value="25">25 per page</option>
+                                    <option <?php if(intval($this->itemsPerPage) == 50) { ?> selected="selected" <?php } ?> value="50">50 per page</option>
+                                    <option <?php if(intval($this->itemsPerPage) == 75) { ?> selected="selected" <?php } ?> value="75">75 per page</option>
+                                    <option <?php if(intval($this->itemsPerPage) == 100) { ?> selected="selected" <?php } ?> value="100">100 per page</option>
+                                </select>
+                                 </div>   
+                            </label>
+                        </div>
+                    </div>
+
+                    <span class="oftotal pagination_col">
+                        <?php  $f = (intval($this->itemsPerPage)*intval($this->page)) - (intval($this->itemsPerPage)-1); if(intval($this->page) == 1) { echo '1'; } else { echo $f; } ?>-
+                            <?php $s = intval($this->itemsPerPage)*intval($this->page); if( intval($s) < intval($this->totalRecord)) { echo $s; } else { echo $this->totalRecord; }?>
+                             of <span id="search-total"><?php echo $this->totalRecord; ?></span>
+                        
+                    </span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="display-wrapper dashSlider clearfix set-height active versionBoxWrap">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head">
+                            <span class="main-title-wrap">
+                                    <span class="main-title left-side-heading" alt="" id="second-class-div-heading" >Class Properties</span>
+                            </span>
+                            <div class="control-btn-wrap right">
+                                <a href="#" class="active structureDiv" >
+                                    <i class="icon structure"></i><span>Structure</span>
+                                </a>
+                                 <a href="#" class="versionDiv">
+                                    <i class="icon structure"></i><span>Version</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mask-black mask-left" style="display: none;"></div>
+            <div class="lodding-half lodding-half2" style="display: none;"> 
+                <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+            </div>
+            <div class="main-one-third" id="second-class-div">
+                
+            </div>
+            <div class="main-one-third hide" id="version-class-div">
+                
+            </div>
+        </div>
+
+        <div id="div-node-x" class="display-wrapper dashSlider clearfix set-height">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head">
+                            <span class="main-title-wrap">
+                                    <span class="main-title left-side-heading" id="changeNodeType1">Node X (Class): List</span>
+                            </span>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mask-black mask-left" style="display: none;"></div>
+            <div class="lodding-half lodding-half2" style="display: none;"> 
+                <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+            </div>
+            <div class="main-one-third" id="third-class-div" >
+                <div id="node-tab">            
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active nano nodexdisplay" id="NodeX-tab">
+                        <ol class="class-wrapper table-list-view  dual-pane-height nano-content">                        
+                            <?php 
+                            foreach($this->nodeClassX as $key => $nodeX) { 
+
+                                    ?>
+                                    <li>
+                                        <div class="node-content clearfix">
+                                            <span class="sprite-icon tick-icon" id="<?php echo $nodeX['node_class_id']; ?>"></span>
+                                            <div class="node-left">                                            
+                                                <div class="node-circle node-white-circle<?php if(count($nodeX['caption']) > 0) { ?>-expanded<?php } ?>">N</div> 
+                                                <div class="node-head node-input" data-class="Display_<?php echo $nodeX['node_class_id']; ?>" data-name="<?php if(intval($nodeX['encrypt_status']) == 1){
+                                            echo $this->encryption_decryption('mc_decrypt',array('decrypt' =>$nodeX['caption'],'key'=>ENCRYPTION_KEY)); 
+                                                } else {
+                                                        echo $nodeX['caption'];
+                                                    } ?>"> 
+                                                    <span> <?php echo $nodeX['node_id']; ?> (<?php if(intval($nodeX['encrypt_status']) == 1){
+                                            echo $this->encryption_decryption('mc_decrypt',array('decrypt'=>$nodeX['caption'], 'key'=>ENCRYPTION_KEY)); 
+                                                } else {
+                                                        echo $nodeX['caption'];
+                                                    } ?>) </span>
+                                                    <input type="hidden" value="display_<?php echo $nodeX['node_class_id']; ?>" id="nodex_<?php echo $nodeX['node_class_id']; ?>" > 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </li>
+                                <?php } ?>
+                            
+                        </ol>
+                    </div>
+                  <?php /* ?><div role="tabpanel" class="tab-pane" id="render-tab">render</div>
+                    <div role="tabpanel" class="tab-pane" id="node-modal-tab">node</div>
+                    <div role="tabpanel" class="tab-pane" id="prespective-tab">prespective</div><?php */ ?>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="div-node-x-property" class="display-wrapper dashSlider clearfix set-height">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head">
+                            <span class="main-title-wrap">
+                                    <span class="main-title left-side-heading" id="property-heading"></span>
+                            </span>
+                           
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mask-black mask-left" style="display: none;"></div>
+            <div class="lodding-half lodding-half2" style="display: none;"> 
+                <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+            </div>
+            <div class="main-one-third" id="fourh-class-div" >
+                <div id="node-tab">            
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active  nodexdisplay nano" id="NodeX-tab">
+                        <ol class="class-wrapper table-list-view  dual-pane-height nano-content" >                        
+                            <?php 
+                           
+                            foreach($this->nodeClassX as $key => $nodeX) { ?>
+                                    <li>
+                                        <div class="node-content clearfix">
+                                            <span class="sprite-icon tick-icon thirdnodeX-Panel" id="<?php echo $nodeX['node_id']; ?>"></span>
+                                            <div class="node-left">                                            
+                                                <div class="node-circle node-white-circle<?php if(count($nodeX['caption']) > 0) { ?>-expanded<?php } ?>">N</div> 
+                                                <div class="node-head node-input"> 
+                                                    <span> 
+                                                        <?php if(!empty($nodeX['caption'])){
+                                                        if(intval($nodeX['encrypt_status']) == 1){
+                                                            echo $this->encryption_decryption('mc_decrypt',array('decrypt' =>$nodeX['caption'],'key' =>ENCRYPTION_KEY)); 
+                                                        } else {
+                                                                echo $nodeX['caption'];
+                                                            }
+
+                                                    } else {
+                                                        echo 'No record found.';
+                                                    } ?></span>
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </li>
+                                <?php } ?>
+                            
+                        </ol>
+                    </div>
+                  <?php /* ?><div role="tabpanel" class="tab-pane" id="render-tab">render</div>
+                    <div role="tabpanel" class="tab-pane" id="node-modal-tab">node</div>
+                    <div role="tabpanel" class="tab-pane" id="prespective-tab">prespective</div><?php */ ?>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="div-node-x-detail" class="display-wrapper dashSlider clearfix set-height">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head">
+                            <span class="main-title-wrap">
+                                    <span class="main-title left-side-heading" id="second-class-div-heading" >Class Survey: { _ }</span>
+                            </span>
+                            <div class="control-btn-wrap right">
+                                <a href="#" class="active" >
+                                        <i class="icon survey"></i><span>Details</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mask-black mask-left" style="display: none;"></div>
+            <div class="lodding-half lodding-half2" style="display: none;"> 
+                <img src="<?php echo PU_CDN_URL; ?>public/img/loader3.gif"> 
+            </div>
+            <div class="main-one-third" id="fifth-class-div">
+                <div class="form-detail">
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Upload</label>
+                        <div class="col-sm-8">
+                            <select class="form-control">
+                                <option>Select One</option>
+                                <option>AWS</option>
+                                <option>S2</option>
+                                <option>Lorem</option>
+
+                            </select>                     
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">File Upload</label>
+                        <div class="col-sm-8">
+                          <input type="file" class="filestyle" data-icon="false">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Type</label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control"  placeholder="Type">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Bucket</label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control"  placeholder="Bucket">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">awsSecretKey</label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control"  placeholder="awsSecretKey">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">awsSecretKey</label>
+                        <div class="col-sm-8">
+                          <input type="email" class="form-control"  placeholder="awsSecretKey">
+                        </div>
+                      </div>
+                    </form>
+                </div>
+                
+            </div>    
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        setWidth();
+       
+        $(":file").filestyle({icon: false});
+    </script>
+<?php } ?>
+
+<?php if($this->display == 'Ajax') { ?>
+    <?php $url_order = 'ASC'; $url_order = $order == 'ASC' ? 'DESC' : 'ASC'; ?>
+    <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head">
+        <thead>
+            <tr>
+                <th><input value="all_class" id="all_class" name="all_class" class="all_check" type="checkbox" ><label></label></th>
+                <th style="display:none;" > <span>ID </span> </th>
+                <?php /* ?><th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        NID 
+                        <?php if ($order_by == 'node_id') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','node_id','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','node_id','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="pagination" data-filter-field="node_id" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box" class="form-control" placeholder="Search" name="search-caption-text-box" value="" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        
+                        </div>
+                    </ul>
+                </th><?php */ ?>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >Common Name
+                    <?php if ($order_by == 'caption') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort A - Z</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','DESC',<?php echo $this->itemsPerPage; ?>)">Sort Z - A</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="pagination" data-filter-field="caption" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-caption" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-common-name">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-caption entr-common-name" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >Type
+                        <?php if ($order_by == 'node_type_id') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li data-id="all" data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">All</li>
+                        <li data-id="y" data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Y</li>
+                        <li data-id="x" data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node X</li>
+                        <li data-id="z" data-filter-by="pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Z</li>
+                    </ul>
+                </th>
+                <th class="filterDrp" > 
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        VERSION 
+                        <?php if ($order_by == 'version') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="pagination" data-filter-field="version" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-version">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box entr-version" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >Inst.
+                        <?php if ($order_by == 'instance_total') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','ASC',<?php echo $this->itemsPerPage; ?>)" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjax('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','DESC',<?php echo $this->itemsPerPage; ?>)">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="pagination" data-filter-field="instance_total" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-instance_total" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-instance">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-instance_total entr-instance" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >Status
+                        <?php if ($order_by == 'status') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li data-id="all" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">All</li>
+                        <li data-id="d" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">Draft</li>
+                        <li data-id="p" data-filter-by="pagination" data-filter-field="status" class="sub-filter-status">Published</li>
+                    </ul>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="nano set-content-height">
+        <div class="nano-content">
+            <div class="">
+                <table class="table table-style table-dashboard class-table">
+                    <tbody>
+                        <?php if(count($this->classArray) > 0) { $i= 0; foreach($this->classArray as $key => $className) {
+
+
+                         ?>
+                            <tr class="lisat-class-row<?php echo $i; ?> list-row" id="list-row_<?php echo $className->node_class_id; ?>"  data-versiontype ="<?php echo $className->type; ?>">
+                                <td><input value="<?php echo $className->node_class_id; ?>" id="r_check<?php echo $className->node_class_id; ?>" name="r_check<?php echo $className->node_class_id; ?>" class="single_check" type="checkbox"><label></label></td>
+
+                                <td id="node_class_id_label_<?php echo $className->node_class_id; ?>" style="display:none;" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="<?php if($i==0) { ?>first_class_structure strat_click<?php } else { ?>strat_click<?php } ?>"  ><?php echo $className->node_class_id; ?></td>
+                                <?php /* ?><td onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" ><?php echo $className->node_id; ?></td><?php */ ?>
+                                <td id="common_name_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                    <?php 
+                                        if(trim($className->caption) != "") 
+                                        { 
+                                            if(intval($className->encrypt_status) == 1)
+                                            {
+                                                echo $this->encryption_decryption('mc_decrypt',array('decrypt' =>$className->caption,'key' =>ENCRYPTION_KEY)); 
+
+                                            } 
+                                            else
+                                            {
+                                                echo $className->caption;
+                                            } 
+                                        } 
+                                        else 
+                                        { 
+                                            echo $className->node_id; 
+                                        } 
+                                    ?> 
+                                </td>
+                                <td id="node_type_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                    <?php echo $className->node_type_id; ?>
+                                </td>
+                                <td id="version_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" ><?php 
+                                    if($className->version==""){
+                                        echo '-';
+                                    }else {
+                                        echo $className->version;
+                                    }
+                                 ?></td>
+                                <td id="instance_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                    <?php echo $className->instance_total; ?>
+                                </td>
+                                <td id="status_label_<?php echo $className->node_class_id; ?>" onclick="getClassStructure(<?php echo $className->node_class_id; ?>)" class="strat_click" >
+                                    <?php echo $className->status; ?>
+                                </td>
+                            </tr>
+                        <?php $i = intval($i) + 1; } } else { ?>
+                            <tr class="list-row lisat-class-row0" >
+                                <td colspan="7" align="center" >No Class Found</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="list-bottom Ajaxpage-getUserWithPagination">
+        <div class="paginationBottom pagination_row"><div class="toggle-btn-box pagination_col">
+            <div class="btn-group btn-toggle">
+                <?php /* ?><button onclick="listPage('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                <button onclick="listPage('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button>
+                 <?php */ ?>
+                <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+
+            </div>
+        </div>
+
+        <?php
+                 // add at the end of the file after the table
+                 echo $this->paginationControl(
+                     // the paginator object
+                     $this->classArray,
+                     // the scrolling style
+                     'sliding',
+                     // the partial to use to render the control
+                     'paginator-ajax',
+                     // the route to link to when a user clicks a control link
+                     array(
+                         'route' => 'classes','order_by' => $this->order_by, 'order' => $this->order, 'itemPerPage' => $this->itemsPerPage,
+                     )
+                 );
+        ?>
+        <div class="pagination-right-col">
+        <div class="detail-value1 pagination_col">
+            <div class="relative">
+                <label class="custom-select">
+                    <div class="styled-select">
+                        <select class="form-control strat_click" strat-id="n_ajax" id="paginateChunk" name="paginateChunk" required="required" onchange="setPage(this.value)" >
+                        <option <?php if(intval($this->itemsPerPage) == 25) { ?> selected="selected" <?php } ?> value="25">25 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 50) { ?> selected="selected" <?php } ?> value="50">50 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 75) { ?> selected="selected" <?php } ?> value="75">75 per page</option>
+                        <option <?php if(intval($this->itemsPerPage) == 100) { ?> selected="selected" <?php } ?> value="100">100 per page</option>
+                    </select>
+                    </div>    
+                </label>
+            </div>
+        </div>
+        
+        <span class="oftotal pagination_col">
+            <?php  $f = (intval($this->itemsPerPage)*intval($this->page)) - (intval($this->itemsPerPage)-1); if(intval($this->page) == 1) { echo '1'; } else { echo $f; } ?>-
+            <?php $s = intval($this->itemsPerPage)*intval($this->page); if( intval($s) < intval($this->totalRecord)) { echo $s; } else { echo $this->totalRecord; }?>
+             of <span id="search-total"><?php echo $this->totalRecord; ?></span>
+        </span></div></div>
+    </div>
+    <script type="text/javascript">
+        <?php if($this->is_auto == '') { ?>
+        //commented by Divya Rajput on date 6 jan 2016
+        $(".first_class_structure").click();
+
+        /*if($('body').hasClass('first_class_structure') == false)
+        {
+            $(".DeleteClasses_li").addClass('inactive');
+            $(".DeleteClasses_li").find('a').css("pointer-events","none");
+            $(".NodeX_li").addClass('inactive');
+            $(".NodeX_li").find('a').css("pointer-events","none");
+            $(".NodeY_li").addClass('inactive');
+            $(".NodeY_li").find('a').css("pointer-events","none");
+            $(".NodeZ_li").addClass('inactive');
+            $(".NodeZ_li").find('a').css("pointer-events","none");
+            $(".All_li").addClass('inactive');
+            $(".All_li").find('a').css("pointer-events","none");
+            $(".Draft_li").addClass('inactive');
+            $(".Draft_li").find('a').css("pointer-events","none");
+            $(".Published_li").addClass('inactive');
+            $(".Published_li").find('a').css("pointer-events","none");
+            $(".Disabled_li").addClass('inactive');
+            $(".Disabled_li").find('a').css("pointer-events","none");
+            $("#second-class-div").html("");
+            $(".tooltip-item").hide();
+        }
+        else
+        {
+            $(".DeleteClasses_li").removeClass('inactive');
+            $(".DeleteClasses_li").find('a').css("pointer-events","all");
+            $(".NodeX_li").removeClass('inactive');
+            $(".NodeX_li").find('a').css("pointer-events","all");
+            $(".NodeY_li").removeClass('inactive');
+            $(".NodeY_li").find('a').css("pointer-events","all");
+            $(".NodeZ_li").removeClass('inactive');
+            $(".NodeZ_li").find('a').css("pointer-events","all");
+            $(".All_li").removeClass('inactive');
+            $(".All_li").find('a').css("pointer-events","all");
+            $(".Draft_li").removeClass('inactive');
+            $(".Draft_li").find('a').css("pointer-events","all");
+            $(".Published_li").removeClass('inactive');
+            $(".Published_li").find('a').css("pointer-events","all");
+        }*/
+        <?php } else { ?>
+            var node_y_class_id = $("#node_y_class_id").val();
+            var id = 'r_check'+node_y_class_id;
+            $("#"+id).prop('checked',true);
+        <?php }  ?>
+    </script>
+<?php } ?>
+
+<?php if($this->display == 'no-pagination') { ?>
+    <?php $url_order = 'ASC'; $url_order = $order == 'ASC' ? 'DESC' : 'ASC'; ?>
+    <table cellspacing="0" cellpadding="0" width="100%" class="table table-style table-dashboard class-table table-head">
+        <thead>
+            <tr>
+                <th><input value="all_class" id="all_class" name="all_class" class="all_check" type="checkbox" ><label></label></th>
+                <th style="display:none;" > <span>ID </span> </th>
+                
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        Common Name 
+                        <?php if ($order_by == 'caption') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','ASC')" >Sort A - Z</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','caption','DESC')">Sort Z - A</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="caption" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-caption" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-common-name">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-caption entr-common-name" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div> 
+                    </ul>
+                </th>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >Type
+                        <?php if ($order_by == 'node_type_id') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li data-id="all" data-filter-by="no-pagination" data-filter-field="node_type_id" class="sub-filter-type">All</li>
+                        <li data-id="y" data-filter-by="no-pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Y</li>
+                        <li data-id="x" data-filter-by="no-pagination" data-filter-field="node_type_id" class="sub-filter-type">Node X</li>
+                        <li data-id="z" data-filter-by="no-pagination" data-filter-field="node_type_id" class="sub-filter-type">Node Z</li>
+                     
+                    </ul>
+                </th>
+
+                <th class="filterDrp" > 
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        VERSION 
+                        <?php if ($order_by == 'version') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','ASC')" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','version','DESC')">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="version" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-version">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box entr-version" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                    </ul>
+                </th>
+
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        Inst. 
+                        <?php if ($order_by == 'instance_total') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','ASC')" >Sort by ascending</li>
+                        <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationAjaxList('<?php echo $this->url('classes');?>','<?php echo $page; ?>','instance_total','DESC')">Sort by descending</li>
+                        <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                            <ul class="multi-sub-menu dropdown-menu">
+                                <li data-id="equals" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Equals To</li>
+                                <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Not Equals To</li>
+                                <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Begins With</li>
+                                <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Ends With</li>
+                                <li data-id="contains" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Contains</li>
+                                <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="instance_total" class="sub-filter">Does Not Contain</li>
+                            </ul>
+                        </li>                        
+                        <div class="search-item-wrap">
+                            <div class="input-group">
+                                <input type="text" id="search-caption-text-box-instance_total" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-instance">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default search-button-box-instance_total entr-instance" type="button"><i class="fa fa-search"></i></button>
+                                </span>
+                            </div>
+                        <!-- /input-group -->
+                        </div>
+                       
+                    </ul>
+                </th>
+                <th class="filterDrp" >
+                    <span class="strat_click" strat-id="n_ajax" >     
+                        Status 
+                        <?php if ($order_by == 'status') { ?>
+                            <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                        <?php } else { ?>
+                            <i class="fa fa-angle-down"></i>
+                        <?php } ?>
+                    </span>
+                    <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                        <li data-id="all" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-status">All</li>
+                        <li data-id="d" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-status">Draft</li>
+                        <li data-id="p" data-filter-by="no-pagination" data-filter-field="status" class="sub-filter-status">Published</li>
+
+                    </ul>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <div class="nano set-content-height">
+        <div class=" nano-content">
+            <div class="">
+                <table class="table table-style table-dashboard class-table">
+                    <tbody>
+                        <?php if(count($this->classArray) > 0) { $i= 0; foreach($this->classArray as $key => $className) { ?>
+                            <tr class="lisat-class-row<?php echo $i; ?> list-row" id="list-row_<?php echo $className['node_class_id']; ?>" data-versiontype ="<?php echo $className['type']; ?>" style="cursor:pointer;" >
+                                <td><input value="<?php echo $className['node_class_id']; ?>" id="r_check<?php echo $className['node_class_id']; ?>" name="r_check<?php echo $className['node_class_id']; ?>" class="single_check" type="checkbox"><label></label></td>
+                                <td id="node_class_id_label_<?php echo $className['node_class_id']; ?>" style="display:none;" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="<?php if($i==0) { ?>first_class_structure strat_click<?php } else { ?> strat_click<?php } ?>" ><?php echo $className['node_class_id']; ?>
+                                </td>
+                                <td id="common_name_label_<?php echo $className['node_class_id']; ?>" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="strat_click" >
+                                    <?php 
+                                        if(trim($className['caption']) != "") 
+                                        { 
+                                            if(intval($className['encrypt_status']) == 1)
+                                            {
+                                                echo $this->encryption_decryption('mc_decrypt',array('decrypt' =>$className['caption'],'key' =>ENCRYPTION_KEY)); 
+
+                                            } 
+                                            else
+                                            {
+                                                echo $className['caption'];
+                                            } 
+                                        } 
+                                        else 
+                                        { 
+                                            echo $className['node_id']; 
+                                        } 
+                                    ?>
+                                </td>
+                                <td id="node_type_label_<?php echo $className['node_class_id']; ?>" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="strat_click" >
+                                    <?php echo $className['node_type_id']; ?>
+                                </td>
+                                <td id="version_label_<?php echo $className['node_class_id']; ?>" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="strat_click" >
+                                    <?php if($className['version']==""){
+                                        echo '-';
+                                    }else {
+                                        echo $className['version'];
+                                    } ?>
+                                </td>
+                                <td id="instance_label_<?php echo $className['node_class_id']; ?>" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="strat_click" >
+                                    <?php echo $className['instance_total']; ?>
+                                </td>
+                                <td id="status_label_<?php echo $className['node_class_id']; ?>" onclick="getClassStructure(<?php echo $className['node_class_id']; ?>)" class="strat_click" >
+                                    <?php echo $className['status']; ?>
+                                </td>
+                            </tr>
+                        <?php $i = intval($i) + 1; } } else { ?>
+                            <tr class="list-row lisat-class-row0" >
+                                <td colspan="7" align="center" >No Class Found</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="list-bottom Ajaxpage-getUserWithPagination">
+        <div class="paginationBottom pagination_row"><div class="toggle-btn-box pagination_col">
+            <div class="btn-group btn-toggle">
+                <?php /* ?><button onclick="listPage('N');" class="btn btn-default barBtn strat_click"><i class="fa barIcon"></i></button>
+                <button onclick="listPage('Y');" class="btn btn-primary active powerBtn strat_click"><i class="fa powerIcon"></i></button><?php */ ?>
+                <span class="clear-filter clear-filter-js disabled" onclick="leftNavigationModule.resetFilter(this);" data-placement="right" data-toggle="tooltip" data-original-title="Clear Filter"><i class="prs-icon clearfilter"></i></span>
+            </div>
+        </div>
+        <div class="pagination-right-col">
+        <span class="oftotal pagination_col">
+            1 - <span id="search-total"><?php echo $this->totalRecord; ?></span>
+        </span></div></div>
+    </div>
+    <script type="text/javascript">
+        //commented by Divya Rajput on date 6 jan 2016
+        $(".first_class_structure").click(); 
+        versionPanel();
+
+        /*if($('body').hasClass('first_class_structure') == false)
+        {
+            $(".DeleteClasses_li").addClass('inactive');
+            $(".DeleteClasses_li").find('a').css("pointer-events","none");
+            $(".NodeX_li").addClass('inactive');
+            $(".NodeX_li").find('a').css("pointer-events","none");
+            $(".NodeY_li").addClass('inactive');
+            $(".NodeY_li").find('a').css("pointer-events","none");
+            $(".NodeZ_li").addClass('inactive');
+            $(".NodeZ_li").find('a').css("pointer-events","none");
+            $(".All_li").addClass('inactive');
+            $(".All_li").find('a').css("pointer-events","none");
+            $(".Draft_li").addClass('inactive');
+            $(".Draft_li").find('a').css("pointer-events","none");
+            $(".Published_li").addClass('inactive');
+            $(".Published_li").find('a').css("pointer-events","none");
+            $(".Disabled_li").addClass('inactive');
+            $(".Disabled_li").find('a').css("pointer-events","none");
+            $("#second-class-div").html("");
+            $(".tooltip-item").hide();
+        }
+        else
+        {
+            $(".DeleteClasses_li").removeClass('inactive');
+            $(".DeleteClasses_li").find('a').css("pointer-events","all");
+            $(".NodeX_li").removeClass('inactive');
+            $(".NodeX_li").find('a').css("pointer-events","all");
+            $(".NodeY_li").removeClass('inactive');
+            $(".NodeY_li").find('a').css("pointer-events","all");
+            $(".NodeZ_li").removeClass('inactive');
+            $(".NodeZ_li").find('a').css("pointer-events","all");
+            $(".All_li").removeClass('inactive');
+            $(".All_li").find('a').css("pointer-events","all");
+            $(".Draft_li").removeClass('inactive');
+            $(".Draft_li").find('a').css("pointer-events","all");
+            $(".Published_li").removeClass('inactive');
+            $(".Published_li").find('a').css("pointer-events","all");
+        }*/
+    </script>
+<?php } ?>
+
+<?php } else{ ?>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //setTimeout('$("#'+classMenuId+'_'+classMenuName.toLowerCase()+' .icon-wrap .strat_click").click();',1000);
+            var timer = setInterval(function(){ 
+                var clckElem = $('#'+classMenuId+'_'+classMenuName.toLowerCase()+' .icon-wrap .strat_click');
+                if(clckElem.length){
+                    clckElem.click();
+                    clearInterval(timer);
+                }
+            }, 500);
+        });
+    </script>
+    
+<?php } ?>
+
+<?php echo $this->partial('partial/deleteSubclassModal.phtml'); ?>
+<?php echo $this->partial('partial/classes-popup.phtml'); ?>

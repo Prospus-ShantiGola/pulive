@@ -1,0 +1,118 @@
+<?php //echo "<pre>";print_r($post);die;?>
+<div class="total-width-pane slide-wrap active " >
+    <div class="listing-wrapper dashSlider clearfix set-height active activeWrap">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Email : List</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-one-third">
+            <table class="table table-style table-responsive table-head ActiveRow actor-table">
+                <thead>
+                    <th class="">
+                        <span>Date<i class=""></i></span>
+                    </th>
+                    <th class="">
+                        <span>Subject<i class=""></i></span>
+                    </th>
+                </thead>
+            </table>
+            <div class="nano fixedTableHig">
+                <div class="nano-content">
+                    <table class="table table-style table-responsive actor-table ActiveRow "> 
+                        <tbody> 
+                        <?php $count=0;
+                        foreach ($post as $row){  ?>     
+                            <tr class="<?=($count==0)?'current':''?> email_row_<?=$row['email_node_id'];?> email_row" data-id="<?=$row['email_node_id'];?>">
+                                <td><?=$row['date']?></td>
+                                <td><?=$row['subject']?></td>
+                            </tr>
+                      <?php  $count++;} 
+                        ?>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="display-wrapper dashSlider clearfix set-height active">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Email : Details</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nano">
+            <div class="nano-content HalfPaneHeight ">
+                <div class="accountViewMode account-detail-mode">
+                    <div class="">
+                        <div class="">
+                            <form class="form-horizontal">          
+                                <div class="form-group">
+                                    <div class="col-sm-9">
+                                        <span class="email_detail_container"><?php if($htmlmsg){echo $htmlmsg;}else{echo $plainmsg;}?></span>
+                                    </div>
+                                </div> 
+                            </form>
+                        </div>
+                    </div>
+                </div>                           
+                
+                <div class="accountEditMode account-detail-mode hide">
+                    <div class="">
+                        <h6>General</h6>
+                        <div class="">
+                            <form class="form-horizontal">          
+                                <div class="form-group">
+                                    <label class="col-sm-3 label-field">First Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control input-field" placeholder="">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 label-field">Last Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control input-field" placeholder="">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 label-field">Email Id</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control input-field" placeholder="">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label class="col-sm-3 label-field">Role</label>
+                                    <div class="col-sm-9">
+                                        <div class="select-wrap">
+                                            <select class="select-field">
+                                                <option value="All">All</option>
+                                                <option value="Draft">Draft</option>
+                                                <option value="Published" selected>Published</option>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+                                </div>                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+</div>

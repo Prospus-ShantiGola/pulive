@@ -1,0 +1,498 @@
+all_settings =  { 
+    "dashboard": {
+        "class": "active",
+        "label": "Dashboard",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "",
+                "menuListInstanceId": ""
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Deals: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "396138",
+                    "role_cols": [{
+                        "role_ids": [450187, 603696, 1746983, 454674, 454679, 1462795, 1462785], // BM, Admin, SuperAdmin,RA,C,D
+                        "columns": ["( )Customer=BUYER > First Name+BUYER > Last Name",  "Stock #=BOAT > Stock #", "RELATED DETAILS > Deal Size", "DEAL > Status","DEAL > Estimated Closing Date"]
+                    }]
+                },
+                
+                "listingPattern": {
+                    "type": "roleWise"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                    "role_ids" : [450187, 603696, 1746983, 454674, 454679, 1462795, 1462785], // BM, Admin, SuperAdmin,RA,C,D
+                    "col_settings": [{
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, ]
+
+                }]
+                
+            },
+            "detail": {
+                "detailLayoutInstanceId": "",
+                "contentDetails": {
+                    "instanceId": "660336",
+                    "displayType": "add",
+                    "heading": "Deals"
+                }
+            },
+        }
+    },
+    "deal": {
+        "class": "deals",
+        "label": "Deals",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "398419"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Deals: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "396138",
+                    "role_cols": [{
+                        "role_ids": [450187, 603696], // BM, Admin
+                        "columns": ["( )Customer=BUYER > First Name+BUYER > Last Name", "Customer #=BUYER > Customer #", "(, )Boat=BOAT > Make+BOAT > Model","DEAL > Location", "Stock #=BOAT > Stock #","DEAL > Status","DEAL > Estimated Closing Date"]
+                    },{
+                        "role_ids": [1746983], // SuperAdmin
+                        "columns": ["( )Customer=BUYER > First Name+BUYER > Last Name", "Customer #=BUYER > Customer #", "(, )Boat=BOAT > Make+BOAT > Model","DEAL > Location", "Stock #=BOAT > Stock #","( - ) Status=DEAL > Status + RELATED DETAILS > Sub Status","DEAL > Estimated Closing Date"]
+                    },{
+                        "role_ids": [454674, 454679, 1462795, 1462785], //RA, RM, C, D
+                        "columns": ["( )Customer=BUYER > First Name + BUYER > Last Name", "Stock #=BOAT > Stock #", "( - ) Status=DEAL > Status + RELATED DETAILS > Sub Status", "RELATED DETAILS > Timestamp", "DEAL > Condition", "Assignment=RELATED DETAILS > Assigned", "RELATED DETAILS > Deal Size", "DEAL > Estimated Closing Date"]
+                    }]
+                },
+                "listingPattern": {
+                    "type": "roleWise"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                    "role_ids" : [450187, 603696, 1746983], // BM, Admin, SuperAdmin
+                    "col_settings": [{
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-1 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-1 col-1"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2 col-1"
+                        }]
+
+                },{
+
+
+                    "role_ids" : [454674, 454679, 1462795, 1462785], //RA, RM, C, D
+                    "col_settings": [{
+                          "type": "filter",
+                          "size": "col-sm-2 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-1 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-1 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-2 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-1 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-2 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-1 col-2"
+                        }, {
+                          "type": "filter",
+                          "size": "col-sm-2 col-2"
+                        }]
+                }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "660336",
+                    "displayType": "add",
+                    "heading": "Deals"
+                }
+            },
+            "emailLinks": {
+                "emailFrom": "info@marinemax.com",
+                "privacyPolicy": "https:\/\/www.marinemax.com\/privacy-policy.aspx",
+                "socialLink": {
+                    "fb": "https:\/\/www.facebook.com\/MarineMaxLeisure",
+                    "twitter": "https:\/\/twitter.com\/marinemax",
+                    "instagram": "https:\/\/www.instagram.com\/marinemaxonline",
+                    "youtube": "https:\/\/www.youtube.com\/user\/MarineMaxOnline",
+                    "logourl": "https:\/\/www.marinemax.com\/",
+                }
+            }
+        }
+    },
+    "team-member": {
+        "class": "team-member",
+        "label": "Team Members",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "438843"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Team Members: List",
+                "NID": {
+                    "isShown": "true",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "416174",
+                    "columns": ["Title", "Role Type"]
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-7"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "438726",
+                    "displayType": "add",
+                    "heading": "Team Members"
+                }
+            }
+        }
+    },
+    "operation": {
+        "class": "operation",
+        "label": "Operations",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "438346"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Operations: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "406842",
+                    "columns": ["GENERAL > Name", "GENERAL > Description", "GENERAL > Sequence"]
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-5"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-5"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "600411",
+                    "displayType": "add",
+                    "heading": "Operations"
+                }
+            }
+        }
+    },
+    "requirement": {
+        "class": "requirements",
+        "label": "Requirements",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "408907"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Requirements: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "393925",
+                    //Deal ID #, Customer (First Name), Customer #, Boat (concatenate vessel brand / make and vessel model), Stock # /*"GENERAL > Deal ID #=Deal ID",*/
+                    "columns": ["Project", "Title", "Description", "Type", "Status"] //"BUYER > IDS Customer Number"
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "437396",
+                    "displayType": "add",
+                    "heading": "Requirements"
+                }
+            }
+        }
+    },
+    "performance": {   
+        "class": "performance",
+        "label": "Employee Review",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "805048"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Employee Review: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "839021",
+                    "columns":  ["TEAM MEMBER > ID", "TEAM MEMBER > Name", "TEAM MEMBER > Title", "REVIEW > Period", "REVIEW > Date"]
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "839721",
+                    "displayType": "add",
+                    "heading": "Employee Review"
+                }
+            }
+        }
+    },
+    "Control": {
+        "class": "Control",
+        "label": "Control",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "1362367"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Control: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "1362012",
+                    "columns": ["Role","Action"]
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-6"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-6"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {                   
+                    "instanceId": "1459552",
+                    "displayType": "add",
+                    "heading": "Control"
+                }
+            }
+        }
+    },
+    "store": {
+            "class": "store",
+            "label": "Store",
+            "settings": {
+                "menu": {
+                    "menuLayoutInstanceId": "434068",
+                    "menuListInstanceId": "1772114"
+                },
+                "list": {
+                    "listLayoutInstanceId": "434684",
+                    "layoutHeading": "Store: List",
+                    "NID": {
+                        "isShown": "false",
+                        "size": "col-sm-2",
+                        "title": "NID"
+                    },
+                    "listHeadArray": {
+                        "class_node_id": "1003202",
+                        "columns": ["Location", "Store Name=StoreName", "Display Name=DisplayName", "AppOne Id=AppOneID", "State", "Zip Code=ZipCode"]
+                    },
+                    "listingPattern": {
+                        "type": "normal"
+                    },
+                    "mappingClass": {
+                        "classNodeid": "416207"
+                    },
+                    "PaginationRecord": ["25", "50", "75", "100"],
+                    "BrokrageNodeId": "401537",
+                    "cssNodeId": "450312",
+                    "setting": [{
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }, {
+                            "type": "filter",
+                            "size": "col-sm-2"
+                        }]
+                },
+                "detail": {
+                    "detailLayoutInstanceId": "434721",
+                    "contentDetails": {
+                        "instanceId": "1776004", 
+                        "displayType": "add",
+                        "heading": "Store"
+                    }
+                }
+            }
+        }
+}   

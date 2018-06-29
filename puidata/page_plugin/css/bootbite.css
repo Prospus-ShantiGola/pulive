@@ -1,0 +1,53 @@
+/* ========================================================================
+ * Tutorial specific styling
+ *
+ * @see: css/default.css file for generic CSS
+ * ========================================================================
+ * Copyright 2015 Bootbites.com (unless otherwise stated)
+ * For license information see: http://bootbites.com/license
+ * ======================================================================== */
+
+/* ==================================================
+  Styling
+  ================================================== */
+
+.highlight-text-search {
+    background: orange;
+}
+.dropdown > a {
+  -webkit-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.dropdown.open {
+  
+}
+
+.dropdown-menu.animated {
+  /* Speed up animations */
+  -webkit-animation-duration: 0.55s;
+  animation-duration: 0.55s;
+  
+  -webkit-animation-timing-function: ease;
+  animation-timing-function: ease;
+  
+  /*
+   * @see:
+   * Animation duration: http://www.w3schools.com/cssref/css3_pr_animation-duration.asp
+   * Animation timing: http://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp
+   */
+}
+
+.dropdown-menu.animated.fadeIn {
+  /*
+   * Example of further customisation for the "fadeIn" effect
+   * Can be used for all effects ie. .dropdown-menu.animated.EFFECTNAME
+   */
+  -webkit-animation-duration: 0.45s;
+  animation-duration: 0.45s;
+  
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out;  
+}
+
+

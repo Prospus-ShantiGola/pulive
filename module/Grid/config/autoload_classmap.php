@@ -1,0 +1,20 @@
+<?php
+return array(
+    'Grid\Module'                                     => __DIR__ . '/../Module.php',
+    'Grid\MemorySharedManager'                        => __DIR__ . '/../src/Grid/MemorySharedManager.php',
+    'Grid\StoragePluginManager'                       => __DIR__ . '/../src/Grid/StoragePluginManager.php',
+    'Grid\Storage\Apc'                                => __DIR__ . '/../src/Grid/Storage/Apc.php',
+    'Grid\Storage\Db'                                 => __DIR__ . '/../src/Grid/Storage/Db.php',
+    'Grid\Storage\File'                               => __DIR__ . '/../src/Grid/Storage/File.php',
+    'Grid\Storage\Memcached'                          => __DIR__ . '/../src/Grid/Storage/Memcached.php',
+    'Grid\Storage\Memory'                             => __DIR__ . '/../src/Grid/Storage/Memory.php',
+    'Grid\Storage\Segment'                            => __DIR__ . '/../src/Grid/Storage/Segment.php',
+    'Grid\Storage\Session'                            => __DIR__ . '/../src/Grid/Storage/Session.php',
+    'Grid\Storage\ZendShmCache'                       => __DIR__ . '/../src/Grid/Storage/ZendShmCache.php',
+    'Grid\Storage\ZendDiskCache'                      => __DIR__ . '/../src/Grid/Storage/ZendDiskCache.php',
+    'Grid\Storage\StorageInterface'                   => __DIR__ . '/../src/Grid/Storage/StorageInterface.php',
+    'Grid\Storage\CapacityStorageInterface'           => __DIR__ . '/../src/Grid/Storage/CapacityStorageInterface.php',
+    'Grid\Storage\Exception\ExceptionInterface'       => __DIR__ . '/../src/Grid/Storage/Exception/ExceptionInterface.php',
+    'Grid\Storage\Exception\RuntimeException'         => __DIR__ . '/../src/Grid/Storage/Exception/RuntimeException.php',
+    'Grid\Controller\Plugin\SimpleMemoryShared'       => __DIR__ . '/../src/Grid/Controller/Plugin/SimpleMemoryShared.php',
+);

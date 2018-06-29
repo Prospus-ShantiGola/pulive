@@ -1,0 +1,583 @@
+
+#edtCanvasView{
+	width: 8.35in;
+	margin: 0px auto;	
+	
+}
+
+#edtInnerCanvasView .innerCanvasContainer{
+	padding: 30px;	
+	background-color: #fff;
+	margin-bottom: 20px;
+}
+#canvastableContextMenu,#removeMappedNode, #edtHyperlinkPopupCanvas, #edtHyperlinkPreviewCanvas, #edtCalculationPopup{
+	position:absolute;
+	background-color:#fff;
+	box-shadow: 0 2px 11px rgba(0, 0, 0, 0.3);
+	padding:5px;
+	display:none;
+	z-index:999;
+	min-width:200px;
+}
+
+.canvasPopupBox{
+	position:absolute;
+	background-color:#fff;
+	box-shadow: 0 2px 11px rgba(0, 0, 0, 0.3);
+	padding:5px;
+	display:none;
+	z-index:999;
+	min-width:200px;	
+}
+
+#canvastableContextMenu ul, #removeMappedNode ul{
+	padding:0px 15px;
+	margin:0px;
+}
+
+#canvastableContextMenu li, #removeMappedNode li{
+	padding:4px 0px;
+	margin:0px;
+}
+
+#canvastableContextMenu a, #removeMappedNode a{
+	text-decoration:none;
+	color:#000;
+}
+
+#edtCanvasView table{
+	width: 100%;
+}
+
+#edtCanvasView table{
+table-layout: fixed;
+border-collapse: separate;
+}
+
+#edtCanvasView .screenMode table{
+border: 1px dotted #0000ff !important;
+}
+
+#edtCanvasView .screenMode table.highlightTable{
+outline: 1px solid #ffff00;
+}
+
+#edtCanvasView td{
+padding: 5px;
+outline: none;
+word-break: break-all;
+vertical-align: top;
+font-size: 11px;
+}
+
+#edtCanvasView .screenMode td{
+border-style: none !important;
+border-width: 1px !important;
+border-color: #ff0000 !important;
+}
+#edtCanvasView .screenMode td:not(:last-child){
+border-right: 1px dotted #ff0000 !important;
+}
+
+#edtCanvasView .screenMode tr:not(:last-of-type) > td{
+border-bottom: 1px dotted #ff0000 !important;
+}
+
+
+#canvastableProperties td, #canvasTDProperties td, #canvastableColumnProperties td, #canvastableColumnProperties td, #canvastableRowProperties td,  #canvasRadioChkProperties td,  #canvasDynamicTextProperties td{
+	padding: 5px 10px;
+}
+
+#edtCanvasView .printMode td.nopadding{
+	
+}
+
+#edtCanvasView .printMode .deletePageSpan{
+	display: none;
+}
+
+/*
+#edtCanvasView table.printMode{
+	border: 1px solid #000;
+}
+
+#edtCanvasView table.printMode table{
+	border: 0px;
+}
+
+#edtCanvasView table.printMode td.nopadding{
+	padding: 0px;
+}
+
+#edtCanvasView table.printMode td:not(:last-child){
+border-right: 1px solid #000;
+}
+
+#edtCanvasView table.printMode tr:not(:last-of-type) > td{
+border-bottom: 1px solid #000;
+}
+*/
+#canvas-screen .total-width-pane {
+    border-right: 1px solid #dbdbdb;
+    background: #f4f4f4;
+}
+
+#canvasToolbar{
+	width: 8.5in;
+	background-color: #fff;
+	margin:0 auto;
+}
+
+#canvasToolbar span.icon{	
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+	border: 1px solid #fff;
+	padding: 2px;
+	cursor: pointer;
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	font-size: 12px;
+	background-image: url(../img/doc-editor-icons.png);
+	background-repeat: no-repeat;
+	box-sizing: content-box;
+
+}
+
+#canvasToolbar span.doUndoCanvas{
+	background-position: -120px -36px;
+}
+
+#canvasToolbar span.doRedoCanvas{
+	background-position: -118px -6px;
+}
+
+#canvasToolbar span.bold{
+	background-position: -5px -5px;
+}
+
+#canvasToolbar span.italic{
+	background-position: -5px -35px;
+}
+
+#canvasToolbar span.underline{
+	background-position: -5px -65px;
+}
+
+#canvasToolbar span.leftAlign{
+	background-position: -5px -125px;
+}
+
+#canvasToolbar span.rightAlign{
+	background-position: -5px -155px;
+}
+
+#canvasToolbar span.centerAlign{
+	background-position: -5px -95px;
+}
+
+#canvasToolbar span.justifyAlign{
+	background-position: -6px -186px;
+}
+
+#canvasToolbar span.canvasColor{
+	background-position: -35px -35px;
+}
+
+#canvasToolbar span.toggleBorder{
+	background-position: -35px -95px;
+}
+
+#canvasToolbar span.doDynamicField{
+	background-position: -94px -154px;		
+}		
+#canvasToolbar span.doCalculationField{		
+	background-position:-123px -126px;
+}
+	
+#canvasToolbar span.doChkBoxField{		
+	background-position: -118px -63px;		
+}		
+#canvasToolbar span.doRadioBtnField{		
+	background-position:-120px -94px;		
+}		
+#canvasToolbar span.doCanvasImageUpload, #canvasToolbar span.doCanvasPDFUpload {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border: 1px solid #fff;
+    padding: 2px;
+    margin-right: 2px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-position: -36px -215px;
+}
+#canvasToolbar span.doCanvasPDFUpload {
+    background-position: -123px -155px;
+}
+#canvasToolbar #uploadCanvasImage, #canvasToolbar #uploadCanvasPDF {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    top: 0px;
+    left: 0px;
+    font-size: 12px;
+    z-index: 2;
+    opacity: 0.0;
+    filter: alpha(opacity=0);
+    -ms-filter: "alpha(opacity=0)";
+    -khtml-opacity: 0.0;
+    -moz-opacity: 0.0;
+}
+
+.canvasUnderline{
+	text-decoration: underline;
+}
+
+.canvasBold{
+	font-weight: bold;
+}
+
+.canvasItalic{
+	font-style: italic;
+}
+
+.canvasLeftALign{
+	text-align: left;
+}
+
+.canvasRightAlign{
+	text-align: right;
+}
+
+.canvasCenter{
+	text-align: center;
+}
+
+.canvasJustify{
+	text-align: justify;
+}
+
+#gtresizer {
+    width: 5px;
+    height: 100%;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    cursor: col-resize;
+    z-index: 999;
+}
+
+#gthorresizer {
+    width: 5px;
+    height: 5px;
+    background: transparent;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    cursor:row-resize;
+    z-index: 99;
+}
+
+#gthorresizer.activeMode{
+	border-bottom:1px solid #4285f4;
+	opacity: 0.8;
+}
+
+#gtresizer.activeMode{
+	border-right:1px solid #4285f4;
+	opacity: 0.8;
+}
+
+#gridLine {
+    width: 1px;
+    height: 100%;
+    background: transparent;
+    border-left: 1px dotted #666;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: none;
+    z-index: 9999999;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.color-plates-wrap{
+    position: absolute;
+    padding:6px 10px;
+    background: #fff;
+    box-shadow: 0 2px 11px rgba(0, 0, 0, 0.3);
+    left: 0px;
+    display: none;
+	width:200px;
+	z-index:9999;
+}
+.color-plates-wrap table{
+	width: 100%;
+	table-layout: fixed;
+	margin: 3px 0;
+	border-collapse: separate !important;
+	height: auto;
+}
+.color-plates-wrap table td{
+	width:15px;
+	height: 18px;
+	padding:0px;
+	border:1px solid #fff;
+}
+
+.color-plates-wrap table td:hover{
+ border:1px solid #000;
+}
+
+.showColorPlates:hover{
+	cursor: pointer;
+}
+
+
+#canvasNodeList{
+	position: absolute;
+	cursor: default;
+	background-color: #f7f7f7;
+	border: 1px dotted #000;
+	left: 10px;
+	widows: 279px;
+	min-height: calc(100% - 30px);
+	display: none;
+}
+
+#canvasNodeList ul{
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	user-select: none;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+#canvasNodeList ul li{	
+	padding: 2px 10px;
+	margin-left: 0px;
+}
+
+#canvasNodeList ul li.selected{
+	background-color: #ffff00;
+}
+
+.deletePageSpan{
+	text-align:right;
+	display:block;
+	margin-bottom:20px;
+}
+
+#edtCanvasView .mappingNode, #edtCanvasView .canvasDynamicField{
+	background-color: #d1f0fe;
+	    vertical-align: bottom;
+	display: inline-block;		
+	overflow: hidden;		
+	word-wrap: break-word;		
+}		
+#edtCanvasView .canvasDynamicField{		
+	min-width: 100px;		
+	display: inline-block;			
+}		
+#edtCanvasView .canvasChkBox, #edtCanvasView .canvasRadioBtn{		
+	cursor:default;		
+}
+
+#canvasNodeList .noMap{
+	
+}
+
+#canvasNodeList .classField{
+	font-weight: bold;
+	margin-left: 0px;
+	margin-top: 5px;
+	font-size: 14px;
+}
+
+#canvasNodeList .subClass>span{
+	color: #ff0000;
+}
+
+#canvasNodeList .propertiesField>span{
+	font-weight: bold;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+#canvasNodeList .headField>span{
+	font-weight: bold;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+#canvasNodeList li.normal span{
+	font-weight: normal;
+}
+.usedNode{
+	color: green;
+}
+#canvasToolbar span.doDynamicField{
+	background-position: -94px -154px;
+}
+#edtCanvasView .mappingNode, #edtCanvasView .canvasDynamicField{
+	background-color: #ffffd7;
+	border-bottom:1px solid #ccc;
+	display: inline-block;
+}
+
+#edtCanvasView .canvasDynamicField{
+	min-width: 100px;
+	display: inline-block;
+}
+#edtCanvasView .mappingNode{
+	background: #ececec;
+	border-bottom:1px solid #ccc;
+}
+#edtInnerCanvasView .selectedTD{
+	background-color: #ffff00;
+}
+#edtCanvasView .mappingNode {
+    background: #ececec;
+    border-bottom: 1px solid #ccc;
+    font-size: 10px;
+}
+#canvasToolbar span.doChkBoxField{
+	background-position: -118px -63px;
+}
+
+#canvasToolbar span.doRadioBtnField{
+	background-position:-120px -94px;
+}
+
+.canvasEDTTable td input[type="checkbox"], 
+.canvasEDTTable td input[type="radio"] {
+    margin: 0;
+    vertical-align: bottom;
+    cursor: default;
+}
+.canvasEDTTable td .ui-wrapper{
+	display: inline-block;
+}
+
+
+.canvasEDTTable span[calculation-start="true"], .canvasEDTTable span[calculation-end="true"]{
+	background-color: pink;
+	position: absolute;
+	height: 18px;
+	width: 2px;
+}
+
+#edtCanvasView span[data-calculation="calculation"]{
+	background-color: pink;
+	min-width: 100px;
+	display: inline-block;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+.canvasEDTTable .edtHyperLink{
+	color:#00a2ff;
+}
+
+#edtInnerCanvasView .innerCanvasContainer.noPadding{
+	padding: 0px;
+	min-height: 100px;	
+}
+
+#edtInnerCanvasView .dragCanvasContainer{
+	min-height: inherit;
+	background-repeat: no-repeat;
+	position: relative;
+	width: 100%;
+	background-position: center center;
+}
+
+.dragCanvasContainer.active{
+	border:1px solid #ff0000;
+}
+#edtCanvasView .dragCanvasContainer .canvasDynamicField {
+    border-bottom: 0;
+}
+.canvasDynamicField .ui-icon {
+    background-image: url(../img/ui-icons_222222_256x240.png);
+}
+#edtInnerCanvasView {
+    padding-top: 15px;
+}
+span.doHyperLinkCanvas.icon {
+    background-position: -69px -186px;
+}
+.dialog-content p{
+	margin-bottom:5px;
+}
+.dialog-footer{
+	margin-top:8px;
+}
+#edtCalculationPopup .dialog-footer {
+    margin-top: 5px;
+}
+.dialog-content input{
+	width: 100%;
+	border:0;
+	border-bottom:1px solid #dbdbdb;
+}
+.dialog-content input:focus{
+	border:0;
+	border-bottom:1px solid #000;
+}
+.dialog-content textarea {
+    border: 1px solid #dbdbdb;
+    resize:none;
+}
+.dialog-content textarea:focus{
+	border: 1px solid #000;
+}
+.dragELM {
+    cursor: move;
+}
+.content-wrapper-new .lodding img {
+    left: 40%;
+}
+/*.edt-main-wrapper #edtInnerCanvasView .dragCanvasContainer {
+    margin: -15px -15px -15px -10px;
+    width: calc(100% + 30px);
+    margin-top: -30px;
+}*/
+
+.edt-main-wrapper  .innerCanvasContainer.yes-form{
+
+	padding:0px;
+}
+.edt-main-wrapper  .dragCanvasContainer.active {
+    border: 0;
+}
+.edt-main-wrapper  #edtInnerCanvasView {
+    padding-top: 0;
+}
+.edt-main-wrapper .dragELM {
+    cursor: auto;
+}
+.mappingNode, .canvasDynamicField{
+    font-size: 11px;
+    line-height: normal;
+}
+

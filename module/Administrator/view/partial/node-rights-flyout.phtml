@@ -1,0 +1,69 @@
+<!-- Node Z Rights Div -->
+<div class="right-popup rightFlyout" id="nodeRightFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title node_rights_user_count">Node Rights (View): Users 0</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                    <a href="#" class=""><i class="icon lg-filter"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-inner-wrap node-rights-users-list" ></div>
+            <div class="actor-listing add-usersli node-participant fixed-participant" id="form_parti">
+                <ul>
+                    <li class="">
+                        <div class="Add-more-actor">
+                            <div class="option-wrap">
+                                <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="icon add-actor-icon"></i>
+                                </a>
+                                <ul class="dropdown-menu filter-drp" aria-labelledby="dLabel">
+                                    <li><a><i class="icon sm-role"></i><span>By Role</span></a></li>
+                                    <li><a><i class="icon by-actor"></i><span>By Actor</span></a></li>
+                                </ul>
+                            </div>
+                            <div id="actor_cb" class="ui-widget">
+                                <input type="hidden" id="participant_id" name="participant_id" value=""  >
+                                <input type="hidden" id="is_participant_list" name="is_participant_list" value=""  >
+                                <input type="text" id="participant_list" class="form-control input-field" placeholder="Enter participant" required="required"  data-value="entr-node-right-participant">
+                            </div>
+
+                            <div id="role_cb" class="ui-widget">
+                                <input type="hidden" id="role_cb_id" name="role_cb_id" value=""  >
+                                <input type="hidden" id="is_rolecb_list" name="is_rolecb_list" value=""  >
+                                <input type="text" id="rolescb_list" class="form-control input-field" placeholder="Enter role" required="required"  data-value="entr-node-right-role">
+                            </div>
+
+                            <div id="actor_cb_tick" class="right-icon">
+                                <i class="icon tick entr-node-right-participant" onclick="addParticipant()" ></i>
+                            </div>
+
+                            <div id="role_cb_tick" class="right-icon">
+                                <i class="icon tick entr-node-right-role" onclick="addParticipant()" ></i>
+                            </div>
+                            <div id="participantAutoCompleteBox"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="user-action-wrap" id="parti_action_div_id">
+            <a id="save_user_parti" class="user-roles node_rights_close_class" onclick="saveUsersOfRights()" ><i class="icon save"></i><br><span>Save</span></a>
+            <a id="delete_user_parti" class="user-roles inactive node_rights_close_class" onclick="deleteUsersOfRights()" ><i class="icon delete"></i><br><span>Delete</span></a>
+            <a class="user-roles node_rights_close_class" ><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>

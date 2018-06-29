@@ -1,0 +1,86 @@
+all_settings =  {
+    "requirement": {
+        "class": "active",
+        "label": "Requirement",
+        "settings": {
+            "menu": {
+                "menuLayoutInstanceId": "434068",
+                "menuListInstanceId": "408907"
+            },
+            "list": {
+                "listLayoutInstanceId": "434684",
+                "layoutHeading": "Requirements: List",
+                "NID": {
+                    "isShown": "false",
+                    "size": "col-sm-2",
+                    "title": "NID"
+                },
+                "listHeadArray": {
+                    "class_node_id": "393925",
+                    //Deal ID #, Customer (First Name), Customer #, Boat (concatenate vessel brand / make and vessel model), Stock # /*"GENERAL > Deal ID #=Deal ID",*/
+                    "columns": ["Project", "Title", "Description", "Type", "Status"] //"BUYER > IDS Customer Number"
+                },
+                "listingPattern": {
+                    "type": "normal"
+                },
+                "mappingClass": {
+                    "classNodeid": "416207"
+                },
+                "PaginationRecord": ["25", "50", "75", "100"],
+                "BrokrageNodeId": "401537",
+                "cssNodeId": "450312",
+                "setting": [{
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-3"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }, {
+                        "type": "filter",
+                        "size": "col-sm-2"
+                    }]
+            },
+            "detail": {
+                "detailLayoutInstanceId": "434721",
+                "contentDetails": {
+                    "instanceId": "437396",
+                    "displayType": "add",
+                    "heading": "Requirements"
+                }
+            },
+            "emailLinks": {
+                "emailFrom": "info@marinemax.com",
+                "privacyPolicy": "https:\/\/www.marinemax.com\/privacy-policy.aspx",
+                "socialLink": {
+                    "fb": "https:\/\/www.facebook.com\/MarineMaxLeisure",
+                    "twitter": "https:\/\/twitter.com\/marinemax",
+                    "instagram": "https:\/\/www.instagram.com\/marinemaxonline",
+                    "youtube": "https:\/\/www.youtube.com\/user\/MarineMaxOnline",
+                    "logourl": "https:\/\/www.marinemax.com\/",
+                }
+            }
+        }
+    },
+    "deal": {
+        "settings": {
+            "emailLinks": {
+                "emailFrom": "info@marinemax.com",
+                "privacyPolicy": "https:\/\/www.marinemax.com\/privacy-policy.aspx",
+                "socialLink": {
+                    "fb": "https:\/\/www.facebook.com\/MarineMaxLeisure",
+                    "twitter": "https:\/\/twitter.com\/marinemax",
+                    "instagram": "https:\/\/www.instagram.com\/marinemaxonline",
+                    "youtube": "https:\/\/www.youtube.com\/user\/MarineMaxOnline",
+                    "logourl": "https:\/\/www.marinemax.com\/",
+                }
+            }
+        }
+
+    }
+}

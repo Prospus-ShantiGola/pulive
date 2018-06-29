@@ -1,0 +1,20 @@
+/* TO BE ONLY USED WITH TCPDF */
+.edtParagraph{
+    color: #444;
+    min-height: 22px;
+    width: 100%;
+
+}
+.edtCenter {
+    text-align: center;
+}
+.edtBold{
+    font-weight: bold;
+    float: left;
+    width: 100%;
+    color: #000; 
+}
+td{
+    border:1px solid #444;
+}
+/* TO BE ONLY USED WITH TCPDF */

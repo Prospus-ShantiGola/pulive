@@ -1,0 +1,19 @@
+<!-- When removing Instances from Classes -->
+<!-- Delete Popup -->
+<div class="modal fade series-popup deletePopup" id="deleteInsOrClsPopup"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content" > <p id="delMsgOfCI"></p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close" onclick="rejectDeleteClass()">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="deleteClassPropertyAgain()" >Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="rejectDeleteClass()" >No</button>
+            </div>
+        </div>
+    </div>
+</div>

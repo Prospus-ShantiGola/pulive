@@ -1,0 +1,205 @@
+<input type="hidden" id="temp-class" value="">
+<input type="hidden" id="delete-sub-class" value="">
+<input type="hidden" id="delete-sub-class-id" value="">
+<?php $config = $this->config; ?>
+<?php
+
+function getProperty($propertyArray, $number) { ?>
+    <?php foreach ($propertyArray as $key => $value) {
+        $caption1 = $value['caption'];
+        $number = intval($number) + 1; ?>
+        <li id="prop_temp_li_<?php echo $number; ?>" class="numbering " data-class="prop_temp_li_<?php echo $number; ?>" >
+            <div class="node-content clearfix active-bg">
+                <span class="number_print"></span>
+                <div class="node-left custom-node-left">
+                    <div class="node-circle node-white-circle<?php if (count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+                    <div class="node-head node-input"> 
+                        <span><?php echo trim($caption1); ?></span>
+                    </div>
+                    <input type="hidden" class="hidden-node-x" name="node_x_y[]" nodey-value="<?php echo $value['nodeX']; ?>" value="<?php echo $value['nodeX']; ?>" id="class_prop_temp_li_<?php echo $number; ?>" >
+                    <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ']; ?>" id="node_y_z<?php echo $number; ?>" >
+                    <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="166,167,168,190,165," id="prop_z_main<?php echo $number; ?>" >
+                    <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y<?php echo $number; ?>" >
+                    <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id<?php echo $number; ?>" >
+                    <input type="hidden" class="runTab" id="new_property_<?php echo $number; ?>" name="new_property[]" value="<?php echo trim($caption1); ?>" >
+                    <input type="hidden" class="is_ins_class" value="Y" />
+                </div>
+                <div class="node-right hide custom-node-right-two"></div>
+            </div>
+            <ol>
+        <?php if (count($value['child']) > 0) {
+            $number1 = intval($number) + 999; ?>
+            <?php getProperty($value['child'], $number1); ?>
+        <?php } ?>
+            </ol>
+            <script type="text/javascript">
+                $("#prop_number").val('<?php echo intval($number) + 1; ?>');
+            </script>
+        </li>
+    <?php } ?>
+<?php } ?>
+
+<form id="class_structure_form" name="class_structure_form" class="form_active" method="post" action="" >
+    <div class="nano1">
+        <div class="paper-line dual-pane-height nano-content1 print-drp niceScrollDiv" id="node-wrapper">		
+            <div class="nice-scroll-box">
+                <input type="hidden" id="node_y_class_id" name="node_y_class_id" value="" />
+                <input type="hidden" id="prop_number" name="prop_number" value="1001" />
+                <input type="hidden" id="child_ids_of_class" name="child_ids_of_class" value="<?php echo $this->classArray['childs']; ?>" />
+                <input type="hidden" id="saveTypeClass" name="saveTypeClass" value="" />
+                <input type="hidden" id="viewTypeClass" name="viewTypeClass" value="111" />
+                <ol class="class-wrapper sortable">
+                    <li>
+                        <div class="node-content clearfix node-selected">
+                            <span class="number_print">1</span>
+                            <div class="node-left">
+                                <div class="node-circle node-white-circle-expanded">N</div>                                
+                                <div class="node-head node-input">
+                                    <span id="post_name"><?php echo $this->classArray['common_name']; ?> (<?php echo $this->newNodeId; ?>)</span>
+                                    <input type="hidden" id="class_caption" name="class_caption" value="<?php echo $this->newNodeId; ?>" placeholder="Class" />
+                                    <input type="hidden" class="hidden-node-x" name="class_node_x_y[]" value="<?php echo $this->classArray['nodeX']; ?>" id="class_<?php echo time(); ?>" nodey-value="<?php echo $this->classArray['nodeX']; ?>" parent="">
+                                    <input type="hidden" class="hidden-node-z" name="class_node_y_z[]" value="<?php echo $this->classArray['nodeZ']; ?>" id="node_y_z<?php echo time(); ?>" >
+                                    <input type="hidden" class="hidden-node-z-main" name="class_z_main[]" value="165,169,364," id="z-main<?php echo time(); ?>" >
+                                    <input type="hidden" id="common_name" name="common_name" value="<?php echo $this->classArray['common_name']; ?>" placeholder="Common Name" />
+                                    <input type="hidden" id="parent_class" name="parent_class" value="<?php echo $this->classArray['curClassNID']; ?>" placeholder="parent_class" />
+                                    <input type="hidden" id="node_type_id" name="node_type_id" value="<?php echo $this->classArray['node_type_id']; ?>" class="form-control nodeselection-dropdown" />
+                                    <input type="hidden" class="is_ins_class" value="Y" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <ol class="first_prop_hard">
+<?php foreach ($this->classArray['property'] as $key => $value) { ?>
+                                <li id="prop_temp_li_999" class="numbering" data-class="prop_temp_li_999" position="0" >
+                                    <div class="node-content clearfix">
+                                        <span class="number_print">2</span>
+                                        <div class="node-left">
+                                            <div class="node-circle node-white-circle-expanded">N</div>                                
+                                            <div class="node-head node-input"> 
+                                                <span>Properties</span>
+                                            </div>
+                                            <input type="hidden" class="hidden-node-x" name="node_x_y[]" nodey-value="<?php echo $value['nodeX']; ?>" value="<?php echo $value['nodeX']; ?>" id="class_prop_temp_li_999" >
+                                            <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ']; ?>" id="node_y_z999" >
+                                            <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="190,165," id="prop_z_main999" >
+                                            <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y999" >
+                                            <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id999" >
+                                            <input type="hidden" class="runTab" id="new_property_999" name="new_property[]" placeholder="" value="<?php echo $value['caption']; ?>" >
+                                            <input type="hidden" class="is_ins_class" value="Y" />
+                                        </div>
+                                        <div class="node-right hide">
+                                            <a class="action-move" onclick="addChildProperty();" ><span><i class="icon plus-class"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <ol class="property-child tabber" >
+    <?php if (is_array($value['child'])) { ?>
+        <?php getProperty($value['child'], '999'); ?>
+    <?php } else { ?>
+                                            <li id="prop_temp_li_1000" class="numbering" data-class="prop_temp_li_1000" position="1" parent="prop_temp_li_999">
+                                                <div class="node-content clearfix">
+                                                    <span class="number_print">3</span>
+                                                    <div class="node-left">
+                                                        <div class="node-circle node-white-circle">N</div>    
+                                                        <div class="node-head node-input"> 
+                                                            <textarea cols="30" rows="1" class="runTab" id="new_property_1000" name="new_property[]" placeholder="" ></textarea>
+                                                        </div>
+                                                        <input type="hidden" class="hidden-node-x" name="node_x_y[]" nodey-value="<?php echo implode(',', $config['NODE_Z_CLASSES']) ?>" value="<?php echo implode(',', $config['NODE_Z_CLASSES']) ?>" id="class_prop_temp_li_1000" >
+                                                        <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="" id="node_y_z1000" >
+                                                        <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="" id="prop_z_main1000" >
+                                                        <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y1000" >
+                                                        <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id1000" >
+                                                    </div>
+                                                    <div class="node-right">
+                                                        <a class="action-move  " onclick="removeProperty(1000);">
+                                                            <span><i class="icon close-small"></i></span>
+                                                        </a>
+                                                        <a class="action-move addclass"><span><i class="icon plus-class"></i></span></a>
+                                                    </div>
+                                                </div>
+                                                <ol></ol>
+                                            </li>
+    <?php } ?>
+                                    </ol>
+                                </li>
+<?php } ?>
+                            <li class="addplus add-sub-child-wrap">
+                                <span class="number_print">4</span>
+                                <span><i class="fa fa-plus"></i></span>
+                            </li>
+                            <li class="sub_class_list_view">
+                                <ol class="sortable-list" id="sortable">
+                                    <?php foreach ($this->classArray['childsArray'] as $key => $val) { ?>
+                                        <?php
+                                        $caption2 = '';
+                                        if (intval($val['encrypt_status']) == 1) {
+                                            $caption2 = $this->encryption_decryption('mc_decrypt', array('decrypt' => $val['caption'], 'key' => ENCRYPTION_KEY));
+                                        } else {
+                                            $caption2 = $val['caption'];
+                                        }
+                                        ?>
+                                        <li class="parent-sub-class-list add-custom-hr-scroll-sub-class">
+                                            <div class="node-content clearfix" onclick="getSubClassStructure(<?php echo $val['node_class_id']; ?>, <?php echo $val['child_node_id']; ?>, this,<?php echo $this->classArray['number_print'][$key]; ?>)">
+                                                <span class="number_print1"><?php echo $this->classArray['number_print'][$key]; ?></span>
+                                                <div class="node-left">
+                                                    <div class="node-circle node-white-circle-expanded">N</div>
+                                                    <div class="node-head node-input">
+                                                        <span class="sub-class-style"><input type="hidden" class="temp-sub-class-<?php echo $val['child_node_id']; ?>"><?php echo $caption2 . ' (' . $val['child_node_id'] . ')'; ?></span>
+                                                    </div>
+                                                </div>
+
+                                                <!--new-chevron-add-->
+                                                <div class="node-right-sub clearfix">
+                                                    <a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+                                                </div>
+                                                <!--new-chvron-add-->
+
+                                            </div>
+                                        </li>
+<?php } ?>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+    dualPaneHeight();
+    manageNiceScroll();
+
+    rightPaneicon();
+
+    textareaIncreaseHeight();
+
+    $('.tabber').nestedSortable({
+        items: 'li',
+        doNotClear: true,
+        handle: '.node-circle',
+        placeholder: 'ui-sortable-placeholder',
+        tolerance: 'pointer',
+        forcePlaceholderSize: true,
+        toleranceElement: '> div.node-content',
+        maxLevels: 100,
+        expandOnHover: 700,
+        startCollapsed: true,
+        tabSize: 25,
+        update: function () {
+            tabPositions();
+            calculatePlusIcons();
+            setNumberPrint();
+        }
+
+    });
+    setNumberPrint();
+
+
+    nodeT = "Y";
+    commonNameFirst = "<?php echo $this->classArray['common_name']; ?>";
+
+    $(".list-row").removeClass('current');
+    $(".default_row_class").remove();
+    $(".lisat-class-row0").before("<tr class='default_row_class current'><td><input type='checkbox'><label></label></td><td style='display:none'></td><td>" + commonNameFirst + "</td><td>" + nodeT + "</td><td>1</td><td>0</td><td>Draft</td></tr>");
+</script>

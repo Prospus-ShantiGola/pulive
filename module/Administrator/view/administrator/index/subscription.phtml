@@ -1,0 +1,561 @@
+<?php
+  $user_info                = $_SESSION[PREFIX.'user_info'];
+  $session_file_name        = $_SESSION[PREFIX.'session_file'];  
+  $uniqueId1                = $_SESSION[PREFIX.'uniqueId1'];	
+  $user_info['isVessel'] 	= 'Y';
+?>
+<script type="text/javascript">
+	var session_file_name   =   '<?php echo $session_file_name; ?>';
+	if( session_file_name =='')
+	{
+	  window.location.href = domainUrl;
+	}
+
+	// Amit Malakar Date: 01-Aug-2017
+    // logout function moved to script.js
+	/*$('body').on("click",'.logout-user-all',function(event){
+		$('#user_details_icon').siblings('.dropdown-menu').hide();
+		$.post(domainUrl+'login/doLogout',{'session_file_name':session_file_name},getLogoutResponse,'JSON');	
+		event.stopPropogation();
+		
+	});*/
+
+	$('body').on("click",'#user_details_icon',function(event){	
+		$(this).siblings('.dropdown-menu').toggle();	
+		event.stopPropogation();
+	});
+
+	$('body').on("click",function(event){	
+		$('#user_details_icon').siblings('.dropdown-menu').hide();
+	});
+	// required field updations
+
+    $("body").on("click", "#subscriptionForm .form-checkbox input[type='checkbox']", function(){
+        if($(this).prop("checked") == true){
+            $("#role_error").html("");
+            $(".first_name").focus();
+        }
+    });
+
+    $("body").on("keydown", "#subscriptionForm .form-input", function(){
+            $(this).removeClass("form-error-field");
+            $(this).next().html("");
+    });
+    $('body').on('keydown', '#subscriptionForm .form-input', function(e) {
+        
+        if (e.which === 32 && !this.value.length)
+        {
+            e.preventDefault();
+            $(this).addClass("form-error-field");
+            $(this).next().html("! Required");
+            return false;
+            
+        }  
+    });
+
+// required field updations
+    // Amit Malakar Date: 01-Aug-2017
+    // logout response function moved to subscription.phtml
+	/*function getLogoutResponse(data)
+	{			
+		if(parseInt(data.result) == 0)
+		{
+			session_file_name = '';
+			setUsername = '';
+			setUserID = '';
+			
+			window.location.href = domainUrl;
+		}
+	}*/
+
+	function setValueOfNodeZ(obj,id)
+	{
+		var value = '';
+        $('input[type="checkbox"]').each(function(){
+            if($(this).is(":checked")){
+                value += $(this).val()+',';
+            }
+        });
+        value = value.substring(0, value.length - 1);
+        $("#instance_property_caption"+id).val(value);
+	}
+
+	function cancelSubscription()
+	{
+		location.href = location.href;
+	}
+
+	$(document).ready(function () {
+		$('input.first_name').on('keyup', function() {
+		    limitText(this, 30);
+		});
+
+		$('input.last_name').on('keyup', function() {
+		    limitText(this, 30);
+		});
+
+		<?php if($this->msg != '') { ?>
+			
+			$("#msg_sbubs_res").html('<?php echo $this->msg; ?>');
+			$("#sucessfulMessage").modal('show');
+		<?php } ?>
+
+		$('body').on('keydown','#confirm_email',function(event){
+			var $keycode = (event.keyCode ? event.keyCode : event.which);
+			if($keycode===13 )
+			{
+				subscription();
+				event.preventDefault();
+			}
+		});
+
+        $('#confirm_email').bind('cut copy paste', function (e) {
+            e.preventDefault(); //disable cut,copy,paste
+
+        });
+
+		$(document).on("keydown", disableF5);
+
+
+
+	});
+
+	function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); }
+
+	function isValidEmail(email)
+    {
+        return /^[a-zA-Z0-9]+([-._][a-zA-Z0-9]+)*@([a-zA-Z0-9]+(-[a-zA-Z0-9]+)*\.)+[a-zA-Z]{2,4}$/.test(email)
+            && /^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*/.test(email);
+    }
+
+	function limitText(field, maxChar){
+	    var ref = $(field),
+	        val = ref.val();
+	    if ( val.length >= maxChar ){
+	        ref.val(function() {
+	            console.log(val.substr(0, maxChar))
+	            return val.substr(0, maxChar);       
+	        });
+	    }
+	}
+
+	function checkEmailSubs()
+	{
+		var email       	=   $.trim($('.email').val());
+        if(isValidEmail(email))
+        {
+        	$("#sub_but").text("Validating...");
+        	$("#sub_but").attr("disabled",true);
+        	$.post(domainUrl+'index/subscriptionEmail',{'email':email},responseEmail,'json');
+        }
+	}
+
+	function responseEmail(d,s)
+	{
+		if(d.result == 'error')
+		{
+            $("#is_mail_exist").val('Y');
+		}
+		else
+		{
+			$("#is_mail_exist").val('N');
+		}
+
+		$("#sub_but").text("Submit");
+        $("#sub_but").attr("disabled",false);
+
+		var first_name      =   $.trim($('.first_name').val());
+        var last_name    	=   $.trim($('.last_name').val());
+        var email       	=   $.trim($('.email').val());
+        var cemail       	=   $.trim($('#confirm_email').val());
+
+        $('#role_error').html("");
+        $('#first_name_error').html("");
+        $('#last_name_error').html("");
+        $('#email_error').html("");
+        $('#cmail_error').html("");
+
+        $('.first_name').removeClass('form-error-field');
+        $('.last_name').removeClass('form-error-field');
+        $('.email').removeClass('form-error-field');
+        $('#confirm_email').removeClass('form-error-field');
+
+        var value = '';
+        $('input[type="checkbox"]').each(function(){
+            if($(this).is(":checked")){
+                value += $(this).val()+',';
+            }
+        });
+        value = value.substring(0, value.length - 1);
+
+        if(value == '')
+        {
+            $("#role_error").html("! Please select minimum 1 option");
+            return false;
+        }
+
+        var alpha = /^[a-zA-Z\s]+$/; 
+        var alpha1 = /^[a-zA-Z0-9]+$/; 
+        if(first_name == '')
+        {
+            $('.first_name').addClass('form-error-field');
+            $("#first_name_error").html("! Required");
+            return false;
+        }
+
+        if(first_name != '')
+        {
+        	if(alpha.test(first_name))
+        	{
+        		$('.first_name').removeClass('form-error-field');
+        		$('#first_name_error').html("");
+        	}
+        	else
+        	{
+	            $('.first_name').addClass('form-error-field');
+	            $("#first_name_error").html("! Only alphabets & space allowed");
+	            return false;
+        	}
+        }
+
+        if(last_name == '')
+        {
+            $('.last_name').addClass('form-error-field');
+            $("#last_name_error").html("! Required");
+            return false;
+        }
+
+        if(last_name != '')
+        {
+        	if(alpha.test(last_name))
+        	{
+        		$('.last_name').removeClass('form-error-field');
+        		$('#last_name_error').html("");
+        	}
+        	else
+        	{
+	            $('.last_name').addClass('form-error-field');
+	            $("#last_name_error").html("! Only alphabets & space allowed");
+	            return false;
+        	}
+        }
+
+        if(email == '')
+        {
+            $('.email').addClass('form-error-field');
+            $("#email_error").html("! Required");
+            return false;
+        }
+
+        if(!isValidEmail(email))
+        {
+        	$('.email').addClass('form-error-field');
+            $("#email_error").html("! Invalid E-mail");
+            return false;
+        }
+
+        var exist = $("#is_mail_exist").val();
+        if(exist == 'Y')
+        {
+			$('.email').addClass('form-error-field');
+            $("#email_error").html("! E-mail already exists");
+            return false;
+		}
+		else
+		{
+			$('#email_error').html("");
+			$('.email').removeClass('form-error-field');
+		}
+
+        if(cemail == '')
+        {
+            $('#confirm_email').addClass('form-error-field');
+            $("#cmail_error").html("! Required");
+            return false;
+        }
+
+        if(email != '' && cemail != '')
+        {
+			if(email != cemail)
+			{
+				$('#confirm_email').addClass('form-error-field');
+				$("#cmail_error").html("! Fields do not match");
+				return false;
+			}
+        }
+
+        $("#subscriptionForm").submit();
+ 
+	}
+
+	function subscription()
+	{
+		var first_name      =   $.trim($('.first_name').val());
+        var last_name    	=   $.trim($('.last_name').val());
+        var email       	=   $.trim($('.email').val());
+        var cemail       	=   $.trim($('#confirm_email').val());
+
+        $('#role_error').html("");
+        $('#first_name_error').html("");
+        $('#last_name_error').html("");
+        $('#email_error').html("");
+        $('#cmail_error').html("");
+
+        $('.first_name').removeClass('form-error-field');
+        $('.last_name').removeClass('form-error-field');
+        $('.email').removeClass('form-error-field');
+        $('#confirm_email').removeClass('form-error-field');
+
+        var value = '';
+        $('input[type="checkbox"]').each(function(){
+            if($(this).is(":checked")){
+                value += $(this).val()+',';
+            }
+
+        });
+        value = value.substring(0, value.length - 1);
+
+        if(value == '')
+        {
+            $("#role_error").html("! Please select minimum 1 option");
+            return false;
+        }
+
+        var alpha = /^[a-zA-Z\s]+$/; 
+        var alpha1 = /^[a-zA-Z0-9]+$/; 
+        if(first_name == '')
+        {
+            $('.first_name').addClass('form-error-field');
+            $("#first_name_error").html("! Required");
+            return false;
+        }
+
+        if(first_name != '')
+        {
+        	if(alpha.test(first_name))
+        	{
+        		$('.first_name').removeClass('form-error-field');
+        		$('#first_name_error').html("");
+        	}
+        	else
+        	{
+	            $('.first_name').addClass('form-error-field');
+	            $("#first_name_error").html("! Only alphabets & space allowed");
+	            return false;
+        	}
+        }
+
+        if(last_name == '')
+        {
+            $('.last_name').addClass('form-error-field');
+            $("#last_name_error").html("! Required");
+            return false;
+        }
+
+        if(last_name != '')
+        {
+        	if(alpha.test(last_name))
+        	{
+        		$('.last_name').removeClass('form-error-field');
+        		$('#last_name_error').html("");
+        	}
+        	else
+        	{
+	            $('.last_name').addClass('form-error-field');
+	            $("#last_name_error").html("! Only alphabets & space allowed");
+	            return false;
+        	}
+        }
+
+        if(email == '')
+        {
+            $('.email').addClass('form-error-field');
+            $("#email_error").html("! Required");
+            return false;
+        }
+
+        if(!isValidEmail(email))
+        {
+        	$('.email').addClass('form-error-field');
+            $("#email_error").html("! Invalid E-mail");
+            return false;
+        }
+
+        if(cemail == '')
+        {
+            $('#confirm_email').addClass('form-error-field');
+            $("#cmail_error").html("! Required");
+            return false;
+        }
+
+        if(email != '' && cemail != '')
+        {
+			if(email != cemail)
+			{
+				$('#confirm_email').addClass('form-error-field');
+				$("#cmail_error").html("! Fields do not match");
+				return false;
+			}
+        }
+
+        if(email != '')
+        {
+           $("#sub_but").text("Validating...");
+           $("#sub_but").attr("disabled",true);
+           $.post(domainUrl+'index/subscriptionEmail',{'email':email},responseEmail,'json');
+        }
+
+        //$("#subscriptionForm").submit();
+
+	}
+
+
+</script>
+
+<?php //echo file_get_contents('http://dev.pu.prospus.com/puidata/index.php?user=www.pui.com&'.http_build_query($user_info)); ?>
+
+<header class="header-temp">
+    <div class="header-wrapper clearfix"> 
+        <div class="logo left "> 
+            <a href="#" ><img src="<?php echo BASE_URL; ?>public/img/vw.png" alt=""></a> 
+        </div>
+        
+        <div class="user-roles left"> 
+         <div class="user-wrap dropdown users-role">
+                <a data-toggle="dropdown" href="#" class="select-user-role strat_click" strat-id="n_ajax">
+                    <span class="changed-user-role" data-roleid="">
+                      VesselWise . SalesRepresentative
+                    </span>
+                    <!-- <span class="downArrowIcon">
+                   		<img src="<?php echo PU_CDN_URL; ?>public/img/down_arrow.png" alt="">
+                    </span> -->
+                </a>
+                <!-- <ul class="dropdown-menu select-user-role" role="menu" aria-labelledby="dLabel">
+                    <li class="active-list">
+                       <a href="#" class="roles active-roles"><span class="icon circle-dot"></span>Prospus</a> 
+                    </li> 
+                    <li class="active-list">
+                       <a href="#" class="roles active-roles"><span class="icon circle-dot"></span>Investible</a> 
+                
+                        <ul class="active-under-list">
+                            <li><a href="#" class="roles"><span class="icon dot"></span>Anonymous</a></li>
+                            <li><a href="#" class="roles"><span class="icon dot"></span>Founder</a></li>
+                            <li><a href="#" class="roles"><span class="icon dot"></span>CEO</a></li>
+                            <li><a href="#" class="roles"><span class="icon dot"></span>Content Administrator</a></li>
+                            <li><a href="#" class="roles"><span class="icon dot"></span>Domain Administrator</a></li>
+                            <li><a href="#" class="roles"><span class="icon dot"></span>Program Administrator</a></li>
+                        </ul>
+                    </li>
+                </ul> -->
+            </div>
+         </div>
+
+        <div class="right-header clearfix  pu_plugin_right_head"> 
+           
+            <div class="user-action dropdown">
+                        <a href="#" id="user_details_icon"  >
+                            <span class ='login-user-name'><?php  echo $user_info['first_name']." ".$user_info['last_name']; ?> <span class="downArrowIcon"><img src="<?php echo PU_CDN_URL; ?>public/img/down_arrow.png" alt="drop arrow"></span></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li class="surveyor-menu">
+                                <a  href="#" class="logout-hidden logout-user-all">
+                                    <span class="icon dot"></span>Logout
+                                </a>
+                            </li>
+                        </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<?php
+	function getChildOfClass($childArray)
+	{
+		foreach($childArray as $key => $value) 
+		{
+			?>
+			<div class="form-group">
+				<label class="form-label <?php if(trim(strtolower(preg_replace('/\s+/', '_', $value['caption']))) == 'role(s)') { ?>col-xs-3<?php } else { ?>col-sm-3<?php } ?>"><?php echo $value['caption']; ?></label>
+				<div class="<?php if(trim(strtolower(preg_replace('/\s+/', '_', $value['caption']))) == 'role(s)') { ?>col-xs-9<?php } else { ?>col-sm-9<?php } ?>">
+					<input type="hidden" id="instance_property_id_<?php echo $value['node_class_property_id']; ?>" name="instance_property_id[]" value="<?php echo $value['node_class_property_id']; ?>" />
+					<input type="hidden" id="instance_property_name<?php echo $value['node_class_property_id']; ?>" name="instance_property_name[]" value="<?php echo strtolower(preg_replace('/\s+/', '_', $value['caption'])); ?>" />
+
+					<?php if(trim($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == 'Check Box') { ?>
+						 <span id="role_error" class="form-error-msg"></span>
+						<?php if(!empty($value['nodeClassYInstanceValue'])) { for($k=0;$k < count($value['nodeClassYInstanceValue']);$k++) { ?>
+							<div class="checkbox form-checkbox">
+								<label>
+									<input type="checkbox" value="<?php echo $value['nodeClassYInstanceValue'][$k]; ?>" onchange="setValueOfNodeZ(this,<?php echo $value['node_class_property_id']; ?>)">
+									<?php echo $value['nodeClassYInstanceValue'][$k]; ?>
+									<?php if(trim($value['nodeClassYInstanceValue'][$k]) == "Vessel Owner") { ?>
+										<p>He/she owns and operates the vessel and will use the app to manage issues on the vessel.</p>
+									<?php } ?>
+									<?php if(trim($value['nodeClassYInstanceValue'][$k]) == "Vessel Administrator") { ?>
+										<p>He/she operates and manages the vessel on behalf of the owner and will use the app to manage issues on the vessel.</p>
+									<?php } ?>
+								</label>
+							</div>
+						<?php } } ?>
+						<input type="hidden" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" />
+						
+					<?php } ?>
+
+					<?php if(trim($value['nodeZStructure']['FORM SELECTOR'][0]['value']) == 'Input') { ?>
+
+						<input type="text" class="form-control form-input <?php echo strtolower(preg_replace('/\s+/', '_', $value['caption'])); ?>" id="instance_property_caption<?php echo $value['node_class_property_id']; ?>" name="instance_property_caption[]" <?php if(trim(strtolower(preg_replace('/\s+/', '_', $value['caption']))) == 'first_name') { ?>autofocus<?php } ?> />
+						<span id="<?php echo strtolower(preg_replace('/\s+/', '_', $value['caption'])); ?>_error" class="form-error-msg"></span>
+						<?php if(trim(strtolower(preg_replace('/\s+/', '_', $value['caption']))) == 'email') { ?>
+						<?php } ?>
+					<?php } ?>
+
+				</div>				
+			</div>
+			<?php if(trim(strtolower(preg_replace('/\s+/', '_', $value['caption']))) == 'email') { ?>
+				<div class="form-group">
+					<label class="form-label col-sm-3">Confirm Email</label>
+					<div class="col-sm-9">
+						<input type="email" class="form-control form-input" id="confirm_email" />
+						<span id="cmail_error" class="form-error-msg"></span>
+					</div>				
+				</div>
+			<?php } ?>
+			<?php
+		}
+	}
+?>
+
+<div id="subscription-form">
+	<h3>New Subscription</h3>
+	<!-- <p>There are many variations of passengers of Lorem Ipsum available</p> -->
+	<div class="form-body">
+		<input type="hidden" id="is_mail_exist" name="is_mail_exist" value="N" />	
+		<form class="form-horizontal" name="subscriptionForm" id="subscriptionForm" method="post" action="<?php echo BASE_URL.'index/subscription'; ?>" >
+			<?php $node_class_id   = $this->classArray['node_class_id']; ?>
+			<input type="hidden" id="node_class_id" name="node_class_id" value="<?php echo $node_class_id; ?>" />
+			<?php foreach ($this->classArray['Properties']['2768']['child'] as $key => $value) { ?>
+				<?php if(trim($value['nodeZStructure']['TAXONOMY'][0]['value']) == 'Grouping.Properties') { ?>
+					<div class="form-group">
+						<label class="form-label col-sm-12 form-heading"><?php echo $value['caption']; ?></label>
+					</div>
+				<?php } ?>
+				<?php if(count($value['child']) > 0) { echo getChildOfClass($value['child']); } ?>
+			<?php } ?>
+			<button type="button" id="sub_but" class="btn sm-white-btn" onclick = "subscription()" >Submit</button>
+			<button type="button" class="btn sm-white-btn" onclick = "cancelSubscription()" >Reset</button>
+		</form>
+	</div>
+</div>
+
+<div class="modal fade custom-popup" tabindex="-1" role="dialog" data-backdrop="static" id="sucessfulMessage">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">
+				<p id="msg_sbubs_res">Subscription saved successfully.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn xs-white-btn" data-dismiss="modal">ok</button>
+			</div>
+		</div>
+	</div>
+</div>
+

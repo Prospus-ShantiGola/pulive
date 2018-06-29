@@ -1,0 +1,207 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 22, 2016, 9:45:00 AM
+    Author     : Anjali Sharma
+*/
+.edt-main-wrapper {
+    float: left;
+    padding:0px;
+    width: 100%;
+}
+
+
+.edt-main-wrapper .edtContainer {
+    width: 100%;
+    border: 0;
+}
+.edt-main-wrapper .edt {
+    margin-left: 0px;
+}
+.edt .edtParagraph{
+    font-size: 12px;
+    background-color:#fff;
+}
+.edtContainer .color-plates-wrap table{
+    border-collapse:separate !important;
+}
+.edtContainer .color-plates-wrap table td{
+    height: 18px;
+}
+
+.edtContainer #tableContextMenu{
+    position: fixed;
+    box-shadow: 0px 1px 3px #888888;
+}
+.edtHeader .icon.doDynamicText{
+    background-position: -5px -215px;
+}
+.edtContainer .edtPopUp{
+    position: fixed;
+}
+.edtContainer{
+    width: 100%;
+    border-left: 0px;
+    border-right: 0px;
+
+}
+.edt .edtParagraph:before, 
+#temptest1{
+    font-size: 12px;
+}
+.edt.structured span{
+    font-size: 12px !important;
+}
+.edt{
+    margin-left: 40px;
+    font-size:  12px;
+    position: relative;
+}
+.edtContainer .edtColumns{
+   
+    float: left;
+    width: 100%;
+}
+.edtContainer .edtColumns div{
+    font-size: 10px;
+}
+
+#edtformElementsTextProperties div {
+    padding: 4px 8px 8px 8px;
+}
+.edtContainer #tableContextMenu li, 
+.edtContainer #edtformElements li, 
+.edtContainer .edtPopUp li{
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.edtContainer #tableContextMenu,
+.edtContainer #edtformElements,
+.edtContainer .edtPopUp,
+#printMarginBox,
+.edtContainer #edtHyperlinkPopup,
+.edtContainer #edtHyperlinkPreview{
+    box-shadow:0px 2px 9px rgba(0, 0, 0, 0.23)
+}
+
+.edtContainer #tableContextMenu ul, 
+.edtContainer #edtformElements ul, 
+.edtContainer .edtPopUp ul{
+    padding:0px 10px
+}
+.edtContainer #tableContextMenu a, 
+.edtContainer #edtformElements a, 
+.edtContainer .edtPopUp a{
+    margin-left: 5px;
+}
+.edt .edtParagraph .edtInputText{
+    font-size: 12px;
+    margin-right: 10px;
+}
+.label-field{
+    font-weight: normal;
+    color: #000;
+    font-size: 11px;
+}
+.input-field,
+.textarea-field {
+    border: 0px;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0px 0;
+    height: 20px;  
+    background: transparent;  
+    font-size: 11px;
+    color: #000 !important;
+    border-radius: 0px;
+    box-shadow: none;
+}
+.input-field:focus,
+.textarea-field:focus {
+   background-color:transparent;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+}
+.select-field {
+    border: 0px;
+    background: transparent;  
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url("../img/drop down-black-small.png") no-repeat right bottom;
+    color: #000;
+    height: 20px;
+    font-weight:normal !important;
+    font-size: 11px;
+
+}
+button.btn-sm {
+    padding: 3px 6px;
+    font-size: 12px;
+    margin: 0 3px 0 0;
+}
+.btn {
+    border-radius: 0px;
+    padding: 5px 10px;
+    color: #000;
+}
+.edtContainer #tagContextMenu, .edtContainer #tableContextMenu, .edtContainer #edtformElements, .edtContainer .edtPopUp, #printMarginBox, .edtContainer #edtHyperlinkPopup, .edtContainer #edtHyperlinkPreview, .edtContainer #edtTagElements{
+	position: fixed;
+}
+.edt.structured .edtParagraph{
+    word-wrap: normal;
+}
+.edt .edtDynamicTextField{
+    border: 0px;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0px 0;
+    height: 20px;
+    background: transparent;
+    font-size: 11px;
+    color: #000 !important;
+    border-radius: 0px;
+    margin:2px 0;
+    box-shadow: none;
+    min-width: 133px;
+    vertical-align: top;
+}
+.edt .edtDynamicTextField:focus,
+.edt .edtDynamicTextField:active{
+    box-shadow: none;
+    border-bottom: 1px solid #000;
+    outline: 0;
+}
+.edt span.edtInputText,
+.edt.structured  span.edtInputText {
+    border: 0px;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 0px 0;
+    height: 20px;
+    background: #fff !important;
+    font-size: 11px;
+    color: #000 !important;
+    border-radius: 0px;
+    box-shadow: none;
+    margin: 2px 0;
+    text-align: left;
+    min-width: 133px;
+    vertical-align: top;
+}
+.edt-elm-readmode {
+    pointer-events: none;
+}
+.edt-main-wrapper table input.edtDynamicTextField {
+    border-bottom: 0px;
+}
+
+.edt-main-wrapper table input.edtDynamicTextField:focus,
+.edt-main-wrapper table input.edtDynamicTextField:active{
+   border-bottom: 0px; 
+}
+
+.edt-main-wrapper .edt .edtParagraph table,
+.edt-main-wrapper #temptest table{
+    table-layout: fixed;
+}

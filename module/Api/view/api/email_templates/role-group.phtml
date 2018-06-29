@@ -1,0 +1,13 @@
+<?php 
+ 
+echo $this->header;
+$html = '<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">Hello, '.$this->toFirstName .'.</td></tr>'
+         .'<tr><td style="height:20px;">&nbsp;</td></tr><tr>'
+         .'<td style="font:13px Arial, Helvetica, sans-serif; color:#333333">'
+         .$this->groupAdmin.' has assigned you <b>'.$this->roleName.'</b> role in <b>'.$this->groupName.'</b> organization.</td></tr>'
+         .'<tr><td></td></tr>'
+         .'<tr><td><a style="color: #fff; text-decoration: none; padding: 8px 20px; background: #49a9fa; border-radius: 2px; font-size: 14px; margin-right: 10px;" href="' . SOCKET_HOST_NAME . '">Login</a></td></tr>'
+         .'<tr>';
+echo $html;
+echo $this->footer;
+?>

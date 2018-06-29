@@ -1,0 +1,400 @@
+{
+  "apiVersion": "1",
+  "swaggerVersion": "1.2",
+  "basePath": "http://dev.pu.prospus.com/api",
+  "resourcePath": "/PU_API",
+  "produces": [
+    "application/json"
+  ],
+  "authorizations": {},
+  "apis": [
+    {
+      "path": "/userlist",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch user lists",
+          "notes": "Fetch all user details.",
+          "type": "User",
+          "nickname": "getUserList",
+          "authorizations": {},
+          "parameters": [],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/userlist/excludedUsers/{excludedUsers}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch user lists",
+          "notes": "Fetch all user details, add optional removed user ids if required.",
+          "type": "User",
+          "nickname": "getUserList",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "User ids of users to be excluded.",
+              "name": "excludedUsers",
+              "paramType": "path",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/coursedialogue/login_userId/{login_userId}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Course detail [Web]",
+          "notes": "Fetch Course detail, based on login user id.",
+          "type": "Course Dialogue",
+          "nickname": "getCourseDialogueList",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "User id of logged in user.",
+              "name": "login_userId",
+              "paramType": "path",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },    
+    {
+      "path": "/coursedialogue/login_userId/{login_userId}/platform/{platform}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Course Dialogue detail",
+          "notes": "Fetch Course Dialogue detail, based on login user id & platform.",
+          "type": "Course Dialogue",
+          "nickname": "getCourseDialogueList",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "User id of logged in user.",
+              "name": "login_userId",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Platform for which the data is required.",
+              "name": "platform",
+              "paramType": "path",
+              "defaultValue": "IOS",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/coursedialogue/login_userId/{login_userId}/timestamp/{timestamp}/platform/{platform}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Course Dialogue detail",
+          "notes": "Fetch Course Dialogue detail, based on login user id, timestamp & platform.",
+          "type": "Course Dialogue",
+          "nickname": "getCourseDialogueList",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "User id of logged in user.",
+              "name": "login_userId",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "Records b/w timestamp and current time, 0 to fetch all.",
+              "name": "timestamp",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Platform for which the data is required.",
+              "name": "platform",
+              "paramType": "path",
+              "defaultValue": "IOS",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/allstatements/login_userId/{login_userId}/timestamp/{timestamp}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Statements",
+          "notes": "Fetch Statements, based on login user id & timestamp.",
+          "type": "Statement",
+          "nickname": "getAllStatements",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "User id of logged in user.",
+              "name": "login_userId",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "Records b/w timestamp and current time, 0 to fetch all.",
+              "name": "timestamp",
+              "paramType": "path",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/allstatements/dialogueNodeId/{dialogueNodeId}/login_userId/{login_userId}/timestamp/{timestamp}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Fetch Statements",
+          "notes": "Fetch Statements, based on dilogue node id, login user id & timestamp.",
+          "type": "Statement",
+          "nickname": "getAllStatements",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "Dialogue node id.",
+              "name": "dialogueNodeId",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "User id of logged in user.",
+              "name": "login_userId",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "int",
+              "description": "Records b/w timestamp and current time, 0 to fetch all.",
+              "name": "timestamp",
+              "paramType": "path",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/login/emailaddress/{emailaddress}/password/{password}/forceUser/{forceUser}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Login [Web]",
+          "notes": "PU Login Web.",
+          "type": "User",
+          "nickname": "login",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Login email address.",
+              "name": "emailaddress",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Login password.",
+              "name": "password",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Forcibly login a user.",
+              "name": "forceUser",
+              "paramType": "path",
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "Y",
+                  "N"
+                ]
+              },
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/login/emailaddress/{emailaddress}/password/{password}/devicetoken/{devicetoken}/platform/{platform}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Login [IOS]",
+          "notes": "PU Login IOS.",
+          "type": "User",
+          "nickname": "login",
+          "authorizations": {},
+          "parameters": [
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Login email address.",
+              "name": "emailaddress",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Login password.",
+              "name": "password",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Device token in case of IOS.",
+              "name": "devicetoken",
+              "paramType": "path",
+              "required": true
+            },
+            {
+              "allowMultiple": false,
+              "dataType": "string",
+              "description": "Platform for which the data is required.",
+              "name": "platform",
+              "paramType": "path",
+              "defaultValue": "IOS",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 400,
+              "message": "Invalid ID supplied"
+            },
+            {
+              "code": 404,
+              "message": "Order not found"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "models": {
+  }
+}

@@ -1,0 +1,74 @@
+<div class="bg-color setScreenHt">
+    <div class="copy-right">
+        <img src="<?php echo $this->basePath(); ?>/vw_img/powered-by.png" class="img-responsive"/>
+    </div>
+    <div class="form-content">
+        <div class="form-header">
+            <img src="<?php echo $this->basePath(); ?>/vw_img/vw-logo.png" class="img-responsive">
+        </div>
+        <div class="form-body">
+            <form name="signInForm" id="signInForm" method="post" action="<?php echo BASE_URL.'login/signinVessel'; ?>" >
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="hidden" value="52" name="node_class_property_id_emailaddress" id="node_class_property_id_emailaddress">
+                    <input type="email" name="emailaddress" id="emailaddress" class="form-control form-input" autofocus />
+                    <span id="email_error" class="form-error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">PassWord</label>
+                    <input type="hidden" value="53" name="node_class_property_id_password" id="node_class_property_id_password">
+                    <input type="password" name="password" id="password" class="form-control form-input" />
+                    <span id="password_error" class="form-error-msg"></span>
+                </div>
+                <button type="button" onclick="signInUser();" class="btn lg-white-btn">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function isValidEmail(email)
+    {
+        return /^[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}$/.test(email)
+            && /^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*/.test(email);
+    }
+
+    function signInUser() 
+    {
+        var email       =   $.trim($('#emailaddress').val());
+        var password    =   $.trim($('#password').val());
+
+        $("#email_error").html("");
+        $("#password_error").html("");
+
+        $('#emailaddress').removeClass('form-error-field');
+        $('#password').removeClass('form-error-field');
+
+        if(email == '')
+        {
+            $('#emailaddress').addClass('form-error-field');
+            $("#email_error").html("Please enter email address.");
+            return false;
+        }
+
+        if(!isValidEmail(email))
+        {
+            $('#emailaddress').addClass('form-error-field');
+            $("#email_error").html("Please enter valid email address.");
+            return false;
+        }
+
+        if(password == '')
+        {
+            $('#password').addClass('form-error-field');
+            $("#password_error").html("Please enter password.");
+            return false;
+        }
+
+        $("#signInForm").submit();
+    }
+
+    
+</script>
+
+

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,500,600,600i,700,700i');
+@font-face {
+    font-family: 'cosmic sans';
+    src: url(../fonts/LDFComicSans.ttf);
+}
+
+
+/* font family */
+$font-opensans			: 	'Open Sans', sans-serif;
+$font-cosmicsans		:	'cosmic sans';
+$font-centurygothic		:   "Century Gothic";
+
+
+.sass-lang  {
+	.flex-item.control-panel {
+	    height:$fullHeight;
+	    float: $left;
+	    padding:10px;
+	    max-width: 250px;
+	    display: none;
+	}
+}
+.sass-lang {
+	.theme-box{
+		font-size:12px;
+		font-family:$font-opensans; 
+		@extend .full-content;
+		h3{
+			font-size:12px !important;
+			color:#24ba9f;
+			font-weight:$font-bold;
+			margin-bottom: 10px;
+		}
+		label{
+			text-align: left;
+		}
+		#changeFont{
+			color:black;
+		}
+	}
+}
+
+
+/* font family */
+.sass-lang.open-sans{
+	font-family:$font-opensans; 
+}
+
+.sass-lang.cosmic-sans{
+	font-family:$font-cosmicsans;
+}
+
+.sass-lang.century-gothic{
+	font-family:$font-centurygothic ;
+}
+
+
+.sass-lang{
+	.brownBG{
+    	filter: brightness(80%) sepia(1);
+	}
+	.blueBG{
+    	filter: saturate(250%);
+	}
+}
+
+// chnage theme of website
+@mixin theme($name, $leftActionBg, $leftActionDetailBg, $navigationColor, $navigationHoverBgColor, $brandColor, $tabBG, $heading-bg) {
+	.sass-lang {
+		.left-action-bar.#{$name} {
+			> ul{
+			    background:$leftActionBg; 
+				> li:hover,
+				> li.active{
+					background: $leftActionDetailBg;	
+				}
+			}
+		    ul.left-action-detail-pane {
+		        background: $leftActionDetailBg;
+		        li{
+		            .panel-title{
+		                color:$navigationColor; 
+		            }
+		            ul {
+		                li{                
+		                    a{
+		                    	color:$navigationColor; 
+		                        &:hover{
+		                            color:$navigationColor;
+		                        }
+		                        &.active{
+		                            color: $whiteColor;
+		                            background:$navigationHoverBgColor;  
+		                        } 
+		                    }
+		                &:hover{                    
+		                    a{                    
+		                        color: $whiteColor;
+		                        background:$navigationHoverBgColor; 
+		                    }           
+		                }
+		                    
+		                } 
+		            }
+		            a{
+		                &:hover,
+		                &:focus{
+		                    color: $navigationColor;
+		                }
+		            }
+		        }
+		    }
+		}
+		#leftPane.#{$name} {
+			color: $brandColor;
+			h3,h5,p{
+				color: $brandColor;	
+			}
+			.tabing-detail{
+				background:$tabBG;
+			}
+			
+		}
+		#rightPane.#{$name} {
+			color: $brandColor;
+			h3,h5,p{
+				color: $brandColor;	
+			}
+			.title{
+				background:$heading-bg;
+			}
+			
+		}
+	}
+}
+
+@include theme(greyBG, #666, #333, #ccc, #222, #000, #f5f5f5, #333);
+@include theme(greenBG, #1a8673, #065447, #ccc, #1a8673, #246f62, #ddfff9, #065447);
+
+

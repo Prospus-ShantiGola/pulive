@@ -1,0 +1,326 @@
+.prs-plugin .listing-details-wrap{
+    background: #fff;
+    position: relative;
+}
+
+.prs-plugin .listing-details-wrap .listing-section-wrap{
+    width: 100%;
+}
+/*================= Listing content ============*/
+.prs-plugin .listing-content-wrap {
+    padding: 8px;
+    float: left;
+    width: 100%;
+}
+.prs-plugin .listing-content-wrap  .form-group {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.list-detail-section .form-group {
+    margin-bottom: 8px;
+}
+.prs-plugin .list-title-heading {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #8da5af;
+    margin-bottom: 2px;
+    margin-top:2px;
+    width: auto;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+}
+.prs-plugin .list-title-heading:hover,
+.prs-plugin .list-title-heading:focus,
+.prs-plugin .list-title-heading:active{
+    color: #8da5af;
+    text-decoration: none;
+}
+.prs-plugin .list-view-detail{
+    padding-top: 7px;
+    float: left;
+    font-size: 11px;
+    font-family: 'Open Sans', sans-serif;
+    color: #000;
+}
+.prs-plugin .list-detail-section {
+    width: 100%;
+    display: inline-block;
+    padding-left: 24px;
+    padding-top: 6px;
+}
+.prs-plugin .listing-content-wrap .form-horizontal > div {
+    /* background: red; */
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.prs-plugin .list-title-heading > i {
+    font-size: 20px;
+    vertical-align: top;
+    margin-right: 10px;
+    line-height: 15px;
+    width: 12px;
+    height: 100%;
+}
+.prs-plugin .list-title-heading > i+i{
+    width: 20px;
+}
+/*===================User listing wrap==================*/
+.prs-plugin .user-action-wrap {
+    background-color: #fff;
+    border-left: 1px solid #dbdbdb;
+    height: 100%;
+    position: relative;
+    right: 0;
+    z-index: 8;
+    width: 60px;
+}
+.prs-plugin .user-action-wrap a {
+    color: #ffffff;
+    display: block;
+    font-size: 10px;
+    text-align: center;
+    width: 60px;
+    border-bottom: none;
+    min-height: 48px;
+    padding: 0 4px;
+
+}
+.prs-plugin .user-action-wrap a:first-child {
+    border-bottom: 1px #dfdfdf solid;
+}
+/*.prs-plugin .user-action-wrap a.hide ~ a:not(.hide) {
+    border-bottom: 1px #dbdbdb solid;   
+}
+.prs-plugin .user-action-wrap a.hide ~ a:not(.hide) ~ a {
+     border-bottom: 1px #fff solid;
+}*/
+.prs-plugin .user-action-wrap a:hover{
+    background: none;
+    text-decoration: none;
+}
+#gridHeader{
+    padding:10px 8px;
+}
+.prs-plugin .user-action-wrap i {
+    color: #111;
+    font-size: 14px;
+    margin: 6px 0 0;
+    height: 20px;
+}
+.prs-plugin .user-action-wrap a span {
+    color: #000;
+    display: block;
+    line-height: 120%;
+    font-family: 'Open Sans', sans-serif;
+    margin-top:-3px;
+}
+.prs-plugin .list-detail-section .btn {
+    width: 100px;
+    margin-right: 0;
+}
+.prs-plugin .list-detail-section label.control-label.form-label > span {
+    width: 100%;
+    display: inline-block;
+    font-size: 10px;
+    color: #333;
+    font-weight: 400;
+}
+
+.customTextarea textarea{width:300px; height:65px; border:none; background:transparent; resize:none; margin:0; padding:0 0 0 10px; overflow:hidden; line-height:20px; font-family: Arial, sans-serif; font-size: 13px; margin:5px 0; outline:none; color:#ccc;}
+.customTextarea .textarea-wrapper{height:100px; overflow:hidden; /*border:1px solid #666; -webkit-border-radius:5px; -moz-border-radius:5px; border-radius:5px; -webkit-box-shadow:inset 0 0 40px rgba(0,0,0,0.5); -moz-box-shadow:inset 0 0 40px rgba(0,0,0,0.5); box-shadow:inset 0 0 40px rgba(0,0,0,0.5);*/}
+.hiddendiv{position:absolute; top:-9999px; left:-9999px; visibility:hidden; white-space: pre-wrap; width: 210px; min-height: 140px; font-family: Arial, sans-serif; font-size: 13px; padding:0 0 0 10px; word-wrap: break-word;}
+.highlight{background: yellow}
+
+
+
+/*=========Add Deals Section===============*/
+.prs-plugin  .role-section {
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.prs-plugin  .role-heading {
+    margin-bottom: 0px;
+    display: inline-block;
+    width: auto;
+}
+.prs-plugin .role-section .role-heading h2 {
+    font-size: 11px;
+    color: #8da5af;
+    font-weight: 700;
+    line-height: 22px;
+    text-transform: uppercase;
+}
+.prs-plugin .role-heading h2 i {
+    font-size: 20px;
+    vertical-align: top;
+    margin-right: 10px;
+    width: 12px;
+}
+.prs-plugin .role-row .role-head-row > span {
+    width: calc(100% - 40px);
+    margin-bottom: 2px;
+}
+.prs-plugin  .role-row {
+    float: none;
+    display: block;
+    width: 100%;
+    margin:5px 0;
+}
+.prs-plugin .role-row span {
+    vertical-align: top;
+    display: inline-block;
+    margin: 4px 0 0 5px;
+    font-size: 12px;
+}
+.prs-plugin .role-row .role-body-row{
+    margin-left: 30px;
+}
+.prs-plugin .role-body-row span {
+    margin-left: 2px;
+}
+.prs-plugin .listing-content-wrap .role-body-row .btn{
+    min-width: 80px;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.list-detail-section .list-view-detail {
+    overflow-wrap: break-word;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+.list-detail-section .bootstrap-filestyle  {
+    width: calc(100% - 95px);
+    float: left;
+}
+span.fileZReset {
+    padding: 10px 0 0 10px;
+    display: inline-block;
+    padding-right: 0;
+}
+.bootstrap-filestyle .icon-span-filestyle {
+    display: none;
+}
+.bootstrap-filestyle .group-span-filestyle.input-group-bt {
+    outline: 0;
+}
+
+.prs-plugin .control-btn-wrap .dropdown.listDrp {
+    float: right;
+
+}
+
+.prs-plugin .control-btn-wrap .dropdown.open .dropdown-menu{
+    max-height: 400px;
+    opacity: 1;
+    border-radius: 0px;
+}
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul {
+    width: 59px;
+    min-width: 59px;
+    max-width:59px;
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0px;
+    border:1px solid #dbdbdb;
+    border-right: 0;
+    transition: all 0.35s;
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a {
+    padding: 0;
+    border: 0;
+}
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a.active,
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a:focus,
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a:hover,
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a:active {
+    border-bottom: 1px solid #dbdbdb;
+}
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul a {
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #dbdbdb;
+}
+.prs-plugin .control-btn-wrap .dropdown.listDrp ul li:last-child a{
+    border-bottom:0px;
+}
+
+.list-title-heading > span.list-title-accordian {
+    display: inline-block;
+    width: auto;
+    word-wrap: break-word;
+}
+.small {
+    color: #969696;
+    /* margin-top: 2px; */
+    margin-top: 0;
+    font-style: italic;
+    font-weight: normal;
+    /* padding-left: 15px; */
+    padding-left: 0;
+}
+
+/*wkhtmltopdf*/
+#wkpdf_wapper {
+    margin: 0;
+    padding: 0;
+}
+#wkpdf_wapper a[href="#editGeneral"]{
+    padding-top: 0;
+    padding-bottom: 5px;
+    display: block;
+}
+#wkpdf_wapper .list-title-heading{
+    display: block;
+    padding-top: 30px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: #000;
+}
+#wkpdf_wapper .form-group{
+    width: 100%;
+}
+#wkpdf_wapper .form-group .col-sm-4{
+    display: inline-block;
+    width: 30%;
+    float:left;
+    font-weight: normal;
+    color: #333;
+    padding-top:7px;
+}
+#wkpdf_wapper .form-group .col-sm-4 span.note {
+    width: 100%;
+    display: inline-block;
+    font-size: 11px;
+    color: #333;
+    margin-top:2px;
+    font-weight: 400;
+    color: #969696;
+    font-style: italic;
+}
+#wkpdf_wapper .form-group .col-sm-8{
+    display: inline-block;
+    width: 65%;
+    float:left;
+    color: #333;
+    padding-top:7px;
+}
+.prs-plugin .pu_plugin_modal_flyout .user-action-wrap a {
+    min-height: auto;
+    padding: 6px 4px;
+    border: 0px;
+}
+.prs-plugin .pu_plugin_modal_flyout .user-action-wrap a:first-child{
+    border-bottom: 0px;
+}
+

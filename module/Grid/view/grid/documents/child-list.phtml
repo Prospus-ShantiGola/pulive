@@ -1,0 +1,33 @@
+    <ul style="display:block">                
+        <?php   
+        foreach ($this->instanceArray as $key => $value) { ?>
+            <li id="<?php echo $value['node_id'];?>" class="drag-folder">
+				<ilayer class="oddEvenHack"></ilayer>
+                <div class="left-folder-action">
+                    <?php 
+                       if(count($value['child']) > 0) { ?>
+                        <i class ="fa fa-angle-up"></i>
+                    <?php } ?>
+                </div>
+                <a href="javascript:void(0);"><i class="icon folder"></i>
+                    <?php if($value['value']!=""){
+                            $valueVal1=  $value['value'];
+                        } else {
+                            $valueVal1= '-'; 
+                        }?>
+                    <span class="value-count-<?php echo $value['node_id'];?>" data-value="<?php echo $valueVal1;?>" data-id="<?php echo $value['node_id'];?>"><?php echo $valueVal1;?></span>
+                </a>
+                <?php if(count($value['child'])> 0) 
+                { 
+                    $classVal = 'hasChild';
+                } else {
+                    $classVal = 'noChild';
+                } ?>
+                <div class="folder-action <?php echo $classVal?>">
+                    <i class="icon plus-class"></i>
+                    
+                </div>
+                <div class="nested-list" id="childList_<?php echo $value['node_id'];?>"></div>
+            </li>
+            <?php }?>
+    </ul>

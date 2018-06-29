@@ -1,0 +1,66 @@
+.sass-lang{
+	.flyout {
+	    background: red;
+	    position: absolute;
+	    width: 100%;
+	    padding:10px;
+	    top:0;
+	    z-index: 4;
+	}
+	.flyout-right{
+		right:-100%;
+	}
+	.flyout-right.in{
+		right:0px;
+	}
+	.flyout-back-layar {
+	    position: fixed;
+	    width: 100%;
+	    height: 100%;
+	    background: #000;
+	    top: 0;
+	    left: 0;
+	    z-index: 3;
+	    display: none
+	}
+	.flyout-right.in + .flyout-back-layar{
+		display: block
+	}
+}
+
+#courseTemplateFlyout.leftFlyout.in {
+    left: 90px;
+    display: block !important;
+}
+#courseTemplateFlyout.leftFlyout{
+	left:-400px;
+	transition:all 0.5s ease !important;
+	display: block !important;
+}
+
+.prod-flyout{
+	.left-head-chat{
+		min-height: 40px;
+	}
+	.display-wrapper {
+	    width: 100%;
+	    height: calc(100vh - 40px);
+	}
+	.main-pane{
+		width: calc(100% - 50px);
+		height: calc(100vh - 40px);
+		border-right:1px solid #ccc;
+	}
+	#viewCourseDefaultWrapper, #viewCourseDefaultWrapper .fixedTableHig{
+		height: calc(100vh - 80px) !important;
+		width: 100%;
+	}
+	.HalfPaneHeight {
+		padding:10px;
+	}
+	.right-action-bar{
+		i{
+			float: none;
+		}
+	}
+}

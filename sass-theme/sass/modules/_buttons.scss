@@ -1,0 +1,95 @@
+$btnbg :transparent;
+$radiusNone: 0px;
+$btnPadding:5px 10px;
+$btnBorderColor:#000;
+$btnshadow:none;
+
+$btnWhiteColor:#fff;
+$btnColor:#000;
+
+$btnBrandColor:#99cbcc;
+$btnBrandBorder:#99cbcc;
+
+$btnBlackColor:#333;
+$btnBlackBorder:#333;
+
+
+.sass-lang {
+	.btn{
+		background: $btnbg;
+		border-radius:$radiusNone;
+		color:$btnBrandColor;	
+		box-shadow:$btnshadow;
+		border-color:$btnBrandColor;
+		font-size: $font-size-xs;
+		font-family:$font;
+		padding:6px 10px;
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus{
+			color:$btnBrandColor;
+			border-color:$btnBrandColor;
+			outline: 0;
+			box-shadow:$None;
+		}
+	}
+	.course-btn{    
+		background: $bg-gray;
+	    position: absolute;
+	    top: 0px;
+	    right: 0px;
+	    width: 85px;
+	    padding: 5px 10px;
+	    line-height: 12px;
+	    font-size: 11px;
+	    a{
+	    	color: #000;
+	    	text-decoration: none;
+	    }
+		.Icon{
+			margin-right: 5px;
+		}
+	}
+}
+
+
+.sass-lang {
+	.btn-light-green{
+		border-color:$btnBrandColor;
+		color:$btnBrandColor;
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus{
+			color:$btnColor;
+			border-color:$btnBrandColor;
+		}
+	}
+	.btn-black{
+		border-color:$btnBlackColor;
+		color:$btnBlackBorder;
+		&:hover,
+		&:focus,
+		&:active,
+		&:active:focus{
+			color:$btnWhiteColor;
+			border-color:$btnBlackBorder;
+			background: $btnColor;
+		}
+		
+	}
+}
+.sass-lang {
+	.btn-group-icon i {
+	    margin-right: 10px;
+	    font-style: italic;
+	}
+	.btn-group-icon {
+	    padding: 0;
+	    border: 0;
+	    font-size: 13px;
+	    font-style: italic;
+	    color: #9d9d9d;
+	}
+}

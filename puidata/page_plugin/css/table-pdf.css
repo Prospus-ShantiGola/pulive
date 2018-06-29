@@ -1,0 +1,124 @@
+
+@page {
+        size: 8.5in;
+        margin: 10mm 10mm 10mm 10mm;
+}
+
+#canvasToolbar, #canvasNodeList, #canvastableContextMenu, .deletePageSpan, #gtresizer, #gthorresizer, #gridLine, #selClassDropdown{
+ display:none;
+}
+
+body{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+
+}
+table{	
+ 	border-collapse: collapse;
+ 	width: 100% !important;
+}
+table td{
+	padding: 3px;
+	font-size: 1em;
+	font-family: 'Open Sans', sans-serif;
+	letter-spacing:initial;
+}
+
+#edtCanvasView table td.nopadding{
+
+}
+
+#edtCanvasView td{
+ -webkit-print-color-adjust: exact;
+}
+
+.innerCanvasContainer{
+    page-break-inside:avoid;
+}
+#edtInnerCanvasView .innerCanvasContainer{
+	page-break-after: always;
+	display: block;
+	padding: 0px;
+	margin: 0px;
+}
+
+.canvasUnderline{
+	border-bottom: 1px solid #000;
+
+}
+
+.canvasBold{
+	font-weight: bold;
+}
+
+.canvasItalic{
+	font-style: italic;
+}
+
+.canvasLeftALign{
+	text-align: left;
+}
+
+.canvasRightAlign{
+	text-align: right;
+}
+
+.canvasCenter{
+	text-align: center;
+}
+
+.canvasJustify{
+	text-align: justify;
+}
+td table{
+	width:100%;
+	font-size: 11px;
+
+}
+tr, td{
+	padding:5px;
+	outline: none;
+	word-break: break-word;
+	vertical-align: middle;
+	margin:0px;
+	font-size: 11px;
+	font-family: 'Open Sans', sans-serif;
+	line-height: normal !important;
+	border: 0;
+}
+
+.mappingNode {
+   /* background: #ececec;
+    border-bottom: 1px solid #ccc;*/
+    font-size: 10px;
+    min-height: 16px;
+    vertical-align: bottom;
+    line-height: 16px;
+}
+.canvasDynamicField {
+    min-width: 100px;
+    display: inline-block;
+   /* background-color: rgba(255, 255, 0, 0.17);
+    border-bottom: 1px solid #ccc;*/
+    min-height: 16px;
+    vertical-align: bottom;
+    line-height: 16px;
+}
+td input[type="checkbox"], 
+td input[type="radio"] {
+    margin: 0;
+    vertical-align: bottom;
+    cursor: default;
+}
+.dragCanvasContainer {
+    background-repeat: no-repeat;
+    position: relative;
+    height:100%;
+
+}
+.mappingNode, .canvasDynamicField{
+    font-size: 11px !important;
+    line-height: normal;
+}
+
+

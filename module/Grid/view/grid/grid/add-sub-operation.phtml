@@ -1,0 +1,204 @@
+<div class="fixed-top-header">
+    <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+        <tbody>
+            <?php for($row=0;$row<2;$row++) { ?>
+            <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+                <?php if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+                <?php if(intval($row) == 0) { ?>
+                <td class="ExcelTableFormationCol col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+                <span class="top-col"><?php echo intval($this->currentColumnIndex)+2; ?></span>
+                <i class="fa fa-plus add add-operation"></i>
+                <div class="add-col-wrap add-colums">
+                    <ul class="dropdown-menu show-<?php echo intval($this->currentColumnIndex)+2; ?>" >
+                        <li role="presentation" class="no-bg disabled">
+                            <a role="menuitem" tabindex="-1" class="">
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add left
+                            </a>
+                            <ul class="sub-item">
+                                <li role="presentation" class="no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class=" add-left-col">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Phase 
+                                    </a>
+                                </li>
+                                <li role="presentation" class="no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class=" add-operation-series">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Operation
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="no-bg disabled">
+                            <a role="menuitem" tabindex="-1" class="" >
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add right
+                            </a>
+                            <ul class="sub-item">
+                                <li role="presentation" class="addSegmentRole">
+                                    <a role="menuitem" tabindex="-1" href="#" class="">
+                                        <div class="node-circle node-white-circle-expanded">N</div>
+                                        Role 
+                                    </a>                                    
+                                </li>                                            
+                            </ul>
+                        </li>
+                         <li role="presentation" class="delete-series no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class="" >
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Delete Series 
+                                    </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td class="ExcelTableFormationCol  col-<?php echo intval($this->currentColumnIndex)+3; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+3; ?></span></td>
+            
+            
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top col-<?php echo intval($this->currentColumnIndex)+2; ?>">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+2; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon operation-icon"></span><span class="col-head-title">Operation</span><i class="fa fa-caret-left arrow"></i>
+                    </div>
+                </td>
+                
+                <td class="ExcelTablerow border-top  col-<?php echo intval($this->currentColumnIndex)+3; ?>">
+                    <div data-id="<?php echo intval($this->currentColumnIndex)+3; ?>" class="col-head col-wrap show">
+                        <div class="node-circle node-white-circle node-white-circle">N</div>
+                        <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                    </div>
+                </td>
+                
+                
+                <?php } ?>
+                <?php } ?>
+                <?php } ?>
+               
+            </tr>
+            <?php }?>
+        </tbody>
+    </table>
+</div>
+
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+    <tbody>
+            <?php $index = 0;
+                for($row=0;$row<count($this->tableDataArray);$row++) {
+ ?>
+                 <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+                        <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+                        <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?></td>
+            <?php if(intval($col) == (intval($this->currentColumnIndex)+1)) {  ?>
+             <?php if(intval($row) == 0) { ?>
+                <td class="ExcelTableFormationCol add-sub-more-operation">
+                <span class="top-col"><?php echo intval($this->currentColumnIndex)+2; ?></span>
+                <i class="fa fa-plus add add-operation"></i>
+                <div class="add-col-wrap add-colums">
+                    <ul class="dropdown-menu show-<?php echo intval($this->currentColumnIndex)+2; ?>" >
+                        <li role="presentation" class="no-bg disabled">
+                            <a role="menuitem" tabindex="-1" class="">
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add left
+                            </a>
+                            <ul class="sub-item">
+                                <li role="presentation" class="no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class=" add-left-col">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Phase 
+                                    </a>
+                                </li>
+                                <li role="presentation" class="no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class=" add-operation-series">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Operation
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="no-bg disabled">
+                            <a role="menuitem" tabindex="-1" class="" >
+                                <div class="node-circle node-white-circle-expanded">N</div>
+                                Add right
+                            </a>
+                            <ul class="sub-item">
+                                <li role="presentation" class="no-bg">
+                                    <a role="menuitem" tabindex="-1" href="#" class="add-Role">
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Role 
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                         <li role="presentation" class="delete-series no-bg disabled">
+                                    <a role="menuitem" tabindex="-1" href="#" class="disabled" >
+                                        <div class="node-circle node-white-circle">N</div>
+                                        Delete Series 
+                                    </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td class="ExcelTableFormationCol  col-<?php echo intval($this->currentColumnIndex)+3; ?>"><span class="top-col"><?php echo intval($this->currentColumnIndex)+3; ?></span></td>
+               
+                <?php } else if(intval($row) == 1){ ?>
+                <td class="ExcelTablerow border-top">
+                <div data-id="<?php echo intval($this->currentColumnIndex)+2; ?>" class="col-head col-wrap show">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon operation-icon"></span><span class="col-head-title">Operation</span><i class="fa fa-caret-left arrow"></i>
+                </div>
+            </td>
+            
+            <td class="ExcelTablerow border-top">
+                <div data-id="<?php echo intval($this->currentColumnIndex)+3; ?>" class="col-head col-wrap show">
+                    <div class="node-circle node-white-circle node-white-circle">N</div>
+                    <span class="icon event-icon"></span><span class="col-head-title">.Event</span><i class="fa fa-caret-left arrow rotate"></i>
+                </div>
+            </td>
+            <?php } else { ?>
+              
+						<?php 
+                        if(in_array($row, $this->logicsN)){
+                                if($row!=2){
+                                 $topClass = 'border-light-top';
+                                }
+                        }
+                        else {
+                             $topClass = '';   
+                        }
+                        
+
+						?>
+                        
+                        <?php if($row == $this->currentRowIndex){ ?>
+                        <td class="ExcelTablerow col-<?php echo intval($this->currentColumnIndex)+1; ?> operation-series sub-operation <?php echo $topClass?>"><?php echo $this->FirstsubOperationPhaseArray[0]['sub_operation1']; ?></td>
+                        <td class="ExcelTablerow col-<?php echo intval($this->currentColumnIndex)+2; ?> operation-series sub-operation <?php echo $topClass?> role"><?php echo $this->FirstsubOperationPhaseArray[0]['sub_event_operation']; ?></td>
+                         <?php } else if($row == intval($this->currentRowIndex)+5){ ?>
+                        <td class="ExcelTablerow  col-<?php echo intval($this->currentColumnIndex)+1; ?> operation-series sub-operation <?php echo $topClass;?>"><?php echo $this->FirstsubOperationPhaseArray[5]['sub_operation1']; ?></td>
+                        <td class="ExcelTablerow <?php echo $topClass;?> col-<?php echo intval($this->currentColumnIndex)+2; ?> operation-series sub-operation role"><?php echo $this->FirstsubOperationPhaseArray[5]['sub_event_operation']; ?></td>
+                       <?php  } else {?>
+                        <?php if($row > intval($this->currentRowIndex) && $row < intval($this->currentRowIndex)+6){ ?>
+                        <td class="ExcelTablerow <?php echo $topClass;?> col-<?php echo intval($this->currentColumnIndex)+1; ?> operation-series sub-operation"><?php echo $this->FirstsubOperationPhaseArray[1]['sub_operation1']; ?></td>
+                        <td class="ExcelTablerow <?php echo $topClass;?> col-<?php echo intval($this->currentColumnIndex)+2; ?> operation-series sub-operation role"><?php echo $this->FirstsubOperationPhaseArray[1]['sub_event_operation']; ?></td>
+                        <?php } else { ?>
+                        <td class="ExcelTablerow <?php echo $topClass;?> role col-<?php echo intval($this->currentColumnIndex)+1; ?> operation-series sub-operation"><?php echo $this->FirstsubOperationPhaseArray[1]['sub_operation1']; ?></td>
+                        <td class="ExcelTablerow <?php echo $topClass;?> col-<?php echo intval($this->currentColumnIndex)+2; ?> operation-series sub-operation role"><?php echo $this->FirstsubOperationPhaseArray[1]['sub_event_operation']; ?></td>
+                        <?php } ?>
+                       <?php }?>
+
+                <?php  
+                    $index++; 
+                } 
+            } 
+
+         } ?>
+        	</tr>
+            
+			 
+        <?php } ?>
+    </tbody>
+</table>
+

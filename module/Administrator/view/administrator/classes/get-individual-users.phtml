@@ -1,0 +1,182 @@
+
+<div class="">
+    <div class="mainAccordianDiv">
+        <input type="hidden" id="parti_user_property_id" name="parti_user_property_id" value="<?php echo $this->propertyId; ?>" />
+        <input type="hidden" id="parti_user_property_id_mode" name="parti_user_property_id_mode" value="<?php echo $this->mode; ?>" />
+        <?php if($this->rightsType == 'Actor') { ?>
+            <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                <thead>
+                    <th <?php if($this->mode == 'view') { ?>style="display:none;"<?php } ?>>
+                        <span>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" class="all_parti" >
+                            </div>
+                            <div class="filterDrp">
+                                <span><i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li onclick="searchingOnFile('Selected','node_id');" >Selected</li>
+                                    <li onclick="searchingOnFile('Unselected','node_id');" >Unselected</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </th>
+
+                    <th class="filterDrp">
+                        <span>Name<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li onclick="searchingOnFile('Asending','first_name');" >Sort A - Z</li>
+                            <li onclick="searchingOnFile('Desending','first_name');" >Sort Z - A</li>
+                            <!-- <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li>Equals To</li>
+                                    <li>Not Equals To</li>
+                                    <li>Begins With</li>
+                                    <li>Ends With</li>
+                                    <li>Contains</li>
+                                    <li>Does Not Contain</li>
+                                </ul>
+                            </li>                        
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box" type="button"></button>
+                                    </span>
+                                </div>
+                            </div> -->
+                        </ul>
+                        
+                    </th>
+                    <th class="filterDrp">
+                        <span>Email Id<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li onclick="searchingOnFile('Asending','email_address');" >Sort A - Z</li>
+                            <li onclick="searchingOnFile('Desending','email_address');" >Sort Z - A</li>
+                            <!-- <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li>Equals To</li>
+                                    <li>Not Equals To</li>
+                                    <li>Begins With</li>
+                                    <li>Ends With</li>
+                                    <li>Contains</li>
+                                    <li>Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box" type="button"></button>
+                                    </span>
+                                </div>
+                            </div> -->
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>Role</span>
+                    </th>
+                </thead>
+            </table>
+            <div class="nano fixedTableHig" >
+                <div class="nano-content">
+                    <table class="table table-style table-responsive node-detail-table ActiveRow"> 
+                        <tbody id="tableDataParticipantFilter">  
+                        	<?php if(count($this->userArray) > 0) { foreach($this->userArray as $key => $value) { ?>
+                            <tr id="row_parti_<?php echo $value['node_id']; ?>">
+                                <td <?php if($this->mode == 'view') { ?>style="display:none;"<?php } ?> >
+                                    <div class="custom-checkbox">
+                                        <input type="checkbox" id="parti_<?php echo $value['node_id']; ?>" class="parti_c" value="<?php echo $value['node_id']; ?>" >
+                                    </div>
+                                </td>
+                                <td><?php echo $value['first_name']." ".$value['last_name']; ?></td>
+                                <td><?php echo $value['email_address']; ?></td>
+                                <td><?php echo $value['domain']; ?></td>
+                            </tr>
+                            <?php } ?> 
+                            <tr id="no_user_select" style="display:none;">
+                                <td colspan="4" align="center" >No User Selected</td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr id="no_user_select">
+                                <td colspan="4" align="center" >No User Selected</td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        <?php } else if($this->rightsType == 'Role') { ?>
+            <table class="table table-style table-responsive table-head ActiveRow node-detail-table">
+                <thead>
+                    <th <?php if($this->mode == 'view') { ?>style="display:none;"<?php } ?>>
+                        <span>
+                            <div class="custom-checkbox">
+                                <input type="checkbox" class="all_parti" >
+                            </div>
+                            <div class="filterDrp">
+                                <span><i class="fa fa-angle-down"></i></span>
+                                <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                    <li onclick="searchingOnFile('Selected','node_id');" >Selected</li>
+                                    <li onclick="searchingOnFile('Unselected','node_id');" >Unselected</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </th>
+
+                    <th class="filterDrp">
+                        <span>Role Name<i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li onclick="searchingOnFile('Asending','first_name');" >Sort A - Z</li>
+                            <li onclick="searchingOnFile('Desending','first_name');" >Sort Z - A</li>
+                        </ul>
+                        
+                    </th>
+                </thead>
+            </table>
+            <div class="nano fixedTableHig" >
+                <div class="nano-content">
+                    <table class="table table-style table-responsive node-detail-table ActiveRow"> 
+                        <tbody id="tableDataParticipantFilter">  
+                            <?php if(count($this->userArray) > 0) { foreach($this->userArray as $key => $value) { ?>
+                            <tr id="row_parti_<?php echo $value['role_id']; ?>">
+                                <td <?php if($this->mode == 'view') { ?>style="display:none;"<?php } ?> >
+                                    <div class="custom-checkbox">
+                                    <input type="checkbox" id="parti_<?php echo $value['role_id']; ?>" class="parti_c" value="<?php echo $value['role_id']; ?>" >
+                                    </div>
+                                </td>
+                                <td><?php echo $value['role']; ?></td>
+                            </tr>
+                            <?php } ?> 
+                            <tr id="no_user_select" style="display:none;">
+                                <td colspan="2" align="center" >No Role Selected</td>
+                            </tr>
+                            <?php } else { ?>
+                            <tr id="no_user_select">
+                                <td colspan="2" align="center" >No Role Selected</td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    <?php if($this->rightsType == 'Actor') { ?>
+        $("#actor_cb").show();
+        $("#actor_cb_tick").show();
+        $("#role_cb").hide();
+        $("#role_cb_tick").hide();
+        $(".node_rights_user_count").html('Node Rights (<?php echo ucfirst($this->propertyName); ?>): Users <?php echo count($this->userArray); ?>');
+    <?php } else if($this->rightsType == 'Role') { ?>
+        $("#actor_cb").hide();
+        $("#actor_cb_tick").hide();
+        $("#role_cb").show();
+        $("#role_cb_tick").show();
+        $(".node_rights_user_count").html('Node Rights (<?php echo ucfirst($this->propertyName); ?>): Roles <?php echo count($this->userArray); ?>');
+    <?php } ?> 
+   
+</script>

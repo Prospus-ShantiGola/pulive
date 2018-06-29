@@ -1,0 +1,1203 @@
+<footer class="footer-temp" >
+    <div class="breadcrumb-wrap">
+        <div class="">
+            <div class="homeIcon"><i class="icon-sm home"></i></div>
+            <ol class="breadcrumb left">
+                <div class="image-slider strat_click" strat-id="not_ajax" >
+                    <a href="javascript:void(0);">Class List</a>
+                    <a href="javascript:void(0);">Class Properties</a>
+                </div>
+                <li class="active strat_click non-ins" strat-id="not_ajax" ><a href="javascript:void(0);">Class List</a></li>
+                <li class="active strat_click non-ins" strat-id="not_ajax" ><a href="javascript:void(0);">Class Properties</a></li>
+                <li id="node-x-li" class="strat_click" style="display:none"><a href="javascript:void(0);">Node X</a></li>
+                <li id="node-x-li-properties" class="strat_click" style="display:none"><a href="javascript:void(0);">Node X - Properties</a></li>
+            </ol>
+            <a href="javascript:void(0);" class="breadcrumb-down" title="">
+                <!--<img src="<?php //echo $this->basePath(); ?>/img/imgo.jpg" />-->
+                <i class="icon cancel bottomCancel"></i>
+            </a>
+        </div>
+    </div>
+    <!-- Success Msg -->
+    <!-- Used for socket reconnecting -->
+    <div id="DataSaveMsg" class="alertmsg">
+        <span>Saved Successfully</span>
+    </div>
+    <!-- End Used for socket reconnecting -->
+</footer>
+<?php /* ?>
+<!--  code for Helpout right Bottom layout-->
+<div id="helpFlyOut">
+   <div class="modal right-popup helpnodeFlyoutmodal" id ="helpnodeFlyout" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="help-modal-wrap">
+                        <div class="search-section">
+                            <div class="search-icon"><i class="icon search-change"></i></div>
+                            <div class="search-text hide">
+                                <div class="search-item-wrap">
+                                    <div class="input-group">
+                                        <i class="icon sm-search"></i>
+                                        <input type="text" class="form-control" placeholder="" name="search-text-box">
+                                        <i class="icon close search-cancel"></i>
+                                        <a href="#" class="input-group-addon"><img src="<?php echo $this->basePath(); ?>/img/arrow-select.png" alt="select arrow"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="search-detail"><i class="fa fa-globe"></i><a href="">www.loremipsum.com</a></div>
+                        </div>
+                        <div class="help-detail nano setDialogueHeight ">
+                            <div class="nano-content">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non volutpat leo, sed laoreet odio. Sed elit mi, laoreet vel efficitur vitae, lacinia et enim. Sed in risus pretium, consectetur eros egestas, viverra mi. Cras dignissim, sem sit amet laoreet cursus, enim orci lobortis ex, ut scelerisque sapien ligula ac urna. Nunc imperdiet ante ac felis ultrices, nec sollicitudin sem ultrices. Proin convallis scelerisque arcu, et pulvinar tortor faucibus non. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam at nisi interdum, venenatis risus non, laoreet ante. Quisque ornare tempus egestas. Duis iaculis ullamcorper magna id fringilla. Vivamus vestibulum nulla ut neque sollicitudin eleifend. Aenean et odio eu dolor eleifend ultrices at id ligula.
+                            </div>
+                        </div>
+                    </div>
+
+                  <div class="help-icon-wrap user-action-wrap rightSideBg">
+                          <a style="display:none;" class="tooltip-item user-roles strat_click1 shareIcon" href="javascript:void(0)" data-original-title="Share" strat-id="n_ajax" ><i class="icon share"></i><br><span>Share</span></a>
+                          <a style="display:none;" class="tooltip-item user-roles strat_click1 printIcon" href="javascript:void(0)" data-original-title="Print" strat-id="n_ajax" ><i class="icon print"></i><br><span>Print</span></a>
+                          <a style="display:none;" class="tooltip-item user-roles strat_click1 cancelIcon" href="javascript:void(0)" data-original-title="helpClose" strat-id="n_ajax" ><i class="icon cancel"></i><br><span>Close</span></a>
+                           <a id="helpNoderAnchor" href="javascript:void(0)" data-toggle="modal" data-target="#" data-direction="right" class="fixed-btm-icon strat_click1 helpnodeFlyout" strat-id="not_ajax" data-original-title="Help"><i class="icon help"></i><br><span>Help</span></a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- For Help Only  -->
+</div>
+<!--  Login popup -->
+<div class="modal fade modal-wrap" id="loginPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+            <div class="login-header align-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="login-logo"><img src="<?php echo PU_CDN_URL; ?>public/img/logo_white.png"></div>
+                        <h1>prospus</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="login-down-arrow"><img src="<?php echo $this->basePath(); ?>/img/arrow-down.png"></div>
+                </div>
+            </div>
+        </div>
+      <div class="modal-body">
+        <div class="login-top-content"><p>Your session has expired. You will need to log in again to resume your work</p></div>
+        <div class="login-content">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="text" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control">
+                </div>
+                <a href="#" class="right forgot-password">Forgot Password?</a>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name=""> Remember Me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-style">Login</button>
+
+            </form>
+
+          </div>
+
+      </div>
+     <!--  <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<!-- Alert Popup Of SID's -->
+<div class="modal fade series-popup deletePopup" id="sid_popup" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+        <div class="modal-header classes-common-name">
+            <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true"><i class="icon close" data-original-title="" title=""></i></span></button>
+            <h4 class="modal-title">Incorrect Data Input</h4>
+        </div>
+        <div class="modal-body">
+            <p id="msg_of_sid"></P>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-black" data-dismiss="modal" >Ok</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Popup -->
+<div class="modal fade series-popup deletePopup" id="exitPopup" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="series-content"> Are you sure you want to cancel?
+          <button type="button" onclick="checkHistoryNone()"  class="close right" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="icon close"></i></span></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-black" data-dismiss="modal" onclick="checkHistory()" >Yes</button>
+        <button type="button" class="btn btn-black" data-dismiss="modal" onclick="checkHistoryNone()" >No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade series-popup deletePopup" id="instanceUpdate" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true"><i class="icon close" data-original-title="" title=""></i></span>
+          </button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body "><div class="series-content contentJs"></div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-black updateInstanceYes hide" data-dismiss="modal" onclick="updateInstance()" >Yes</button>
+        <button type="button" class="btn btn-black updateInstanceNo hide" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-black updateInstanceOk hide" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- File Import Popup -->
+<div class="modal fade series-popup deletePopup" id="filePopup"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content"><p>Are you sure to import this file?</p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" id="importFile">Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- CSV File Popup -->
+<div class="modal fade series-popup deletePopup" id="csvfilePopup"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content"><p>This file format is not in a proper format. Please use csv file format.</p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Popup -->
+<div class="modal fade series-popup deletePopup" id="mappingAlertPopup"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content" > <p>Please update mapping class instance as well.</p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close" >
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- -->
+
+<div class="modal fade series-popup deletePopup" id="deleteInsFolDoc"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content"><p>Delete Message</p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="deleteFolderDocument()" >Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" data-dismiss="modal" >No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Delete Sub Class Popup -->
+<div class="modal fade series-popup deletePopup" id="deleteSubInsOrSubClassPopup"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <input type="hidden" id="del_msg_of_sub_class" value=""/>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content" > <p id="delMsgOfSubClass"></p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black delMsgOfSubClass" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sub Classes Flyout -->
+<div id="customPopUp">
+   <div class="modal right-popup customPopUp" id ="customPopUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head block-rightHead">
+                        <span class="main-title-wrap">
+                            <span class="main-title">Sub Class</span>
+
+                        </span>
+                        <div class="control-btn-wrap right searchFlyout">
+                            <form>
+                                <input type="text" id="search-subclass" class="form-control" placeholder="Search" name="search-text-box">
+                                <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="childClassDivFlyout"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Popup -->
+<div class="modal fade series-popup deletePopup" id="deleteInsOrCourseDialogue"  data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="series-content" > <p id="delMsgOfCID"></p>
+                    <button type="button" class="close right" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon close"></i></span>
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal" onclick="deleteCourseDialoguePropertyAgain()" >Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal" >No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Msg -->
+<div id="DataSaveMsg" class="alertmsg">
+    <span>Saved Successfully</span>
+</div>
+
+<div id="DataSaveDocument" class="alertmsg">
+    <span>Saved Successfully</span>
+</div>
+
+<!-- error Msg -->
+<div id="DataDeleteMsg" class="alertmsg">
+    <span>Error Messagess</span>
+</div>
+
+<div class="mini-dialogue-flyout-panel" ></div>
+
+<div class="right-popup rightFlyout" id="FilesValueFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Method(Id): #Value</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap files-value-wrap">
+                <div class="nano-content">
+                    <?php
+                    for ($i = 1; $i <= 10; $i++)
+                    {?>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+
+                    <?php
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="FilesValueFlyoutClose" id="FilesValueFlyout"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+
+
+<div id="versionModal" class="modal fade classes-click-modal" data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content version-section">
+            <div class="modal-header classes-common-name">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                 <h4 class="modal-title">Class Version Type</h4>
+            </div>
+
+            <div class="modal-body classes-body-content">
+               <div class="version-inner-section">
+                    <p>Define whether you want to create a major or a minor version of the selected class.</p>
+                    <table cellpadding="10" cellspacing="10" width="100%" class="version-table">
+
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Current</th>
+                                <th>New</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Major</td>
+                                <td id="major_cur_vers"></td>
+                                <td><span class="last-word" id="major_next_vers"></span></td>
+                                <td><button type="button" class="btn btn-black" data-dismiss="modal" onclick="createVersion('major');">Select</button></td>
+                            </tr>
+                            <tr>
+                                <td>Minor</td>
+                                <td id="minor_cur_vers"></td>
+                                <td id="minor_next_vers"></td>
+                                <td><button type="button" class="btn btn-black" data-dismiss="modal" onclick="createVersion('minor');">Select</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+               </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- left menu two pane flyout for new course-->
+<div class="left-menu-pane" id="new-course-first-pane">
+    <div class="left-panel-flyout">
+        <div class="nano">
+            <div class="nano-content">
+                <ul id="first-pane">
+                    <li><a><span>Active</span><i class="fa fa-angle-right"></i></a></li>
+                    <li class="inactive"><a><span>Inactive</span><i class="fa fa-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="menu-pane-action">
+        <a><i class="icon md-close"></i><br/>close</a>
+    </div>
+</div>
+
+<div class="left-menu-pane" id="new-course-secound-pane">
+    <div class="left-panel-flyout">
+        <div class="nano">
+            <div class="nano-content">
+                <ul id="secound-pane">
+                    <li><a><span>Association.Ownership</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="menu-pane-action">
+        <a><i class="icon md-close"></i><br/>close</a>
+    </div>
+</div>
+<?php */ ?>
+<?php /* ?>
+<div class="right-popup leftFlyout" id="openCourseFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Course Instance Class: List</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                 <table class="table table-style table-responsive table-head ActiveRow open-course-table">
+                    <thead>
+                        <th class="filterDrp">
+                            <span>Class<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                                <li >Sort by ascending</li>
+                                <li>Sort by descending</li>
+                                <li class="parent-item">Text Filters <i class="fa fa-angle-right"></i>
+                                    <ul class="multi-sub-menu dropdown-menu">
+                                        <li>Equals To</li>
+                                        <li>Not Equals To</li>
+                                        <li>Begins With</li>
+                                        <li>Ends With</li>
+                                        <li>Contains</li>
+                                        <li>Does Not Contain</li>
+                                    </ul>
+                                </li>
+                                <div class="search-item-wrap">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default search-button-box" type="button"></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </ul>
+                        </th>
+                        <th class="filterDrp">
+                            <span>Version<i class="fa fa-angle-down"></i></span>
+                            <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                                <li >Sort by ascending</li>
+                                <li>Sort by descending</li>
+
+                            </ul>
+                        </th>
+                    </thead>
+                </table>
+                <div class="nano  course-inner-wrap">
+                    <div class="nano-content fixedTableHig">
+                        <table class="table table-style table-responsive open-course-table ActiveRow ">
+                            <tbody>
+                            <?php
+                            for ($i = 1; $i <= 10; $i++) {  ?>
+                                <tr class="dialogueViewWrap">
+                                    <td>Lorem ipsum</td>
+                                    <td>1</td>
+                                </tr>
+                                <tr class="dialogueViewWrap">
+                                    <td>Dummy text</td>
+                                    <td>1.12</td>
+                                </tr>
+                          <?php  }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-action-wrap">
+            <a class="close-open-course-flyout"><i class="icon cancel"></i><br><span>Close</span></a>
+            <a id="helpNoderAnchor" href="javascript:void(0)" data-toggle="modal" data-target="#" data-direction="right" class="fixed-btm-icon strat_click1 helpnodeFlyout helpClass" strat-id="not_ajax" data-original-title="Help"><i class="icon help" data-original-title="" title=""></i><br><span>Help</span></a>
+        </div>
+    </div>
+</div>
+
+<!-- process/Association cell flyout start here-->
+<div class="right-popup rightFlyout" id="CellRightFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Node Flyout</span>
+                            </span>
+                            <div class="right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="course-inner-wrap">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                </p>
+
+            </div>
+        </div>
+        <div class="user-action-wrap" id="parti_action_div_id">
+            <a class="user-roles CellRightFlyoutClose"><i class="icon save"></i><br><span>Save</span></a>
+            <a class="user-roles CellRightFlyoutClose"><i class="icon cancel"></i><br><span>Cancel</span></a>
+        </div>
+    </div>
+</div>
+<!-- process cell flyout End here-->
+
+<div class="right-popup rightFlyout" id="newDocumentFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="tollbar-panel">
+            <!-- Nav tabs -->
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">File</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <!--
+                                Commented By: Divya
+                                On Date: 23rd May 2016
+                                as suggested by Sanchaita
+                                -->
+                                <!-- <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content doc-tollbar-wrap">
+               <div role="tabpanel" class="tab-pane active in file2" id="File">
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- code here to open folder and document modal awdhesh soni-->
+<div id="folderDocumentModal" class="modal fade classes-click-modal" data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content folder-section">
+            <div class="modal-header classes-common-name">
+                <h4 class="modal-title">Upload File</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <div class="niceScrollDivModal">
+                    <div class="folder-inner-section">
+                        <table cellpadding="10" cellspacing="10" width="100%" class="document-table">
+                            <tbody>
+                                <tr>
+                                    <td><div id='status2'></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                   </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black hide" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end code here-->
+
+<div id="uploadFolderModal" class="modal fade classes-click-modal" data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content folder-section">
+            <div class="modal-header classes-common-name">
+                <h4 class="modal-title">Uploaded</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+                <div class="niceScrollDiv">
+                    <div class="folder-inner-section">
+                        <table cellpadding="10" cellspacing="10" width="100%" class="folder-table">
+                            <tbody>
+                                <tr>
+                                    <td><div id='folder-status1'></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                   </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-black" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="segmentPopup" class="modal fade classes-click-modal" data-backdrop="static" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header classes-common-name">
+                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><i class="icon close"></i></span></button>
+                 <h4 class="modal-title">Divide Segment</h4>
+            </div>
+            <div class="modal-body classes-body-content">
+               <table class="segment-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th class="disabled">(Start)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+               </table>
+               <div class="nano segmentList">
+                    <div class="nano-content">
+                        <form id="divide_segment_form" name="divide_segment_form" method="post" >
+                            <input type="hidden" id="segmentStartRow"  name="segmentStartRow"  value="" />
+                            <input type="hidden" id="segmentEndRow"    name="segmentEndRow"    value="" />
+                            <input type="hidden" id="totalSegment"     name="totalSegment"     value="" />
+                            <input type="hidden" id="totalSegmentTemp" name="totalSegmentTemp" value="" />
+                            <input type="hidden" id="totalWeek"        name="totalWeek"        value="" />
+                            <input type="hidden" id="phaseStartPoints" name="phaseStartPoints" value="" />
+                            <input type="hidden" id="phaseEndPoints"   name="phaseEndPoints"   value="" />
+                            <input type="hidden" id="phaseColumnNum"   name="phaseColumnNum"   value="" />
+                            <table class="segment-table my-table-of-divide"></table>
+                        </form>
+                    </div>
+               </div>
+
+               <div class="Add-new-segment">
+                    <i class="icon blue-plus"></i><span>New Segments</span>
+               </div>
+
+            </div>
+            <div class="modal-footer">
+                <span style="color:red; float:left; padding-left:10px" id="error_divide" ></span>
+                <button type="button" class="btn btn-black main-button-divide-segment" onclick="createDivideSegments();" >Create</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php */ ?>
+
+<!-- loader-course-view -->
+<?php
+    // loading assets from CDN or filesystem based on server
+    if(SOCKET_HOST_NAME === 'http://localhost/pu/') {
+        $assetsUrl = BASE_URL.'public/';
+        ?>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>puidata/js/dialogue.js"></script>
+        <?php
+        /* ?>
+
+        <!-- <script type="text/javascript" src="<?php //echo BASE_URL; ?>puidata/js/dropzone.js"></script> -->
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>puidata/js/filereader.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>puidata/js/plugin_minidialogue.js"></script>
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>puidata/js/chat.js"></script>
+
+        <script type="text/javascript" src="<?php echo BASE_URL; ?>puidata/js/circularloader.js"></script>
+    <?php */
+    } else {
+        $assetsUrl = PU_CDN_URL.'public/';
+        /* ?>
+        <!-- <script type="text/javascript" src="<?php //echo $assetsUrl; ?>puidata/js/dropzone.js"></script> -->
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/filereader.js"></script>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/plugin_minidialogue.js"></script>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/chat.js"></script>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/dialogue.js"></script>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>puidata/js/circularloader.js"></script>
+        <?php */
+    }
+?>
+<div class="mask-course-view black-mask">
+    <div class="whole-mask"></div>
+    <div class="mask-img-wrap">
+        <img src="<?php echo $assetsUrl; ?>img/loader3.gif"/>
+    </div>
+</div>
+<div class="mask-course-view white-mask">
+    <div class="whole-mask"></div>
+    <div class="mask-img-wrap">
+        <img src="<?php echo $assetsUrl; ?>img/loader-big.gif"/>
+    </div>
+</div>
+<!-- loader-course-view -->
+
+
+<!--==============================footer end================================-->
+<!--==============================scripts here================================-->
+<input type="hidden" id="isflyOpen" value="N" />
+<script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/script.js"></script>
+<?php // JS CODE MOVED TO public/js/footer.js ?>
+<?php /* FOR CLASS INSTANCE - NEED TO MOVE CODE TO CLASSES?>
+
+<form name="import_instance_form" id="import_instance_form" action="/" method="POST" enctype="multipart/form-data" style="display:none;">
+    <input type="file" name="import_instance_file" id="import_instance_file" value="" onchange="openDialogPopup();">
+    <input type="hidden" name="hidden-class-id" id="hidden-class-id" value="">
+    <input type="submit" id="import_instance_submit" name="import_instance_submit" value="UPDATE">
+</form>
+
+<div class="flx-loader" id="react-flx-loader" style="display:none"><img src="<?php echo PU_CDN_URL?>public/img/loader3.gif"></div>
+
+<div class="greyloader-Full greyloader"></div>
+<div class="greyloader-TwoPane greyloader"></div>
+<div class="greyloader-ThreePane-Twodiv greyloader"></div>
+<div class="greyloader-ThreePane-oneDiv greyloader"></div>
+
+<div id="printContextMenubar"  class="dropdown clearfix rightContextMenubar" >
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="position: relative; margin-bottom: 5px; display:block">
+        <li><a href="#">Print</a></li>
+    </ul>
+</div>
+<?php */ ?>
+<?php /* ?>
+<!-- courseBoardFlyout flyout  -->
+<div class="right-popup rightFlyout" id="ActorFlyout" >
+    <div class="course-flyout-wrap">
+        <div class="courseflyout">
+            <div class="control-bar">
+                <div class="row">
+                    <div class="col-md-12 left-head">
+                        <div class="block-head block-rightHead">
+                            <span class="main-title-wrap">
+                                <span class="main-title">Class Y: List</span>
+                            </span>
+                            <div class="control-btn-wrap right searchFlyout">
+                                <form>
+                                    <input class="form-control" placeholder="Search" type="text">
+                                    <a href="#" class="searchFlyoutOpen"><i class="icon search-change"></i></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nano course-inner-wrap">
+                <div class="nano-content">
+                    <ol class="table-list-style all-users">
+                        <?php
+                        for ($i = 1; $i <= 10; $i++)
+                        {?>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>Standard</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>Lorem</span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left">
+                                     <div class="node-content">
+                                        <span>Ipsum</span>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php
+                        }
+                        ?>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="user-action-wrap">
+            <a class="ActorFlyoutClose"><i class="icon done"></i><br><span>Select</span></a>
+            <a class="ActorFlyoutClose"><i class="icon cancel"></i><br><span>Close</span></a>
+        </div>
+    </div>
+</div>
+
+<div class="right-popup rightFlyout" id="operationPaneFlyout" >
+
+        <div class="courseflyout gray-area">
+            <div class="course-inner-wrap node-rights-users-list">
+                <div id="role_universe_data"></div>
+            </div>
+        </div>
+        <div class="user-action-wrap" id="parti_action_div_id">
+            <a class="user-roles operationPaneFlyoutClose"><i class="icon save"></i><br><span>Show</span></a>
+            <a class="user-roles operationPaneFlyoutClose"><i class="icon cancel"></i><br><span>Hide</span></a>
+        </div>
+
+</div>
+<!--  Below div has been commented because sometimes it blocks whole screen unexpectedly -->
+<!-- <div class="loadder"></div> -->
+<input type="hidden" id="is_individual_list" name="is_individual_list" value="">
+
+
+
+
+<!-- list of Menu and Pop-up for Unstructured and Structured -->
+<!-- <i class="fa fa-bars gridICon"></i>
+<i class="fa fa-plus"></i> -->
+
+
+<!-- Week Dropdown -->
+<div class="add-col-wrap" id="drpWeek">
+    <ul class="dropdown-menu grid-dropdown">
+    <li class="schedule-create-new">
+       <a><div class="node-circle node-white-circle-expanded">N</div>Create new</a>
+    </li>
+    <li class="schedule-extend">
+       <a><div class="node-circle node-white-circle-expanded">N</div>Extend Schedule</a>
+    </li>
+    <li>
+       <a><div class="node-circle node-white-circle-expanded">N</div>Move Schedule</a>
+       <ul class="sub-item">
+          <li class="schedule-add-up disabled">
+             <a><div class="node-circle node-white-circle">N</div>Up</a>
+          </li>
+          <li class="schedule-add-down disabled">
+            <a><div class="node-circle node-white-circle">N</div>Down</a>
+          </li>
+       </ul>
+    </li>
+    <li class="schedule-delete">
+       <a><div class="node-circle node-white-circle-expanded">N</div>Delete Schedule</a>
+    </li>
+    </ul>
+</div>
+
+<!-- Unstructured Dropdown -->
+<div class="add-col-wrap" id="drpUnstructured">
+    <ul class="dropdown-menu grid-dropdown">
+        <li>
+           <a>
+              <div class="node-circle node-white-circle-expanded">N</div>Add Segment
+           </a>
+           <ul class="sub-item">
+              <li class="unstructured-add-above-segment">
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Above
+                 </a>
+              </li>
+              <li class="unstructured-add-below-segment">
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Below
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <li>
+           <a>
+              <div class="node-circle node-white-circle-expanded">N</div>Move Segment
+           </a>
+           <ul class="sub-item">
+              <li class="unstructured-add-up-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Up
+                 </a>
+              </li>
+              <li class="unstructured-add-down-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Down
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <li class="unstructured-del-segment" >
+           <a>
+              <div class="node-circle node-white-circle">N</div>Delete Segment
+           </a>
+        </li>
+    </ul>
+</div>
+
+<!-- Unstructured Phase Dropdown -->
+<div class="add-col-wrap" id="drpUnstrucPhase" >
+    <ul class="dropdown-menu grid-dropdown">
+        <li>
+           <a>
+              <div class="node-circle node-white-circle-expanded">N</div>Unstructure Phase Action
+           </a>
+           <ul class="sub-item">
+              <li  class="disabled unstructure-phase-add-segment">
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Add Phase Sequence
+                 </a>
+              </li>
+              <li  class="unstructure-phase-divide-segment">
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Divide Segment
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <li>
+           <a>
+              <div class="node-circle node-white-circle-expanded">N</div>Move Segment
+           </a>
+           <ul class="sub-item">
+              <li class="unstructure-phase-up-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Up
+                 </a>
+              </li>
+              <li class="unstructure-phase-down-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>Down
+                 </a>
+              </li>
+           </ul>
+        </li>
+        <li data-toggle="modal" class="unstructure-phase-remove-segment">
+           <a>
+              <div class="node-circle node-white-circle">N</div>Remove Segment
+           </a>
+        </li>
+    </ul>
+</div>
+
+<!-- structured Phase Dropdown -->
+<div class="add-col-wrap" id="drpStrucPhase">
+    <ul class="dropdown-menu grid-dropdown">
+        <li  class="structure-phase-divide-segment">
+           <a>
+              <div class="node-circle node-white-circle">N</div>
+              <span>Divide Segment</span>
+           </a>
+        </li>
+        <li>
+           <a>
+              <div class="node-circle node-white-circle-expanded">N</div>
+              Move Segment
+           </a>
+           <ul class="sub-item">
+              <li class="structure-phase-up-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>
+                    Up
+                 </a>
+              </li>
+              <li class="structure-phase-down-segment" >
+                 <a>
+                    <div class="node-circle node-white-circle">N</div>
+                    Down
+                 </a>
+              </li>
+           </ul>
+        </li>
+    </ul>
+</div>
+
+<!-- Operation1  Dropdown -->
+<div class="add-col-wrap" id="drpOperation">
+    <ul class="dropdown-menu grid-dropdown">
+        <li>
+            <a>
+                <div class="node-circle node-white-circle-expanded">N</div>
+                Add Series
+            </a>
+            <ul class="sub-item">
+                <li  class="add-suboperaton-segment">
+                   <a>
+                      <div class="node-circle node-white-circle node-white-circle">N</div>
+                      Operation
+                   </a>
+                </li>
+            </ul>
+        </li>
+        <li  class="no-bg">
+        <a>
+            <div class="node-circle node-white-circle-expanded">N</div>
+            Add Segment
+        </a>
+        <ul class="sub-item">
+            <li>
+               <a class="add-above-operation-segment">
+                  <div class="node-circle node-white-circle">N</div>
+                  Add Above
+               </a>
+            </li>
+            <li >
+               <a class="add-below-operation-segment">
+                  <div class="node-circle node-white-circle-expanded">N</div>
+                  Add Below
+               </a>
+               <ul class="sub-item">
+                  <li>
+                     <a class=" WriteYourOwnClass">
+                        <div class="node-circle node-white-circle">N</div>
+                        Sequential
+                     </a>
+                     <ul class="agent-drp">
+                        <li class="disabled">
+                           <a>
+                              <div class="node-circle node-white-circle">N</div>
+                              Universe
+                           </a>
+                        </li>
+                        <li>
+                           <a class="add-logic-operation-segment">
+                              <div class="node-circle node-white-circle ">N</div>
+                              Logic
+                           </a>
+                        </li>
+                        <li>
+                           <a class="add-below-operation-segment">
+                              <div class="node-circle node-white-circle">N</div>
+                              Human
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li>
+                     <a class="WriteYourOwnClass">
+                        <div class="node-circle node-white-circle">N</div>
+                        Non-Sequential
+                     </a>
+                     <ul class="agent-drp">
+                        <li class="disabled">
+                           <a>
+                              <div class="node-circle node-white-circle">N</div>
+                              Universe
+                           </a>
+                        </li>
+                        <li>
+                           <a class="add-below-logic-non-sequence-operation-segment">
+                              <div class="node-circle node-white-circle">N</div>
+                              Logic
+                           </a>
+                        </li>
+                        <li>
+                           <a class="add-below-non-sequence-operation-segment">
+                              <div class="node-circle node-white-circle">N</div>
+                              Human
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+               </ul>
+            </li>
+         </ul>
+      </li>
+      <li  class="no-bg ">
+         <a role="menuitem" tabindex="-1" class="disabled">
+            <div class="node-circle node-white-circle-expanded">N</div>
+            Move Segment
+         </a>
+         <ul class="sub-item">
+            <li  class="no-bg disabled">
+               <a role="menuitem" tabindex="-1" href="#" class="">
+                  <div class="node-circle node-white-circle">N</div>
+                  Move Above
+               </a>
+            </li>
+            <li  data-toggle="modal" data-target="#moveBelow" class="moveBelow disabled">
+               <a role="menuitem" tabindex="-1" href="#" class="">
+                  <div class="node-circle node-white-circle">N</div>
+                  Move Below
+               </a>
+            </li>
+         </ul>
+      </li>
+      <li data-toggle="modal" data-target="#deleteOperationSegment" class="del-operation-segment">
+         <a>
+            <div class="node-circle node-white-circle">N</div>
+            Delete Segment
+         </a>
+      </li>
+   </ul>
+</div>
+
+<!-- Add Operation Dropdown -->
+<div class="add-col-wrap" id="drpAddOperation">
+ <ul class="dropdown-menu grid-dropdown" >
+     <li>
+        <a class="add-phase-operations">
+            <div class="node-circle node-white-circle-expanded">N</div>
+            Add Operation
+        </a>
+     </li>
+ </ul>
+</div>
+<!-- Role Interaction -->
+<div class="add-col-wrap" id="drpViewClass">
+    <ul class="dropdown-menu grid-dropdown">
+        <li role="presentation" class="no-bg">
+            <a class="viewClassFlyout">
+                <div class="node-circle node-white-circle-expanded">N</div>
+                View Class
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="user-profile-crop" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body crop-img">
+
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default btn-style" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                <button type="button" class="btn btn-primary btn-style"><i class="fa fa-check" aria-hidden="true"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<?php */ ?>
+<?php /* ?><script type="text/javascript">
+    if(puJsFileLoadCounter==41)
+    {
+        createSocketConnection();
+    }else{
+        alert("Some script files are not properly downloaded. Kindly refresh your page.");
+    }
+
+ $("body").on("click","a",function(e){
+     e.preventDefault();
+     console.log("Prevent Default");
+ })
+
+</script><?php */ ?>
+<?php if(SOCKET_HOST_NAME !== 'http://localhost/pu/' && SOCKET_HOST_NAME !== 'http://www.prospus.com/dev/') { ?>
+    <?php if(in_array(trim($_SESSION[PREFIX . 'user_info']["node_id"]), CLASS_VIEW_USER_IDS)){ ?>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/dj5.js" /></script>
+        <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/grid.js" /></script>
+        <?php echo $this->partial('partial/deleteInsOrClsPopup.phtml'); ?>
+    <?php } ?>
+    <script type="text/javascript" src="<?php echo PU_CDN_URL; ?>public/js/jquery-idleTimeout.js" /></script>
+<?php }else if( (SOCKET_HOST_NAME === 'http://localhost/pu/') && (in_array(trim($_SESSION[PREFIX . 'user_info']["node_id"]), CLASS_VIEW_USER_IDS)) ){
+    echo $this->partial('partial/deleteInsOrClsPopup.phtml');
+} ?></body>
+</html>

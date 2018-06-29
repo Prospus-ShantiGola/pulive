@@ -1,0 +1,29 @@
+.sass-lang{
+	.flyout {
+	    background: red;
+	    position: absolute;
+	    width: 100%;
+	    padding:10px;
+	    top:0;
+	    z-index: 4;
+	}
+	.flyout-right{
+		right:-100%;
+	}
+	.flyout-right.in{
+		right:0px;
+	}
+	.flyout-back-layar {
+	    position: fixed;
+	    width: 100%;
+	    height: 100%;
+	    background: #000;
+	    top: 0;
+	    left: 0;
+	    z-index: 3;
+	    display: none
+	}
+	.flyout-right.in + .flyout-back-layar{
+		display: block
+	}
+}

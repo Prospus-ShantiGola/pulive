@@ -1,0 +1,573 @@
+<input type="hidden" id="temp-class" value="">
+<input type="hidden" id="delete-sub-class" value="">
+<input type="hidden" id="delete-sub-class-id" value="">
+
+<?php 
+$config = $this->config;
+if($this->mode == 'Display') {
+        
+	$caption = "";
+	if(intval($this->classArray['encrypt_status']) == 1)
+	{
+		$caption =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$this->classArray['caption'],'key' =>ENCRYPTION_KEY)); 
+	} 
+	else
+	{
+		$caption = $this->classArray['caption'];
+	}
+ 	?>
+	<?php function getProperty($propertyArray,$flag,$obj) { 
+            global $config;
+            ?>
+		<?php foreach($propertyArray as $key => $value) {
+			$caption1 = "";
+		   	if(intval($value['encrypt_status']) == 1)
+	        {
+	            $caption1 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+	        } 
+	        else
+	        {
+	            $caption1 = $value['caption'];
+	        }
+			// remove taxonomy version class
+			$value['nodeXY'] = implode(",", array_diff(explode(",", $value['nodeXY']), array('16543')));
+			?>
+			<li data-class="<?php echo $value['node_class_property_id']; ?>">
+				<div class="node-content clearfix">
+					<span class="number_print"></span>
+			        <div class="node-left">
+                                    <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+			            <div class="node-head node-input"><span><?php echo $caption1; ?></span></div>
+                                    <?php //echo implode(',', $config['NODE_Z_CLASSES']); ?>
+			            <input type="hidden" class="here2 hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="nodex_x_y[]" value="<?php echo implode(',', $config['NODE_Z_CLASSES']); ?>,<?php echo substr($value['nodeXY'],0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo implode(',', $config['NODE_Z_CLASSES']); ?>,<?php echo substr($value['nodeXY'],0,-1);	?>" parent="<?php  echo $value['node_id'];?>">
+			            <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ'];?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+			            
+			            <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="<?php echo $value['nodeY'];?>" id="hidden_node_y<?php echo $value['node_class_property_id']; ?>" >
+			            <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="<?php echo $value['instance'];?>" id="hidden_node_y_instance_property_node_id<?php echo $value['node_class_property_id']; ?>" >
+
+			            <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="<?php echo $value['nodeZMain']; ?>" id="prop_z_main<?php echo time(); ?>" >
+
+			            <?php if(trim($value['nodeYClassName']) != "") { ?>
+			            	<input type="hidden" class="nodeYClassName" value="<?php echo $value['nodeYClassName']; ?>" />
+			            	<?php if(count($value['instanceValue']) > 0) { ?>
+									<?php foreach($value['instanceValue'] as $name) { ?>
+										<input type="hidden" class="instanceValue" value="<?php echo $name; ?>" />
+									<?php } ?>
+					        <?php } ?>
+			            <?php } ?>
+
+			        </div>
+			    </div>
+				<?php if(count($value['child']) > 0) { ?>
+					<ol>
+						<?php getProperty($value['child'],$flag,$obj); ?>
+					</ol>
+		        <?php } ?>
+			</li>
+		<?php } ?>
+	<?php  } ?>
+
+	<div class="nano1">
+		<div class="paper-line dual-pane-height nano-content1 print-drp niceScrollDiv" id="node-wrapper">
+			<div class="nice-scroll-box">
+				<input type="hidden" id="node_y_class_id" name="node_y_class_id" value="<?php echo $this->classArray['node_class_id']; ?>" />
+				<input type="hidden" id="class_status" name="class_status" value="<?php echo $this->classArray['status']; ?>" />
+				<input type="hidden" id="node_type_id" name="node_type_id" value="<?php echo $this->classArray['node_type_id']; ?>" />
+				<input type="hidden" id="discendant_name" name="discendant_name" value="<?php echo $this->classArray['discendant']; ?>" />
+				<ol class="class-wrapper sortable">
+			        <li>
+			            <div class="node-content clearfix node-selected ">
+							<span class="number_print"></span>
+			                <div class="node-left">
+			                    <div class="node-circle node-white-circle-expanded">N</div>                                
+			                    <div class="node-head node-input">
+									<span> <?php echo $caption; ?> (<?php echo $this->classArray['node_id']; ?>)</span>
+									<!-- $$& Amit Malakar -->
+									<input type="hidden" id="class_caption" name="class_caption" value="<?php echo $this->classArray['node_id']; ?>" placeholder="Class">
+									<input type="hidden" class="here4 hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="class_node_x_y[]" value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>,<?php echo substr($nodeXY,0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>,<?php echo substr($nodeXY,0,-1);?>" parent="<?php  echo $this->classArray['node_id'];?>">
+									<input type="hidden" class="hidden-node-z" name="class_node_y_z[]" value="<?php echo $nodeZ;?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+									<input type="hidden" class="hidden-node-z-main" name="class_z_main[]" value="<?php echo $this->nodeZMain;?>" id="z-main<?php echo time(); ?>" >
+								</div>
+			                </div>
+			            </div>
+			            <?php if(count($this->classArray['instances']) > 0) { ?>
+			            <ol>
+			            	<?php foreach($this->classArray['instances'] as $instance => $instanceArray) { ?>
+					            <?php if(count($instanceArray['property']) > 0) { $flag = 'Y'; ?>
+					            	<?php foreach($instanceArray['property'] as $key => $value) { ?>
+										<?php $caption1 = "";
+											if(intval($value['encrypt_status']) == 1)
+											{
+												$caption1 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+											} 
+											else
+											{
+												$caption1 = $value['caption'];
+											}
+											// remove taxonomy version class
+											$value['nodeXY'] = implode(",", array_diff(explode(",", $value['nodeXY']), array('16543')));
+										?>
+
+										<li data-class="<?php echo $value['node_class_property_id']; ?>">
+											
+											<div class="node-content clearfix">
+												<span class="number_print"></span>
+										        <div class="node-left">
+										            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+										            <div class="node-head node-input"  > <span><?php echo $caption1; ?></span> </div>
+
+
+													<input type="hidden" class="hidden-node-x" name="nodex_x_y[]" value="<?php echo substr($value['nodeXY'],0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo substr($value['nodeXY'],0,-1);	?>" parent="<?php  echo $value['node_id'];?>">
+													<input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ'];?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+
+													<input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="<?php echo $value['nodeY'];?>" id="hidden_node_y<?php echo $value['node_class_property_id']; ?>" >
+													<input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="<?php echo $value['instance'];?>" id="hidden_node_y_instance_property_node_id<?php echo $value['node_class_property_id']; ?>" >
+
+													<input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="<?php echo $value['nodeZMain']; ?>" id="prop_z_main<?php echo $value['node_class_property_id']; ?>" >
+
+										        </div>
+										    </div>
+										
+											<?php if(count($value['child']) > 0) { ?>
+												<ol>
+													<?php getProperty($value['child'],$flag,$this); ?>
+												</ol>
+									        <?php } ?>
+										</li>
+					            	<?php } ?>
+					            <?php } ?>
+			            	<?php } ?>
+
+			            	<ol class="sortable-list" id="sortable">
+				            	<?php foreach($this->classArray['childsArray'] as $key => $val) { ?>
+						            <li class="parent-sub-class-list add-custom-hr-scroll-sub-class">
+						            	<div class="node-content clearfix" onclick="getSubClassStructure(<?php echo $val['node_class_id'];?>, <?php echo $val['child_node_id'];?>, this, <?php echo $this->classArray['number_print'][$key];?>)">
+											<span class="number_print1"><?php echo $this->classArray['number_print'][$key];?></span>
+											<input type="hidden" class="self_count_class" value="<?php echo $this->classArray['number_array'][$key];?>"/>
+						            		<div class="node-left">
+						            			<div class="node-circle node-white-circle-expanded">N</div>
+						            			<div class="node-head node-input">
+						            				<?php 
+					            					$taxonomydataname = ($this->classArray['taxonomy_data'][$key]['Plural']) ? ($this->classArray['taxonomy_data'][$key]['Plural']) : ($this->classArray['taxonomy_data'][$key]['Common Name']);
+
+					            					$taxonomydataname = ($taxonomydataname) ? ($taxonomydataname) : $val['caption'];
+													
+													if(intval($val['encrypt_status']) == 1)
+													{
+														$caption2 = $this->encryption_decryption('mc_decrypt',array('decrypt' =>$taxonomydataname,'key' =>ENCRYPTION_KEY)); 
+													} 
+													else
+													{
+														$caption2 = $taxonomydataname;
+													}														
+						            				?>
+
+						            				<span class="sub-class-style"><input type="hidden" class="temp-sub-class-<?php echo $val['child_node_id'];?>"><?php echo strtoupper($caption2).' ('.$val['child_node_id'].')'; ?></span>
+						            			</div>
+						            		</div>
+											
+						            		<!--new-chevron-add-->
+											<div class="node-right-sub clearfix">
+												<a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+											</div>
+		         							<!--new-chvron-add-->
+						            	</div>
+						            </li>
+					            <?php } ?>
+				            </ol>
+			            </ol>
+			            <?php } ?>
+			        </li>
+			    </ol>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	   dualPaneHeight();
+	   $('.nano').nanoScroller();
+
+	   <?php if(intval($this->classArray['node_type_id']) == 1) { ?>
+	   	$("#second-class-div-heading").html("Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   	$("#second-class-div-heading").attr('alt',"Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   	
+	   <?php } else if(intval($this->classArray['node_type_id']) == 2) { ?>
+	   		$("#second-class-div-heading").html("Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   		$("#second-class-div-heading").attr('alt',"Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   <?php } else if(intval($this->classArray['node_type_id']) == 3) { ?>
+	   		$("#second-class-div-heading").html("Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   		$("#second-class-div-heading").attr('alt',"Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   <?php } ?>
+	    
+
+	   $("#common_name_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php if(trim($this->classArray['caption']) != "") { echo $caption; } else { echo $this->classArray['node_id']; } ?>");
+
+	   $("#node_type_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php echo $this->nodeType['type-name']; ?>");
+	   $("#status_label_<?php echo $this->classArray['node_class_id']; ?>").html("<?php if(intval($this->classArray['status']) == 1) { echo 'Published'; } else { echo 'Draft'; } ?>");
+
+	   <?php if(intval($this->classArray['node_type_id']) == 1) { ?>
+		   	$(".Nodex-icon").addClass("inactiveLink");
+		   	$(".Nodex-icon").css("pointer-events","none");
+
+		   	$(".Nodez-icon").removeClass("inactiveLink");
+		   	$(".Nodez-icon").css("pointer-events","all");
+
+		   	$(".Subclass-icon").addClass("inactiveLink");
+		   	$(".Subclass-icon").css("pointer-events","none");
+	   <?php } else if(intval($this->classArray['node_type_id']) == 2) { ?>
+	   		$(".Nodex-icon").removeClass("inactiveLink");
+	   		$(".Nodex-icon").css("pointer-events","all");
+
+	   		$(".Nodez-icon").removeClass("inactiveLink");
+	   		$(".Nodez-icon").css("pointer-events","all");
+
+	   		$(".Subclass-icon").removeClass("inactiveLink");
+	   		$(".Subclass-icon").css("pointer-events","all");
+	   <?php } else if(intval($this->classArray['node_type_id']) == 3) {?>
+		   	$(".Nodez-icon").addClass("inactiveLink");
+		   	$(".Nodez-icon").css("pointer-events","none");
+
+		   	$(".Nodex-icon").addClass("inactiveLink");
+		   	$(".Nodex-icon").css("pointer-events","none");
+
+		   	$(".Subclass-icon").addClass("inactiveLink");
+		   	$(".Subclass-icon").css("pointer-events","none");
+	   	<?php } ?>
+	</script>
+<?php } ?>
+
+<?php if($this->mode == 'Edit') { 
+   $caption = "";
+
+   if(intval($this->classArray['encrypt_status']) == 1)
+    {
+        $caption =  $this->encryption_decryption('mc_decrypt',array('decrypt' =>$this->classArray['caption'],'key' =>ENCRYPTION_KEY)); 
+    } 
+    else
+    {
+        $caption = $this->classArray['caption'];
+        $type = $this->classArray['type'];
+    }
+	?>
+	<?php function getProperty($propertyArray,$flag,$obj) { 
+            global $config;
+            ?>
+		<?php foreach($propertyArray as $key => $value) { 
+			$caption1 = "";
+		    if(intval($value['encrypt_status']) == 1)
+	        {
+	            $caption1 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+	        } 
+	        else
+	        {
+	            $caption1 = $value['caption'];
+	        }
+			$value['nodeXY'] = implode(",", array_diff(explode(",", $value['nodeXY']), array('16543')));
+		?>
+		<li class="numbering" id="old_<?php echo $value['node_class_property_id']; ?>" data-class="<?php echo $value['node_class_property_id']; ?>" >
+			
+				<div class="node-content clearfix <?php if($flag == 'f') { ?>node-selected<?php } $flag = 'N'; ?>">
+					<span class="number_print"></span>
+			        <div class="node-left custom-node-left">
+			            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+			            <div class="node-head node-input"> 
+			            <textarea cols="30" rows="1" class="runTab" id="property_<?php echo $value['node_class_property_id']; ?>" name="property_<?php echo $value['node_class_property_id']; ?>" placeholder="Properties"><?php echo trim($caption1); ?></textarea>
+			            </div>
+
+                                    
+			            <input type="hidden" class="here5 hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="nodex_x_y[]" value="<?php echo implode(',', $obj->config['NODE_Z_CLASSES']); ?>,<?php echo substr($value['nodeXY'],0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo implode(',', $obj->config['NODE_Z_CLASSES']) ?>,<?php echo substr($value['nodeXY'],0,-1);	?>" parent="<?php  echo $value['node_id'];?>">
+
+			            <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ'];?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+
+			            <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="<?php echo $value['nodeY'];?>" id="hidden_node_y<?php echo $value['node_class_property_id']; ?>" >
+			            <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="<?php echo $value['instance'];?>" id="hidden_node_y_instance_property_node_id<?php echo $value['node_class_property_id']; ?>" >
+
+			            <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="<?php echo $value['nodeZMain']; ?>" id="prop_z_main<?php echo time(); ?>" >
+			        </div>
+			        <div class="node-right hide custom-node-right-two">
+			            <a class="action-move act-mov-sub-cross" onclick="removePropertyNew(<?php echo $value['node_class_property_id']; ?>);" ><span><i class="icon close-small"></i></span></a>
+	                    <a class="action-move act-mov-sub-cross addclass"><span><i class="icon plus-class"></i></span></a>
+			        </div>
+			    </div>
+		    
+		    <ol>
+			<?php if(count($value['child']) > 0) { ?>
+					<?php getProperty($value['child'],$flag,$obj); ?>
+	        <?php } ?>
+	        </ol>
+		</li>
+
+
+		<?php } ?>
+	<?php } ?>
+
+	<form id="class_structure_form" name="class_structure_form" class="form_active" method="post" action="" >
+		<div class="nano1">
+			<div class="paper-line dual-pane-height nano-content1 niceScrollDiv" id="node-wrapper">			
+				<div class="nice-scroll-box">
+					<input type="hidden" version-id="<?php echo $this->version;?>" id="node_y_class_id" name="node_y_class_id" value="<?php echo $this->classArray['node_class_id']; ?>" />
+					<input type="hidden" id="prop_number" name="prop_number" value="1001" />
+					<input type="hidden" id="remove_prop_ids" name="remove_prop_ids" value="" />
+					<input type="hidden" id="child_ids_of_class" name="child_ids_of_class" value="<?php echo $this->classArray['childs']; ?>" />
+					<input type="hidden" id="saveTypeClass" name="saveTypeClass" value="" />
+					<input type="hidden" id="class_status" name="class_status" value="<?php echo $this->classArray['status']; ?>" />
+					<input type="hidden" id="discendant_name" name="discendant_name" value="<?php echo $this->classArray['discendant']; ?>" />
+					<ol class="class-wrapper sortable">
+				        <li>
+				            <div class="node-content clearfix node-selected">
+								<span class="number_print"></span>
+				                <div class="node-left">
+				                    <div class="node-circle node-white-circle-expanded">N</div>                                
+				                    <div class="node-head node-input">
+										<span id="post_name" ><?php echo $caption; ?> (<?php echo $this->classArray['node_id']; ?>)</span>
+										<input type="hidden" id="class_caption" name="class_caption" value="<?php echo $this->classArray['node_id']; ?>" placeholder="Class" />
+										<input type="hidden" class="here6 hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="class_node_x_y[]" value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>,<?php echo substr($nodeXY,0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo implode(',', $config['NODE_Z_GROUPING_CLASSES']) ?>,<?php echo substr($nodeXY,0,-1);?>" parent="<?php  echo $this->classArray['node_id'];?>">
+										<input type="hidden" class="hidden-node-z" name="class_node_y_z[]" value="<?php echo $nodeZ;?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+										<input type="hidden" class="hidden-node-z-main" name="class_z_main[]" value="<?php echo $this->nodeZMain;?>" id="z-main<?php echo time(); ?>" >
+										<input type="hidden" id="common_name" name="common_name" value="<?php echo $caption; ?>" placeholder="Common Name" />
+                                                                                <input type="hidden" id="version_type" name="version_type" value="<?php echo $type; ?>" />
+										<div class="styled-select" style="display:none;">
+                                       		 <select style="pointer-events:none;" class="form-control nodeselection-dropdown" required="required" id="node_type_id" name="node_type_id">
+                                        			<?php foreach ($nodedetails as $key => $value) { 
+                                        			if($this->classArray['node_type_id']== $value['node_type_id']){
+                                            			$selected = 'selected'; 
+                                            		}
+                                            		else {
+                                            			$selected = ''; 
+                                            		}
+                                            		?>
+                                            		<option <?php echo $selected;  ?> value="<?php echo $value['node_type_id']; ?>"><?php echo ucwords($value['type-name']);?></option>
+                                            
+                                            	<?php } ?>
+                                        	</select>
+                                       </div>
+									</div>
+				                </div>
+				            </div>
+				            <?php if(count($this->classArray['instances']) > 0) { ?>
+				            <ol class="first_prop_hard" >
+				            	<?php foreach($this->classArray['instances'] as $instance => $instanceArray) { ?>
+						            <?php if(count($instanceArray['property']) > 0) { $flag = 'Y'; ?>
+						            	<?php foreach($instanceArray['property'] as $key => $value) { ?>
+
+						            		<?php 
+						            			$caption1 = "";
+											    if(intval($value['encrypt_status']) == 1)
+										        {
+										            $caption1 =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$value['caption'],'key' =>ENCRYPTION_KEY)); 
+										        } 
+										        else
+										        {
+										            $caption1 = $value['caption'];
+										        }
+												$value['nodeXY'] = implode(",", array_diff(explode(",", $value['nodeXY']), array('16543')));
+											?>
+											<li class="numbering" id="old_<?php echo $value['node_class_property_id']; ?>" data-class="<?php echo $value['node_class_property_id']; ?>" position="0">
+												
+													<div class="node-content clearfix <?php if($flag == 'f') { ?>node-selected<?php } $flag = 'N'; ?>">
+														<span class="number_print"></span>
+												        <div class="node-left custom-node-left">
+												            <div class="node-circle node-white-circle<?php if(count($value['child']) > 0) { ?>-expanded<?php } ?>">N</div>
+												            <div class="node-head node-input"> 
+												            	<span><?php echo trim($caption1); ?></span>
+												            </div>
+
+												            <input type="hidden" class="here7 hidden-node-x <?php if($flag == 'Y') { ?>initallyselected<?php } $flag = 'N'; ?>" name="nodex_x_y[]" value="<?php echo substr($value['nodeXY'],0,-1); ?>" id="class_<?php echo $value['node_class_property_id']; ?>" nodey-value="<?php echo substr($value['nodeXY'],0,-1);	?>" parent="<?php  echo $value['node_id'];?>">
+
+												            <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="<?php echo $value['nodeZ'];?>" id="node_y_z<?php echo $value['node_class_property_id']; ?>" >
+
+												            <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="<?php echo $value['nodeY'];?>" id="hidden_node_y<?php echo $value['node_class_property_id']; ?>" >
+												            <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="<?php echo $value['instance'];?>" id="hidden_node_y_instance_property_node_id<?php echo $value['node_class_property_id']; ?>" >
+
+												            <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="<?php echo $value['nodeZMain']; ?>" id="prop_z_main<?php echo time(); ?>" >
+												            <input type="hidden" class="runTab" id="property_<?php echo $value['node_class_property_id']; ?>" name="property_<?php echo $value['node_class_property_id']; ?>" placeholder="Properties" value="<?php echo trim($caption1); ?>" />
+												        </div>
+												        <div class="node-right hide node-custom-show-icons mar-node-plus">
+										                    <a class="action-move act-mov-sub-cross" onclick="addChildProperty();"><span><i class="icon plus-class"></i></span></a>
+										                </div>
+												    </div>
+												
+											    <ol class="property-child tabber" >
+												<?php if(count($value['child']) > 0) { ?>
+														<?php getProperty($value['child'],$flag,$this); ?>
+										        <?php } else { ?>
+										        	<?php if($caption1 == 'Properties') { ?>
+										        		<li id="prop_temp_li_1000" class="numbering" data-class="prop_temp_li_1000" position="1" parent="old_<?php echo $value['node_class_property_id']; ?>" >
+									                        <div class="node-content clearfix">
+									                            <span class="number_print"></span>
+									                            <div class="node-left">
+									                                <div class="node-circle node-white-circle">N</div>    
+									                                <div class="node-head node-input"> 
+									                                    <textarea cols="30" rows="1" class="runTab" id="new_property_1000" name="new_property[]" placeholder="" ></textarea>
+									                                </div>
+                                                                                                        
+									                                <input type="hidden" class="here9 hidden-node-x" name="node_x_y[]" nodey-value="<?php echo implode(',', $config['NODE_Z_CLASSES']) ?>" value="<?php echo implode(',', $config['NODE_Z_CLASSES']) ?>" id="class_prop_temp_li_1000" >
+									                                <input type="hidden" class="hidden-node-z" name="node_y_z[]" value="" id="node_y_z1000" >
+									                                <input type="hidden" class="hidden-node-z-main" name="prop_z_main[]" value="" id="prop_z_main1000" >
+									                                <input type="hidden" class="hidden-node-y" name="hidden_node_y[]" value="" id="hidden_node_y1000" >
+									                                <input type="hidden" class="hidden-node-y-instance-property-node-id" name="hidden_node_y_instance_property_node_id[]" value="" id="hidden_node_y_instance_property_node_id1000" >
+									                            </div>
+									                            <div class="node-right">
+									                                <a class="action-move  " onclick="removeProperty(1000);">
+									                                    <span><i class="icon close-small"></i></span>
+									                                </a>
+									                                <a class="action-move addclass"><span><i class="icon plus-class"></i></span></a>
+									                            </div>
+									                        </div>
+									                        <ol></ol>
+									                    </li>
+										        	<?php } ?>
+										        <?php } ?>
+										        </ol>
+											</li>
+						            	<?php } ?>
+						            <?php } ?>
+				            	<?php } ?>
+
+					        	<li class="addplus add-sub-child-wrap"><span class="number_print"></span><span><i class="fa fa-plus"></i></span></li>
+				            	<li class="sub_class_list_view">
+				            		<ol class="sortable-list" id="sortable">
+				            			<?php foreach($this->classArray['childsArray'] as $key => $val) { ?>
+				            					<?php 
+					            					$taxonomydataname = ($this->classArray['taxonomy_data'][$key]['Plural']) ? ($this->classArray['taxonomy_data'][$key]['Plural']) : ($this->classArray['taxonomy_data'][$key]['Common Name']);
+
+					            					$taxonomydataname = ($taxonomydataname) ? ($taxonomydataname) : $val['caption'];
+													
+													if(intval($val['encrypt_status']) == 1)
+													{
+														$caption2 = $this->encryption_decryption('mc_decrypt',array('decrypt' =>$taxonomydataname,'key' =>ENCRYPTION_KEY)); 
+													} 
+													else
+													{
+														$caption2 = $taxonomydataname;
+													}
+					            				?>
+							            <li class="parent-sub-class-list add-custom-hr-scroll-sub-class">
+							            	<div class="node-content clearfix" onclick="getSubClassStructure(<?php echo $val['node_class_id'];?>, <?php echo $val['child_node_id'];?>, this,<?php echo $this->classArray['number_print'][$key];?>)">
+											    <span class="number_print1 <?php echo 'testsi-'.$val['node_class_id'];?>"><?php echo $this->classArray['number_print'][$key];?></span>
+											    <input type="hidden" class="self_count_class" value="<?php echo $this->classArray['number_array'][$key];?>"/>
+							            		<div class="node-left">
+							            			<div class="node-circle node-white-circle-expanded">N</div>
+							            			<div class="node-head node-input">
+							            				<span class="sub-class-style"><input type="hidden" class="temp-sub-class-<?php echo $val['child_node_id'];?>"><?php echo strtoupper($caption2).' ('.$val['child_node_id'].')'; ?></span>
+							            			</div>
+							            		</div>
+							            	
+							            		<!--new-chevron-add-->
+												<div class="node-right-sub clearfix">
+													<a class="action-move act-mov-sub"><span><i class="fa fa-angle-up"></i></span></a>
+													<a class="action-move act-mov-sub-cross delete-icon" onclick="deleteSubClass(<?php echo $val['node_id'];?>,<?php echo $val['node_class_id'];?>,event,<?php echo $val['node_id'];?>);"><span><i class="icon close-small"></i></span></a>
+												</div>
+	                 							<!--new-chvron-add-->
+												
+							            	</div>
+							            </li>
+							            <?php } ?>
+				            		</ol>
+				            	</li>
+				        		
+
+				            </ol>
+				            <?php } ?>
+				        </li>
+				        
+				    </ol>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<script type="text/javascript">
+	   rightPaneicon();
+	   dualPaneHeight();
+	   $('.nano').nanoScroller();
+           // Set versioningTypeValidation for class
+            var classVersionType = <?php echo $type ?>;
+            versioningTypeValidation = 1;
+            if(classVersionType == 2){
+                versioningTypeValidation = 2;
+            }
+	   <?php if(intval($this->classArray['node_type_id']) == 1) { ?>
+	   	$("#second-class-div-heading").html("Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   	$("#second-class-div-heading").attr('alt',"Node X (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   	
+	   <?php } else if(intval($this->classArray['node_type_id']) == 2) { ?>
+	   		$("#second-class-div-heading").html("Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   		$("#second-class-div-heading").attr('alt',"Node Y (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   <?php } else if(intval($this->classArray['node_type_id']) == 3) { ?>
+	   		$("#second-class-div-heading").html("Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   		$("#second-class-div-heading").attr('alt',"Node Z (Properties): <?php echo $caption.' ('.$this->classArray['node_id'].')';?>");
+	   <?php } ?>
+
+	   
+
+	   textareaIncreaseHeight();
+   
+	    $('.tabber').nestedSortable({
+		    items: 'li',
+		    doNotClear:true,
+	            handle: '.node-circle',
+	            placeholder: 'ui-sortable-placeholder',
+	            tolerance: 'pointer',
+	            forcePlaceholderSize: true,
+	            toleranceElement: '> div.node-content',
+	            maxLevels: 100,
+	            expandOnHover: 700,
+	            startCollapsed: true,
+	            tabSize: 25,
+		    update: function(){
+	                tabPositions();
+		        calculatePlusIcons();
+	                setNumberPrint();
+		    }
+		});
+		setNumberPrint();
+		calculatePlusIcons();
+		tabPositions();
+
+		$(".runTab").each(function(){
+			
+			$(this).trigger("keypress");
+		});
+	</script>
+<?php } ?>
+
+
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		$('#sortable, .ui-sortable').sortable({
+	        placeholder: "ui-sortable-placeholder",
+	        items: 'li.parent-sub-class-list',
+			doNotClear:true,
+			handle: '.node-content',
+			tolerance: 'pointer',
+			forcePlaceholderSize: true,
+			//toleranceElement: '> li.parent-sub-class-list',
+			maxLevels: 100,
+			expandOnHover: 700,
+			startCollapsed: true,
+			tabSize: 25,
+	        update : function () { 
+	        	var subchild_class_id 			= [];
+	        	var final_subchild_class_id 	= '';
+
+	        	$('li.parent-sub-class-list').each(function(i){
+		            subchild_class_id[i] 		= $(this).find('div.node-input span > input').attr('class').split('temp-sub-class-');
+		            final_subchild_class_id 	+= ','+parseInt($.trim(subchild_class_id[i][1]));
+		        });
+
+	        	$('#child_ids_of_class').attr('value',final_subchild_class_id);
+	        },
+	        start: function(event, ui) {
+	        		startIndex = $(ui.item).index();
+	        },
+	        stop : function(event, ui) {
+	        		var stopIndex = $(ui.item).index();
+	        		var thisObj = $(this);
+	        		numberPrintDrag(thisObj, startIndex, stopIndex);
+
+	        } //end of stop method
+	    });
+	    $( "#sortable" ).disableSelection();            
+	});//end of ducument ready
+</script>

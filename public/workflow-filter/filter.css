@@ -1,0 +1,273 @@
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+}
+.header-wrapper .dropdown-menu {
+    background-color: #232e32;
+}
+
+.table .dropdown-menu.multi-menu {
+    width: 180px;
+    padding:5px;
+    text-transform: capitalize;
+}
+.table .dropdown-menu li {
+    color: #333;
+    font-size: 0.8em;
+    font-weight: 600;
+    padding: 3px 10px;
+    position: relative;
+	font-family:"open sans";
+}
+.table .dropdown span {
+    cursor: default;
+    padding: 0;
+}
+.table .dropdown .text-filter .input-group .form-control {
+    width: 82%;
+}
+.table .dropdown .text-filter .input-group-btn > .btn {
+    min-height: 25px;
+    height: 25px;
+    line-height: 0.429;
+}
+
+.multi-sub-menu {
+    background-color: #fff;
+    display: none;
+    left: 100%;
+    list-style: none outside none;
+    max-height: 220px;
+    max-width: 160px;
+    padding: 0;
+    position: absolute;
+    top: -4px;
+}
+/*.nano.multi-sub-menu {
+    left: 100%;
+    top: -4px;
+}
+.nano.multi-sub-menu .dropdown-menu {
+    border: 0 none;
+    top: -4px;
+    z-index: 5;
+    display: block;
+}*/
+.multi-menu .check-list {
+    padding-left: 40px;
+}
+.check-list.sub {
+    padding-left: 10px;
+}
+.check-list.sub > li:before {
+    height: 30%;
+    left: -23px;
+    top: 10px;
+}
+.check-list.sub .check-list {
+    margin-left: -10px;
+    padding-left: 0;
+}
+.check-list.sub .check-list > li:before {
+    left: -4px;
+    top: 2px;
+}
+.check-list.sub label:before {
+    left: -23px;
+    width: 15%;
+}
+.check-list.sub .check-list label:before {
+    left: -3px;
+}
+.dropdown-menu.multi-sub-menu li {
+    padding: 3px 12px;
+    text-transform: none;
+    white-space: inherit;
+    word-wrap: break-word;
+}
+.dropdown-menu.multi-sub-menu li.active {
+    background: #eee;
+}
+.dropdown-menu > li:first-child{
+    padding-top: 6px;
+}
+.dropdown-menu > li:last-child{
+    padding-bottom: 6px;
+}
+.multi-menu .search-item-wrap {
+    padding: 0;
+}
+.multi-menu .search-item-wrap .form-control {
+    font-size: 11px;
+    height: 25px;
+    padding: 5px;
+}
+.multi-menu .search-item-wrap .btn {
+    min-width: 10px;
+    padding: 1px 2px 2px;
+    width: 30px;
+}
+.search-item-wrap i {
+    display: inline !important;
+    font-size: 14px;
+    margin: 0 !important;
+}
+ .multi-menu .fa-caret-right {
+    display: inline-block;
+    float: right;
+    margin-right: 0;
+    margin-top: 2px;
+} 
+
+/**********03-09-2015*********/
+
+.multi-menu  .fa-angle-right {
+    display: inline-block;
+    float: right;
+    margin-right: 0;
+    margin-top: 2px;
+    font-weight:bold;
+}
+
+
+/**********03-09-2015*********/
+.check-list label {
+    font-size: 11px;
+    text-transform: capitalize;
+    cursor: pointer;
+    margin: 0;
+    font-weight: 500;
+}
+.check-list label input {
+    margin: 0 7px 0 -20px;
+    vertical-align: middle;
+}
+.last-check-item label {
+    margin-left: 18px;
+}
+.dropdown-menu .filter-bottom {
+    background-color: #eee;
+    padding: 10px !important;
+    text-align: right;
+}
+.filter-bottom .btn {
+    float: none;
+    font-size: 11px;
+    min-width: 50px;
+    padding: 3px 9px 4px;
+    margin-left: 4px;
+}
+.dropdown-menu > li:hover, .multi-sub-menu > li:hover, .parent-item.in {
+    background-color: #eee;
+    cursor: pointer;
+}
+.dropdown-menu > li.active{
+    background-color: #eee;
+}
+
+.dropdown-menu .filter-hover-none:hover {
+    background-color: transparent;
+    cursor: default;
+}
+.multi-menu > li.nano {
+    max-height: 150px;
+}
+.custom-filter-wrap {
+    font-size: 11px;
+    left: 100%;
+    padding: 6px 10px 10px;
+    top: 100%;
+    width: 350px;
+    min-height: 216px;
+}
+.custom-filter-wrap h4 {
+    margin: 0 0 8px;
+}
+.check-list span {
+    float: left;
+    margin: 3px 0 0 -44px;
+    text-align: center;
+}
+.check-list span i {
+    font-size: 10px;
+    margin: 0;
+}
+.check-list.sub span {
+    margin-top: 5px;
+}
+.cf-wrap dl {
+    margin-bottom: 5px;
+}
+/*.cf-wrap dd {
+    margin-left: 15px;
+}*/
+.radio.inline input {
+    margin-left: 0;
+    margin-top: 2px;
+    position: inherit;
+    vertical-align: sub;
+}
+.radio.inline {
+    display: inline-block;
+    margin: 6px 10px 5px 0;
+}
+.cf-wrap .select-group .col-md-4 {
+    padding-right: 0;
+}
+.custom-filter-wrap .filter-bottom {
+    margin-top: 10px;
+}
+.cf-wrap select {
+    font-size: 11px;
+    height: 25px;
+    padding: 2px;
+    line-height: 25px;
+}
+.filter-btn-text.in .text-filter,
+.filter-btn-number.in .number-filter,
+.filter-btn-date.in .date-filter {
+    display: block;   
+}
+.check-list > li:before {
+    border-left: 1px dashed #888;
+    content: "";
+    height: 100%;
+    left: -20px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+.check-list > li:first-child:before {
+    margin-top: 11px;
+}
+.check-list > li:last-child:before {
+    margin-top: -10px;
+}
+.check-list label:before {
+    border-top: 1px dashed #888;
+    content: "";
+    left: -20px;
+    position: absolute;
+    top: 12px;
+    width: 7%;
+}

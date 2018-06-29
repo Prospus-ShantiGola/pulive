@@ -1,0 +1,15 @@
+<?php  
+$verifyLink = SOCKET_HOST_NAME .'login/verifyGuest?token='.$this->encoded_url;
+echo $this->header;
+$html = '<tr><td style="font:22px Arial, Helvetica, sans-serif; color:#333333; text-align:center;"><b>Join Prospus</b></td></tr>'
+        .'<tr><td style="height:20px;">&nbsp;</td></tr>'
+        .'<tr><td style="font:13px Arial, Helvetica, sans-serif; color:#333333">'.$this->adminName.' has invited you to join Prospus, you can use link below to join this invitation, and it only takes a minute to create an account.</td></tr>'
+        .'<tr><td>&nbsp;</td></tr>'
+        .'<tr><td>&nbsp;</td></tr>'
+        .'<tr><td>&nbsp;</td></tr>'
+        .'<tr><td ><a style="color: #fff; text-decoration: none; padding: 8px 20px; background: #49a9fa; border-radius: 2px; font-size: 14px; margin-right: 10px;" href="' . $verifyLink . '">Join Now</a></td></tr>'
+        .'<tr><td>&nbsp;</td></tr>'
+        . '<tr>';
+echo $html;
+echo $this->footer;
+?>

@@ -1,0 +1,139 @@
+<div class="bg-color setScreenHt">
+    <div class="copy-right">
+        <img src="<?php echo $this->basePath(); ?>/vw_img/powered-by.png" class="img-responsive"/>
+    </div>
+    <div class="form-content">
+        <div class="form-header">
+            <img src="<?php echo $this->basePath(); ?>/vw_img/vw-logo.png" class="img-responsive">
+        </div>
+        <div class="form-body">
+            <form name="signUpForm" id="signUpForm" method="post" action="<?php echo BASE_URL.'login/signupVessel'; ?>" >
+                <!-- /* For Individual Class */ -->
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="First Name">First Name</label>
+                        <input type="hidden" value="48" name="instance_property_id_7[]" id="instance_property_id48">
+                        <input type="hidden" value="<?php echo $this->data['first_name']; ?>" name="instance_property_caption_7[]" id="instance_property_caption48" class="form-control first_name_signup">
+                    </div>
+                </div>
+
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="Last Name">Last Name</label>
+                        <input type="hidden" value="49" name="instance_property_id_7[]" id="instance_property_id49">
+                        <input type="hidden" value="<?php echo $this->data['last_name']; ?>" name="instance_property_caption_7[]" id="instance_property_caption49" class="form-control last_name_signup">
+                    </div>
+                </div>
+
+                <!-- /* For Role Class */ -->
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="Common Name">Common Name</label>
+                        <input type="hidden" value="57" name="instance_property_id_9[]" id="instance_property_id57">
+                        <input type="hidden" value="VesselWise.SalesRepresentative" name="instance_property_caption_9[]" id="instance_property_caption57" class="form-control common_name_signup">
+                    </div>
+                </div>
+
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="Domain">Domain</label>
+                        <input type="hidden" value="56" name="instance_property_id_9[]" id="instance_property_id56">
+                        <input type="hidden" value="VesselWise" name="instance_property_caption_9[]" id="instance_property_caption56" class="form-control domain_signup" >
+                    </div>
+                </div>
+
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="Actor">Actor</label>
+                        <input type="hidden" value="79" name="instance_property_id_9[]" id="instance_property_id79">
+                        <input type="hidden" value="<?php echo $this->data['first_name']." ".$this->data['last_name']; ?>" name="instance_property_caption_9[]" id="instance_property_caption79" class="form-control actor_signup">
+                    </div>
+                </div>
+
+                <div style="display:none" class="form-box clearfix">
+                    <div style="display:none" class="form-group col-md-12 col-sm-12 col-xs-12">
+                        <label style="display:none" for="Assigned On">Assigned On</label>
+                        <input type="hidden" value="80" name="instance_property_id_9[]" id="instance_property_id80">
+                        <input type="hidden" value="<?php echo date('Y-m-d h:i:s'); ?>" name="instance_property_caption_9[]" id="instance_property_caption80" class="form-control assigned_on_signup" >
+                    </div>
+                </div>
+                <!-- /* For Account Class */ -->
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="hidden" value="52" name="instance_property_id_8[]" id="instance_property_id52">
+                    <input type="text" value="<?php echo $this->data['email']; ?>" name="instance_property_caption_8[]" id="instance_property_caption52" class="form-control form-input email_address_signup" />
+                    <span id="email_error" class="form-error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">New PassWord</label>
+                    <input type="hidden" value="53" name="instance_property_id_8[]" id="instance_property_id53">
+                    <input type="password" name="instance_property_caption_8[]" id="instance_property_caption53" class="form-control form-input" autofocus />
+                    <span id="password_error" class="form-error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Confirm PassWord</label>
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control form-input" />
+                    <span id="cpassword_error" class="form-error-msg"></span>
+                </div>
+                <input type="hidden" value="7,9,8" name="node_class_id" id="node_class_id">
+                <button type="button" onclick="signUpUser();" class="btn lg-white-btn">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function isValidEmail(email)
+    {
+        return /^[a-z0-9]+([-._][a-z0-9]+)*@([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,4}$/.test(email)
+            && /^(?=.{1,64}@.{4,64}$)(?=.{6,100}$).*/.test(email);
+    }
+
+    function signUpUser()
+    {
+        var email       =   $.trim($('.email_address_signup').val());
+        var password    =   $.trim($('#signUpForm [type=password]:first').val());
+        var cpassword   =   $.trim($('#confirm_password').val());
+
+        $("#email_error").html("");
+        $("#password_error").html("");
+        $("#cpassword_error").html("");
+
+        $('.email_address_signup').removeClass('form-error-field');
+        $('#signUpForm [type=password]:first').removeClass('form-error-field');
+        $('#confirm_password').removeClass('form-error-field');
+
+        if(email == '')
+        {
+            $('.email_address_signup').addClass('form-error-field');
+            $("#email_error").html("Please enter email address.");
+            return false;
+        }
+
+        if(!isValidEmail(email))
+        {
+            $('.email_address_signup').addClass('form-error-field');
+            $("#email_error").html("Please enter valid email address.");
+            return false;
+        }
+
+        if(password == '')
+        {
+            $('#signUpForm [type=password]:first').addClass('form-error-field');
+            $("#password_error").html("Please enter password.");
+            return false;
+        }
+
+        if(password != '')
+        {
+         if(password != cpassword)
+         {
+            $('#confirm_password').addClass('form-error-field');
+            $("#cpassword_error").html("Password and confirm password are not matching.");
+            return false;
+         }
+        }
+       
+       $("#signUpForm").submit();
+    }
+</script>

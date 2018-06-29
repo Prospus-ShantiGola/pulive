@@ -1,0 +1,263 @@
+<div class="fixed-top-header">
+   <table border="" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+      <tbody>
+         <?php 
+			for($row=0;$row<2;$row++) {
+				?>
+			   <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+				  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+							<td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php  echo $this->tableDataArray[$row][$col]['data']; ?></td>
+				  <?php } ?>
+			   </tr>
+			<?php } ?>
+      </tbody>
+   </table>
+</div>
+<table border="" class="fixed-left-column" style="border-collapse: collapse; border:0px; background-color:#FFF; border-color:#d5d5d5; color:#999">
+<tbody>
+<?php 
+
+
+$operationSegmentCount = $this->exitsOperation;
+
+	if($operationSegmentCount!=0){
+		
+    if($this->type=='Below'){
+			
+      $operationRowIndex = intval($this->currentRowIndex);
+			
+      if($this->suboperationCount > 0 && $this->currentLength > 6){
+
+        $lastRowAddDynamic = intval($this->currentLength)-2;
+      }
+      else {
+        
+        $lastRowAddDynamic = intval($this->currentLength)-2;  
+      }
+      
+			
+		}
+		else {
+
+			 if(intval($this->currentRowIndex)-1 == 1 ){
+				 
+         $operationRowIndex = intval($this->currentRowIndex);
+				 
+			 }
+			 else {
+				 
+         $operationRowIndex = intval($this->currentRowIndex)-2;
+				 
+         $lastRowAddDynamic =0;
+			 }
+			 
+		}
+	}
+
+else {
+
+	$lastRowAddDynamic  = '4';
+}
+
+$lastRow =  ($operationRowIndex+$lastRowAddDynamic)+1;
+if($this->suboperationCount < 2){
+    $startcol = intval($this->currentColumnIndex)+4;
+    $endcol   = intval($this->currentColumnIndex)+5;
+} else {
+    $startcol = intval($this->currentColumnIndex)+ 4;
+    $endcol = intval($this->currentColumnIndex)  + intval($this->suboperationCount*3);
+}
+
+$flag = 'Y';$noflag='Y';
+for($row=0;$row<count($this->tableDataArray);$row++) { ?>
+  <tr class="<?php echo $this->tableDataArray[$row][0]['trClass'];?>" >
+      <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+
+            <?php 
+            if($this->type=='Below'){
+              
+              if($this->suboperationCount!=0 || !empty($this->suboperationCount)){
+                if(($row == $lastRow) && ($col >= $startcol && $col <= intval($endcol)))
+                { ?>
+              
+              <td class="role operation-series"><div class="blank-div segment-node"></div> </td>
+            <?php } else {?>
+            <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?> </td>
+              <?php }?>
+              <?php } else {?>
+               <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?> </td>
+              <?php } ?>
+
+            <?php } else {?>
+          <td class="<?php echo $this->tableDataArray[$row][$col]['tdClass'];?>"><?php echo $this->tableDataArray[$row][$col]['data'];?> </td>
+            <?php } ?>
+
+
+       <?php } ?>
+  </tr>
+  
+  <?php 
+  if($this->exitsOperation == 0){
+	  	if($this->type=='Below'){
+				$rowIndex = intval($this->currentRowIndex);
+			} 
+			else {
+				 if(intval($this->currentRowIndex)-1 == 1 ){
+	  			    $rowIndex = intval($this->currentRowIndex);
+				 }
+				 else {
+					$rowIndex = intval($this->currentRowIndex)-2;
+				 }
+			  }		  
+	  if(intval($row) ==  intval($rowIndex)) { ?>
+		  <tr class="">
+			  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+						<?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+						<td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+						<?php } else if(intval($this->currentColumnIndex)+1 == intval($col)) { ?>
+						<td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+						<?php } else { ?>
+						<td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?>		</td>
+						<?php } ?>
+			   <?php } ?>
+		  </tr>
+		  <tr class="" >
+			  <?php for($col=0;$col<count($this->tableDataArray[$row]);$col++) { ?>
+						<?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+						<td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['phase']; ?></td>
+						<?php } else if(intval($this->currentColumnIndex)+1 == intval($col)) { ?>
+						<td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+						<?php } else { ?>
+						<td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+1 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+						<?php } ?>
+			   <?php } ?>
+		  </tr>
+	  <?php } ?>
+  <?php } else {?>
+      
+      <?php 
+
+	for($k=0;$k<1;$k++){
+	  if(intval($row) ==  intval($operationRowIndex)+$lastRowAddDynamic) { ?>
+        <tr class="" >
+      <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2)+intval($this->eventCount));$col++) { ?>
+      
+      <?php if(intval($this->currentColumnIndex) == intval($col)) { ?>
+            <td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['phase']; ?></td>
+            <?php } else if(intval($this->currentColumnIndex)+1 == intval($col)  ) { ?>
+                 <?php if($k==0){?>
+            	<td class="col-<?php echo intval($col); ?> ExcelTablerow"><?php echo $this->phaseArray[1]['event']; ?></td>
+                <?php } else {?>
+                <td class="col-<?php echo intval($col); ?> ExcelTablerow"><div class="segment-node blank-div segment-node"></div></td>
+                <?php } ?>
+                               
+      		<?php } else if(intval($this->currentColumnIndex)+2 == intval($col)) { ?>
+           <td class="ExcelTablerow operation-series operation1 border-light-bottom"><?php echo $this->operationPhaseArray[5]['operation1']; ?></td>
+           
+           <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[5]['event_operation']; ?></td>
+
+           <?php 
+               
+           if($this->suboperationCount > 0) {
+              
+                for($o = 0;$o < (intval($this->suboperationCount));$o++){ ?>
+                    <td class="ExcelTablerow border-light-bottom role operation-series sub-operation"><?php echo $this->subOperationArray[5]['sub_operation1']; ?></td>
+                    <td class="ExcelTablerow border-light-bottom  role operation-series sub-operation"><?php echo $this->subOperationArray[5]['sub_event_operation']; ?></td>
+            <?php } 
+
+            } ?> 
+            
+            <td class="ExcelTablerow operation-series operation2"><?php echo $this->operationPhaseArray[5]['operation2']; ?></td> 
+            <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[5]['event']; ?></td> 
+
+            <?php if($this->eventCount > 0){
+                for($e = 0;$e < $this->eventCount;$e++){ ?>
+          <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[5]['eventStatus']; ?></td>
+            <?php } }  ?>
+
+            <td class="ExcelTablerow operation-series role">	<?php echo $this->operationPhaseArray[5]['role']; ?></td> 
+            
+            <?php 
+            		if($this->noOfRole > 0){
+                		for($j = 0;$j < (intval($this->noOfRole));$j++){ 
+                    		 ?>
+                    <td class="ExcelTablerow operation-series role"><?php echo $this->roleArray[5]['role_series']; ?></td>
+            <?php } } ?>
+
+            <?php $logiccountSerielNo = '';
+                  if($this->domaincount > 0){
+                    for($m = 0;$m < $this->domaincount;$m++){ 
+                    $logiccountSerielNo = intval($m)+intval($countSerielNo);
+
+                    ?>
+            <td class="ExcelTablerow operation-series role creation-bg"><?php echo $this->domainArray[$incrmentCounter]['domain']; ?></td>
+
+            <?php } }  ?>
+
+             <td class="ExcelTablerow operation-series system"><?php echo $this->operationPhaseArray[5]['system']; ?></td>
+          <?php } else { ?>
+            <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+4 > intval($col)) { ?><div class="blank-div segment-node"></div><?php } ?></td>
+          
+          <?php } ?>
+        <?php } ?>
+        </tr>
+        
+        
+      <?php for($i=0;$i<count($this->operationPhaseArray)-1;$i++) { ?>
+        <tr class="">
+      <?php for($col=0;$col<intval(count($this->tableDataArray[$row]))-(5+intval($this->noOfRole)+intval($this->domaincount)+intval($this->suboperationCount*2)+intval($this->eventCount));$col++) { ?>
+
+			<?php if(intval($this->currentColumnIndex) == intval($col) && ( $i==0 && $flag=='Y')) {  ?>
+                <td class="ExcelTablerow border-light-top"><?php echo $this->phaseArray[0]['phase']; ?></td>
+                <?php } else if(intval($this->currentColumnIndex)+1 == intval($col) && ($i==0 && $flag=='Y')) { $flag = 'N'; ?>
+                <td class="ExcelTablerow"><?php echo $this->phaseArray[0]['event']; ?></td>
+			<?php } else if(intval($this->currentColumnIndex)+2 == intval($col) ) { ?>
+            
+           <td class="ExcelTablerow operation-series operation1 "><?php echo $this->operationPhaseArray[$i]['operation1']; ?></td>
+             
+          <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[$i]['event_operation']; ?></td> 
+
+          <?php if($this->suboperationCount > 0) {
+            for($o = 0;$o < (intval($this->suboperationCount));$o++){   ?>
+          <td class="ExcelTablerow operation-series role sub-operation"><?php echo $this->subOperationArray[$i]['sub_operation1']; ?></td>
+          <td class="ExcelTablerow operation-series role sub-operation role"><?php echo $this->subOperationArray[$i]['sub_event_operation']; ?></td>
+          <?php } }?>
+             
+            <td class="ExcelTablerow operation-series operation2">
+             <?php echo $this->operationPhaseArray[$i]['operation2']; ?></td> 
+            <td class="ExcelTablerow operation-series operation-event"><?php echo $this->operationPhaseArray[$i]['event']; ?></td> 
+
+            <?php if($this->eventCount > 0){
+                for($e = 0;$e < $this->eventCount;$e++){ ?>
+          <td class="ExcelTablerow operation-series creation-bg"><?php echo $this->eventStatusArr[$i]['eventStatus']; ?></td>
+            <?php } }  ?>
+
+            <td class="ExcelTablerow operation-series role">	<?php echo $this->operationPhaseArray[$i]['role']; ?></td> 
+            
+            <?php if($this->noOfRole > 0){
+                for($m = 0;$m < (intval($this->noOfRole)/intval($this->exitsOperation));$m++){ 
+                   ?>
+                    <td class="ExcelTablerow operation-series role"><?php echo $this->roleArray[$i]['role_series']; ?></td>
+            <?php } }  ?>
+
+            	 <?php 
+                  if($this->domaincount > 0){
+                    for($m = 0;$m < $this->domaincount;$m++){ 
+                    ?>
+                  <td class="ExcelTablerow operation-series domain creation-bg "><?php echo $this->domainArray[$i]['domain']; ?></td>
+            <?php } }  ?>
+
+                    <td class="ExcelTablerow operation-series system"><?php echo $this->operationPhaseArray[$i]['system']; ?></td>
+          <?php } else { ?>
+          <td class="col-<?php echo intval($col); ?><?php if(intval($col) == 0 ){ ?> ExcelTableFormationRow<?php } else{ ?> ExcelTablerow<?php } ?>"><?php if(intval($this->currentColumnIndex)+4 > intval($col)) { ?>
+          <div class="blank-div segment-node"></div><?php } ?></td>
+          <?php } ?>
+        <?php } ?>
+        </tr>
+     <?php } ?> 
+  <?php } }?>
+  <?php } ?>
+
+<?php } ?>
+</tbody>
+</table>

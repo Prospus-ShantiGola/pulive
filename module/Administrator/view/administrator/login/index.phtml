@@ -1,0 +1,80 @@
+<style type="text/css">
+input.form-control.form-error-field{
+    border-bottom: 1px solid red;
+}
+.form-error-msg{
+    color: red;
+    font-size: 11px;
+    position: absolute;
+}
+</style>
+<div class="modal fade modal-wrap in popup-responsive" id="loginPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" style="display: block;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            
+            <div class="login-header align-center">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="login-logo"><img src="<?php echo $this->basePath(); ?>/img/prospus.png"></div>
+                        <h1>Prospus</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <div class="modal-body">
+        <!-- <div class="login-top-content"><p>Your session has expired. You will need to log in again to resume your work</p></div> -->
+		
+        <div class="login-content">
+           <span id="error_msg_signin" style="color:red;"></span>
+			<form class="user_login_form"  autocomplete="off">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+
+                    <input type="text" class="form-control email_address"  name ='emailaddress' id="emailaddress" autofocus  />
+
+                    <span id="email_error" class="form-error-msg"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+
+                    <input type="password" class="form-control password" id ='password' name = 'password' autocomplete='off'  />
+
+                
+
+                    <span id="password_error" class="form-error-msg"></span>
+                </div>
+                <a href="#" class="right forgot-password">Forgot Password?</a>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" > Remember Me
+                    </label>
+                </div>
+                <button type="button" class="btn btn-style transition" onclick ='DoLogin();'>Login</button>               
+            
+            </form>
+        
+          </div>
+        
+      </div>
+     
+    </div>
+  </div>
+</div>
+<div class="modal fade plugin-custom-modal" tabindex="-1" role="dialog" id="confirmation-signin-popup" data-backdrop="static">
+    <div class="modal-dialog small-modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p><span id="loggedin-msg"></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </p>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="exit-confirmation" onclick="callforceloginAction()" class="btn btn-black" data-dismiss="modal">Yes</button>
+                <button type="button" class="btn btn-black" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+

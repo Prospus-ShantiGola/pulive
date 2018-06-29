@@ -1,0 +1,511 @@
+<?php if($this->mode == "Normal"){ ?>
+
+    <?php if($this->search_text=="" ){ ?>
+
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading folder-details-heading">Folder (Details) : General (123456)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <?php } ?>
+
+    <div class="niceScrollDiv">
+        <div class="main-one-third" id="document-details-instance-list-div">
+            <input type="hidden" id="filter_operator" name="filter_operator" value="equals" />
+            <input type="hidden" id="filter_type" name="filter_type" value="no-pagination" />
+            <input type="hidden" id="filter_field" name="filter_field" value="" />
+            <input type="hidden" id="is_instance" name="is_instance" value="N" />
+            <input type="hidden" id="is_loading_tag" name="is_loading_tag" value="N" />
+            <input type="hidden" id="action_type" name="action_type" value="" />
+            
+            <?php
+            $url_order = 'ASC';  // the following lines
+            $url_order = $order == 'ASC' ? 'DESC' : 'ASC';
+            ?>
+
+            <table class="table table-style table-responsive table-head ActiveRow folder-detail">
+                <thead>
+                    <th class="filterDrp">
+                        <span class=""><i class="icon resources"></i><span class='truncate-text'>Name</span>
+                            <?php if ($order_by == 'value') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','value','ASC','Ajax')" >Sort A - Z</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','value','DESC','Ajax')">Sort Z - A</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Ends With</li>
+                                    <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Does Not Contain</li>
+                                </ul>
+                            </li>                                
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-button-box-folder-details" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-document-name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box-folder-details entr-document-name" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>
+                            <span class='truncate-text'>Types</span>
+                            <?php if ($order_by == 'node_instance_id') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','ASC','Ajax')" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','DESC','Ajax')">Sort by descending</li>                           
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span><span class='truncate-text'>Added</span><i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','ASC','Ajax')" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','DESC','Ajax')">Sort by descending</li>
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>
+                            <span class='truncate-text'>Status</span>
+                            <?php if ($order_by == 'status') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                            <li data-id="all" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">All</li>
+                            <li data-id="d" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">Draft</li>
+                            <li data-id="p" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">Published</li>
+                        </ul>
+                    </th>
+                </thead>
+            </table>
+            <div class="nano fixedTableHig" id="dragandrophandler1" style="position:relative">
+                <div class="nano-content">
+                    <table class="table table-style table-responsive folder-detail ActiveRow "> 
+                        <tbody> 
+                            <?php 
+                            if(!empty($this->instanceArray)){ ?>
+
+                                <?php foreach ($this->instanceArray as $key => $value) { ?>  
+
+                                    <?php if( intval($value['node_class_id']) == intval($this->dialog_class_id) ){
+                                        $click_function = 'ondblclick="loadFolderDialogueDocument('."'".$value['node_instance_id']."'".','."'".$value['node_id']."'".','."'".addslashes($value['value'])."'".')"';
+                                    }else{
+                                        $click_function = '';
+                                    } ?>
+
+                                    <tr data-id="<?php echo $value['node_id']?>" class="folder-document-details" <?php echo $click_function;?> >
+                                        <?php    
+                                        $valuData       = $value['value'];
+                                        $timeStamp      = $value['timeStamp'];
+
+                                        if($value['type']!=""){
+                                            $type       = ucfirst($value['type']);    
+                                        }else {
+                                            if($value['node_class_id'] == $this->dialog_class_id){
+                                                $type       = 'Document';
+                                            }else{
+                                                $type       = 'Folder';
+                                            }
+                                        }
+                                        
+                                        if($value['node_class_id'] == $this->doc_class_id){
+                                            $icon       = 'doc';
+                                        }
+                                        else if($value['node_class_id'] == $this->xlsx_class_id){
+                                            $icon       = 'excel';
+                                        }
+                                        else if($value['node_class_id'] == $this->csv_class_id){
+                                            $icon       = 'csv';
+                                            
+                                        }
+                                        else if($value['node_class_id'] == $this->pdf_class_id){
+                                            $icon       = 'pdf';  
+                                        }
+                                        else if($value['node_class_id'] == $this->ppt_class_id){
+                                            $icon       = 'ppt';
+                                        }
+                                        else if($value['node_class_id'] == $this->jpeg_class_id){
+                                            $icon       = 'jpg';
+                                        }
+                                        else if($value['node_class_id'] == $this->png_class_id){
+                                            $icon       = 'png';
+                                        }
+                                        else if($value['node_class_id'] == $this->gif_class_id){
+                                            $icon       = 'gif';
+                                        }
+                                        else if($value['node_class_id'] == $this->zip_class_id){
+                                            $icon       = 'zip';
+                                        }
+                                        else if($value['node_class_id'] == $this->rar_class_id){
+                                            $icon       = 'rar';
+                                        }
+                                        /* Added by Divya Rajput On Date 22nd April 2016 */
+                                        else if($value['node_class_id'] == $this->dialog_class_id){
+                                            $icon       = 'resource-dialogue';
+                                        }
+                                        /* End Here */
+                                        else {
+                                            $icon       = 'folder';                                                    
+                                        } ?>
+
+                                        <td><i class="icon <?php echo $icon?>"></i>
+                                            <span class='truncate-text'>
+                                                <?php 
+                                                if(intval($value['encrypt_status']) == 1)
+                                                {
+                                                    $caption =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$valuData,'key' =>ENCRYPTION_KEY)); 
+                                                } 
+                                                else
+                                                {
+                                                    $caption = $valuData;
+                                                } 
+                                                echo $caption;
+                                                ?>
+                                            </span>
+                                        </td>
+                                        <td><span class='truncate-text'><?php echo $type;?></span></td>
+                                        <td>
+                                            <span class='truncate-text'>
+                                                <?php if ($timeStamp!=""){
+                                                    echo $timeStamp;
+                                                }else {
+                                                    echo '-';
+                                                }?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class='truncate-text'>
+                                                <?php if($value['status']==1){
+                                                    echo "Published";
+                                                } else {
+                                                    echo "Draft";
+                                                } ?>
+                                            </span>
+                                        </td> 
+                                    </tr>
+
+                                <?php } ?>
+
+                            <?php } else { ?>
+
+                                <tr class="list-row lisat-instance-row0 no-record folder-document-details">
+                                    <td colspan="6" align="center"> No records found.</td>
+                                </tr> 
+
+                            <?php } ?>                               
+                            
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php } else { ?>
+
+    <?php $url_order = 'ASC'; $url_order = $order == 'ASC' ? 'DESC' : 'ASC'; ?>
+
+    
+
+        <div class="control-bar">
+            <div class="row">
+                <div class="col-md-12 left-head">
+                    <div class="block-head">
+                        <span class="main-title-wrap">
+                            <span class="main-title left-side-heading">Folder (Details) : General (123456)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   
+
+    <div class="niceScrollDiv">
+        <input type="hidden" id="filter_operator" name="filter_operator" value="equals" />
+        <input type="hidden" id="filter_type" name="filter_type" value="no-pagination" />
+        <input type="hidden" id="filter_field" name="filter_field" value="" />
+        <input type="hidden" id="is_instance" name="is_instance" value="N" />
+        <input type="hidden" id="is_loading_tag" name="is_loading_tag" value="N" />
+        <input type="hidden" id="action_type" name="action_type" value="" />
+        <div class="main-one-third" id="document-details-instance-list-div">
+            <table class="table table-style table-responsive table-head ActiveRow folder-detail">
+                <thead>
+                    <th class="filterDrp" >
+                        <span class=""><i class="icon resources"></i><span class='truncate-text'>Name</span>
+                            <?php if ($order_by == 'value') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','value','ASC','Ajax')">Sort A - Z</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','value','DESC','Ajax')">Sort Z - A</li>
+                            <li class="parent-item" data-value="" data-fn="">Text Filters <i class="fa fa-angle-right"></i>
+                                <ul class="multi-sub-menu dropdown-menu">
+                                    <li data-id="equals" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Equals To</li>
+                                    <li data-id="not_equal" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Not Equals To</li>
+                                    <li data-id="begins_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Begins With</li>
+                                    <li data-id="ends_with" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Ends With</li>
+                                    <li data-id="contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Contains</li>
+                                    <li data-id="not_contains" data-filter-by="no-pagination" data-filter-field="value" class="sub-filter">Does Not Contain</li>
+                                </ul>
+                            </li>
+                            <div class="search-item-wrap">
+                                <div class="input-group">
+                                    <input type="text" id="search-button-box-folder-details" class="form-control" placeholder="Search" name="search-caption-text-box" value="" data-value="entr-document-name">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default search-button-box-folder-details entr-document-name" type="button"><i class="fa fa-search"></i></button>
+                                    </span>
+                                </div>
+                            <!-- /input-group -->
+                            </div>
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>
+                            <span class='truncate-text'>Types</span>
+                            <?php if ($order_by == 'node_instance_id') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','ASC','Ajax')" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','DESC','Ajax')">Sort by descending</li>                           
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span><span class='truncate-text'>Added</span><i class="fa fa-angle-down"></i></span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu">
+                            <li class="sort-by" data-value="ASC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','ASC','Ajax')" >Sort by ascending</li>
+                            <li class="sort-by" data-value="DESC" data-field="location" data-section="item" onclick="paginationDocumentDetailsAjax('<?php echo $this->url('documents');?>','1','instance_instance_id','DESC','Ajax')">Sort by descending</li>
+                        </ul>
+                    </th>
+                    <th class="filterDrp">
+                        <span>
+                            <span class='truncate-text'>Status</span>
+                            <?php if ($order_by == 'status') { ?>
+                                <i class="fa fa-angle-<?php echo $url_order == 'ASC' ? 'up' : 'down' ?>"></i>
+                            <?php } else { ?>
+                                <i class="fa fa-angle-down"></i>
+                            <?php } ?>
+                        </span>
+                        <ul aria-labelledby="dLabel" role="menu" class="dropdown-menu multi-menu rightDrpShow">
+                            <li data-id="all" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">All</li>
+                            <li data-id="d" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">Draft</li>
+                            <li data-id="p" data-filter-by="no-pagination" data-filter-field="status" class="sub-folder-filter-status">Published</li>
+                        </ul>
+                    </th>
+                </thead>
+            </table>
+            <div class="nano fixedTableHig" id="dragandrophandler1" style="position:relative">
+                <div class="nano-content">
+                    <table class="table table-style table-responsive folder-detail ActiveRow "> 
+                        <tbody> 
+
+                            <?php if(!empty($this->instanceArray)){ ?>
+                                
+                                <?php foreach ($this->instanceArray as $key => $value){ ?>
+
+                                    <?php if($this->order == "DESC" && $this->order_by == "value" ){
+
+                                        $valuData   = $value['value'];   
+                                        $timeStamp  = $value['timeStamp'];
+                                        
+                                        if($value['type']!=""){
+                                            $type       = ucfirst($value['type']);   
+                                        }else {
+                                            if($value['node_class_id'] == $this->dialog_class_id){
+                                                $type       = 'Document';
+                                            }else{
+                                                $type       = 'Folder';
+                                            }
+                                        }
+
+                                        if($value['node_class_id'] == $this->doc_class_id){
+                                            $icon       = 'doc';
+                                        }
+                                        else if($value['node_class_id'] == $this->xlsx_class_id){
+                                            $icon       = 'excel';
+                                        }
+                                        else if($value['node_class_id'] == $this->csv_class_id){
+                                            $icon       = 'csv';
+                                        }
+                                        else if($value['node_class_id'] == $this->pdf_class_id){
+                                            $icon       = 'pdf'; 
+                                        }
+                                        else if($value['node_class_id'] == $this->ppt_class_id){
+                                            $icon       = 'ppt';
+                                        } 
+                                        else if($value['node_class_id'] == $this->jpeg_class_id){
+                                            $icon       = 'jpg';
+                                        }
+                                        else if($value['node_class_id'] == $this->png_class_id){
+                                            $icon       = 'png';
+                                        }
+                                        else if($value['node_class_id'] == $this->gif_class_id){
+                                            $icon       = 'gif';
+                                        }
+                                        else if($value['node_class_id'] == $this->zip_class_id){
+                                            $icon       = 'zip';
+                                        }
+                                        else if($value['node_class_id'] == $this->rar_class_id){
+                                            $icon       = 'rar';
+                                        }
+                                        /* Added by Divya Rajput On Date 22nd April 2016 */
+                                        else if($value['node_class_id'] == $this->dialog_class_id){
+                                            $icon       = 'resource-dialogue';
+                                        }
+                                        /* End Here */
+                                        else {
+                                            $icon       = 'folder'; 
+                                        }
+                                    }
+                                    else 
+                                    {
+                                        $valuData   = $value['value'];
+                                        $timeStamp  = $value['timeStamp'];
+                                        
+                                        if($value['type']!=""){
+                                            $type       = ucfirst($value['type']);    
+                                        }else {
+                                            if($value['node_class_id'] == $this->dialog_class_id){
+                                                $type       = 'Document';
+                                            }else{
+                                                $type       = 'Folder';
+                                            }
+                                        }
+
+                                        if($value['node_class_id'] == $this->doc_class_id){
+                                            $icon       = 'doc';
+                                        }
+                                        else if($value['node_class_id'] == $this->xlsx_class_id){
+                                            $icon       = 'excel';
+                                           
+                                        }
+                                        else if($value['node_class_id'] == $this->csv_class_id){
+                                            $icon       = 'csv';
+                                            
+                                        }
+                                        else if($value['node_class_id'] == $this->pdf_class_id){
+                                            $icon       = 'pdf';
+                                           
+                                        }
+                                        else if($value['node_class_id'] == $this->ppt_class_id){
+                                            $icon       = 'ppt';
+                                            
+                                        } 
+                                        else if($value['node_class_id'] == $this->jpeg_class_id){
+                                            $icon       = 'jpg';
+                                        }
+                                        else if($value['node_class_id'] == $this->png_class_id){
+                                            $icon       = 'png';
+                                        }
+                                        else if($value['node_class_id'] == $this->gif_class_id){
+                                            $icon       = 'gif';
+                                        }
+                                        /* 
+                                        * Added by Divya Rajput On Date 22nd April 2016 
+                                        * As zip and rar in not included insiide of this
+                                        */
+                                        else if($value['node_class_id'] == $this->zip_class_id){
+                                            $icon       = 'zip';
+                                        }
+                                        else if($value['node_class_id'] == $this->rar_class_id){
+                                            $icon       = 'rar';
+                                        }
+                                        /* Added by Divya Rajput On Date 22nd April 2016 */
+                                        else if($value['node_class_id'] == $this->dialog_class_id){
+                                            $icon       = 'resource-dialogue';
+                                        }
+                                        /* End Here */
+                                        else {
+                                            $icon       = 'folder';
+                                        }
+                                    } 
+                                    ?>  
+
+                                    <tr data-id="<?php echo $value['node_id']?>" class="folder-document-details">
+                                        <td ><i class="icon <?php echo $icon;?>"></i>
+                                            <span class='truncate-text'>
+                                                <?php 
+
+                                                if(intval($value['encrypt_status']) == 1)
+                                                {
+                                                $caption =  $obj->encryption_decryption('mc_decrypt',array('decrypt' =>$valuData,'key' =>ENCRYPTION_KEY)); 
+                                                } 
+                                                else
+                                                {
+                                                $caption = $valuData;
+                                                } 
+                                                echo $caption;?>
+                                            </span>
+                                        </td>
+                                        <td><span class='truncate-text'><?php echo $type;?></span></td>
+                                        <td>
+                                            <span class='truncate-text'>
+                                            <?php 
+                                            if ($timeStamp!=""){
+                                                echo $timeStamp;
+                                            }
+                                            else {
+                                                echo '-';
+                                            }?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class='truncate-text'>
+                                                <?php if($value['status']==1){
+                                                    echo "Published";
+                                                } else {
+                                                    echo "Draft";
+                                                } ?>
+                                            </span>
+                                        </td> 
+                                    </tr>
+
+                                <?php } ?>
+
+                            <?php } else { ?>
+
+                                <tr class="list-row lisat-instance-row0 no-record folder-document-details" >
+                                    <td colspan="6" align="center"> No records found.</td>
+                                </tr>
+ 
+                            <?php } ?>                          
+                            
+                        </tbody>
+                    </table> 
+                </div>
+            </div>            
+        </div>
+    </div>
+
+<?php } ?>
